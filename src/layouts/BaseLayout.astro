@@ -51,12 +51,13 @@ const pageTitle = title ? `${title} · Deadlink Labs` : 'Deadlink Labs — Marce
     <slot name="head" />
   </head>
   <body>
+    {/* Sticky top bar — full viewport width, above everything on every page. */}
+    <Nav width={width} />
     {/* Full-bleed region above the sheet — the homepage cover (band 1) slots here. */}
     <slot name="cover" />
     <div class="desk">
       <div class:list={['sheet', `sheet--${width}`]}>
         <Masthead lastUpdated={lastUpdated} />
-        <Nav />
         <main class="sheet__body">
           <slot />
         </main>

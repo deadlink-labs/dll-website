@@ -2,6 +2,15 @@
 // Nav — the intentionally minimal four-item nav (CLAUDE.md §2).
 // Home · Log · Products · About. Distinct from the masthead running head.
 // The consulting funnel (Work with me) lives OFF this nav, by design.
+// Renders as a full-viewport sticky bar at the very top of every page;
+// the links inside align to the sheet's width and gutters.
+interface Props {
+  /** Matches the page's sheet width so the links line up with the content. */
+  width?: 'index' | 'record';
+}
+
+const { width = 'index' } = Astro.props;
+
 const items = [
   { label: 'Home', href: '/' },
   { label: 'Log', href: '/log' },
@@ -14,7 +23,7 @@ const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isActive = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`));
 ---
 
-<nav class="nav" aria-label="Primary">
+<nav class:list={['nav', `nav--${width}`]} aria-label="Primary">
   <ul class="nav__list">
     {
       items.map((item) => (
@@ -30,18 +39,44 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path === href 
 
 <style>
   .nav {
-    padding-block: 0.7rem;
-    padding-inline: var(--gutter, 4rem);
-    border-bottom: 1px solid var(--color-ink-15);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    min-height: var(--nav-height, 45px);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    background: var(--color-paper);
+    /* hairline is invisible at the top of the page so the bar blends into the
+     * paper; it fades in once the visitor scrolls (see the script below) */
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+    /* mirrors the desk's horizontal padding so the inner list can center
+     * against the same box the sheet centers in */
+    padding-block: 0.6rem;
+    padding-inline: clamp(1rem, 4vw, 3rem);
   }
 
   .nav__list {
     display: flex;
     flex-wrap: wrap;
     gap: 1.6rem;
+    width: 100%;
     margin: 0;
+    margin-inline: auto;
+    /* mirrors the sheet's internal gutter so links align with sheet content */
     padding: 0;
+    padding-inline: clamp(1.5rem, 5vw, 4rem);
+    box-sizing: border-box;
     list-style: none;
+  }
+
+  .nav--index .nav__list {
+    max-width: 1120px;
+  }
+
+  .nav--record .nav__list {
+    max-width: 920px;
   }
 
   .nav__link {
@@ -70,4 +105,17 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path === href 
     outline: 2px solid var(--color-signal);
     outline-offset: 3px;
   }
+
+  .nav--scrolled {
+    border-bottom-color: var(--color-ink-15);
+  }
 </style>
+
+<script>
+  // Reveal the hairline once the page is scrolled; runs on load too so a
+  // reload mid-page starts in the correct state.
+  const nav = document.querySelector('.nav');
+  const update = () => nav?.classList.toggle('nav--scrolled', window.scrollY > 4);
+  update();
+  addEventListener('scroll', update, { passive: true });
+</script>

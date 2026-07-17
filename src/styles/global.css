@@ -22,6 +22,12 @@
 }
 
 @layer base {
+  :root {
+    /* Height of the sticky top nav bar — read by the nav and by the homepage
+     * cover (which subtracts it so the fold marker stays at the viewport edge). */
+    --nav-height: 45px;
+  }
+
   html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;

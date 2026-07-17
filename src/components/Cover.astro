@@ -23,7 +23,8 @@ import NetworkMark from './NetworkMark.astro';
 <style>
   .cover {
     position: relative;
-    min-height: 100svh;
+    /* fill the viewport minus the sticky nav, so the fold marker sits at the fold */
+    min-height: calc(100svh - var(--nav-height, 0px));
     display: flex;
     flex-direction: column;
     align-items: center;
