@@ -1,0 +1,22 @@
+/* Deadlink Labs — global stylesheet
+ * Tailwind v4 + the 8A "Bridge Truss" design tokens (CLAUDE.md §3).
+ * This file holds tokens only. Component/layout styles come later in the build order. */
+
+@import "tailwindcss";
+
+@theme {
+  /* --- Color tokens (CLAUDE.md §3) --- */
+  --color-desk: #e7e4de; /* Outer canvas behind the sheet (body background) */
+  --color-paper: #f7f5f1; /* The paper sheet — page/content surface */
+  --color-paper-raised: #ffffff; /* Cards, register tables, code-panel frames */
+  --color-ink: #191714; /* Body text, headlines, settled nodes */
+  --color-ink-60: rgba(25, 23, 20, 0.62); /* Stamps, metadata, captions */
+  --color-ink-15: rgba(25, 23, 20, 0.15); /* Hairline rules, borders, sheet edge */
+  --color-signal: #f04a00; /* Live node, status dots, link hover, focus rings */
+  --color-panel: #14120f; /* Dark panels: code, terminal, video frames */
+  --color-panel-deep: #0e0c0a; /* Deeper terminal inset */
+
+  /* --- Typography (CLAUDE.md §3) --- */
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}

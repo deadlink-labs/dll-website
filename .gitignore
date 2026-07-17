@@ -7,6 +7,13 @@ dist/
 # astro
 .astro/
 
+# vercel
+.vercel/
+
+# content pipeline (CLAUDE.md §4): content/ is shallow-cloned at build time
+# from the private content repo, and symlinked locally. Never committed here.
+content/
+
 # environment variables
 .env
 .env.*
