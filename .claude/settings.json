@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"/Volumes/AV/DEADLINK LABS\" 2>/dev/null && echo \"---ALL .git DIRS \\(depth-limited\\)---\" && find . -maxdepth 4 -name \".git\" -print 2>/dev/null)",
+      "Read(//Volumes/AV/DEADLINK LABS/**)"
+    ]
+  }
+}

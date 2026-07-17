@@ -1,0 +1,370 @@
+# CLAUDE.md — Deadlink Labs Website
+
+Project brief and source of truth for building **deadlinklabs.com**.
+Read this file in full before writing any code. When in doubt, this file wins over assumptions.
+
+Two companion documents in `my_assets/` are the authorities this brief is reconciled against:
+- **`Deadlink Labs Design Brief-handoff.zip`** — the final visual handoff (Claude Design). The settled direction is **design 8A ("Bridge Truss")**; §3 below is derived from it.
+- **`DLL Web - Structure v2.md`** — the authoritative information-architecture and build spec. §2, §4, §5 below are derived from it.
+
+`my_assets/video-scripts/` holds scripts for videos documenting the build process (e.g. the LOG 001 video). These are reference material only — never site content (see §8). When editing a script, check that every technical step it describes still matches this brief (stack, folder names, versioning, build order).
+
+---
+
+## 1. What this is
+
+The personal laboratory and professional home of **Marcelo Brouard**: 30 years of making operations run better with technology (sound post-production, AI automation, dashboards, home automation, web). It is first a **creative laboratory** — a living, growing archive where the work speaks before the person — and, through that lab, a **proof-of-work archive** that also serves as a consulting funnel and, eventually, a small product storefront.
+
+Register (from Structure v2): a working lab, not a startup site or portfolio. Visitors discover the work first, the artifacts second, the person last. *Build to understand. Document to remember. Share so others can build further.*
+
+**Primary goals, in order:**
+1. Attract consulting clients (small businesses, ops leads, founders) — surfaced *through* the lab (a "Work with me" destination, reachable off the main nav; see §5).
+2. Give recruiters and collaborators a fast, undeniable picture of how Marcelo thinks and what he ships.
+3. Host Deadlink Labs products (Cassette Mixtapes, Hazefield) with waitlists until purchasable.
+
+**The 90-second test:** a recruiter landing cold must, within 90 seconds, learn who Marcelo is, the arc from sound post to AI-assisted building, 2–3 concrete shipped things, and how to contact him.
+
+**Tone rule (non-negotiable):** the site never describes Marcelo with adjectives ("creative", "detail-oriented", "passionate"). It shows artifacts, decisions, and numbers, and lets the reader conclude. Exactly ONE thing on the site asks for anything (Work with me). No CTAs mid-article, no popups, no floating buttons.
+
+---
+
+## 2. Brand architecture
+
+- **Domain:** deadlinklabs.com (canonical). Site masthead = Deadlink Labs.
+- **Person-first content:** "Marcelo Brouard" appears in the masthead running head and in the site `<title>` template (e.g. `Deadlink Labs — Marcelo Brouard` on home; `{Page} · Deadlink Labs` elsewhere, with Marcelo's name in meta description and JSON-LD Person schema). Googling "Marcelo Brouard" must find this site.
+- Deadlink Labs is Marcelo's laboratory. The lab is the format; Marcelo is the subject.
+- **Brand mark:** the **network mark** (see §3) — a truss of ink nodes and hairlines resolving onto one live orange node. The dead link resolves. This is the logo and the cover device.
+
+### Navigation
+Intentionally minimal (Structure v2 §2):
+
+```
+Home   Log   Products   About
+```
+
+Do not add sections unless they serve a fundamentally different purpose. The consulting funnel (Work with me, client case studies) lives *off* this nav — surfaced on Home and About and reached by CTA, not as a top-level item.
+
+---
+
+## 3. Design system
+
+Derived from design **8A** in the handoff. The brief confirms most of what follows; the specifics below are locked.
+
+### Feel
+A working **lab notebook**, presented as a **sheet of paper on a desk**. Warm paper, ink, instrument-panel labels. Calm, timeless, precise, editorial. Influences: Teenage Engineering (light, industrial, mono labels), Swiss editorial, research notebooks. NOT: dark-mode dev portfolio, AI glow, gradients, startup landing page. The work is always more important than the interface.
+
+### Signature elements (two)
+
+**1. The network mark (design 8A · "Bridge Truss").** A truss of hairline segments and ink nodes that thins as it rises left→right and bottom→top, resolving onto a single larger **live node** at the top-right frontier. The live node is signal orange (`#F04A00`, r≈6.5); the settled nodes are ink (r≈3.6); the segments are 1px ink hairlines at ~0.85 opacity. It reads as *the dead link resolves* / rising structure toward a live edge. This is the mark for the homepage cover and the logo. (The other explorations in the handoff — 8B/8C, 7A–C — are not used.) It animates in on load with a subtle settle/draw-in (CSS keyframes), and respects `prefers-reduced-motion`.
+
+**2. The lab-record stamp.** Every content record (log entry, product) opens with a monospace metadata block, like an entry in a research log:
+
+```
+LOG 012 · IN PROGRESS · TESTING · LOCAL-LLM / HOME-ASSISTANT / PYTHON
+```
+
+Stamps use Plex Mono, uppercase, letter-spaced, small size, ink at ~60% opacity, with the status token in signal orange when active. Records are numbered (LOG 012, EXP 002, DEC 014…). This system is the site's identity: it appears consistently on every record and in list items (feeds show number + status dot + title + date).
+
+### Cover / title page (per 8A)
+The homepage opens with a quiet cover above the fold:
+- The **8A truss mark**, centered, large negative space around it.
+- Below it: `Deadlink Labs` (Plex Mono, ~15px, `letter-spacing: 0.34em`, uppercase) and `Build to Understand.` (Plex Mono, ~11.5px, `letter-spacing: 0.16em`, uppercase, ink-60).
+- A dashed **viewport-fold marker**; the first experiment peeks below the fold so the visitor scrolls naturally into it.
+- No hero marketing, no welcome copy, no CTA on the cover (matches Structure v2 §4.1).
+
+### Masthead / running head (the 8A header)
+A hairline-topped-and-bottomed band, Plex Mono, uppercase, letter-spaced:
+- **Left:** `Deadlink Labs · A working laboratory · Marcelo Brouard · Buenos Aires` — the `Deadlink Labs` token slightly bolder (`weight 500`, `letter-spacing: 0.22em`); the rest ink-60.
+- **Right:** `Last updated MM.YYYY` (ink at ~50%).
+
+This is a running head (identity + provenance), distinct from the four-item nav.
+
+### Color tokens
+Deliberately NOT the cream-and-terracotta AI default. The desk is neutral-warm, the paper sheet sits on it, and the accent is a saturated **instrument/safety orange**, not clay.
+
+| Token | Hex | Use |
+|---|---|---|
+| `--desk` | `#E7E4DE` | Outer canvas behind the sheet (body background) |
+| `--paper` | `#F7F5F1` | The paper sheet — page/content surface |
+| `--paper-raised` | `#FFFFFF` | Cards, decision-register tables, code-panel frames |
+| `--ink` | `#191714` | Body text, headlines, settled nodes |
+| `--ink-60` | `rgba(25,23,20,0.62)` | Stamps, metadata, captions |
+| `--ink-15` | `rgba(25,23,20,0.15)` | Hairline rules, borders, sheet edge |
+| `--signal` | `#F04A00` | Live node, status dots, links on hover, active stamps, focus rings |
+| `--panel` | `#14120F` | Dark panels ONLY: code blocks, terminal captures, video frames |
+| `--panel-deep` | `#0E0C0A` | Deeper terminal inset (a specimen inside a dark panel) |
+
+**The paper-sheet-on-desk pattern:** content sits on a paper sheet floated over the desk — `background: var(--paper)`, `border: 1px solid var(--ink-15)`, `box-shadow: 0 30px 80px -40px rgba(25,23,20,0.35)`. The sheet is divided into **stamped bands by hairline rules** (`--ink-15`, 1px), not by gaps between cards.
+
+Orange is scarce by design: the live node, status dots, link hover/underline accents, the occasional active stamp token. If a screen has more than ~3 orange elements visible, remove some.
+
+### Typography
+- **IBM Plex Sans** — headlines and body. Headlines: weight 600, tight leading. Body: weight 400, 17px/1.65 on desktop, max measure ~68ch.
+- **IBM Plex Mono** — stamps, labels, dates, status tokens, masthead, code. Uppercase + `letter-spacing: 0.10–0.18em` for labels; normal case for code.
+- **Type scale (desktop):** 60 / 44 / 30 / 24 / 20 / 17 / 15 / 14 / 12.5 / 11. Mobile scales down one step.
+  - `60` — homepage hero (the current experiment's question), line-height 1.06.
+  - `44` — page/record titles, line-height 1.1.
+- **Headline tracking:** large headlines use tight **negative** letter-spacing (−0.02em to −0.025em). (This supersedes any earlier "no letter-spacing tricks" guidance — the negative tracking on big Plex Sans headlines is intentional and part of the 8A look.)
+- No decorative or serif faces anywhere.
+
+### Layout
+- The sheet is ~**1120px** wide for the homepage and index pages; long-form record pages are narrower (~**920px**) with wide gutters. Generous margins; the sheet floats on the desk.
+- **64px** horizontal gutters inside the sheet. Lab-sheet blocks use a **150px mono label column** + content column (`grid-template-columns: 150px 1fr`).
+- Prose measure ~640–720px. Long-form pages read like documents: continuous prose with embedded images/video where they earn it. NO alternating image/text marketing blocks. NO full-bleed hero images.
+- Hairline rules (`--ink-15`, 1px) separate sections. Zero border-radius on rules and stamps; 4px max on cards/thumbnails.
+- Dark panels (`--panel`) frame code blocks, terminal output, and video embeds — specimens in the notebook. Everything else stays on paper.
+
+### Status system (single source of truth)
+- Statuses render as a dot + mono token: `● IN PROGRESS`.
+- **Status vocabulary** (from 8A): `IN PROGRESS`, `TESTING`, `SETTLED`, `ROUGH`, `RESEARCH`, `PRIVATE BETA`, `REVISED`, `SHIPPED`. Decision-register entries use `SETTLED` / `TESTING` / `REVISED`.
+- **Dot styles:** active / on-the-bench (in-progress, testing) = signal orange, **pulsing**; shipped / private-beta = filled ink; research = ink outline; archived / muted = ink-15; coming-soon = signal orange (static).
+- **Products page rule:** an item appears under Products ONLY if it is a mature artifact — purchasable, waitlist-ready, or a released/documented tool. Everything else is a log entry.
+
+### Motion
+**CSS-first** (Astro ships zero JS by default; the 8A animations are pure CSS keyframes). The test for every animation: does it RESPOND to the visitor's action, or PERFORM at them? Respond stays, perform goes.
+Allowed: the cover-mark settle/draw-in on load, micro-interactions (hover states on feed items/cards, link transitions, status-dot pulse on in-progress), ONE subtle staggered entrance on feed lists, smooth layout transitions when filtering the Log. Damped, precise, instrument-like — Teenage Engineering feel.
+Framer Motion is NOT a baseline dependency; use it only inside an explicitly hydrated island if a specific interaction genuinely needs it.
+Banned: scroll-triggered reveals on prose, parallax, hero choreography, anything that moves while the visitor is reading. All motion respects `prefers-reduced-motion`.
+
+### Imagery
+Almost none. YouTube thumbnails carry visuals in log feeds. One portrait of Marcelo on the About page. No stock, no 3D renders, no AI-generated imagery.
+
+### Accessibility floor
+Semantic HTML, visible keyboard focus (signal orange ring), contrast AA minimum everywhere (check orange on paper for text — use it for accents, not body text), alt text on all images, reduced motion respected.
+
+### Colophon line
+`Set in IBM Plex · Built with Astro · Last updated MM.YYYY`
+
+---
+
+## 4. Tech stack
+
+Per Structure v2 §3.5 / §8. This is a **content archive, not an app**.
+
+- **Astro** (content collections) + **TypeScript** + **Tailwind CSS**. Ships zero JavaScript by default; hydrates only components explicitly marked interactive (islands). Astro's built-in schema validation and image optimization are load-bearing (see below).
+- **Vercel** deploy (official Astro adapter), **Cloudflare** DNS.
+- **RSS feed** for the Log from day one (`/rss.xml`).
+- OG image generation per page (simple: paper background, stamp line, title in Plex Sans).
+- Motion is CSS-first (see §3). No Framer Motion baseline.
+- Analytics: NONE at launch (deliberate — the site ships clean; GA4 gets added later as a documented episode). Do not add tracking scripts, cookie banners, or consent tooling in v1.
+- Forms: contact + waitlists via Resend (server action / endpoint → Resend API; waitlist signups to Resend Audiences). SPF/DKIM records on Cloudflare DNS.
+- YouTube embeds: use a lightweight facade (e.g. lite-youtube-embed pattern) — no third-party scripts load until the visitor clicks play.
+
+### Content model (Structure v2 §3)
+The site's content lives in a `content/` folder whose structure **is** the source of truth. It is authored in an Obsidian vault (see the publishing pipeline below).
+
+```
+content/
+  log/
+    <year>/                         # filesystem organization only — never parsed for dates/URLs
+      <slug>/
+        <slug>.md                   # the .md is named after its folder, not index.md
+        assets/
+          graph.webp
+  products/
+    <slug>/                         # products stay flat (no year nesting)
+      <slug>.md
+      assets/
+        hero.webp
+```
+
+Rules:
+- **Type = the section folder.** First segment under `content/` is the type: `log` or `products`. Type is derived from the folder and nothing else.
+- **Log nests by year** (`log/<year>/…`); **products stay flat**. The year folder is filesystem organization — it never appears in the URL.
+- **Each post is its own folder; the folder name is the slug.** URLs: `/log/<slug>` and `/products/<slug>`.
+- **Files are plain `.md`** (not `.mdx`) so Obsidian treats them as native notes. The `<slug>/<slug>.md` naming (not `index.md`) keeps note names meaningful in Obsidian. Interactive components use the fenced-block convention (below), never raw inline JSX.
+- **Assets are co-located** in a sibling `assets/`, referenced with standard relative markdown: `![alt](./assets/hero.webp)`. Astro's image pipeline optimizes them at build — no per-image setup. (Obsidian `![[embed]]` syntax is NOT used.)
+- Sorting **always** uses the `web-pub-date` frontmatter field.
+
+### Frontmatter — the `web-*` namespace (Structure v2 §3.3)
+Posts are authored from an Obsidian template that mixes vault-internal fields with a `web-*` namespace. **The build reads ONLY the `web-*` fields.** Every unprefixed field (`type`, `created`, `project`, `people`, `source`, `url`, …) is invisible to the site.
+
+```yaml
+---
+# --- Obsidian-internal (site ignores all of these) ---
+type: work journal
+created: 2026-07-14
+project: "[[DLL Web]]"
+people: []
+
+# --- web-* namespace (the ONLY fields the site reads) ---
+web-status: published         # ONLY "published" renders (visibility gate)
+web-title: "Building the Deadlink Labs Website"
+web-pub-date: 2026-01-14      # ISO 8601. For products: "entered the lab" date.
+web-snippet: "Short summary for cards and meta."   # optional
+web-type: log                 # OPTIONAL, authoring-only; validated against the folder
+---
+```
+
+- `web-title` → page heading + `<title>` (so the note body should not also open with an `#` H1).
+- `web-snippet` → cards + meta description. Optional.
+- `web-status` → visibility gate. **Public if and only if `web-status: published`.** Anything else — `draft`, a typo, or a missing field — is invisible. An untagged note must resolve to invisible, so a forgotten tag never leaks.
+- `web-pub-date` → sorting + displayed date.
+- `web-type` → Obsidian Bases only; the site derives type from the folder. Validated against the folder; a mismatch fails the build.
+- **No frontmatter passthrough.** The build whitelist-extracts the `web-*` fields into a typed object; raw frontmatter is never serialized into output (not the body, not `<meta>`, not structured data). Internal fields cannot leak into page source.
+- **Deliberately absent:** no `web-slug` (folder name is the slug), no `homepage`/`featured`/`order` (curation lives in `site.config.json`).
+
+Define one Astro **content collection** whose schema is the `web-*` rulebook (quoted hyphenated keys, aliased to clean internal names, `.passthrough()` to tolerate Obsidian-internal fields). The schema validates every post at build and **fails the build** on any violation — this is the required validation, provided natively.
+
+### Editorial curation — `site.config.json` (Structure v2 §5)
+Lives at the content-repo root. Homepage placement only:
+
+```json
+{
+  "homepage": {
+    "heroPosts": ["building-deadlink-labs-website", "hazefield-devlog-01"],
+    "recentPostsCount": 8,
+    "featuredProducts": ["cassette-mixtapes", "hexcast"]
+  }
+}
+```
+
+- `heroPosts` — ordered log slugs in the featured section; **array order = display order**.
+- `recentPostsCount` — how many chronological log entries below the hero.
+- `featuredProducts` — ordered product slugs; may be empty or omitted.
+
+Convention: **arrays are curation, numbers are automatic slices.** Reordering the homepage = moving array lines; no content file is touched.
+
+### Homepage generation (deterministic, Structure v2 §6)
+```
+1. HERO: for each slug in heroPosts (array order) → render the published log entry.
+2. RECENT: all published log entries, EXCLUDING heroPosts, sorted by web-pub-date desc,
+   take the first recentPostsCount.
+3. FEATURED PRODUCTS: for each slug in featuredProducts (array order) → render the
+   published product. Omit the section if empty/absent.
+```
+
+### Build-time validation (required, Structure v2 §7)
+Fail the build with a message naming the offending file/slug on any violation. The last live deploy stays up.
+- Only `web-status: published` content is included anywhere.
+- Published content has `web-title` and `web-pub-date` (`web-snippet`, `web-type` optional).
+- Every `heroPosts` slug resolves to a published `log/` entry; every `featuredProducts` slug to a published `products/` entry.
+- `recentPostsCount` is a non-negative integer.
+- **Slugs are globally unique** (Obsidian only blocks duplicates within a folder).
+- `web-type` matches its folder where present.
+- Optional lint: each post's `.md` filename matches its folder name.
+
+### Interactive components — the fenced-block convention (Structure v2 §3.6)
+Interactivity is embedded with a **custom code-fence**, never raw inline JSX. A build-time remark plugin recognizes a reserved fence label and swaps the block for the matching Astro/React component (hydrated as an island); the block's contents are the component's config.
+
+    ```visualizer
+    pack: cyberpunk-glitch
+    ```
+
+- **In Obsidian:** renders as an ordinary labeled code block — readable, never broken.
+- **On the built site:** replaced with the live component.
+
+Reserve one label per component (`visualizer`, `aspect-toggle`, `pack-card`, …); an unrecognized label renders as a normal code block. Prefer placing interactivity at the **layout level** (driven by type/frontmatter/position) so note bodies stay pure prose; use fenced blocks only when a live element must sit mid-prose. **Wikilinks** `[[…]]` are allowed and preserved (v1 renders them as plain text; the relationship is kept for the future "Connections" work).
+
+### Publishing pipeline (Structure v2 §8)
+Committing from Obsidian is the only action required to publish. No export, no transform, no duplicate copy on disk.
+- **Two repositories.** Content repo = `dll-website-content/`, a git repo initialized **inside** that vault subfolder (never at the vault root). Contains only `.md` posts + co-located `assets/` + `site.config.json`. Site repo = the Astro project, elsewhere on disk, never inside the vault.
+- **No git submodule.** The site repo **gitignores** `content/`. A prebuild step shallow-clones the content repo into `content/` (`git clone --depth 1 <content-repo-url> content`); on Vercel this uses a stored read token (the content repo is private).
+- A **Vercel Deploy Hook** on the content repo triggers a site rebuild on every push.
+- **Local preview:** symlink the vault subfolder into the site project (`ln -s <vault>/dll-website-content <site>/content`) so `npm run dev` reads real notes live. The symlink is local-only and gitignored.
+- **Key properties:** source is read once at build time and compiled to frozen static files (GitHub is never a CDN); no duplicate content on disk; keep the content repo private so draft source never leaks.
+
+There is **no CMS** in v1. (A Sanity migration may be revisited later as a documented experiment, but it is not planned into this architecture — the Obsidian-vault-as-source pipeline is the content backend.)
+
+---
+
+## 5. Pages & locked copy
+
+Nav is **Home · Log · Products · About**. Copy below is approved; don't rewrite it, extend in the same voice (plain, specific, first person, zero self-praising adjectives).
+
+### 5.1 Home `/` — follows design 8A, auto-generated
+Structure v2 §4.1 / §6. The page is generated from `site.config.json` + published content, not hand-authored. Band order:
+
+1. **Cover** (8A truss mark + `Deadlink Labs` / `Build to Understand.`, viewport fold). See §3.
+2. **Masthead / running head** (8A header). See §3.
+3. **Hero — the current experiment's question.** Eyebrow: `● Currently on the bench · EXP NNN` (pulsing orange dot). H1 = the live experiment's **question** at 60px (e.g. *"Can a house quietly run its own systems without anyone tending them?"*). Below it the lab-record stamp (`LOG NNN · IN PROGRESS · … `), a short overview paragraph, one dark specimen panel (e.g. a `tail -f` log), and a "Step into the log →" link. The hero is the current experiment's question — NOT a hand-written personal positioning H1.
+4. **Featured log entries** (from `heroPosts`) → **Recent log entries** (chronological slice). The living archive.
+5. **Featured products** (from `featuredProducts`, optional).
+6. **Shipped for clients** (off-nav consulting surface): stamped list — **Uruguay Outfitters** · `SHIPPED · 2026`, **Crehana** · `CASE STUDY`.
+7. **Who runs this:** one paragraph — "Marcelo Brouard, Buenos Aires. Thirty years turning messy operations into systems that run themselves — post-production, AI automation, dashboards, and the occasional website." + buttons `See the work →` and `Work with me`.
+8. **Footer / colophon.** Manifesto line in mono: `BUILD TO UNDERSTAND · DOCUMENT TO REMEMBER · SHARE SO OTHERS CAN BUILD FURTHER`. Contact email, YouTube, LinkedIn, GitHub, RSS. Colophon: `Set in IBM Plex · Built with Astro · Last updated MM.YYYY`.
+
+### 5.2 Log `/log`
+The heart of the lab — a notebook, not a blog. Build logs, technical research, AI workflows, design iterations, videos, hardware mods, music tools, lessons, failed experiments, architectural decisions. Chronological, newest first, grows indefinitely. Feed items: number + status dot + title + date (+ thumbnail if the entry has a video).
+
+**Experiments are log entries, not a separate collection.** A long-running experiment is a log entry that accumulates a record. The 8A **record template** (flexible — not all sections required):
+- Lab-record stamp (`EXP 002 · IN PROGRESS · TESTING · Started MM.YYYY`) + thread tags.
+- **Question as title** (e.g. "Can a house quietly run its own systems without anyone tending them?").
+- Short overview.
+- **Decision Register** — the crown jewel: a table of numbered decisions (`DEC 014`, statement, status token `SETTLED`/`TESTING`/`REVISED`).
+- **Log timeline** — related entries (number, title, status · date).
+- **Series** — related video parts, if any.
+- **Backlinks + "This thread continues"** — related records, next-in-series, referenced-by (built from preserved wikilinks in future; plain links in v1).
+
+First entry ever: **LOG 001** — *Can I design and ship my own website with AI, in public?* — documents this site being planned and built, and links the YouTube video when published.
+
+### 5.3 Products `/products`
+Header: "Deadlink Labs / Products". Mature artifacts — may be commercial, free, open source, or private beta. A product page may include overview, purpose, features, status, screenshots, downloads, external links, and related log entries. Products are destinations; logs tell their story.
+- **Cassette Mixtapes** · COMING SOON — A preparation studio for digital mixtapes: playlists, metadata, streaming-spec validation, loudness analysis. Waitlist form.
+- **Hazefield** · COMING SOON — A generative drone/ambient music engine for long-form evolving soundscapes. Waitlist form.
+- **HEXCAST** — a music visualizer product; surface here when it reaches product maturity, otherwise it stays a log/research thread.
+
+No prices until purchasable. When live: buy button (payment provider TBD — do not build checkout in v1). Client case studies (Uruguay Outfitters, Crehana) may surface here as well as on Home, per the off-nav consulting decision.
+
+### 5.4 About `/about`
+Replaces the former "The Lab" page. Context, not marketing: what Deadlink Labs is, a concise "Build to Understand" manifesto (short version, not the full Blueprint), a brief intro to the person, working principles, and a colophon (stack, design system, workflow, credits). JSON-LD `Person` schema lives here and on Home.
+
+**Opens with the name's origin story (locked copy — refine wording with Marcelo but keep the beat):**
+For thirty years I built things — post-production pipelines, home automation, dashboards, music, tools. But when someone asked "where can I see your work?", there was no link to send. The work was real; the URL didn't exist. I was the dead link.
+This lab is the fix. Everything I build now gets documented, numbered, and archived here. Nothing 404s anymore.
+
+Then Marcelo's story as the 30-year pattern of being early and learning by building: internet research in '96, conservatory piano + electronic engineering, 20+ years in sound post ending as Post-Production Lead, DIY home automation on MQTT/ESP a decade ago, first ChatGPT account at Crehana, now shipping AI-assisted production sites. First person, concrete events, zero adjectives about himself. Also: portrait photo, a **Now** section (what he's working on this month — easy to edit), tools he actually uses.
+
+**Work with me (off-nav consulting home).** A short section on the About page (and the "Work with me" CTA from Home routes here), in the approved voice:
+
+> **Work with me.** I help small businesses work better with AI and automation. I find what's eating your time and money, then I build the fix: automated workflows, dashboards, internal tools, or your complete web presence. From understanding the problem to shipping the solution.
+>
+> **What an engagement looks like:**
+> 1. A conversation. You tell me how the work actually happens today. I ask a lot of questions.
+> 2. A plan. I map what to automate, build, or simplify, with clear scope and a fixed price.
+> 3. The build. I ship, document everything, and hand it over working. You own all of it.
+
+**Proof:** inline links to the Uruguay Outfitters and Crehana case studies. **Contact:** direct email + a short form (name, company, "what's eating your time?"). No calendars, no pricing tables in v1. This is the ONE commercial ask on the site.
+
+---
+
+## 6. Voice & writing rules
+
+- First person, plain US English, short sentences. Specific beats clever.
+- Numbers and artifacts, never self-describing adjectives.
+- Questions as titles for experiments ("Can X become Y?").
+- UI copy: active voice, controls say what they do ("Join the waitlist", not "Submit").
+- No exclamation marks. No em dashes. No startup vocabulary (leverage, journey, empower, unlock).
+
+## 7. Build order
+
+1. Repo scaffold (Astro + Tailwind + TypeScript), design tokens, base layout (sheet-on-desk, masthead running head, network-mark cover, stamp component, status-dot component). Deploy to Vercel immediately — iterate in public.
+2. Content collection + `web-*` schema + build-time validation. Wire the two-repo content pipeline (gitignored `content/`, prebuild shallow-clone, local symlink, Vercel Deploy Hook).
+3. Home (8A: cover, masthead, hero-from-current-experiment, featured/recent log, deterministic generation from `site.config.json`) + RSS. Publish LOG 001 (draft ok).
+4. Log feed + the record/experiment template (Decision Register, timeline, series, threads). First real log/experiment page.
+5. Products index + product pages with waitlists (Cassette Mixtapes, Hazefield).
+6. About (origin story, person, Now, manifesto, Work-with-me section + form, colophon).
+7. Uruguay Outfitters + Crehana case studies (surfaced on Home/Products/About). OG images, sitemap, JSON-LD, meta.
+
+## 8. Don'ts (hard rules)
+
+- No dark theme (dark panels for code/video/specimens only). No gradients. No stock photos. No AI-generated imagery. No scroll animations. No popups or floating CTAs. No cookie banner (don't add tracking that needs one). No adjectives about Marcelo. No prices on unreleased products. No second commercial page (Work-with-me is the one ask, off-nav).
+- No CMS in v1 — the Obsidian-vault content pipeline is the backend (§4).
+- No `.mdx`, no raw inline JSX in content, no frontmatter passthrough to output, no Obsidian `![[embed]]` image syntax — plain `.md`, `web-*` fields only, relative-markdown images, fenced-block components.
+- Don't render unpublished content: `web-status: published` is the only pass.
+- Don't put the year in a URL; don't derive type from anything but the folder.
+- `my_assets/video-scripts/` is never published, never pulled into the build, and never a content collection entry.
+
+## 9. Versioning
+
+All commits follow this convention.
+
+- **Format:** `vMAJOR.MINOR.PATCH`, following Semantic Versioning, with **zero-padded MINOR (two digits)** and **PATCH (three digits)**. Example: `v0.01.001`.
+- **MAJOR:** `0` = in development, `1` = site is live and confirmed online. Increment to `1` only at confirmed launch, then continue the same logic.
+- **MINOR:** increment for major changes to layout or site structure.
+- **PATCH:** increment for smaller changes — fixes, tweaks, content, refinements.
+- **Commit messages** begin with the version number, followed by an em dash and a short description. Example: `v0.01.001 — reconciled blueprint`.
+
+---
+
+*// BUILD TO UNDERSTAND · DOCUMENT TO REMEMBER · SHARE SO OTHERS CAN BUILD FURTHER*
