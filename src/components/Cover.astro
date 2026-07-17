@@ -41,8 +41,9 @@ import NetworkMark from './NetworkMark.astro';
     gap: clamp(2rem, 6vh, 3.5rem);
   }
 
+  /* The mark is square now; sized so mark + labels sit comfortably above the fold. */
   .cover__mark {
-    width: min(460px, 72vw);
+    width: min(320px, 62vw);
   }
 
   .cover__labels {
@@ -86,13 +87,13 @@ import NetworkMark from './NetworkMark.astro';
       opacity: 0;
       transform: translateY(6px);
       animation: cover-rise 0.7s ease forwards;
-      animation-delay: 1.05s;
+      animation-delay: 1.7s;
     }
 
     .cover__fold {
       opacity: 0;
       animation: cover-fade 0.8s ease forwards;
-      animation-delay: 1.3s;
+      animation-delay: 1.95s;
     }
   }
 
