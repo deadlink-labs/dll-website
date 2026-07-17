@@ -1,0 +1,59 @@
+---
+// Stamp — the lab-record metadata block (CLAUDE.md §3).
+// Every content record opens with this: monospace, uppercase, letter-spaced,
+// ink-60, with the status token carried by StatusDot (orange when active).
+//   LOG 012 · IN PROGRESS · TESTING · LOCAL-LLM / HOME-ASSISTANT / PYTHON
+import StatusDot from './StatusDot.astro';
+
+interface Props {
+  /** Record label, e.g. "LOG 001". */
+  label: string;
+  /** Lab stage token, e.g. "IN PROGRESS". */
+  stage?: string;
+  /** Thread tags, joined with " / ". */
+  tags?: string[];
+}
+
+const { label, stage, tags = [] } = Astro.props;
+---
+
+<div class="stamp">
+  <span class="stamp__label">{label}</span>
+  <span class="stamp__sep">·</span>
+  {stage && <StatusDot stage={stage} />}
+  {
+    tags.length > 0 && (
+      <>
+        <span class="stamp__sep">·</span>
+        <span class="stamp__tags">{tags.join(' / ')}</span>
+      </>
+    )
+  }
+</div>
+
+<style>
+  .stamp {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5em 0.7em;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink-60);
+  }
+
+  .stamp__label {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  .stamp__sep {
+    color: var(--color-ink-15);
+  }
+
+  .stamp__tags {
+    color: var(--color-ink-60);
+  }
+</style>

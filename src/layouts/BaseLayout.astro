@@ -1,0 +1,101 @@
+---
+// BaseLayout — the paper-sheet-on-desk shell (CLAUDE.md §3).
+// The desk (--desk) is the outer canvas; a paper sheet (--paper) floats on it
+// with a hairline edge and a soft drop shadow. The masthead running head is the
+// sheet's top band. Content is slotted into <main>.
+
+// Self-hosted fonts — no third-party requests (the site ships clean, §4).
+import '@fontsource-variable/ibm-plex-sans';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '@fontsource/ibm-plex-mono/600.css';
+
+import '../styles/global.css';
+import Masthead from '../components/Masthead.astro';
+import Nav from '../components/Nav.astro';
+
+interface Props {
+  /** Page title. Composed as "{title} · Deadlink Labs"; omit on the homepage. */
+  title?: string;
+  /** Meta description. Marcelo's name lives here for the person-first search goal (§2). */
+  description?: string;
+  /** Sheet width: index/home pages are ~1120px, long-form records ~920px (§3). */
+  width?: 'index' | 'record';
+  /** "Last updated" stamp for the masthead (MM.YYYY). */
+  lastUpdated?: string;
+}
+
+const {
+  title,
+  description = 'The creative laboratory and proof-of-work archive of Marcelo Brouard, Buenos Aires. Thirty years turning messy operations into systems that run themselves.',
+  width = 'index',
+  lastUpdated,
+} = Astro.props;
+
+// Title template (§2): "Deadlink Labs — Marcelo Brouard" on home; "{Page} · Deadlink Labs" elsewhere.
+const pageTitle = title ? `${title} · Deadlink Labs` : 'Deadlink Labs — Marcelo Brouard';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Marcelo Brouard" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="alternate" type="application/rss+xml" title="Deadlink Labs — Log" href="/rss.xml" />
+    {/* Per-page head extras — e.g. JSON-LD Person schema on Home + About (§2). */}
+    <slot name="head" />
+  </head>
+  <body>
+    {/* Full-bleed region above the sheet — the homepage cover (band 1) slots here. */}
+    <slot name="cover" />
+    <div class="desk">
+      <div class:list={['sheet', `sheet--${width}`]}>
+        <Masthead lastUpdated={lastUpdated} />
+        <Nav />
+        <main class="sheet__body">
+          <slot />
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  .desk {
+    min-height: 100vh;
+    background: var(--color-desk);
+    display: flex;
+    justify-content: center;
+    padding: clamp(1.5rem, 5vw, 4.5rem) clamp(1rem, 4vw, 3rem);
+    box-sizing: border-box;
+  }
+
+  /* The paper sheet floated over the desk (CLAUDE.md §3). */
+  .sheet {
+    /* shared horizontal gutter, read by the masthead + body (64px on desktop) */
+    --gutter: clamp(1.5rem, 5vw, 4rem);
+    width: 100%;
+    background: var(--color-paper);
+    border: 1px solid var(--color-ink-15);
+    box-shadow: 0 30px 80px -40px rgba(25, 23, 20, 0.35);
+    box-sizing: border-box;
+  }
+
+  .sheet--index {
+    max-width: 1120px;
+  }
+
+  .sheet--record {
+    max-width: 920px;
+  }
+
+  .sheet__body {
+    padding-inline: var(--gutter);
+    padding-block: clamp(2rem, 5vw, 3.5rem);
+  }
+</style>

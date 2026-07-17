@@ -1,0 +1,66 @@
+---
+// Masthead / running head — the 8A header (CLAUDE.md §3).
+// A hairline-bottomed band (its top rule is the sheet edge), Plex Mono,
+// uppercase, letter-spaced. Identity + provenance — distinct from the nav.
+interface Props {
+  /** "Last updated" stamp, MM.YYYY. Defaults to the current month at build time. */
+  lastUpdated?: string;
+}
+
+const { lastUpdated } = Astro.props;
+
+const stamp =
+  lastUpdated ??
+  new Intl.DateTimeFormat('en-US', { month: '2-digit', year: 'numeric' })
+    .format(new Date())
+    .replace('/', '.');
+---
+
+<header class="masthead">
+  <p class="masthead__id">
+    <span class="masthead__brand">Deadlink Labs</span><span class="masthead__sep"> · </span>A working
+    laboratory<span class="masthead__sep"> · </span>Marcelo Brouard<span class="masthead__sep">
+      · </span>Buenos Aires
+  </p>
+  <p class="masthead__updated">Last updated {stamp}</p>
+</header>
+
+<style>
+  .masthead {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.4rem 1.5rem;
+    padding-block: 0.85rem;
+    padding-inline: var(--gutter, 4rem);
+    border-bottom: 1px solid var(--color-ink-15);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-ink-60);
+  }
+
+  .masthead__id,
+  .masthead__updated {
+    margin: 0;
+  }
+
+  /* "Deadlink Labs" token — slightly bolder, wider tracking, full ink. */
+  .masthead__brand {
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    color: var(--color-ink);
+  }
+
+  .masthead__sep {
+    /* keep separators from breaking mid-token */
+    white-space: pre;
+  }
+
+  .masthead__updated {
+    color: rgba(25, 23, 20, 0.5); /* ink at ~50% */
+    white-space: nowrap;
+  }
+</style>

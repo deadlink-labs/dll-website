@@ -10,8 +10,10 @@ export default defineConfig({
   site: 'https://deadlinklabs.com',
 
   // Tailwind v4 is wired through the Vite plugin (no @astrojs/tailwind).
+  // Cast: @tailwindcss/vite and Astro resolve slightly different Vite type
+  // versions, so the plugin type mismatches at check time; it is valid at runtime.
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [/** @type {any} */ (tailwindcss())],
   },
 
   // Prose-first output. No experimental client hydration by default.

@@ -1,0 +1,82 @@
+---
+// Footer / colophon (CLAUDE.md §5.1 band 8).
+// Manifesto line, contact + channels, colophon. Contact + social hrefs are
+// PLACEHOLDERS — confirm the real addresses before launch.
+const stamp = new Intl.DateTimeFormat('en-US', { month: '2-digit', year: 'numeric' })
+  .format(new Date())
+  .replace('/', '.');
+
+const channels = [
+  { label: 'Email', href: 'mailto:hello@deadlinklabs.com' },
+  { label: 'YouTube', href: 'https://youtube.com/' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+  { label: 'GitHub', href: 'https://github.com/deadlink-labs' },
+  { label: 'RSS', href: '/rss.xml' },
+];
+---
+
+<footer class="colophon">
+  <p class="colophon__manifesto">
+    Build to Understand · Document to Remember · Share so Others Can Build Further
+  </p>
+  <ul class="colophon__channels">
+    {channels.map((c) => (
+      <li>
+        <a href={c.href} class="colophon__link">{c.label}</a>
+      </li>
+    ))}
+  </ul>
+  <p class="colophon__set">Set in IBM Plex · Built with Astro · Last updated {stamp}</p>
+</footer>
+
+<style>
+  .colophon {
+    border-top: 1px solid var(--color-ink-15);
+    padding-top: 2rem;
+    margin-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    font-family: var(--font-mono);
+  }
+
+  .colophon__manifesto {
+    margin: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-ink);
+  }
+
+  .colophon__channels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .colophon__link {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-ink-60);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .colophon__link:hover {
+    color: var(--color-signal);
+  }
+  .colophon__link:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+
+  .colophon__set {
+    margin: 0;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-60);
+  }
+</style>

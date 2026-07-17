@@ -1,0 +1,66 @@
+---
+// ProductCard — a product surfaced on Home (§5.1) or the Products index (§5.3).
+// Products are mature artifacts and destinations; the card is a quiet doorway.
+import StatusDot from './StatusDot.astro';
+import type { ProductEntry } from '../lib/content';
+
+interface Props {
+  entry: ProductEntry;
+}
+const { entry } = Astro.props;
+---
+
+<a class="product" href={`/products/${entry.id}`}>
+  <span class="product__status">
+    <StatusDot stage={entry.data.stage} />
+  </span>
+  <h3 class="product__title">{entry.data.title}</h3>
+  {entry.data.snippet && <p class="product__snippet">{entry.data.snippet}</p>}
+</a>
+
+<style>
+  .product {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 1.6rem;
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-ink-15);
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease;
+  }
+
+  .product:hover {
+    border-color: var(--color-ink);
+  }
+
+  .product__status {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .product__title {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .product:hover .product__title {
+    color: var(--color-signal);
+  }
+
+  .product__snippet {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-ink-60);
+    max-width: 48ch;
+  }
+</style>

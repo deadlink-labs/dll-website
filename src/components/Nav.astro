@@ -1,0 +1,73 @@
+---
+// Nav — the intentionally minimal four-item nav (CLAUDE.md §2).
+// Home · Log · Products · About. Distinct from the masthead running head.
+// The consulting funnel (Work with me) lives OFF this nav, by design.
+const items = [
+  { label: 'Home', href: '/' },
+  { label: 'Log', href: '/log' },
+  { label: 'Products', href: '/products' },
+  { label: 'About', href: '/about' },
+];
+
+// Active when the path matches, or is nested under a section (e.g. /log/x).
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isActive = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`));
+---
+
+<nav class="nav" aria-label="Primary">
+  <ul class="nav__list">
+    {
+      items.map((item) => (
+        <li>
+          <a href={item.href} class:list={['nav__link', { 'nav__link--active': isActive(item.href) }]} aria-current={isActive(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .nav {
+    padding-block: 0.7rem;
+    padding-inline: var(--gutter, 4rem);
+    border-bottom: 1px solid var(--color-ink-15);
+  }
+
+  .nav__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav__link {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-ink-60);
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .nav__link:hover {
+    color: var(--color-ink);
+    border-bottom-color: var(--color-signal);
+  }
+
+  .nav__link--active {
+    color: var(--color-ink);
+    border-bottom-color: var(--color-ink);
+  }
+
+  .nav__link:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+</style>

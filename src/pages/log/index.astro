@@ -1,0 +1,58 @@
+---
+// Log (/log) — the heart of the lab (CLAUDE.md §5.2).
+// A notebook, not a blog: every published entry, newest first, one feed.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FeedItem from '../../components/FeedItem.astro';
+import Footer from '../../components/Footer.astro';
+import { getPublishedLog } from '../../lib/content';
+
+const entries = await getPublishedLog();
+---
+
+<BaseLayout title="Log" description="The Deadlink Labs notebook: build logs, research, experiments, and decisions by Marcelo Brouard.">
+  <header class="page-head">
+    <p class="page-head__eyebrow">Deadlink Labs</p>
+    <h1 class="page-head__title">Log</h1>
+    <p class="page-head__lede">
+      Build logs, research, AI workflows, design iterations, hardware mods, and the occasional failed
+      experiment. Newest first. It grows indefinitely.
+    </p>
+  </header>
+
+  <div class="feed">
+    {entries.map((entry) => <FeedItem entry={entry} />)}
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-head {
+    padding-block: 1rem 1.75rem;
+  }
+  .page-head__eyebrow {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-ink-60);
+  }
+  .page-head__title {
+    margin: 0 0 1rem;
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-weight: 600;
+  }
+  .page-head__lede {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.65;
+    max-width: 68ch;
+    color: var(--color-ink-60);
+  }
+  .feed {
+    border-bottom: 1px solid var(--color-ink-15);
+  }
+</style>

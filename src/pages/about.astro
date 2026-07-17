@@ -1,0 +1,290 @@
+---
+// About (/about) — context, not marketing (CLAUDE.md §5.4).
+// Origin story, the person, a Now section, working principles, the off-nav
+// "Work with me" section (the ONE commercial ask), and the colophon. JSON-LD
+// Person schema lives here and on Home (§2). Contact form is UI only in v1.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Marcelo Brouard',
+  url: 'https://deadlinklabs.com/about',
+  jobTitle: 'AI automation and systems builder',
+  address: { '@type': 'PostalAddress', addressLocality: 'Buenos Aires', addressCountry: 'AR' },
+  worksFor: { '@type': 'Organization', name: 'Deadlink Labs' },
+};
+
+const nowItems = [
+  'Building deadlinklabs.com in public (LOG 001).',
+  'Testing a local language model against Home Assistant.',
+  'Early research on HEXCAST, a music visualizer.',
+];
+
+const tools = ['Astro', 'TypeScript', 'Home Assistant', 'MQTT', 'Python', 'Obsidian', 'Claude Code'];
+---
+
+<BaseLayout title="About" description="Marcelo Brouard, Buenos Aires. Thirty years turning messy operations into systems that run themselves.">
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(personSchema)} />
+  </Fragment>
+
+  <article class="about">
+    <header class="about__head">
+      <p class="about__eyebrow">Deadlink Labs</p>
+      <h1 class="about__title">About</h1>
+    </header>
+
+    {/* Origin story (locked beat, §5.4). */}
+    <section class="prose about__origin">
+      <p>
+        For thirty years I built things. Post-production pipelines, home automation, dashboards,
+        music, tools. But when someone asked "where can I see your work?", there was no link to
+        send. The work was real. The URL did not exist. I was the dead link.
+      </p>
+      <p>
+        This lab is the fix. Everything I build now gets documented, numbered, and archived here.
+        Nothing 404s anymore.
+      </p>
+    </section>
+
+    <section class="prose">
+      <h2>The pattern</h2>
+      <p>
+        The through line is being early and learning by building. Researching the internet in '96.
+        Conservatory piano and electronic engineering. Twenty years in sound post, ending as
+        Post-Production Lead. DIY home automation on MQTT and ESP a decade ago. My first ChatGPT
+        account at Crehana. Now I ship AI-assisted production sites.
+      </p>
+    </section>
+
+    <section class="band">
+      <h2 class="band__label">Now</h2>
+      <ul class="now">
+        {nowItems.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="band">
+      <h2 class="band__label">Tools I actually use</h2>
+      <ul class="tools">
+        {tools.map((tool) => <li>{tool}</li>)}
+      </ul>
+    </section>
+
+    {/* Work with me — the off-nav consulting home, the ONE ask (§5.4). */}
+    <section class="band work" id="work-with-me">
+      <h2 class="work__heading">Work with me</h2>
+      <div class="prose">
+        <p>
+          I help small businesses work better with AI and automation. I find what is eating your
+          time and money, then I build the fix: automated workflows, dashboards, internal tools, or
+          your complete web presence. From understanding the problem to shipping the solution.
+        </p>
+      </div>
+      <ol class="engagement">
+        <li><strong>A conversation.</strong> You tell me how the work actually happens today. I ask a lot of questions.</li>
+        <li><strong>A plan.</strong> I map what to automate, build, or simplify, with clear scope and a fixed price.</li>
+        <li><strong>The build.</strong> I ship, document everything, and hand it over working. You own all of it.</li>
+      </ol>
+      <p class="proof">
+        Proof: <a href="/products">Uruguay Outfitters</a> and <a href="/products">Crehana</a>.
+      </p>
+
+      <form class="contact" method="post" action="#" data-placeholder="not wired to Resend yet">
+        <div class="contact__field">
+          <label class="contact__label" for="c-name">Name</label>
+          <input class="contact__input" id="c-name" name="name" type="text" required />
+        </div>
+        <div class="contact__field">
+          <label class="contact__label" for="c-company">Company</label>
+          <input class="contact__input" id="c-company" name="company" type="text" />
+        </div>
+        <div class="contact__field">
+          <label class="contact__label" for="c-problem">What's eating your time?</label>
+          <textarea class="contact__input" id="c-problem" name="problem" rows="4" required></textarea>
+        </div>
+        <button class="contact__btn" type="submit">Start the conversation</button>
+      </form>
+    </section>
+
+    <Footer />
+  </article>
+</BaseLayout>
+
+<style>
+  .about {
+    padding-block: 1rem 0;
+    max-width: 720px;
+  }
+  .about__head {
+    margin-bottom: 2rem;
+  }
+  .about__eyebrow {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-ink-60);
+  }
+  .about__title {
+    margin: 0;
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-weight: 600;
+  }
+
+  .prose {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-ink);
+  }
+  .prose p {
+    margin: 0 0 1.4rem;
+    max-width: 68ch;
+  }
+  .prose h2 {
+    margin: 2.5rem 0 1rem;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  .about__origin p:first-child {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .band {
+    padding-block: 2rem;
+    border-top: 1px solid var(--color-ink-15);
+    margin-top: 1.5rem;
+  }
+  .band__label {
+    margin: 0 0 1rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-ink-60);
+    font-weight: 500;
+  }
+
+  .now {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  .now li {
+    margin-bottom: 0.4rem;
+  }
+
+  .tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tools li {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-ink-60);
+    border: 1px solid var(--color-ink-15);
+    border-radius: 3px;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .work__heading {
+    margin: 0 0 1.25rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  .engagement {
+    margin: 0 0 1.4rem;
+    padding-left: 1.2rem;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  .engagement li {
+    margin-bottom: 0.7rem;
+    max-width: 68ch;
+  }
+  .proof {
+    font-size: 15px;
+    color: var(--color-ink-60);
+    margin: 0 0 2rem;
+  }
+  .proof a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--color-signal);
+    text-underline-offset: 3px;
+  }
+  .proof a:hover {
+    color: var(--color-signal);
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding: 1.75rem;
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-ink-15);
+    border-radius: 4px;
+    max-width: 520px;
+  }
+  .contact__label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink-60);
+  }
+  .contact__input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.7rem 0.9rem;
+    font: inherit;
+    font-size: 15px;
+    background: var(--color-paper);
+    border: 1px solid var(--color-ink-15);
+    border-radius: 4px;
+    color: var(--color-ink);
+  }
+  .contact__input:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 1px;
+  }
+  .contact__btn {
+    align-self: flex-start;
+    padding: 0.75rem 1.3rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #fff;
+    background: var(--color-signal);
+    border: 1px solid var(--color-signal);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .contact__btn:hover {
+    background: #d64300;
+  }
+  .contact__btn:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+</style>

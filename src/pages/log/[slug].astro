@@ -1,0 +1,126 @@
+---
+// Log record page (/log/<slug>) — the 8A record template (CLAUDE.md §5.2).
+// v1 renders the stamp + question-title + prose body. The fuller template
+// (decision register, timeline, series, backlinks) accretes later from
+// preserved wikilinks; placeholders keep the reading layout honest.
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Stamp from '../../components/Stamp.astro';
+import Footer from '../../components/Footer.astro';
+import { getPublishedLog, recordLabel, formatDate } from '../../lib/content';
+
+export const getStaticPaths = (async () => {
+  const entries = await getPublishedLog();
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const label = recordLabel(entry);
+---
+
+<BaseLayout width="record" title={entry.data.title} description={entry.data.snippet}>
+  <article class="record">
+    <div class="record__stamp">
+      <Stamp label={label} stage={entry.data.stage} tags={entry.data.tags} />
+    </div>
+    <h1 class="record__title">{entry.data.title}</h1>
+    <p class="record__date">{formatDate(entry.data.pubDate)}</p>
+    <div class="prose">
+      <Content />
+    </div>
+    <p class="record__back"><a href="/log">← Back to the log</a></p>
+  </article>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .record {
+    padding-block: 1rem 1.5rem;
+    max-width: 720px;
+  }
+  .record__stamp {
+    margin-bottom: 1.5rem;
+  }
+  .record__title {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+  .record__date {
+    margin: 0 0 2rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink-60);
+  }
+  .record__back {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-ink-15);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .record__back a {
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  .record__back a:hover {
+    color: var(--color-signal);
+  }
+
+  /* Prose — continuous document, measure ~640-720px (§3). */
+  .prose {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-ink);
+  }
+  .prose :global(p) {
+    margin: 0 0 1.4rem;
+    max-width: 68ch;
+  }
+  .prose :global(h2) {
+    margin: 2.5rem 0 1rem;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  .prose :global(a) {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--color-signal);
+    text-underline-offset: 3px;
+  }
+  .prose :global(a:hover) {
+    color: var(--color-signal);
+  }
+  .prose :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-ink-15);
+    border-radius: 3px;
+    padding: 0.05em 0.35em;
+  }
+  .prose :global(pre) {
+    background: var(--color-panel);
+    color: #d9d4cc;
+    padding: 1.25rem 1.4rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 0 0 1.4rem;
+  }
+  .prose :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+  }
+</style>

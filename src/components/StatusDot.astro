@@ -1,0 +1,92 @@
+---
+// StatusDot — the single source of truth for status rendering (CLAUDE.md §3).
+// A dot whose fill/behaviour is driven by the lab stage:
+//   IN PROGRESS / TESTING  → signal orange, pulsing  (on the bench)
+//   COMING SOON            → signal orange, static
+//   SHIPPED / PRIVATE BETA / SETTLED / REVISED → filled ink
+//   RESEARCH               → ink outline
+//   ROUGH                  → muted (ink-15)
+// The pulse lives behind prefers-reduced-motion.
+interface Props {
+  stage?: string;
+  /** Render the stage token next to the dot. */
+  label?: boolean;
+}
+
+const { stage = '', label = true } = Astro.props;
+
+type Variant = 'pulse' | 'static-signal' | 'ink' | 'outline' | 'muted';
+const VARIANT: Record<string, Variant> = {
+  'IN PROGRESS': 'pulse',
+  TESTING: 'pulse',
+  'COMING SOON': 'static-signal',
+  SHIPPED: 'ink',
+  'PRIVATE BETA': 'ink',
+  SETTLED: 'ink',
+  REVISED: 'ink',
+  RESEARCH: 'outline',
+  ROUGH: 'muted',
+};
+const variant: Variant = VARIANT[stage] ?? 'ink';
+const isSignal = variant === 'pulse' || variant === 'static-signal';
+---
+
+<span class="status">
+  <span class:list={['dot', `dot--${variant}`]} aria-hidden="true"></span>
+  {label && stage && <span class:list={['token', { 'token--signal': isSignal }]}>{stage}</span>}
+</span>
+
+<style>
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    white-space: nowrap;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex: none;
+    box-sizing: border-box;
+  }
+
+  .dot--pulse,
+  .dot--static-signal {
+    background: var(--color-signal);
+  }
+  .dot--ink {
+    background: var(--color-ink);
+  }
+  .dot--outline {
+    background: transparent;
+    border: 1px solid var(--color-ink);
+  }
+  .dot--muted {
+    background: var(--color-ink-15);
+  }
+
+  .token {
+    color: var(--color-ink-60);
+  }
+  .token--signal {
+    color: var(--color-signal);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .dot--pulse {
+      animation: dot-pulse 1.8s ease-in-out infinite;
+    }
+  }
+
+  @keyframes dot-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(240, 74, 0, 0.55);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgba(240, 74, 0, 0);
+    }
+  }
+</style>
