@@ -41,7 +41,7 @@
     background: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-size: 17px; /* body: 17px / 1.65 on desktop (CLAUDE.md §3) */
+    font-size: 18px; /* body: 17px / 1.65 on desktop (CLAUDE.md §3) */
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

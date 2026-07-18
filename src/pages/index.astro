@@ -151,10 +151,15 @@ const personSchema = {
   /* The stamped-band pattern: 150px mono label column + content (§3). */
   .band {
     display: grid;
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 150px minmax(0, 1fr);
     gap: 2.5rem;
     padding: 2.125rem var(--gutter, 4rem);
     border-top: 1px solid var(--color-ink-15);
+  }
+  /* Let grid children shrink so overflow-x content (the terminal) scrolls
+     inside its own box instead of stretching the page past the viewport. */
+  .band > * {
+    min-width: 0;
   }
 
   .band--hero {
@@ -176,6 +181,7 @@ const personSchema = {
     --pc-line-strong: var(--color-on-panel);
     --pc-fg: var(--color-on-panel);
     --pc-fg-60: var(--color-on-panel-60);
+    --token-fg: var(--color-on-panel-60);
   }
 
   /* Hero gutter: the live experiment rendered as an oversized model number. */
@@ -188,7 +194,7 @@ const personSchema = {
     font-family: var(--font-mono);
   }
   .hero-index__kind {
-    font-size: 10.5px;
+    font-size: 11px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--color-ink-60);
@@ -206,15 +212,17 @@ const personSchema = {
     align-items: center;
     gap: 0.5em;
     margin-top: 0.35rem;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-signal);
+    color: var(--color-ink-60);
   }
 
-  @media (max-width: 760px) {
+  /* Stack the gutter above content early enough that the catalog feed always
+     has room before it collapses (avoids the mid-width title crush). */
+  @media (max-width: 900px) {
     .band {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 1rem;
     }
   }
@@ -226,7 +234,7 @@ const personSchema = {
   .hero__eyebrow {
     margin: 0 0 1.25rem;
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.18em;
     color: var(--color-ink-60);
@@ -253,7 +261,7 @@ const personSchema = {
 
   .hero__overview {
     margin: 0 0 1.75rem;
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.6;
     max-width: 600px;
     color: var(--color-ink);
@@ -346,7 +354,7 @@ const personSchema = {
   }
   .who__text {
     margin: 0 0 1.625rem;
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.6;
   }
   .who__actions {

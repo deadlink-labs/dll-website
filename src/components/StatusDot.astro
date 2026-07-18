@@ -66,11 +66,10 @@ const isSignal = variant === 'pulse' || variant === 'static-signal';
     background: var(--color-ink-15);
   }
 
+  /* Token text stays muted (context-aware) so it clears AA on paper and on
+     graphite; the dot carries the state colour. */
   .token {
-    color: var(--color-ink-60);
-  }
-  .token--signal {
-    color: var(--color-signal);
+    color: var(--token-fg, var(--color-ink-60));
   }
 
   .dot--pulse {
