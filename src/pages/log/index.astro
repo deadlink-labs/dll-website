@@ -3,7 +3,6 @@
 // A notebook, not a blog: every published entry, newest first, one feed.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FeedItem from '../../components/FeedItem.astro';
-import Footer from '../../components/Footer.astro';
 import { getPublishedLog } from '../../lib/content';
 
 const entries = await getPublishedLog();
@@ -23,7 +22,6 @@ const entries = await getPublishedLog();
     {entries.map((entry) => <FeedItem entry={entry} />)}
   </div>
 
-  <Footer />
 </BaseLayout>
 
 <style>
@@ -50,7 +48,7 @@ const entries = await getPublishedLog();
     font-size: 17px;
     line-height: 1.65;
     max-width: 68ch;
-    color: var(--color-ink-60);
+    color: var(--color-ink-75);
   }
   .feed {
     border-bottom: 1px solid var(--color-ink-15);

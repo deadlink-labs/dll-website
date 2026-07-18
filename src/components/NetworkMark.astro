@@ -1,295 +1,183 @@
 ---
-// NetworkMark — the Deadlink Labs growth-graph brand mark (CLAUDE.md §2/§3).
-// An engineered lattice, radically reduced: twelve nodes on a square modular
-// grid (module 44), three angle families only (horizontal, vertical, 45°).
-// Each node is a thought; the structure records how they connect and grow.
-// Completeness decreases as it rises — the growth gradient:
+// NetworkMark — the cover mark, per the settled Home design
+// (Deadlink-Labs-Home.dc.html). An organic node network: settled ink nodes
+// joined by hairlines, two work-in-progress signal links reaching the live
+// node risen to the upper right. The dead link resolves.
 //
-//   fully braced 2×2 fabric  ->  open spanning triangle  ->  bare reach  ->  live
-//
-// One hidden ordering device: the GROWTH AXIS. A single straight 45° line
-// runs from the fabric's origin corner (0,0) through its far corner (2,2),
-// along the span's hypotenuse to (4,4), and up the bare reach to the live
-// node at (6,6). The fabric's other diagonals are parallel to it. The dead
-// link resolves at the end of the through-line.
-//
-// Motion (pure CSS, gated on prefers-reduced-motion):
-//   Entrance — the structure is already there at first paint. A small orange
-//   spark travels the growth axis from the origin; axis nodes bump as it
-//   passes; the final reach hairline draws under it; the live node ignites
-//   on arrival. One gesture, then stillness.
-//   Ambient — every ~12s a much fainter spark echoes down the axis and the
-//   halo swells once as it arrives. Otherwise the mark is still.
+// The SVG is server-rendered at its base positions, so the resolved mark is
+// there at first paint and without JS. A small script then adds the life:
+// slow node drift, a pointer pull toward the cursor, the halo pulse, and the
+// breathing of the work-in-progress links.
 
-interface Props {
-  /** Run the pulse entrance + ambient echo. Set false for the resolved, still mark. */
-  animate?: boolean;
-  /** Accessible label; the mark is decorative by default. */
-  title?: string;
-}
-
-const { animate = true, title } = Astro.props;
-
-const M = 44; // grid module
-const P = (cx: number, cy: number) => ({ x: cx * M, y: (6 - cy) * M }); // grid units, y up
-
-type Pt = { x: number; y: number };
-const seg = (p: Pt, q: Pt) => ({ x1: p.x, y1: p.y, x2: q.x, y2: q.y });
-
-// Settled fabric: 2×2 cells, fully braced.
-const F: Record<string, Pt> = {};
-for (let x = 0; x <= 2; x++) for (let y = 0; y <= 2; y++) F[`${x},${y}`] = P(x, y);
-// Opening span: right triangle, hypotenuse on the growth axis.
-const g = P(4, 2), h = P(4, 4);
-// The live frontier.
-const L = P(6, 6);
-
-const settled = [
-  // fabric horizontals and verticals
-  ...[0, 1, 2].flatMap((y) => [seg(F[`0,${y}`], F[`1,${y}`]), seg(F[`1,${y}`], F[`2,${y}`])]),
-  ...[0, 1, 2].flatMap((x) => [seg(F[`${x},0`], F[`${x},1`]), seg(F[`${x},1`], F[`${x},2`])]),
-  // on-axis diagonals (the axis inside the fabric)
-  seg(F['0,0'], F['1,1']), seg(F['1,1'], F['2,2']),
-  // parallel diagonals
-  seg(F['1,0'], F['2,1']), seg(F['0,1'], F['1,2']),
-  // opening span
-  seg(F['2,2'], g), seg(g, h),
-  seg(F['2,2'], h), // the axis through the span
+const NODES: [number, number][] = [
+  [128, 196], [96, 150], [156, 140], [140, 96], [200, 180],
+  [204, 116], [252, 140], [232, 74], [292, 60],
 ];
-const reach = seg(h, L); // the newest connection: draws in under the spark
-
-// Ink nodes; the ones on the growth axis bump as the spark passes them.
-// Spark travel: 1.15s linear along (0,0)->(6,6) starting at 0.35s; pass times
-// are the linear fractions of the axis (0, 1/6, 2/6, 4/6; arrival 1).
-const axisDelay: Record<string, number> = {
-  '0,0': 0.35,
-  '1,1': 0.54,
-  '2,2': 0.73,
-};
-const inkNodes: (Pt & { d?: number })[] = [
-  ...Object.entries(F).map(([k, p]) => ({ ...p, d: axisDelay[k] })),
-  { ...g },
-  { ...h, d: 1.12 },
+const EDGES: [number, number][] = [
+  [0, 1], [1, 2], [0, 2], [1, 3], [2, 3], [2, 4], [0, 4], [2, 5],
+  [3, 5], [4, 5], [4, 6], [5, 6], [5, 7], [3, 7], [6, 7],
 ];
+const WIP: [number, number][] = [[7, 8], [6, 8]]; // work-in-progress links to the live node
+const LIVE = 8;
+const OFF = 20; // shift graph coords into the 360x300 box
 
-// Spark geometry: starts on the origin corner, translates along the axis to L.
-const O = P(0, 0);
-const SPARK = { dx: L.x - O.x, dy: L.y - O.y };
+const pt = (i: number) => ({ x: NODES[i][0] + OFF, y: NODES[i][1] + OFF });
 ---
 
-<svg
-  class:list={['mark', { 'mark--animate': animate }]}
-  viewBox="-10 -19 293 293"
-  fill="none"
-  role={title ? 'img' : 'presentation'}
-  aria-label={title}
-  aria-hidden={title ? undefined : 'true'}
-  style={`--spark-dx:${SPARK.dx}px; --spark-dy:${SPARK.dy}px;`}
->
-  <g class="mark__web">
-    {settled.map((s) => (
-      <line x1={s.x1} y1={s.y1} x2={s.x2} y2={s.y2} />
-    ))}
-    <line
-      class="mark__reach"
-      x1={reach.x1} y1={reach.y1} x2={reach.x2} y2={reach.y2}
-      pathLength="1"
-    />
-  </g>
-  <!-- faint frontier ring around the live node -->
-  <circle class="mark__halo" cx={L.x} cy={L.y} r="13" />
-  <g class="mark__nodes">
-    {inkNodes.map((n) => (
-      <circle
-        class:list={['node', { 'node--axis': n.d !== undefined }]}
-        cx={n.x} cy={n.y} r="3.8"
-        style={n.d !== undefined ? `--d:${n.d}s` : undefined}
+<svg class="network-mark" viewBox="0 45 360 200" aria-hidden="true">
+  {
+    [...EDGES, ...WIP].map(([a, b], i) => (
+      <line
+        class:list={['nm-line', { 'nm-line--wip': i >= EDGES.length }]}
+        data-a={a}
+        data-b={b}
+        x1={pt(a).x}
+        y1={pt(a).y}
+        x2={pt(b).x}
+        y2={pt(b).y}
       />
-    ))}
-    <circle class="node node--live" cx={L.x} cy={L.y} r="6.8" />
-  </g>
-  <!-- the pulse: entrance spark, then a rare faint echo -->
-  <g class="mark__sparks" aria-hidden="true">
-    <circle class="spark spark--entrance" cx={O.x} cy={O.y} r="2.8" />
-    <circle class="spark spark--echo" cx={O.x} cy={O.y} r="2.4" />
-  </g>
+    ))
+  }
+  {
+    NODES.map((_, i) => (
+      <circle
+        class:list={['nm-node', { 'nm-node--live': i === LIVE }]}
+        cx={pt(i).x}
+        cy={pt(i).y}
+        r={i === LIVE ? 6.2 : 3.4}
+      />
+    ))
+  }
+  <circle class="nm-halo" cx={pt(LIVE).x} cy={pt(LIVE).y} r="11" />
 </svg>
 
 <style>
-  .mark {
+  .network-mark {
     display: block;
     width: 100%;
     height: auto;
     overflow: visible;
+    touch-action: none;
+    cursor: crosshair;
   }
 
-  /* Resolved (default / reduced-motion) state — fully drawn and still. */
-  .mark__web line {
+  .nm-line {
     stroke: var(--color-ink);
-    stroke-width: 1;
-    stroke-opacity: 0.85;
+    stroke-width: 1.1;
     stroke-linecap: round;
-    vector-effect: non-scaling-stroke; /* keep 1px hairlines at any scale */
-  }
-
-  .node {
-    fill: var(--color-ink);
-  }
-
-  .node--live {
-    fill: var(--color-signal);
-  }
-
-  .mark__halo {
-    fill: none;
-    stroke: var(--color-signal);
-    stroke-width: 1;
-    stroke-opacity: 0.28;
+    opacity: 0.8;
     vector-effect: non-scaling-stroke;
   }
 
-  /* Sparks only exist as motion; without it they are never visible. */
-  .spark {
+  .nm-line--wip {
+    stroke: var(--color-signal);
+    stroke-width: 1.3;
+    opacity: 0.9;
+  }
+
+  .nm-node {
+    fill: var(--color-ink);
+  }
+
+  .nm-node--live {
     fill: var(--color-signal);
-    opacity: 0;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    /* --- Entrance: the structure is there; a signal crosses it. --- */
-
-    /* The newest hairline draws under the traveling spark (the spark covers
-       h -> L between 1.12s and 1.50s of the timeline). */
-    .mark--animate .mark__reach {
-      stroke-dasharray: 1;
-      stroke-dashoffset: 1;
-      animation: mark-draw 0.38s linear 1.12s forwards;
-    }
-
-    /* Axis nodes bump as the spark passes them. */
-    .mark--animate .node--axis {
-      transform-box: fill-box;
-      transform-origin: center;
-      animation: node-bump 0.32s cubic-bezier(0.22, 1, 0.36, 1) var(--d);
-    }
-
-    /* The live node ignites on arrival. */
-    .mark--animate .node--live {
-      transform-box: fill-box;
-      transform-origin: center;
-      animation: mark-ignite 0.45s cubic-bezier(0.22, 1, 0.36, 1) 1.47s backwards;
-    }
-
-    .mark--animate .mark__halo {
-      transform-box: fill-box;
-      transform-origin: center;
-      animation:
-        halo-bloom 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.5s backwards,
-        halo-echo 12s ease-in-out 8.15s infinite;
-    }
-
-    .mark--animate .spark--entrance {
-      animation: spark-travel 1.15s linear 0.35s both;
-    }
-
-    /* --- Ambient: a rare, fainter echo of the same signal. --- */
-    .mark--animate .spark--echo {
-      animation: spark-echo 12s linear 7s infinite;
-    }
-  }
-
-  @keyframes mark-draw {
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-
-  @keyframes node-bump {
-    0%, 100% {
-      transform: scale(1);
-    }
-    40% {
-      transform: scale(1.55);
-    }
-  }
-
-  @keyframes mark-ignite {
-    from {
-      opacity: 0;
-      transform: scale(0.3);
-    }
-    60% {
-      transform: scale(1.18);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes halo-bloom {
-    from {
-      opacity: 0;
-      transform: scale(0.5);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  /* Swell once as the echo spark arrives (echo starts at 7s + 12s cycle;
-     arrival ~9.6% in; this animation is delayed to align with arrival). */
-  @keyframes halo-echo {
-    0%, 12% {
-      stroke-opacity: 0.28;
-      transform: scale(1);
-    }
-    4% {
-      stroke-opacity: 0.5;
-      transform: scale(1.15);
-    }
-    100% {
-      stroke-opacity: 0.28;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes spark-travel {
-    0% {
-      transform: translate(0, 0);
-      opacity: 0;
-    }
-    6% {
-      opacity: 1;
-    }
-    88% {
-      opacity: 1;
-    }
-    100% {
-      transform: translate(var(--spark-dx), var(--spark-dy));
-      opacity: 0;
-    }
-  }
-
-  /* Same journey at ~1/3 the presence, once per 12s cycle. */
-  @keyframes spark-echo {
-    0% {
-      transform: translate(0, 0);
-      opacity: 0;
-    }
-    0.8% {
-      opacity: 0.35;
-    }
-    8.8% {
-      opacity: 0.35;
-    }
-    9.6% {
-      transform: translate(var(--spark-dx), var(--spark-dy));
-      opacity: 0;
-    }
-    100% {
-      transform: translate(var(--spark-dx), var(--spark-dy));
-      opacity: 0;
-    }
+  .nm-halo {
+    fill: none;
+    stroke: var(--color-signal);
+    stroke-width: 1.2;
+    opacity: 0.3;
   }
 </style>
+
+<script>
+  // Animates the server-rendered mark: drift + pointer pull + halo pulse.
+  // Geometry is read back from the SVG itself, so the markup stays the only
+  // source of truth for the graph.
+  const svg = document.querySelector<SVGSVGElement>('.network-mark');
+
+  if (svg) {
+    const W = 360;
+    const H = 300;
+    const nodes = [...svg.querySelectorAll<SVGCircleElement>('.nm-node')];
+    const lines = [...svg.querySelectorAll<SVGLineElement>('.nm-line')].map((el) => ({
+      el,
+      a: Number(el.dataset.a),
+      b: Number(el.dataset.b),
+      wip: el.classList.contains('nm-line--wip'),
+    }));
+    const halo = svg.querySelector<SVGCircleElement>('.nm-halo');
+    const liveIndex = nodes.findIndex((n) => n.classList.contains('nm-node--live'));
+
+    const base = nodes.map((c) => ({ x: Number(c.getAttribute('cx')), y: Number(c.getAttribute('cy')) }));
+    const cur = base.map((p) => ({ ...p }));
+    const phase = base.map(() => ({
+      px: Math.random() * 6.28,
+      py: Math.random() * 6.28,
+      sx: 0.3 + Math.random() * 0.25,
+      sy: 0.3 + Math.random() * 0.25,
+      ax: 2.4 + Math.random() * 1.6,
+      ay: 2.4 + Math.random() * 1.6,
+    }));
+
+    const mouse = { x: 0, y: 0, active: 0, eased: 0 };
+    svg.addEventListener('pointermove', (ev) => {
+      const r = svg.getBoundingClientRect();
+      mouse.x = ((ev.clientX - r.left) / r.width) * W;
+      mouse.y = ((ev.clientY - r.top) / r.height) * H;
+      mouse.active = 1;
+    });
+    svg.addEventListener('pointerleave', () => {
+      mouse.active = 0;
+    });
+
+    const t0 = performance.now();
+    const tick = (ts: number) => {
+      const t = (ts - t0) / 1000;
+      mouse.eased += (mouse.active - mouse.eased) * 0.08;
+
+      for (let i = 0; i < nodes.length; i++) {
+        const b = base[i];
+        const ph = phase[i];
+        const cu = cur[i];
+        let bx = b.x + Math.sin(t * ph.sx + ph.px) * ph.ax;
+        let by = b.y + Math.cos(t * ph.sy + ph.py) * ph.ay;
+        if (mouse.eased > 0.001) {
+          const dx = mouse.x - bx;
+          const dy = mouse.y - by;
+          const d = Math.sqrt(dx * dx + dy * dy) + 0.001;
+          const pull = Math.min(11, 810000 / (d * d * d)) * mouse.eased;
+          bx += (dx / d) * pull;
+          by += (dy / d) * pull;
+        }
+        cu.x += (bx - cu.x) * 0.12;
+        cu.y += (by - cu.y) * 0.12;
+        nodes[i].setAttribute('cx', cu.x.toFixed(2));
+        nodes[i].setAttribute('cy', cu.y.toFixed(2));
+      }
+
+      if (halo && liveIndex >= 0) {
+        const cu = cur[liveIndex];
+        const pulse = 0.5 + 0.5 * Math.sin(t * 1.6);
+        halo.setAttribute('cx', cu.x.toFixed(2));
+        halo.setAttribute('cy', cu.y.toFixed(2));
+        halo.setAttribute('r', (10 + pulse * 3).toFixed(2));
+        halo.style.opacity = (0.16 + 0.34 * pulse).toFixed(3);
+      }
+
+      for (const l of lines) {
+        const A = cur[l.a];
+        const B = cur[l.b];
+        l.el.setAttribute('x1', A.x.toFixed(2));
+        l.el.setAttribute('y1', A.y.toFixed(2));
+        l.el.setAttribute('x2', B.x.toFixed(2));
+        l.el.setAttribute('y2', B.y.toFixed(2));
+        if (l.wip) l.el.style.opacity = (0.55 + 0.4 * (0.5 + 0.5 * Math.sin(t * 1.6 + 0.4))).toFixed(3);
+      }
+
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+</script>

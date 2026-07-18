@@ -1,8 +1,10 @@
 ---
-// BaseLayout — the paper-sheet-on-desk shell (CLAUDE.md §3).
-// The desk (--desk) is the outer canvas; a paper sheet (--paper) floats on it
-// with a hairline edge and a soft drop shadow. The masthead running head is the
-// sheet's top band. Content is slotted into <main>.
+// BaseLayout — one continuous paper surface (CLAUDE.md §3, chrome per the
+// settled Home design Deadlink-Labs-Home.dc.html). A full-width sticky nav bar
+// sits at the very top of every page and shares the page's background, so the
+// header flows straight into the content with no seam. Below it, a centered
+// max-width content column (no card box, no drop shadow) holds the slotted
+// <main>; the column closes with the footer colophon.
 
 // Self-hosted fonts — no third-party requests (the site ships clean, §4).
 import '@fontsource-variable/ibm-plex-sans';
@@ -11,8 +13,8 @@ import '@fontsource/ibm-plex-mono/500.css';
 import '@fontsource/ibm-plex-mono/600.css';
 
 import '../styles/global.css';
-import Masthead from '../components/Masthead.astro';
 import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   /** Page title. Composed as "{title} · Deadlink Labs"; omit on the homepage. */
@@ -21,15 +23,15 @@ interface Props {
   description?: string;
   /** Sheet width: index/home pages are ~1120px, long-form records ~920px (§3). */
   width?: 'index' | 'record';
-  /** "Last updated" stamp for the masthead (MM.YYYY). */
-  lastUpdated?: string;
+  /** Remove the main padding — for pages whose bands carry their own gutters (Home). */
+  flush?: boolean;
 }
 
 const {
   title,
   description = 'The creative laboratory and proof-of-work archive of Marcelo Brouard, Buenos Aires. Thirty years turning messy operations into systems that run themselves.',
   width = 'index',
-  lastUpdated,
+  flush = false,
 } = Astro.props;
 
 // Title template (§2): "Deadlink Labs — Marcelo Brouard" on home; "{Page} · Deadlink Labs" elsewhere.
@@ -51,39 +53,33 @@ const pageTitle = title ? `${title} · Deadlink Labs` : 'Deadlink Labs — Marce
     <slot name="head" />
   </head>
   <body>
-    {/* Sticky top bar — full viewport width, above everything on every page. */}
     <Nav width={width} />
-    {/* Full-bleed region above the sheet — the homepage cover (band 1) slots here. */}
-    <slot name="cover" />
-    <div class="desk">
+    <div class="page">
       <div class:list={['sheet', `sheet--${width}`]}>
-        <Masthead lastUpdated={lastUpdated} />
-        <main class="sheet__body">
+        <main class:list={['sheet__body', { 'sheet__body--flush': flush }]}>
           <slot />
         </main>
+        <Footer />
       </div>
     </div>
   </body>
 </html>
 
 <style>
-  .desk {
+  /* Centering wrapper for the content column — no box, no separate canvas. */
+  .page {
     min-height: 100vh;
-    background: var(--color-desk);
     display: flex;
     justify-content: center;
-    padding: clamp(1.5rem, 5vw, 4.5rem) clamp(1rem, 4vw, 3rem);
+    padding-inline: clamp(1rem, 4vw, 3rem);
     box-sizing: border-box;
   }
 
-  /* The paper sheet floated over the desk (CLAUDE.md §3). */
+  /* The content column: a centered max-width, flush with the page background. */
   .sheet {
-    /* shared horizontal gutter, read by the masthead + body (64px on desktop) */
+    /* shared horizontal gutter, read by the nav, bands, and footer (64px on desktop) */
     --gutter: clamp(1.5rem, 5vw, 4rem);
     width: 100%;
-    background: var(--color-paper);
-    border: 1px solid var(--color-ink-15);
-    box-shadow: 0 30px 80px -40px rgba(25, 23, 20, 0.35);
     box-sizing: border-box;
   }
 
@@ -98,5 +94,10 @@ const pageTitle = title ? `${title} · Deadlink Labs` : 'Deadlink Labs — Marce
   .sheet__body {
     padding-inline: var(--gutter);
     padding-block: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  /* Home: the bands carry their own gutters and hairline rules. */
+  .sheet__body--flush {
+    padding: 0;
   }
 </style>

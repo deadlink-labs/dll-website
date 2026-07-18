@@ -1,16 +1,16 @@
 ---
-// Home (/) — design 8A, auto-generated (CLAUDE.md §5.1 / §6).
-// Band order: Cover · Masthead · Hero (current experiment) · Featured + Recent
-// log · Featured products · Shipped for clients · Who runs this · Footer.
-// The hero, feeds, and products come deterministically from site.config.json +
-// published content — this page is composed, not hand-authored.
+// Home (/) — per the settled Home design (Deadlink-Labs-Home.dc.html) and
+// CLAUDE.md §5.1/§6. Band order: Cover · On the bench (hero) · Featured ·
+// Recent · Products · Shipped for clients · Who runs this · Footer.
+// Every band is a 150px mono label column + content; hairline rules divide
+// the sheet into bands. The hero, feeds, and products come deterministically
+// from site.config.json + published content — composed, not hand-authored.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Cover from '../components/Cover.astro';
 import Stamp from '../components/Stamp.astro';
 import StatusDot from '../components/StatusDot.astro';
 import FeedItem from '../components/FeedItem.astro';
 import ProductCard from '../components/ProductCard.astro';
-import Footer from '../components/Footer.astro';
 import { getHomepageData, recordLabel } from '../lib/content';
 
 const { hero, recent, featuredProducts } = await getHomepageData();
@@ -18,8 +18,8 @@ const current = hero[0]; // the current experiment on the bench
 
 // Client work surfaced off-nav (§5.1 band 6). Placeholder stand-ins.
 const clientWork = [
-  { name: 'Uruguay Outfitters', note: 'SHIPPED · 2026' },
-  { name: 'Crehana', note: 'CASE STUDY' },
+  { name: 'Uruguay Outfitters', note: 'Shipped · 2026' },
+  { name: 'Crehana', note: 'Case study' },
 ];
 
 // JSON-LD Person schema — lives on Home and About (§2).
@@ -33,35 +33,40 @@ const personSchema = {
 };
 ---
 
-<BaseLayout>
+<BaseLayout flush>
   <Fragment slot="head">
     <script type="application/ld+json" is:inline set:html={JSON.stringify(personSchema)} />
   </Fragment>
-  <Cover slot="cover" />
 
-  {/* Band 3 — Hero: the current experiment's question. */}
+  {/* Band 1 — Cover. */}
+  <Cover />
+
+  {/* Band 2 — Hero: the current experiment's question. */}
   {
     current && (
-      <section class="hero" id="bench">
-        <p class="hero__eyebrow">
-          <StatusDot stage="IN PROGRESS" label={false} />
-          <span>Currently on the bench · {recordLabel(current)}</span>
-        </p>
-        <h1 class="hero__question">{current.data.title}</h1>
-        <div class="hero__stamp">
-          <Stamp label={recordLabel(current)} stage={current.data.stage} tags={current.data.tags} />
+      <section class="band band--hero" id="bench">
+        <h2 class="band__label">On the bench</h2>
+        <div class="hero">
+          <p class="hero__eyebrow">
+            <StatusDot stage="IN PROGRESS" label={false} />
+            <span>Currently on the bench · {recordLabel(current)}</span>
+          </p>
+          <h1 class="hero__question">{current.data.title}</h1>
+          <div class="hero__stamp">
+            <Stamp label={recordLabel(current)} stage={current.data.stage} tags={current.data.tags} />
+          </div>
+          {current.data.snippet && <p class="hero__overview">{current.data.snippet}</p>}
+          <pre class="specimen" aria-label="Terminal capture"><code><span class="specimen__dim">$ tail -f lab.log</span>
+[07:14:02] build ok, 0 errors, zero JS shipped
+[07:14:02] cover mark resolved, live node online
+<span class="specimen__dim">[07:14:03] waiting for the next decision</span></code></pre>
+          <a class="link-under" href={`/log/${current.id}`}>Step into the log →</a>
         </div>
-        {current.data.snippet && <p class="hero__overview">{current.data.snippet}</p>}
-        <pre class="specimen" aria-label="Terminal capture"><code>$ tail -f lab.log
-[07:14:02] build ok — 0 errors, zero JS shipped
-[07:14:02] cover mark resolved · live node online
-[07:14:03] waiting for the next decision…</code></pre>
-        <a class="hero__more" href={`/log/${current.id}`}>Step into the log →</a>
       </section>
     )
   }
 
-  {/* Band 4 — Featured then recent log entries. */}
+  {/* Band 3 — Featured then recent log entries. */}
   {
     hero.length > 0 && (
       <section class="band" id="featured">
@@ -79,17 +84,19 @@ const personSchema = {
     recent.length > 0 && (
       <section class="band">
         <h2 class="band__label">Recent</h2>
-        <div class="feed">
-          {recent.map((entry) => (
-            <FeedItem entry={entry} />
-          ))}
+        <div>
+          <div class="feed">
+            {recent.map((entry) => (
+              <FeedItem entry={entry} />
+            ))}
+          </div>
+          <a class="link-under link-under--small" href="/log">All entries →</a>
         </div>
-        <a class="band__more" href="/log">All entries →</a>
       </section>
     )
   }
 
-  {/* Band 5 — Featured products. */}
+  {/* Band 4 — Featured products. */}
   {
     featuredProducts.length > 0 && (
       <section class="band" id="products">
@@ -103,7 +110,7 @@ const personSchema = {
     )
   }
 
-  {/* Band 6 — Shipped for clients (off-nav consulting surface). */}
+  {/* Band 5 — Shipped for clients (off-nav consulting surface). */}
   <section class="band">
     <h2 class="band__label">Shipped for clients</h2>
     <ul class="clients">
@@ -118,32 +125,67 @@ const personSchema = {
     </ul>
   </section>
 
-  {/* Band 7 — Who runs this. */}
-  <section class="band who">
+  {/* Band 6 — Who runs this. */}
+  <section class="band band--who">
     <h2 class="band__label">Who runs this</h2>
-    <p class="who__text">
-      Marcelo Brouard, Buenos Aires. Thirty years turning messy operations into systems that run
-      themselves — post-production, AI automation, dashboards, and the occasional website.
-    </p>
-    <div class="who__actions">
-      <a class="btn" href="/log">See the work →</a>
-      <a class="btn btn--signal" href="/about#work-with-me">Work with me</a>
+    <div class="who">
+      <p class="who__text">
+        Marcelo Brouard, Buenos Aires. Thirty years turning messy operations into systems that run
+        themselves: post-production, AI automation, dashboards, and the occasional website.
+      </p>
+      <div class="who__actions">
+        <a class="btn" href="/log">See the work →</a>
+        <a class="btn btn--signal" href="/about#work-with-me">Work with me</a>
+      </div>
     </div>
   </section>
-
-  <Footer />
 </BaseLayout>
 
 <style>
+  /* The stamped-band pattern: 150px mono label column + content (§3). */
+  .band {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 2.5rem;
+    padding: 2.125rem var(--gutter, 4rem);
+    border-top: 1px solid var(--color-ink-15);
+  }
+
+  .band--hero {
+    padding-block: 2.75rem;
+  }
+
+  .band--who {
+    padding-block: 2.375rem;
+  }
+
+  .band__label {
+    margin: 0;
+    padding-top: 4px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-ink-60);
+  }
+
+  @media (max-width: 760px) {
+    .band {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
   .hero {
-    padding-block: 1rem 2.5rem;
+    max-width: 720px;
   }
 
   .hero__eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 0.6em;
-    margin: 0 0 1.5rem;
+    gap: 9px;
+    margin: 0 0 1.625rem;
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
@@ -152,97 +194,78 @@ const personSchema = {
   }
 
   .hero__question {
-    margin: 0 0 1.4rem;
-    font-size: clamp(2rem, 5vw, 3.75rem);
-    line-height: 1.06;
-    letter-spacing: -0.025em;
+    margin: 0 0 1.5rem;
+    font-size: clamp(2.125rem, 4.6vw, 3.5rem);
+    line-height: 1.04;
+    letter-spacing: -0.022em;
     font-weight: 600;
-    max-width: 18ch;
+    color: var(--color-ink);
   }
 
   .hero__stamp {
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.125rem;
   }
 
   .hero__overview {
-    margin: 0 0 1.8rem;
+    margin: 0 0 1.75rem;
     font-size: 17px;
-    line-height: 1.65;
-    max-width: 68ch;
+    line-height: 1.6;
+    max-width: 600px;
     color: var(--color-ink);
   }
 
   /* Dark specimen panel — a specimen in the notebook (§3). */
   .specimen {
-    margin: 0 0 1.8rem;
-    padding: 1.25rem 1.4rem;
+    margin: 0;
+    padding: 1.125rem 1.25rem;
     background: var(--color-panel);
     border-radius: 4px;
     overflow-x: auto;
     font-family: var(--font-mono);
     font-size: 12.5px;
-    line-height: 1.7;
-    color: #d9d4cc;
+    line-height: 1.85;
+    color: #d7d3ca;
   }
   .specimen code {
     font-family: inherit;
     white-space: pre;
   }
-
-  .hero__more {
-    font-family: var(--font-mono);
-    font-size: 12.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-ink);
-    text-decoration: none;
-    border-bottom: 1px solid var(--color-signal);
-    padding-bottom: 2px;
-  }
-  .hero__more:hover {
-    color: var(--color-signal);
+  .specimen__dim {
+    color: #8f8a80;
   }
 
-  .band {
-    padding-block: 2.25rem;
-    border-top: 1px solid var(--color-ink-15);
-  }
-
-  .band__label {
-    margin: 0 0 0.5rem;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: var(--color-ink-60);
-    font-weight: 500;
-  }
-
-  .band__more {
+  /* Underlined mono action link ("Step into the log →", "All entries →"). */
+  .link-under {
     display: inline-block;
-    margin-top: 1rem;
+    white-space: nowrap;
+    margin-top: 1.625rem;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--color-ink);
     text-decoration: none;
-    border-bottom: 1px solid var(--color-signal);
+    border-bottom: 1px solid var(--color-ink);
     padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
   }
-  .band__more:hover {
+  .link-under:hover {
     color: var(--color-signal);
+    border-bottom-color: var(--color-signal);
+  }
+  .link-under--small {
+    margin-top: 1.125rem;
+    font-size: 11.5px;
   }
 
   .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.25rem;
-    margin-top: 1rem;
   }
 
   .clients {
-    margin: 0.5rem 0 0;
+    margin: 0;
     padding: 0;
     list-style: none;
   }
@@ -251,44 +274,50 @@ const personSchema = {
     justify-content: space-between;
     align-items: baseline;
     gap: 1rem;
-    padding-block: 1rem;
-    border-top: 1px solid var(--color-ink-15);
+    padding-block: 0.875rem;
+    border-bottom: 1px solid var(--color-ink-08);
     font-family: var(--font-mono);
-    font-size: 12.5px;
-    letter-spacing: 0.06em;
+  }
+  .clients__row:first-child {
+    padding-top: 0.25rem;
   }
   .clients__name {
+    font-size: 12px;
     color: var(--color-ink);
     text-transform: uppercase;
     letter-spacing: 0.12em;
   }
   .clients__note {
+    font-size: 11px;
     color: var(--color-ink-60);
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     white-space: nowrap;
   }
 
+  .who {
+    max-width: 600px;
+  }
   .who__text {
-    margin: 0.75rem 0 1.5rem;
+    margin: 0 0 1.625rem;
     font-size: 17px;
-    line-height: 1.65;
-    max-width: 68ch;
+    line-height: 1.6;
   }
   .who__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
+    gap: 0.75rem;
   }
   .btn {
+    white-space: nowrap;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11.5px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     text-decoration: none;
-    padding: 0.7rem 1.2rem;
+    padding: 11px 18px;
     border: 1px solid var(--color-ink-15);
-    border-radius: 4px;
+    border-radius: 3px;
     color: var(--color-ink);
     transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
   }

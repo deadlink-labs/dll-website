@@ -1,7 +1,10 @@
 ---
-// Footer / colophon (CLAUDE.md §5.1 band 8).
-// Manifesto line, contact + channels, colophon. Contact + social hrefs are
+// Footer / colophon — per the settled Home design (Deadlink-Labs-Home.dc.html).
+// Manifesto line, then channels + colophon on one row. Rendered by BaseLayout
+// as the sheet's closing band on every page. Contact + social hrefs are
 // PLACEHOLDERS — confirm the real addresses before launch.
+// (The design shows the colophon in ink-15; that fails the AA contrast floor
+// for text, so it renders in ink-60 here.)
 const stamp = new Intl.DateTimeFormat('en-US', { month: '2-digit', year: 'numeric' })
   .format(new Date())
   .replace('/', '.');
@@ -17,41 +20,51 @@ const channels = [
 
 <footer class="colophon">
   <p class="colophon__manifesto">
-    Build to Understand · Document to Remember · Share so Others Can Build Further
+    Build to understand · Document to remember · Share so others can build further
   </p>
-  <ul class="colophon__channels">
-    {channels.map((c) => (
-      <li>
-        <a href={c.href} class="colophon__link">{c.label}</a>
-      </li>
-    ))}
-  </ul>
-  <p class="colophon__set">Set in IBM Plex · Built with Astro · Last updated {stamp}</p>
+  <div class="colophon__row">
+    <ul class="colophon__channels">
+      {
+        channels.map((c) => (
+          <li>
+            <a href={c.href} class="colophon__link">
+              {c.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="colophon__set">Set in IBM Plex · Built with Astro · Last updated {stamp}</p>
+  </div>
 </footer>
 
 <style>
   .colophon {
-    border-top: 1px solid var(--color-ink-15);
-    padding-top: 2rem;
-    margin-top: 3.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+    border-top: 1px solid var(--color-ink);
+    padding: 2.75rem var(--gutter, 4rem) 2.5rem;
     font-family: var(--font-mono);
   }
 
   .colophon__manifesto {
-    margin: 0;
-    font-size: 11px;
+    margin: 0 0 1.75rem;
+    font-size: 11.5px;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
     color: var(--color-ink);
+  }
+
+  .colophon__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.25rem;
   }
 
   .colophon__channels {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.25rem;
+    gap: 1.5rem;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -76,7 +89,7 @@ const channels = [
   .colophon__set {
     margin: 0;
     font-size: 11px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: var(--color-ink-60);
   }
 </style>

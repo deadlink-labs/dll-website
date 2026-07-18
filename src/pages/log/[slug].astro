@@ -7,7 +7,6 @@ import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Stamp from '../../components/Stamp.astro';
-import Footer from '../../components/Footer.astro';
 import { getPublishedLog, recordLabel, formatDate } from '../../lib/content';
 
 export const getStaticPaths = (async () => {
@@ -33,7 +32,6 @@ const label = recordLabel(entry);
     <p class="record__back"><a href="/log">← Back to the log</a></p>
   </article>
 
-  <Footer />
 </BaseLayout>
 
 <style>

@@ -1,9 +1,11 @@
 ---
-// Nav — the intentionally minimal four-item nav (CLAUDE.md §2).
-// Home · Log · Products · About. Distinct from the masthead running head.
-// The consulting funnel (Work with me) lives OFF this nav, by design.
-// Renders as a full-viewport sticky bar at the very top of every page;
-// the links inside align to the sheet's width and gutters.
+// Nav — the sticky, full-viewport top bar. It carries the settled Home
+// design's content (the Deadlink Labs brand token as the home link beside the
+// three section links), but spans the full width and sticks to the top of
+// every page. Its bottom hairline is invisible at the top of the page and
+// fades in once the visitor scrolls. The links inside align to the sheet's
+// width and gutters. The consulting funnel (Work with me) stays OFF this nav
+// by design (CLAUDE.md §2).
 interface Props {
   /** Matches the page's sheet width so the links line up with the content. */
   width?: 'index' | 'record';
@@ -12,7 +14,6 @@ interface Props {
 const { width = 'index' } = Astro.props;
 
 const items = [
-  { label: 'Home', href: '/' },
   { label: 'Log', href: '/log' },
   { label: 'Products', href: '/products' },
   { label: 'About', href: '/about' },
@@ -20,21 +21,24 @@ const items = [
 
 // Active when the path matches, or is nested under a section (e.g. /log/x).
 const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
-const isActive = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`));
+const isActive = (href: string) => path === href || path.startsWith(`${href}/`);
 ---
 
 <nav class:list={['nav', `nav--${width}`]} aria-label="Primary">
-  <ul class="nav__list">
+  <div class="nav__inner">
+    <a class="nav__brand" href="/" aria-current={path === '/' ? 'page' : undefined}>Deadlink Labs</a>
     {
       items.map((item) => (
-        <li>
-          <a href={item.href} class:list={['nav__link', { 'nav__link--active': isActive(item.href) }]} aria-current={isActive(item.href) ? 'page' : undefined}>
-            {item.label}
-          </a>
-        </li>
+        <a
+          href={item.href}
+          class:list={['nav__link', { 'nav__link--active': isActive(item.href) }]}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
       ))
     }
-  </ul>
+  </div>
 </nav>
 
 <style>
@@ -42,48 +46,51 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path === href 
     position: sticky;
     top: 0;
     z-index: 20;
-    min-height: var(--nav-height, 45px);
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
     background: var(--color-paper);
     /* hairline is invisible at the top of the page so the bar blends into the
      * paper; it fades in once the visitor scrolls (see the script below) */
     border-bottom: 1px solid transparent;
     transition: border-color 0.3s ease;
-    /* mirrors the desk's horizontal padding so the inner list can center
+    /* mirrors the desk's horizontal padding so the inner row can center
      * against the same box the sheet centers in */
-    padding-block: 0.6rem;
     padding-inline: clamp(1rem, 4vw, 3rem);
   }
 
-  .nav__list {
+  .nav__inner {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.6rem;
+    align-items: baseline;
+    gap: 0.75rem 2.125rem;
     width: 100%;
-    margin: 0;
     margin-inline: auto;
-    /* mirrors the sheet's internal gutter so links align with sheet content */
-    padding: 0;
-    padding-inline: clamp(1.5rem, 5vw, 4rem);
     box-sizing: border-box;
-    list-style: none;
+    /* mirrors the sheet's internal gutter so links align with sheet content */
+    padding: 1.375rem clamp(1.5rem, 5vw, 4rem);
   }
 
-  .nav--index .nav__list {
+  .nav--index .nav__inner {
     max-width: 1120px;
   }
 
-  .nav--record .nav__list {
+  .nav--record .nav__inner {
     max-width: 920px;
+  }
+
+  .nav__brand {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-ink);
+    text-decoration: none;
   }
 
   .nav__link {
     font-family: var(--font-mono);
-    font-size: 12.5px;
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.2em;
     color: var(--color-ink-60);
     text-decoration: none;
     padding-bottom: 2px;
@@ -101,6 +108,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path === href 
     border-bottom-color: var(--color-ink);
   }
 
+  .nav__brand:focus-visible,
   .nav__link:focus-visible {
     outline: 2px solid var(--color-signal);
     outline-offset: 3px;

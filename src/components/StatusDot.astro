@@ -6,7 +6,6 @@
 //   SHIPPED / PRIVATE BETA / SETTLED / REVISED → filled ink
 //   RESEARCH               → ink outline
 //   ROUGH                  → muted (ink-15)
-// The pulse lives behind prefers-reduced-motion.
 interface Props {
   stage?: string;
   /** Render the stage token next to the dot. */
@@ -74,10 +73,8 @@ const isSignal = variant === 'pulse' || variant === 'static-signal';
     color: var(--color-signal);
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .dot--pulse {
-      animation: dot-pulse 1.8s ease-in-out infinite;
-    }
+  .dot--pulse {
+    animation: dot-pulse 1.8s ease-in-out infinite;
   }
 
   @keyframes dot-pulse {

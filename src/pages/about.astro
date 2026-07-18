@@ -4,7 +4,6 @@
 // "Work with me" section (the ONE commercial ask), and the colophon. JSON-LD
 // Person schema lives here and on Home (§2). Contact form is UI only in v1.
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Footer from '../components/Footer.astro';
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -109,7 +108,6 @@ const tools = ['Astro', 'TypeScript', 'Home Assistant', 'MQTT', 'Python', 'Obsid
       </form>
     </section>
 
-    <Footer />
   </article>
 </BaseLayout>
 
@@ -219,7 +217,7 @@ const tools = ['Astro', 'TypeScript', 'Home Assistant', 'MQTT', 'Python', 'Obsid
   }
   .proof {
     font-size: 15px;
-    color: var(--color-ink-60);
+    color: var(--color-ink-75);
     margin: 0 0 2rem;
   }
   .proof a {

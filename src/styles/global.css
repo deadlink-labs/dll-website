@@ -10,8 +10,10 @@
   --color-paper: #f7f5f1; /* The paper sheet — page/content surface */
   --color-paper-raised: #ffffff; /* Cards, register tables, code-panel frames */
   --color-ink: #191714; /* Body text, headlines, settled nodes */
+  --color-ink-75: rgba(25, 23, 20, 0.78); /* Reading-length muted text: ledes, blurbs */
   --color-ink-60: rgba(25, 23, 20, 0.62); /* Stamps, metadata, captions */
   --color-ink-15: rgba(25, 23, 20, 0.15); /* Hairline rules, borders, sheet edge */
+  --color-ink-08: rgba(25, 23, 20, 0.08); /* Faint row rules inside feeds/lists */
   --color-signal: #f04a00; /* Live node, status dots, link hover, focus rings */
   --color-panel: #14120f; /* Dark panels: code, terminal, video frames */
   --color-panel-deep: #0e0c0a; /* Deeper terminal inset */
@@ -22,12 +24,6 @@
 }
 
 @layer base {
-  :root {
-    /* Height of the sticky top nav bar — read by the nav and by the homepage
-     * cover (which subtracts it so the fold marker stays at the viewport edge). */
-    --nav-height: 45px;
-  }
-
   html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
@@ -35,7 +31,8 @@
 
   body {
     margin: 0;
-    background: var(--color-desk);
+    /* One continuous surface — no floating sheet, no desk box. */
+    background: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-size: 17px; /* body: 17px / 1.65 on desktop (CLAUDE.md §3) */
@@ -49,17 +46,5 @@
   :focus-visible {
     outline: 2px solid var(--color-signal);
     outline-offset: 2px;
-  }
-}
-
-/* All motion respects reduced-motion (CLAUDE.md §3). */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }

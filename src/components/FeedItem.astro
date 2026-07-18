@@ -1,7 +1,7 @@
 ---
-// FeedItem — one row in a log feed (CLAUDE.md §5.1/§5.2).
-// number + status dot + title + date. A hairline rule separates rows (§3):
-// the rule is drawn on the row, not via gaps between cards.
+// FeedItem — one row in a log feed, per the settled Home design
+// (Deadlink-Labs-Home.dc.html): status dot + number, title, date, separated
+// by faint hairline rules (drawn on the row, not via gaps between cards).
 import StatusDot from './StatusDot.astro';
 import { formatDate, recordLabel, type LogEntry } from '../lib/content';
 
@@ -14,8 +14,8 @@ const label = recordLabel(entry);
 
 <a class="feed-item" href={`/log/${entry.id}`}>
   <span class="feed-item__meta">
-    <span class="feed-item__num">{label}</span>
     <StatusDot stage={entry.data.stage} label={false} />
+    <span class="feed-item__num">{label}</span>
   </span>
   <span class="feed-item__title">{entry.data.title}</span>
   <time class="feed-item__date" datetime={entry.data.pubDate.toISOString()}>{formatDate(entry.data.pubDate)}</time>
@@ -24,11 +24,11 @@ const label = recordLabel(entry);
 <style>
   .feed-item {
     display: grid;
-    grid-template-columns: 150px 1fr auto;
+    grid-template-columns: 88px 1fr auto;
     align-items: baseline;
     gap: 0.4rem 1.5rem;
-    padding-block: 1.15rem;
-    border-top: 1px solid var(--color-ink-15);
+    padding-block: 0.875rem;
+    border-bottom: 1px solid var(--color-ink-08);
     text-decoration: none;
     color: inherit;
   }
@@ -40,32 +40,25 @@ const label = recordLabel(entry);
   .feed-item__meta {
     display: inline-flex;
     align-items: center;
-    gap: 0.55em;
+    gap: 0.5em;
     font-family: var(--font-mono);
     font-size: 11px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     color: var(--color-ink-60);
-    padding-top: 0.15em;
-  }
-
-  .feed-item__num {
-    color: var(--color-ink);
-    font-weight: 500;
   }
 
   .feed-item__title {
     font-family: var(--font-sans);
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
+    font-size: 16px;
+    line-height: 1.35;
+    color: var(--color-ink);
     transition: color 0.2s ease;
   }
 
   .feed-item__date {
     font-family: var(--font-mono);
     font-size: 11px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     color: var(--color-ink-60);
     white-space: nowrap;
   }

@@ -1,59 +1,37 @@
 ---
-// Cover — the homepage title page (CLAUDE.md §3 / §5.1).
-// A quiet cover above the fold: the 8A truss mark centered in large negative
-// space, the brand + tagline in Plex Mono below it, and a dashed viewport-fold
-// marker at the bottom so the first experiment peeks below and the visitor
-// scrolls naturally into it. No hero marketing, no welcome copy, no CTA.
+// Cover — the homepage title band, per the settled Home design
+// (Deadlink-Labs-Home.dc.html). The first band inside the sheet: the network
+// mark centered in negative space, the brand + tagline in Plex Mono below.
+// No hero marketing, no welcome copy, no CTA.
 import NetworkMark from './NetworkMark.astro';
 ---
 
 <section class="cover">
   <div class="cover__stage">
-    <div class="cover__mark">
-      <NetworkMark title="Deadlink Labs" />
-    </div>
-    <div class="cover__labels">
-      <p class="cover__brand">Deadlink Labs</p>
-      <p class="cover__tagline">Build to Understand.</p>
-    </div>
+    <NetworkMark />
   </div>
-  <div class="cover__fold" aria-hidden="true"></div>
+  <p class="cover__brand">Deadlink Labs</p>
+  <p class="cover__tagline">Build to Understand.</p>
 </section>
 
 <style>
   .cover {
-    position: relative;
-    /* fill the viewport minus the sticky nav, so the fold marker sits at the fold */
-    min-height: calc(100svh - var(--nav-height, 0px));
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: clamp(2.5rem, 8vh, 6rem) 1.5rem clamp(2rem, 6vh, 4rem);
-    box-sizing: border-box;
-    background: var(--color-paper);
+    text-align: center;
+    gap: 22px;
+    padding: clamp(1.25rem, 3vw, 2rem) var(--gutter, 4rem) clamp(2.5rem, 5vw, 3.25rem);
   }
 
   .cover__stage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: clamp(2rem, 6vh, 3.5rem);
-  }
-
-  /* The mark is square now; sized so mark + labels sit comfortably above the fold. */
-  .cover__mark {
-    width: min(320px, 62vw);
-  }
-
-  .cover__labels {
-    text-align: center;
+    width: min(360px, 100%);
   }
 
   .cover__brand {
-    margin: 0 0 0.95rem;
+    margin: 0;
     font-family: var(--font-mono);
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.34em;
@@ -63,50 +41,12 @@ import NetworkMark from './NetworkMark.astro';
   }
 
   .cover__tagline {
-    margin: 0;
+    margin: -12px 0 0;
     font-family: var(--font-mono);
     font-size: 11.5px;
     text-transform: uppercase;
     letter-spacing: 0.16em;
     padding-left: 0.16em;
     color: var(--color-ink-60);
-  }
-
-  /* Dashed viewport-fold marker pinned near the bottom of the cover. */
-  .cover__fold {
-    position: absolute;
-    left: clamp(1.5rem, 6vw, 4rem);
-    right: clamp(1.5rem, 6vw, 4rem);
-    bottom: clamp(1.25rem, 4vh, 2.25rem);
-    border-top: 1px dashed var(--color-ink-15);
-  }
-
-  /* Labels + fold settle in just after the mark resolves. */
-  @media (prefers-reduced-motion: no-preference) {
-    .cover__labels {
-      opacity: 0;
-      transform: translateY(6px);
-      animation: cover-rise 0.7s ease forwards;
-      animation-delay: 1.7s;
-    }
-
-    .cover__fold {
-      opacity: 0;
-      animation: cover-fade 0.8s ease forwards;
-      animation-delay: 1.95s;
-    }
-  }
-
-  @keyframes cover-rise {
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  @keyframes cover-fade {
-    to {
-      opacity: 1;
-    }
   }
 </style>

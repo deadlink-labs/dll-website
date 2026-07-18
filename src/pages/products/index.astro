@@ -3,7 +3,6 @@
 // Products are destinations; logs tell their story. No prices until purchasable.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import Footer from '../../components/Footer.astro';
 import { getPublishedProducts } from '../../lib/content';
 
 const products = await getPublishedProducts();
@@ -23,7 +22,6 @@ const products = await getPublishedProducts();
     {products.map((entry) => <ProductCard entry={entry} />)}
   </div>
 
-  <Footer />
 </BaseLayout>
 
 <style>
@@ -50,7 +48,7 @@ const products = await getPublishedProducts();
     font-size: 17px;
     line-height: 1.65;
     max-width: 68ch;
-    color: var(--color-ink-60);
+    color: var(--color-ink-75);
   }
   .product-grid {
     display: grid;
