@@ -1,7 +1,13 @@
 ---
-// ProductCard — a product surfaced on Home (§5.1) or the Products index (§5.3),
-// per the settled Home design (Deadlink-Labs-Home.dc.html). Products are
-// mature artifacts and destinations; the card is a quiet doorway.
+// ProductCard — a product presented as a device-screen tile: a dark screen
+// (the eventual UI capture) above a caption. Until a real capture exists the
+// screen shows an honest "capture pending" placeholder on a blueprint grid —
+// the site never fakes an artifact (§8). When `web-image` lands, the real
+// screenshot drops into the same frame with no layout change.
+//
+// The screen is always dark (graphite/display); the caption adapts to its
+// context through --pc-* custom properties (ink on paper, light on graphite),
+// so one component works in the light Products index and the dark Home band.
 import StatusDot from './StatusDot.astro';
 import type { ProductEntry } from '../lib/content';
 
@@ -9,59 +15,96 @@ interface Props {
   entry: ProductEntry;
 }
 const { entry } = Astro.props;
+const screenLabel = `${entry.data.title} UI`;
 ---
 
 <a class="product" href={`/products/${entry.id}`}>
-  <span class="product__status">
-    <StatusDot stage={entry.data.stage} />
-  </span>
-  <h3 class="product__title">{entry.data.title}</h3>
-  {entry.data.snippet && <p class="product__snippet">{entry.data.snippet}</p>}
+  <div class="product__screen">
+    <span class="product__screen-cap">Capture pending</span>
+    <span class="product__screen-sub">{screenLabel}</span>
+  </div>
+  <div class="product__meta">
+    <span class="product__status">
+      <StatusDot stage={entry.data.stage} />
+    </span>
+    <h3 class="product__title">{entry.data.title}</h3>
+    {entry.data.snippet && <p class="product__snippet">{entry.data.snippet}</p>}
+  </div>
 </a>
 
 <style>
   .product {
     display: flex;
     flex-direction: column;
-    padding: 1.375rem;
-    background: var(--color-paper-raised);
-    border: 1px solid var(--color-ink-15);
+    border: 1px solid var(--pc-line, var(--color-ink-15));
     border-radius: 4px;
+    overflow: hidden;
     text-decoration: none;
     color: inherit;
     transition: border-color 0.2s ease;
   }
-
   .product:hover {
-    border-color: var(--color-ink);
+    border-color: var(--pc-line-strong, var(--color-ink));
   }
 
+  /* The screen: a recessed dark display on a faint blueprint grid. */
+  .product__screen {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    background-color: var(--color-panel-deep);
+    background-image:
+      linear-gradient(var(--color-on-panel-08) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-on-panel-08) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+  .product__screen-cap {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-on-panel-60);
+  }
+  .product__screen-sub {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-on-panel-30);
+  }
+
+  .product__meta {
+    padding: 1.125rem 1.25rem 1.3rem;
+  }
   .product__status {
-    margin-bottom: 1rem;
+    display: block;
+    margin-bottom: 0.85rem;
     font-family: var(--font-mono);
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.14em;
   }
-
   .product__title {
-    margin: 0 0 10px;
+    margin: 0 0 0.5rem;
     font-family: var(--font-sans);
     font-size: 20px;
     font-weight: 600;
     letter-spacing: -0.01em;
     line-height: 1.2;
+    color: var(--pc-fg, var(--color-ink));
   }
-
   .product:hover .product__title {
     color: var(--color-signal);
   }
-
   .product__snippet {
     margin: 0;
     font-size: 14px;
     line-height: 1.6;
-    color: var(--color-ink-75);
+    color: var(--pc-fg-60, var(--color-ink-75));
     max-width: 48ch;
   }
 </style>

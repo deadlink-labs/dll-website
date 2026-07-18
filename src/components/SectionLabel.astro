@@ -1,18 +1,21 @@
 ---
 // SectionLabel — the numbered instrument gutter for a band (the left rail).
-// A precise index in the Teenage Engineering register: a tabular section
-// number, a hairline tick, then the label in small letter-spaced mono. Turns
-// the 150px label column into a spec-sheet gutter instead of a lone word.
+// A precise index in the instrument register: a tabular section number, a
+// hairline tick, then the label in small letter-spaced mono. Turns the 150px
+// label column into a spec-sheet gutter instead of a lone word.
+// `tone="dark"` flips the colors for bands that sit on graphite.
 interface Props {
   /** Zero-padded section index, e.g. "02". */
   num: string;
   /** The band label, e.g. "Featured". */
   label: string;
+  /** "dark" when the band background is graphite. */
+  tone?: 'light' | 'dark';
 }
-const { num, label } = Astro.props;
+const { num, label, tone = 'light' } = Astro.props;
 ---
 
-<div class="section-label">
+<div class:list={['section-label', { 'section-label--dark': tone === 'dark' }]}>
   <span class="section-label__num">{num}</span>
   <span class="section-label__tick" aria-hidden="true"></span>
   <span class="section-label__label">{label}</span>
@@ -23,22 +26,24 @@ const { num, label } = Astro.props;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.55rem;
-    padding-top: 5px;
+    gap: 0.7rem;
+    padding-top: 2px;
     font-family: var(--font-mono);
   }
 
+  /* Architectural section number — a step below the hero's record number so
+     every band, dark or light, holds equal structural weight in the rail. */
   .section-label__num {
-    font-size: 13px;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
     font-weight: 500;
-    letter-spacing: 0.06em;
+    letter-spacing: 0;
     color: var(--color-ink);
     font-variant-numeric: tabular-nums;
     line-height: 1;
   }
 
   .section-label__tick {
-    width: 16px;
+    width: 20px;
     height: 1px;
     background: var(--color-ink-15);
   }
@@ -49,5 +54,16 @@ const { num, label } = Astro.props;
     letter-spacing: 0.18em;
     color: var(--color-ink-60);
     line-height: 1.3;
+  }
+
+  /* On graphite bands. */
+  .section-label--dark .section-label__num {
+    color: var(--color-on-panel);
+  }
+  .section-label--dark .section-label__tick {
+    background: var(--color-on-panel-15);
+  }
+  .section-label--dark .section-label__label {
+    color: var(--color-on-panel-60);
   }
 </style>

@@ -105,8 +105,8 @@ const personSchema = {
   {/* Band 4 — Featured products. */}
   {
     featuredProducts.length > 0 && (
-      <section class="band band--zone" id="products">
-        <SectionLabel num="04" label="Products" />
+      <section class="band band--dark" id="products">
+        <SectionLabel num="04" label="Products" tone="dark" />
         <div class="product-grid">
           {featuredProducts.map((entry) => (
             <ProductCard entry={entry} />
@@ -165,9 +165,17 @@ const personSchema = {
     padding-block: 2.375rem;
   }
 
-  /* Subtle second-tone zone (the Products catalog) — depth without a box. */
-  .band--zone {
-    background: var(--color-surface-2);
+  /* The one dark showcase beat: the Products band on warm graphite. The tonal
+     shift is the divider, so no top hairline. Product tiles are recessed
+     screens; the caption text flips light via the --pc-* custom properties. */
+  .band--dark {
+    background: var(--color-panel);
+    border-top: none;
+    padding-block: 3rem;
+    --pc-line: var(--color-on-panel-15);
+    --pc-line-strong: var(--color-on-panel);
+    --pc-fg: var(--color-on-panel);
+    --pc-fg-60: var(--color-on-panel-60);
   }
 
   /* Hero gutter: the live experiment rendered as an oversized model number. */
@@ -268,7 +276,7 @@ const personSchema = {
     white-space: pre;
   }
   .specimen__dim {
-    color: #8f8a80;
+    color: #a09a8e;
   }
 
   /* Underlined mono action link ("Step into the log →", "All entries →"). */

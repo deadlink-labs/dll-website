@@ -16,8 +16,13 @@
   --color-ink-15: rgba(25, 23, 20, 0.15); /* Hairline rules, borders, sheet edge */
   --color-ink-08: rgba(25, 23, 20, 0.08); /* Faint row rules inside feeds/lists */
   --color-signal: #f04a00; /* Live node, status dots, link hover, focus rings */
-  --color-panel: #14120f; /* Dark panels: code, terminal, video frames */
-  --color-panel-deep: #0e0c0a; /* Deeper terminal inset */
+  --color-panel: #23201b; /* Warm graphite — the one dark surface: terminals, product screens */
+  --color-panel-deep: #17140f; /* Recessed display inside a graphite panel (product screen) */
+  --color-on-panel: #ece8e1; /* Text/marks on graphite */
+  --color-on-panel-60: rgba(236, 232, 225, 0.6); /* Muted text on graphite */
+  --color-on-panel-30: rgba(236, 232, 225, 0.32); /* Faint caption on graphite */
+  --color-on-panel-15: rgba(236, 232, 225, 0.14); /* Hairlines on graphite */
+  --color-on-panel-08: rgba(236, 232, 225, 0.06); /* Blueprint grid texture on graphite */
 
   /* --- Typography (CLAUDE.md §3) --- */
   --font-sans: "IBM Plex Sans Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
