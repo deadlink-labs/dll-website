@@ -1,0 +1,53 @@
+---
+// SectionLabel — the numbered instrument gutter for a band (the left rail).
+// A precise index in the Teenage Engineering register: a tabular section
+// number, a hairline tick, then the label in small letter-spaced mono. Turns
+// the 150px label column into a spec-sheet gutter instead of a lone word.
+interface Props {
+  /** Zero-padded section index, e.g. "02". */
+  num: string;
+  /** The band label, e.g. "Featured". */
+  label: string;
+}
+const { num, label } = Astro.props;
+---
+
+<div class="section-label">
+  <span class="section-label__num">{num}</span>
+  <span class="section-label__tick" aria-hidden="true"></span>
+  <span class="section-label__label">{label}</span>
+</div>
+
+<style>
+  .section-label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
+    padding-top: 5px;
+    font-family: var(--font-mono);
+  }
+
+  .section-label__num {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--color-ink);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .section-label__tick {
+    width: 16px;
+    height: 1px;
+    background: var(--color-ink-15);
+  }
+
+  .section-label__label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-ink-60);
+    line-height: 1.3;
+  }
+</style>

@@ -7,7 +7,8 @@
 @theme {
   /* --- Color tokens (CLAUDE.md §3) --- */
   --color-desk: #e7e4de; /* Outer canvas behind the sheet (body background) */
-  --color-paper: #f7f5f1; /* The paper sheet — page/content surface */
+  --color-paper: #fbfaf8; /* Near-white page/content surface (a whisper of warmth) */
+  --color-surface-2: #f1ede6; /* Subtle second tone — zones sections + row hover, no box */
   --color-paper-raised: #ffffff; /* Cards, register tables, code-panel frames */
   --color-ink: #191714; /* Body text, headlines, settled nodes */
   --color-ink-75: rgba(25, 23, 20, 0.78); /* Reading-length muted text: ledes, blurbs */

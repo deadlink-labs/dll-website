@@ -7,14 +7,16 @@
 // from site.config.json + published content — composed, not hand-authored.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Cover from '../components/Cover.astro';
-import Stamp from '../components/Stamp.astro';
 import StatusDot from '../components/StatusDot.astro';
+import SectionLabel from '../components/SectionLabel.astro';
 import FeedItem from '../components/FeedItem.astro';
 import ProductCard from '../components/ProductCard.astro';
-import { getHomepageData, recordLabel } from '../lib/content';
+import { getHomepageData } from '../lib/content';
 
 const { hero, recent, featuredProducts } = await getHomepageData();
 const current = hero[0]; // the current experiment on the bench
+// Oversized record number for the hero gutter (model-number treatment).
+const heroNum = current?.data.number != null ? String(current.data.number).padStart(3, '0') : '001';
 
 // Client work surfaced off-nav (§5.1 band 6). Placeholder stand-ins.
 const clientWork = [
@@ -45,16 +47,20 @@ const personSchema = {
   {
     current && (
       <section class="band band--hero" id="bench">
-        <h2 class="band__label">On the bench</h2>
+        <div class="hero-index">
+          <span class="hero-index__kind">LOG</span>
+          <span class="hero-index__num">{heroNum}</span>
+          <span class="hero-index__status">
+            <StatusDot stage={current.data.stage} label={false} />
+            <span>{current.data.stage}</span>
+          </span>
+        </div>
         <div class="hero">
-          <p class="hero__eyebrow">
-            <StatusDot stage="IN PROGRESS" label={false} />
-            <span>Currently on the bench · {recordLabel(current)}</span>
-          </p>
+          <p class="hero__eyebrow">Currently on the bench</p>
           <h1 class="hero__question">{current.data.title}</h1>
-          <div class="hero__stamp">
-            <Stamp label={recordLabel(current)} stage={current.data.stage} tags={current.data.tags} />
-          </div>
+          {current.data.tags && current.data.tags.length > 0 && (
+            <p class="hero__tags">{current.data.tags.join(' / ')}</p>
+          )}
           {current.data.snippet && <p class="hero__overview">{current.data.snippet}</p>}
           <pre class="specimen" aria-label="Terminal capture"><code><span class="specimen__dim">$ tail -f lab.log</span>
 [07:14:02] build ok, 0 errors, zero JS shipped
@@ -70,7 +76,7 @@ const personSchema = {
   {
     hero.length > 0 && (
       <section class="band" id="featured">
-        <h2 class="band__label">Featured</h2>
+        <SectionLabel num="02" label="Featured" />
         <div class="feed">
           {hero.map((entry) => (
             <FeedItem entry={entry} />
@@ -83,7 +89,7 @@ const personSchema = {
   {
     recent.length > 0 && (
       <section class="band">
-        <h2 class="band__label">Recent</h2>
+        <SectionLabel num="03" label="Recent" />
         <div>
           <div class="feed">
             {recent.map((entry) => (
@@ -99,8 +105,8 @@ const personSchema = {
   {/* Band 4 — Featured products. */}
   {
     featuredProducts.length > 0 && (
-      <section class="band" id="products">
-        <h2 class="band__label">Products</h2>
+      <section class="band band--zone" id="products">
+        <SectionLabel num="04" label="Products" />
         <div class="product-grid">
           {featuredProducts.map((entry) => (
             <ProductCard entry={entry} />
@@ -112,7 +118,7 @@ const personSchema = {
 
   {/* Band 5 — Shipped for clients (off-nav consulting surface). */}
   <section class="band">
-    <h2 class="band__label">Shipped for clients</h2>
+    <SectionLabel num="05" label="Shipped for clients" />
     <ul class="clients">
       {
         clientWork.map((c) => (
@@ -127,7 +133,7 @@ const personSchema = {
 
   {/* Band 6 — Who runs this. */}
   <section class="band band--who">
-    <h2 class="band__label">Who runs this</h2>
+    <SectionLabel num="06" label="Who runs this" />
     <div class="who">
       <p class="who__text">
         Marcelo Brouard, Buenos Aires. Thirty years turning messy operations into systems that run
@@ -159,15 +165,43 @@ const personSchema = {
     padding-block: 2.375rem;
   }
 
-  .band__label {
-    margin: 0;
+  /* Subtle second-tone zone (the Products catalog) — depth without a box. */
+  .band--zone {
+    background: var(--color-surface-2);
+  }
+
+  /* Hero gutter: the live experiment rendered as an oversized model number. */
+  .hero-index {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
     padding-top: 4px;
     font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 400;
+  }
+  .hero-index__kind {
+    font-size: 10.5px;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
     color: var(--color-ink-60);
+  }
+  .hero-index__num {
+    font-size: clamp(2.5rem, 5vw, 3.25rem);
+    font-weight: 600;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--color-ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .hero-index__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 0.35rem;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-signal);
   }
 
   @media (max-width: 760px) {
@@ -182,15 +216,12 @@ const personSchema = {
   }
 
   .hero__eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    margin: 0 0 1.625rem;
+    margin: 0 0 1.25rem;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 10.5px;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--color-signal);
+    letter-spacing: 0.18em;
+    color: var(--color-ink-60);
   }
 
   .hero__question {
@@ -202,8 +233,14 @@ const personSchema = {
     color: var(--color-ink);
   }
 
-  .hero__stamp {
-    margin-bottom: 1.125rem;
+  .hero__tags {
+    margin: 0 0 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink-60);
+    font-variant-numeric: tabular-nums;
   }
 
   .hero__overview {
@@ -293,6 +330,7 @@ const personSchema = {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     white-space: nowrap;
+    font-variant-numeric: tabular-nums;
   }
 
   .who {
