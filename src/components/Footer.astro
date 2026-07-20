@@ -19,11 +19,11 @@ const channels = [
 ---
 
 <footer class="colophon">
+  <p class="colophon__invite">
+    <a href="/about#work-with-me">Let's make something together <span class="colophon__arrow" aria-hidden="true">→</span></a>
+  </p>
   <p class="colophon__manifesto">
     Build to understand · Document to remember · Share so others can build further
-  </p>
-  <p class="colophon__invite">
-    <a href="/about#work-with-me">Let's build something together <span class="colophon__arrow" aria-hidden="true">→</span></a>
   </p>
   <div class="colophon__row">
     <ul class="colophon__channels">
@@ -37,7 +37,7 @@ const channels = [
         ))
       }
     </ul>
-    <p class="colophon__set">Set in IBM Plex · Built with Astro · Last updated {stamp}</p>
+    <p class="colophon__set">Astro · IBM Plex · Vercel · Updated {stamp}</p>
   </div>
 </footer>
 
@@ -50,17 +50,17 @@ const channels = [
   }
 
   .colophon__manifesto {
-    margin: 0 0 1.5rem;
+    margin: 0 0 1.75rem;
     font-size: 11.5px;
     text-transform: uppercase;
     letter-spacing: 0.16em;
     color: var(--color-ink);
   }
 
-  /* Warm invitation — sentence case among the uppercase mono chrome, so it
-     reads human. A signal, not a CTA button (§1 / recruiter goal). */
+  /* Warm invitation — leads the footer, sentence case among the uppercase mono
+     chrome so it reads human. A signal, not a CTA button (§1 / recruiter goal). */
   .colophon__invite {
-    margin: 0 0 1.75rem;
+    margin: 0 0 1.25rem;
     font-size: 14px;
     letter-spacing: 0.01em;
     color: var(--color-ink);
