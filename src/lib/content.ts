@@ -6,6 +6,7 @@
 // names the offending file/slug. Throwing here aborts the build — the last live
 // deploy stays up.
 import { getCollection, type CollectionEntry } from 'astro:content';
+import type { ImageMetadata } from 'astro';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
@@ -88,7 +89,7 @@ export interface HomepageData {
   hero: LogEntry[]; // heroPosts, array order = display order
   recent: LogEntry[]; // chronological slice, excluding heroPosts
   featuredProducts: ProductEntry[]; // featuredProducts, array order
-  clientWork: { name: string; status: string; href?: string }[]; // §5.1 band 6
+  clientWork: { name: string; status: string; href?: string; thumb?: ImageMetadata }[]; // §5.1 band 6
 }
 
 export async function getHomepageData(): Promise<HomepageData> {
@@ -126,7 +127,8 @@ export async function getHomepageData(): Promise<HomepageData> {
     if (c.slug) {
       const entry = logBySlug.get(c.slug);
       if (!entry) throw new Error(`[content] clientWork slug "${c.slug}" is not a published log entry (§7).`);
-      return { name: c.name, status: c.status, href: `/log/${entry.id}` };
+      // Reuse the linked case study's own web-thumb (no separate asset to manage).
+      return { name: c.name, status: c.status, href: `/log/${entry.id}`, thumb: entry.data.thumb };
     }
     return { name: c.name, status: c.status };
   });

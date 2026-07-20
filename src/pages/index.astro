@@ -5,6 +5,7 @@
 // Every band is a 150px mono label column + content; hairline rules divide
 // the sheet into bands. The hero, feeds, and products come deterministically
 // from site.config.json + published content — composed, not hand-authored.
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Cover from '../components/Cover.astro';
 import StatusDot from '../components/StatusDot.astro';
@@ -123,6 +124,16 @@ astro  v5.18.2  ready in 415 ms
           <li class="clients__row">
             {c.href ? (
               <a class="clients__link" href={c.href}>
+                {c.thumb && (
+                  <Image
+                    class="clients__thumb"
+                    src={c.thumb}
+                    alt=""
+                    widths={[96, 192]}
+                    sizes="96px"
+                    loading="lazy"
+                  />
+                )}
                 <span class="clients__name">{c.name}</span>
                 <span class="clients__note">
                   {c.status}
@@ -355,14 +366,27 @@ astro  v5.18.2  ready in 415 ms
   .clients__link {
     display: flex;
     flex: 1;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: baseline;
     gap: 1rem;
     text-decoration: none;
     color: inherit;
   }
+  /* Status label sits to the right whether or not a thumbnail is present. */
+  .clients__link .clients__note {
+    margin-left: auto;
+  }
   .clients__link:hover .clients__name {
     color: var(--color-signal);
+  }
+  /* Small case-study thumbnail — a splash of image against the mono list. */
+  .clients__thumb {
+    width: 72px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 3px;
+    flex: none;
+    align-self: center;
   }
   .clients__go {
     margin-left: 0.6em;
