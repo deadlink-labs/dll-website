@@ -129,6 +129,8 @@ Banned: scroll-triggered reveals on prose, parallax, hero choreography, anything
 ### Imagery
 Almost none. YouTube thumbnails carry visuals in log feeds. One portrait of Marcelo on the About page. No stock, no 3D renders, no AI-generated imagery.
 
+**Every record carries a header image.** Each post opens with contained header media (record width, 16:9, rounded — never a full-bleed hero): the video facade when `web-video` is set, otherwise the `web-thumb`. When a post has no photograph to earn the slot, generate an **on-brand graphite specimen tile** in the house style (mono labels, a scarce orange live node — see LOG 001's network-mark tile and LOG 003's pipeline tile) rather than reaching for stock or AI imagery. The same `web-thumb` is reused on the homepage feed card and the Shipped-for-clients band.
+
 ### Accessibility floor
 Semantic HTML, visible keyboard focus (signal orange ring), contrast AA minimum everywhere (check orange on paper for text — use it for accents, not body text), alt text on all images.
 

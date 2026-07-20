@@ -34,8 +34,12 @@ Pick the mode from what the user asked for.
    signature moves (question-title, a takeaway, an honest aside where true, plain
    teaching for any jargon). Keep only the sections that earn their place.
 3. Fill the `web-*` frontmatter. `web-status: draft` unless the user says publish.
-   Include `web-video` / `web-thumb` only if real assets exist; otherwise leave the
-   commented placeholder lines.
+   `web-video` is optional (leave commented if none). **Every post should carry a
+   `web-thumb`** — it opens the post as a 16:9 header image and is the homepage
+   thumbnail. If there is no photograph to use, generate an on-brand graphite
+   specimen tile (mono labels, a scarce orange live node; see LOG 001's
+   network-mark tile and LOG 003's pipeline tile) rather than stock/AI imagery.
+   Confirm what the tile should depict before generating it.
 4. Place the file per CLAUDE.md §4: `content/log/<year>/<slug>/<slug>.md` (log) or
    `content/products/<slug>/<slug>.md` (products). Folder name = slug = the `.md`
    filename. Remember `content/` is gitignored here (separate content repo) — say

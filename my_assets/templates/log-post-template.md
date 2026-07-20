@@ -24,13 +24,15 @@ web-number: 0               # record number -> "LOG 000"
 web-stage: IN PROGRESS      # one of: IN PROGRESS · TESTING · SETTLED · ROUGH · RESEARCH · PRIVATE BETA · REVISED · SHIPPED
 web-tags: [TAG-ONE, TAG-TWO]  # thread tags shown on the stamp
 
-# --- optional media (BOTH omit gracefully — delete or comment out if unused) --
-# web-video: "https://youtu.be/XXXXXXXXXXX"   # YouTube share link OR bare ID.
+# --- media ---
+# web-video: "https://youtu.be/XXXXXXXXXXX"   # OPTIONAL YouTube share link OR bare ID.
 #   -> Renders a click-to-play video at the TOP of the post (nothing loads from
-#      YouTube until the visitor clicks). If this line is absent, no embed shows.
-# web-thumb: "./assets/thumb.webp"            # a poster image saved in this post's assets/ folder.
-#   -> Used as the homepage feed-card thumbnail AND the video poster. If absent,
-#      the card shows no image and the video panel is a plain dark frame.
+#      YouTube until the visitor clicks). If absent, no embed shows.
+web-thumb: "./assets/thumb.webp"              # EVERY post should carry one (16:9).
+#   -> Opens the post as a header image (or the video poster when web-video is
+#      set) AND is the homepage feed-card / Shipped-for-clients thumbnail. Save it
+#      in this post's assets/. With no photograph to use, prefer an on-brand
+#      graphite specimen tile over stock/AI imagery (see LOG 001 / LOG 003).
 ---
 
 <!--
