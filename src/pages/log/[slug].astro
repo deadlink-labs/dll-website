@@ -153,6 +153,20 @@ const label = recordLabel(entry);
     padding: 0;
     color: inherit;
   }
+  /* Inline images (markdown ![]()) — contained, rounded, with a small muted
+     italic caption when the next paragraph is all-italic. */
+  .prose :global(img) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1.75rem 0 0.6rem;
+  }
+  .prose :global(p:has(> em:only-child)) {
+    margin-top: 0;
+    font-size: 13px;
+    color: var(--color-ink-60);
+  }
   /* ```terminal fenced-block -> specimen panel. Re-assert the specimen metrics
      over the generic prose <pre> above (base look lives in global.css). */
   .prose :global(pre.specimen) {
