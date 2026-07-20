@@ -22,6 +22,9 @@ const channels = [
   <p class="colophon__manifesto">
     Build to understand · Document to remember · Share so others can build further
   </p>
+  <p class="colophon__invite">
+    <a href="/about#work-with-me">Let's build something together <span class="colophon__arrow" aria-hidden="true">→</span></a>
+  </p>
   <div class="colophon__row">
     <ul class="colophon__channels">
       {
@@ -47,11 +50,38 @@ const channels = [
   }
 
   .colophon__manifesto {
-    margin: 0 0 1.75rem;
+    margin: 0 0 1.5rem;
     font-size: 11.5px;
     text-transform: uppercase;
     letter-spacing: 0.16em;
     color: var(--color-ink);
+  }
+
+  /* Warm invitation — sentence case among the uppercase mono chrome, so it
+     reads human. A signal, not a CTA button (§1 / recruiter goal). */
+  .colophon__invite {
+    margin: 0 0 1.75rem;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    color: var(--color-ink);
+  }
+  .colophon__invite a {
+    color: var(--color-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-ink-15);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .colophon__invite a:hover {
+    color: var(--color-signal);
+    border-color: var(--color-signal);
+  }
+  .colophon__invite a:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+  .colophon__arrow {
+    color: var(--color-signal);
   }
 
   .colophon__row {
