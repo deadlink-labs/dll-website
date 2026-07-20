@@ -273,29 +273,8 @@ astro  v5.18.2  ready in 415 ms
     color: var(--color-ink);
   }
 
-  /* Dark specimen panel — a specimen in the notebook (§3). */
-  .specimen {
-    margin: 0;
-    padding: 1.125rem 1.25rem;
-    background: var(--color-panel);
-    border-radius: 4px;
-    overflow-x: auto;
-    font-family: var(--font-mono);
-    font-size: 12.5px;
-    line-height: 1.85;
-    color: #d7d3ca;
-  }
-  .specimen code {
-    font-family: inherit;
-    white-space: pre;
-  }
-  .specimen__dim {
-    color: #a09a8e;
-  }
-  /* One scarce orange accent — the live URL, echoing the mark's live node. */
-  .specimen__on {
-    color: var(--color-signal);
-  }
+  /* Dark specimen panel styles now live in global.css (shared with the
+     ```terminal fenced-block used in posts). */
 
   /* Underlined mono action link ("Step into the log →", "All entries →"). */
   .link-under {

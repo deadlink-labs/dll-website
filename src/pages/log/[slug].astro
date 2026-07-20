@@ -128,6 +128,14 @@ const label = recordLabel(entry);
     padding: 0;
     color: inherit;
   }
+  /* ```terminal fenced-block -> specimen panel. Re-assert the specimen metrics
+     over the generic prose <pre> above (base look lives in global.css). */
+  .prose :global(pre.specimen) {
+    padding: 1.125rem 1.25rem;
+    font-size: 12.5px;
+    line-height: 1.85;
+    color: #d7d3ca;
+  }
   .prose :global(h3) {
     margin: 2rem 0 0.75rem;
     font-size: 20px;

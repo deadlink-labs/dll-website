@@ -54,3 +54,29 @@
     outline-offset: 2px;
   }
 }
+
+/* --- Terminal specimen (shared) -------------------------------------------
+   The dark "specimen" panel used by the homepage hero and by the ```terminal
+   fenced-block in posts (remark-terminal.mjs). One source so both stay in sync. */
+.specimen {
+  margin: 0;
+  padding: 1.125rem 1.25rem;
+  background: var(--color-panel);
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: #d7d3ca;
+}
+.specimen code {
+  font-family: inherit;
+  white-space: pre;
+}
+.specimen__dim {
+  color: #a09a8e;
+}
+/* One scarce orange accent — the live URL, echoing the mark's live node. */
+.specimen__on {
+  color: var(--color-signal);
+}

@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import remarkTerminal from './src/plugins/remark-terminal.mjs';
 
 // Deadlink Labs — deadlinklabs.com
 // A content archive, not an app. Astro ships zero JavaScript by default;
@@ -14,6 +15,11 @@ export default defineConfig({
   // versions, so the plugin type mismatches at check time; it is valid at runtime.
   vite: {
     plugins: [/** @type {any} */ (tailwindcss())],
+  },
+
+  // Fenced-block components (CLAUDE.md §3.6): ```terminal -> specimen panel.
+  markdown: {
+    remarkPlugins: [remarkTerminal],
   },
 
   // Prose-first output. No experimental client hydration by default.

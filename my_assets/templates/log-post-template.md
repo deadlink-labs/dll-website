@@ -47,6 +47,20 @@ web-tags: [TAG-ONE, TAG-TWO]  # thread tags shown on the stamp
 Short overview. What is the experiment or entry, and why does it exist. Two or
 three sentences is plenty.
 
+<!--
+  Optional: a terminal "specimen". A ```terminal fenced block renders as the dark
+  panel on the site and stays a plain code block in Obsidian. Lines starting with
+  $ or # render dim; http(s) URLs render in orange. Place it wherever it earns its
+  spot (top of the post reads as a header). Delete if unused.
+-->
+
+```terminal
+$ npm run dev
+astro  v5.18.2  ready in 415 ms
+┃ Local   http://localhost:4321/
+watching for file changes...
+```
+
 ## Decision Register
 
 The crown jewel: the calls made, and where each one stands. Status tokens:
