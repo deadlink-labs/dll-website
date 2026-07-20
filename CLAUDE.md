@@ -24,7 +24,7 @@ Register (from Structure v2): a working lab, not a startup site or portfolio. Vi
 
 **The 90-second test:** a recruiter landing cold must, within 90 seconds, learn who Marcelo is, the arc from sound post to AI-assisted building, 2–3 concrete shipped things, and how to contact him.
 
-**Tone rule (non-negotiable):** the site never describes Marcelo with adjectives ("creative", "detail-oriented", "passionate"). It shows artifacts, decisions, and numbers, and lets the reader conclude. Exactly ONE thing on the site asks for anything (Work with me). No CTAs mid-article, no popups, no floating buttons.
+**Tone rule (non-negotiable):** the site never describes Marcelo with adjectives ("creative", "detail-oriented", "passionate"). It shows artifacts, decisions, and numbers, and lets the reader conclude. Exactly ONE thing on the site *asks* for anything (Work with me). No CTAs mid-article, no popups, no floating buttons. One sanctioned exception: the footer carries a single quiet availability **signal** — a warm `Let's make something together →` line that routes to the About Work-with-me section — for recruiters and collaborators (goal #2, and the 90-second "how to contact him" test). It is a signal, not a second ask: no new page, no button, no interruption, and it funnels to the one ask.
 
 ---
 
@@ -133,7 +133,10 @@ Almost none. YouTube thumbnails carry visuals in log feeds. One portrait of Marc
 Semantic HTML, visible keyboard focus (signal orange ring), contrast AA minimum everywhere (check orange on paper for text — use it for accents, not body text), alt text on all images.
 
 ### Colophon line
-`Set in IBM Plex · Built with Astro · Last updated MM.YYYY`
+`Astro · IBM Plex · Vercel · Updated MM.YYYY` — an owned stack line. (Supersedes
+the earlier `Set in IBM Plex · Built with Astro`, which read like a free-website-
+builder badge and cheapened the site; the stack list reads as an engineer stating
+their tools.)
 
 ---
 
@@ -193,6 +196,11 @@ web-title: "Building the Deadlink Labs Website"
 web-pub-date: 2026-01-14      # ISO 8601. For products: "entered the lab" date.
 web-snippet: "Short summary for cards and meta."   # optional
 web-type: log                 # OPTIONAL, authoring-only; validated against the folder
+web-number: 12                # stamp record number → "LOG 012" (optional)
+web-stage: IN PROGRESS        # stamp status token, §3 vocabulary (optional)
+web-tags: [LOCAL-LLM, PYTHON] # stamp thread tags (optional)
+web-video: "https://youtu.be/…"   # optional; top-of-post video facade
+web-thumb: "./assets/thumb.webp"  # optional; feed-card thumbnail + video poster
 ---
 ```
 
@@ -201,6 +209,10 @@ web-type: log                 # OPTIONAL, authoring-only; validated against the 
 - `web-status` → visibility gate. **Public if and only if `web-status: published`.** Anything else — `draft`, a typo, or a missing field — is invisible. An untagged note must resolve to invisible, so a forgotten tag never leaks.
 - `web-pub-date` → sorting + displayed date.
 - `web-type` → Obsidian Bases only; the site derives type from the folder. Validated against the folder; a mismatch fails the build.
+- `web-number` / `web-stage` / `web-tags` → the lab-record stamp inputs (§3): record number, status token, thread tags. All optional; a post without them still renders (no number, no dot, no tags).
+- `web-video` → optional YouTube URL **or** bare ID. Renders a privacy-first facade at the top of the post — nothing loads from YouTube until the visitor clicks play (§4 embeds). A set-but-unparseable value fails the build. Absent → no embed.
+- `web-thumb` → optional self-hosted poster in the post's `assets/`, run through Astro's image pipeline. Used as the homepage feed-card thumbnail and the video-facade poster. Absent → no image.
+- Products also accept `web-waitlist: true` (§5.3).
 - **No frontmatter passthrough.** The build whitelist-extracts the `web-*` fields into a typed object; raw frontmatter is never serialized into output (not the body, not `<meta>`, not structured data). Internal fields cannot leak into page source.
 - **Deliberately absent:** no `web-slug` (folder name is the slug), no `homepage`/`featured`/`order` (curation lives in `site.config.json`).
 
@@ -254,7 +266,7 @@ Interactivity is embedded with a **custom code-fence**, never raw inline JSX. A 
 - **In Obsidian:** renders as an ordinary labeled code block — readable, never broken.
 - **On the built site:** replaced with the live component.
 
-Reserve one label per component (`visualizer`, `aspect-toggle`, `pack-card`, …); an unrecognized label renders as a normal code block. Prefer placing interactivity at the **layout level** (driven by type/frontmatter/position) so note bodies stay pure prose; use fenced blocks only when a live element must sit mid-prose. **Wikilinks** `[[…]]` are allowed and preserved (v1 renders them as plain text; the relationship is kept for the future "Connections" work).
+Reserve one label per component (`visualizer`, `aspect-toggle`, `pack-card`, …); an unrecognized label renders as a normal code block. **Implemented so far:** `terminal` — a ```terminal fence becomes the dark specimen panel on the site (dim `$`/`#` lines, orange URLs) and stays a plain code block in Obsidian (`src/plugins/remark-terminal.mjs`). Prefer placing interactivity at the **layout level** (driven by type/frontmatter/position) so note bodies stay pure prose; use fenced blocks only when a live element must sit mid-prose. **Wikilinks** `[[…]]` are allowed and preserved (v1 renders them as plain text; the relationship is kept for the future "Connections" work).
 
 ### Publishing pipeline (Structure v2 §8)
 Committing from Obsidian is the only action required to publish. No export, no transform, no duplicate copy on disk.
@@ -282,7 +294,7 @@ Structure v2 §4.1 / §6. The page is generated from `site.config.json` + publis
 5. **Featured products** (from `featuredProducts`, optional).
 6. **Shipped for clients** (off-nav consulting surface): stamped list — **Uruguay Outfitters** · `SHIPPED · 2026`, **Crehana** · `CASE STUDY`.
 7. **Who runs this:** one paragraph — "Marcelo Brouard, Buenos Aires. Thirty years turning messy operations into systems that run themselves — post-production, AI automation, dashboards, and the occasional website." + buttons `See the work →` and `Work with me`.
-8. **Footer / colophon.** Manifesto line in mono: `BUILD TO UNDERSTAND · DOCUMENT TO REMEMBER · SHARE SO OTHERS CAN BUILD FURTHER`. Contact email, YouTube, LinkedIn, GitHub, RSS. Colophon: `Set in IBM Plex · Built with Astro · Last updated MM.YYYY`.
+8. **Footer / colophon.** A warm invitation leads the footer: `Let's make something together →` (sentence case among the mono chrome, routes to the About Work-with-me section — the availability signal, see §1). Then the manifesto line in mono: `BUILD TO UNDERSTAND · DOCUMENT TO REMEMBER · SHARE SO OTHERS CAN BUILD FURTHER`. Contact email, YouTube, LinkedIn, GitHub, RSS. Colophon: `Astro · IBM Plex · Vercel · Updated MM.YYYY` (see §3).
 
 ### 5.2 Log `/log`
 The heart of the lab — a notebook, not a blog. Build logs, technical research, AI workflows, design iterations, videos, hardware mods, music tools, lessons, failed experiments, architectural decisions. Chronological, newest first, grows indefinitely. Feed items: number + status dot + title + date (+ thumbnail if the entry has a video).
