@@ -53,6 +53,7 @@ const byDateDesc = (a: LogEntry | ProductEntry, b: LogEntry | ProductEntry) =>
 export async function getPublishedLog(): Promise<LogEntry[]> {
   const entries = (await getCollection('log')).filter(isPublished);
   validateTypeMatchesFolder(entries, 'log');
+  assertUniqueNumbers(entries);
   return entries.sort(byDateDesc);
 }
 
@@ -70,6 +71,36 @@ function validateTypeMatchesFolder(entries: (LogEntry | ProductEntry)[], folder:
         `[content] "${e.id}": web-type "${e.data.declaredType}" does not match its folder "${folder}".`,
       );
     }
+  }
+}
+
+// web-number is the PERMANENT record identifier (the "LOG 003" stamp). It is
+// cited across the site — backlinks and "this thread continues" between records
+// (§5.2), the build videos, external links — so it must be UNIQUE and STABLE and
+// must never be derived from a mutable sort order (date-ordering would silently
+// renumber every later record the moment a backdated entry is added). This guard
+// enforces uniqueness among PUBLISHED log entries only: drafts are invisible, so
+// a draft sharing a number is fine and the collision surfaces the moment it is
+// republished. Only defined numbers are checked (web-number is optional). On a
+// collision the build FAILS (§7), naming the offenders and the next free number;
+// the last live deploy stays up.
+function assertUniqueNumbers(entries: LogEntry[]) {
+  const seen = new Map<number, string>();
+  const dups: string[] = [];
+  let maxNum = 0;
+  for (const e of entries) {
+    const n = e.data.number;
+    if (n == null) continue;
+    if (n > maxNum) maxNum = n;
+    const prev = seen.get(n);
+    if (prev) dups.push(`LOG ${String(n).padStart(3, '0')} is used by "${prev}" and "${e.id}"`);
+    else seen.set(n, e.id);
+  }
+  if (dups.length) {
+    throw new Error(
+      `[content] Duplicate web-number among published log entries: ${dups.join('; ')}. ` +
+        `Record numbers must be unique and stable (§7). Next free number: ${maxNum + 1}.`,
+    );
   }
 }
 

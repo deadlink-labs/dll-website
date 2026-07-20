@@ -211,7 +211,7 @@ web-thumb: "./assets/thumb.webp"  # optional; feed-card thumbnail + video poster
 - `web-status` → visibility gate. **Public if and only if `web-status: published`.** Anything else — `draft`, a typo, or a missing field — is invisible. An untagged note must resolve to invisible, so a forgotten tag never leaks.
 - `web-pub-date` → sorting + displayed date.
 - `web-type` → Obsidian Bases only; the site derives type from the folder. Validated against the folder; a mismatch fails the build.
-- `web-number` / `web-stage` / `web-tags` → the lab-record stamp inputs (§3): record number, status token, thread tags. All optional; a post without them still renders (no number, no dot, no tags).
+- `web-number` / `web-stage` / `web-tags` → the lab-record stamp inputs (§3): record number, status token, thread tags. All optional; a post without them still renders (no number, no dot, no tags). **`web-number` is a permanent, stable identifier** — the "LOG 003" stamp is cited from other records (backlinks, "this thread continues"), the videos, and external links, so once published it must never change and must be unique (enforced at build — see §7). It is authored by hand, **never derived from date order** (date-ordering would silently renumber later records when a backdated entry is added). Numbers need not be contiguous.
 - `web-video` → optional YouTube URL **or** bare ID. Renders a privacy-first facade at the top of the post — nothing loads from YouTube until the visitor clicks play (§4 embeds). A set-but-unparseable value fails the build. Absent → no embed.
 - `web-thumb` → optional self-hosted poster in the post's `assets/`, run through Astro's image pipeline. Used as the homepage feed-card thumbnail and the video-facade poster. Absent → no image.
 - Products also accept `web-waitlist: true` (§5.3).
@@ -260,6 +260,7 @@ Fail the build with a message naming the offending file/slug on any violation. T
 - Every `heroPosts` slug resolves to a published `log/` entry; every `featuredProducts` slug to a published `products/` entry; every `clientWork` `slug` (when present) to a published `log/` entry.
 - `recentPostsCount` is a non-negative integer.
 - **Slugs are globally unique** (Obsidian only blocks duplicates within a folder).
+- **`web-number` is unique among published log entries.** Drafts are exempt (invisible; a collision surfaces when a draft is republished). Only defined numbers are checked. On a duplicate the build fails, naming the two offending slugs and the next free number.
 - `web-type` matches its folder where present.
 - Optional lint: each post's `.md` filename matches its folder name.
 
