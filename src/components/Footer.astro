@@ -59,22 +59,24 @@ const channels = [
 
   /* Warm invitation — leads the footer, sentence case among the uppercase mono
      chrome so it reads human. A signal, not a CTA button (§1 / recruiter goal). */
+  /* Orange invitation. At 24px it clears WCAG AA as large text (3:1); signal
+     orange on paper is ~3.4:1, which would FAIL for normal-size text (4.5:1) —
+     the size is load-bearing for accessibility, not just emphasis. */
   .colophon__invite {
-    margin: 0 0 1.25rem;
-    font-size: 14px;
-    letter-spacing: 0.01em;
-    color: var(--color-ink);
+    margin: 0 0 1.5rem;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.2;
   }
   .colophon__invite a {
-    color: var(--color-ink);
+    color: var(--color-signal);
     text-decoration: none;
-    border-bottom: 1px solid var(--color-ink-15);
-    padding-bottom: 2px;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition: opacity 0.2s ease;
   }
   .colophon__invite a:hover {
-    color: var(--color-signal);
-    border-color: var(--color-signal);
+    text-decoration: underline;
+    text-underline-offset: 5px;
   }
   .colophon__invite a:focus-visible {
     outline: 2px solid var(--color-signal);
