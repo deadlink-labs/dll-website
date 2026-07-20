@@ -120,7 +120,16 @@ export interface HomepageData {
   hero: LogEntry[]; // heroPosts, array order = display order
   recent: LogEntry[]; // chronological slice, excluding heroPosts
   featuredProducts: ProductEntry[]; // featuredProducts, array order
-  clientWork: { name: string; status: string; href?: string; thumb?: ImageMetadata }[]; // §5.1 band 6
+  // §5.1 band 6. When linked to a case study, the row also carries that post's
+  // title + snippet so the homepage sells the work without a click.
+  clientWork: {
+    name: string;
+    status: string;
+    href?: string;
+    thumb?: ImageMetadata;
+    title?: string;
+    snippet?: string;
+  }[];
 }
 
 export async function getHomepageData(): Promise<HomepageData> {
@@ -159,7 +168,14 @@ export async function getHomepageData(): Promise<HomepageData> {
       const entry = logBySlug.get(c.slug);
       if (!entry) throw new Error(`[content] clientWork slug "${c.slug}" is not a published log entry (§7).`);
       // Reuse the linked case study's own web-thumb (no separate asset to manage).
-      return { name: c.name, status: c.status, href: `/log/${entry.id}`, thumb: entry.data.thumb };
+      return {
+        name: c.name,
+        status: c.status,
+        href: `/log/${entry.id}`,
+        thumb: entry.data.thumb,
+        title: entry.data.title,
+        snippet: entry.data.snippet,
+      };
     }
     return { name: c.name, status: c.status };
   });

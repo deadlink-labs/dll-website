@@ -116,22 +116,28 @@ astro  v5.18.2  ready in 415 ms
                     class="clients__thumb"
                     src={c.thumb}
                     alt=""
-                    widths={[96, 192]}
-                    sizes="96px"
+                    widths={[176, 352]}
+                    sizes="176px"
                     loading="lazy"
                   />
                 )}
-                <span class="clients__name">{c.name}</span>
-                <span class="clients__note">
-                  {c.status}
-                  <span class="clients__go" aria-hidden="true">→</span>
-                </span>
+                <div class="clients__text">
+                  <div class="clients__meta">
+                    <span class="clients__name">{c.name}</span>
+                    <span class="clients__note">{c.status}</span>
+                  </div>
+                  {c.title && <span class="clients__title">{c.title}</span>}
+                  {c.snippet && <p class="clients__snippet">{c.snippet}</p>}
+                </div>
+                <span class="clients__go" aria-hidden="true">→</span>
               </a>
             ) : (
-              <Fragment>
-                <span class="clients__name">{c.name}</span>
-                <span class="clients__note">{c.status}</span>
-              </Fragment>
+              <div class="clients__text">
+                <div class="clients__meta">
+                  <span class="clients__name">{c.name}</span>
+                  <span class="clients__note">{c.status}</span>
+                </div>
+              </div>
             )}
           </li>
         ))
@@ -337,16 +343,41 @@ astro  v5.18.2  ready in 415 ms
     list-style: none;
   }
   .clients__row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    padding-block: 0.875rem;
     border-bottom: 1px solid var(--color-ink-08);
-    font-family: var(--font-mono);
   }
-  .clients__row:first-child {
-    padding-top: 0.25rem;
+  /* Linked rows (client work with a case-study post) fill the row and link out. */
+  .clients__link {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding-block: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  /* Case-study thumbnail — a splash of image anchoring the proof row. */
+  .clients__thumb {
+    width: 176px;
+    height: 99px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex: none;
+  }
+  /* Text column grows to fill; min-width:0 lets the snippet wrap cleanly. */
+  .clients__text {
+    flex: 1;
+    min-width: 0;
+    padding-block: 1.5rem;
+  }
+  .clients__link .clients__text {
+    padding-block: 0;
+  }
+  /* Eyebrow: client name + status token, mono chrome above the title. */
+  .clients__meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mono);
   }
   .clients__name {
     font-size: 12px;
@@ -362,40 +393,51 @@ astro  v5.18.2  ready in 415 ms
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
   }
-  /* Linked rows (client work with a case-study post) fill the row and link out. */
-  .clients__link {
-    display: flex;
-    flex: 1;
-    justify-content: flex-start;
-    align-items: baseline;
-    gap: 1rem;
-    text-decoration: none;
-    color: inherit;
+  /* Descriptive case-study title — sentence-case sans, consistent with the feed. */
+  .clients__title {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.011em;
+    color: var(--color-ink);
+    transition: color 0.18s ease;
   }
-  /* Status label sits to the right whether or not a thumbnail is present. */
-  .clients__link .clients__note {
-    margin-left: auto;
+  .clients__snippet {
+    margin: 0.4rem 0 0;
+    font-family: var(--font-sans);
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--color-ink-60);
+    max-width: 62ch;
   }
-  .clients__link:hover .clients__name {
+  .clients__link:hover .clients__title {
     color: var(--color-signal);
   }
-  /* Small case-study thumbnail — a splash of image against the mono list. */
-  .clients__thumb {
-    width: 72px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 3px;
+  .clients__go {
     flex: none;
     align-self: center;
-  }
-  .clients__go {
-    margin-left: 0.6em;
     color: var(--color-signal);
     opacity: 0;
     transition: opacity 0.18s ease;
   }
   .clients__link:hover .clients__go {
     opacity: 1;
+  }
+  @media (max-width: 600px) {
+    .clients__link {
+      flex-wrap: wrap;
+      gap: 0.875rem;
+    }
+    .clients__thumb {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+    .clients__go {
+      display: none;
+    }
   }
 
   .who {
