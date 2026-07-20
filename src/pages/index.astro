@@ -10,6 +10,7 @@ import Cover from '../components/Cover.astro';
 import StatusDot from '../components/StatusDot.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import FeedItem from '../components/FeedItem.astro';
+import FeedCard from '../components/FeedCard.astro';
 import ProductCard from '../components/ProductCard.astro';
 import { getHomepageData } from '../lib/content';
 
@@ -62,10 +63,10 @@ const personSchema = {
             <p class="hero__tags">{current.data.tags.join(' / ')}</p>
           )}
           {current.data.snippet && <p class="hero__overview">{current.data.snippet}</p>}
-          <pre class="specimen" aria-label="Terminal capture"><code><span class="specimen__dim">$ tail -f lab.log</span>
-[07:14:02] build ok, 0 errors, zero JS shipped
-[07:14:02] cover mark resolved, live node online
-<span class="specimen__dim">[07:14:03] waiting for the next decision</span></code></pre>
+          <pre class="specimen" aria-label="Terminal capture"><code><span class="specimen__dim">$ npm run dev</span>
+astro  v5.18.2  ready in 415 ms
+┃ Local   <span class="specimen__on">http://localhost:4321/</span>
+<span class="specimen__dim">watching for file changes...</span></code></pre>
           <a class="link-under" href={`/log/${current.id}`}>Step into the log →</a>
         </div>
       </section>
@@ -77,9 +78,14 @@ const personSchema = {
     hero.length > 0 && (
       <section class="band" id="featured">
         <SectionLabel num="02" label="Featured" />
-        <div class="feed">
+        {/* Rich cards (thumbnail + snippet) — the inviting top of the archive
+            (§5.1). NOTE: renders every heroPost, so heroPosts[0] currently
+            appears both as the bench hero above and as the first card here.
+            Once more heroPosts are curated, switch to hero.slice(1) to drop the
+            duplicate. */}
+        <div class="card-grid">
           {hero.map((entry) => (
-            <FeedItem entry={entry} />
+            <FeedCard entry={entry} />
           ))}
         </div>
       </section>
@@ -286,6 +292,10 @@ const personSchema = {
   .specimen__dim {
     color: #a09a8e;
   }
+  /* One scarce orange accent — the live URL, echoing the mark's live node. */
+  .specimen__on {
+    color: var(--color-signal);
+  }
 
   /* Underlined mono action link ("Step into the log →", "All entries →"). */
   .link-under {
@@ -315,6 +325,16 @@ const personSchema = {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.25rem;
+  }
+
+  /* Featured cards, stacked with a hairline between — bands within the sheet,
+     not gaps between boxes (§3). */
+  .card-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .card-grid > :global(* + *) {
+    border-top: 1px solid var(--color-ink-08);
   }
 
   .clients {

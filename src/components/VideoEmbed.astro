@@ -1,0 +1,122 @@
+---
+// VideoEmbed — a lite-youtube facade (CLAUDE.md §4). A dark "specimen" panel
+// showing the SELF-HOSTED poster + a play button. The YouTube iframe is injected
+// only on click, so NO request reaches YouTube until the visitor plays. This is
+// the one place the site ships JS (a ~12-line inline handler), sanctioned by the
+// brief for exactly this component.
+//
+// Renders from web-video. If a post has no web-video, the record template never
+// mounts this component, so nothing shows. web-thumb is optional: with no poster
+// the panel is a plain dark frame + play button (still zero YouTube requests).
+import { Image } from 'astro:assets';
+
+interface Props {
+  videoId: string;
+  thumb?: ImageMetadata;
+  title?: string;
+}
+const { videoId, thumb, title } = Astro.props;
+const label = title ? `Play video: ${title}` : 'Play video';
+---
+
+<figure class="video">
+  <button class="video__facade" type="button" data-video-id={videoId} aria-label={label}>
+    {
+      thumb && (
+        <Image
+          class="video__poster"
+          src={thumb}
+          alt=""
+          widths={[480, 960, 1280]}
+          sizes="(max-width: 920px) 100vw, 920px"
+          loading="lazy"
+        />
+      )
+    }
+    <span class="video__play" aria-hidden="true"></span>
+  </button>
+</figure>
+
+<script>
+  // Facade → real player, only on click. Uses youtube-nocookie and defers every
+  // YouTube request until the visitor chooses to play.
+  document.querySelectorAll<HTMLButtonElement>('.video__facade').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.videoId;
+      if (!id) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.title = 'YouTube video player';
+      iframe.allow =
+        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.className = 'video__iframe';
+      btn.replaceWith(iframe);
+    });
+  });
+</script>
+
+<style>
+  .video {
+    margin: 0 0 2rem;
+  }
+  .video__facade,
+  .video :global(.video__iframe) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 4px;
+    background: var(--color-panel);
+  }
+  .video__facade {
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .video__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Slightly settled until hover — a specimen at rest. */
+    filter: saturate(0.95);
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+  .video__facade:hover .video__poster {
+    transform: scale(1.02);
+    filter: saturate(1.05);
+  }
+  /* Play button — the one orange node on the panel. */
+  .video__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 66px;
+    height: 66px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--color-signal);
+    box-shadow: 0 8px 30px -8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.2s ease;
+  }
+  .video__facade:hover .video__play {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+  .video__play::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    border-width: 12px 0 12px 20px;
+    border-color: transparent transparent transparent #fff;
+  }
+  .video__facade:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+</style>

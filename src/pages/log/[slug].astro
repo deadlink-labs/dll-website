@@ -7,6 +7,7 @@ import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Stamp from '../../components/Stamp.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import { getPublishedLog, recordLabel, formatDate } from '../../lib/content';
 
 export const getStaticPaths = (async () => {
@@ -26,6 +27,12 @@ const label = recordLabel(entry);
     </div>
     <h1 class="record__title">{entry.data.title}</h1>
     <p class="record__date">{formatDate(entry.data.pubDate)}</p>
+    {/* Top-of-post video facade — only when the post declares web-video (§4). */}
+    {
+      entry.data.videoId && (
+        <VideoEmbed videoId={entry.data.videoId} thumb={entry.data.thumb} title={entry.data.title} />
+      )
+    }
     <div class="prose">
       <Content />
     </div>
@@ -120,5 +127,127 @@ const label = recordLabel(entry);
     border: none;
     padding: 0;
     color: inherit;
+  }
+  .prose :global(h3) {
+    margin: 2rem 0 0.75rem;
+    font-size: 20px;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+  .prose :global(strong) {
+    font-weight: 600;
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0 0 1.4rem;
+    padding-left: 1.4rem;
+    max-width: 68ch;
+  }
+  .prose :global(li) {
+    margin: 0 0 0.5rem;
+  }
+  .prose :global(li::marker) {
+    color: var(--color-ink-60);
+  }
+  /* Decision register (§5.2 crown jewel) and any record table. Mono, hairline
+     ruled, on the paper — a research log, not a data grid. */
+  .prose :global(table) {
+    width: 100%;
+    max-width: 68ch;
+    margin: 0 0 1.4rem;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .prose :global(thead th) {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink-60);
+    font-weight: 500;
+    text-align: left;
+  }
+  .prose :global(th),
+  .prose :global(td) {
+    padding: 0.6rem 0.9rem 0.6rem 0;
+    border-bottom: 1px solid var(--color-ink-15);
+    vertical-align: top;
+  }
+  /* Status token in the last column reads like a stamp. */
+  .prose :global(tbody td:last-child) {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-60);
+    white-space: nowrap;
+  }
+  /* First column: the DEC / record number, mono like a stamp label. */
+  .prose :global(tbody td:first-child) {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-60);
+    white-space: nowrap;
+  }
+  .prose :global(blockquote) {
+    margin: 0 0 1.4rem;
+    padding: 0.4rem 0 0.4rem 1.2rem;
+    border-left: 2px solid var(--color-signal);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-60);
+  }
+  .prose :global(blockquote p) {
+    margin: 0;
+  }
+  /* Video transcript — native <details> disclosure, zero JS. Collapsed by
+     default; the summary reads like a lab-record label. Long-tail SEO text
+     that stays out of the way of the reading. */
+  .prose :global(details) {
+    margin: 2rem 0 1.4rem;
+    border-top: 1px solid var(--color-ink-15);
+    border-bottom: 1px solid var(--color-ink-15);
+  }
+  .prose :global(summary) {
+    padding: 1rem 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-ink-60);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .prose :global(summary::-webkit-details-marker) {
+    display: none;
+  }
+  /* Mono +/- affordance in signal orange. */
+  .prose :global(summary::before) {
+    content: '+';
+    color: var(--color-signal);
+    font-size: 14px;
+    line-height: 1;
+  }
+  .prose :global(details[open] summary::before) {
+    content: '\2212'; /* minus */
+  }
+  .prose :global(summary:hover) {
+    color: var(--color-ink);
+  }
+  .prose :global(details > *:not(summary)) {
+    font-size: 15px;
+    color: var(--color-ink-75);
+  }
+  .prose :global(details > p:first-of-type) {
+    margin-top: 0.25rem;
+  }
+  .prose :global(details > p:last-child) {
+    margin-bottom: 1.25rem;
   }
 </style>

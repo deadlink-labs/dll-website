@@ -1,0 +1,170 @@
+---
+// FeedCard — the RICH featured entry for the homepage top band (CLAUDE.md §5.1).
+// Thumbnail (if web-thumb) + stamp + title + one-line snippet. This is the one
+// place web-snippet is shown to a reader, and where a video entry earns a
+// visual. The archive (/log) and the Recent list keep the terse FeedItem — the
+// hierarchy is deliberate: inviting up top, instrument catalog below.
+import { Image } from 'astro:assets';
+import StatusDot from './StatusDot.astro';
+import { formatDate, recordLabel, type LogEntry } from '../lib/content';
+
+interface Props {
+  entry: LogEntry;
+}
+const { entry } = Astro.props;
+const label = recordLabel(entry);
+const { stage, thumb, title, snippet, pubDate, videoId } = entry.data;
+---
+
+<a class="card" href={`/log/${entry.id}`}>
+  {
+    thumb && (
+      <div class="card__media">
+        <Image
+          class="card__img"
+          src={thumb}
+          alt=""
+          widths={[320, 640, 720]}
+          sizes="(max-width: 760px) 100vw, 340px"
+          loading="lazy"
+        />
+        {videoId && <span class="card__play" aria-hidden="true" />}
+      </div>
+    )
+  }
+  <div class="card__body">
+    <div class="card__stamp">
+      <span class="card__num">{label}</span>
+      <span class="card__status">
+        <StatusDot stage={stage} label={false} />
+        {stage && <span class="card__stage">{stage}</span>}
+      </span>
+      <time class="card__date" datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+    </div>
+    <h3 class="card__title">{title}</h3>
+    {snippet && <p class="card__snippet">{snippet}</p>}
+    <span class="card__go" aria-hidden="true">Step into the log →</span>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1.25rem;
+    margin-inline: -1.25rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.18s ease;
+  }
+  /* Text-only card (no thumb) collapses to a single column cleanly. */
+  .card:not(:has(.card__media)) {
+    grid-template-columns: 1fr;
+  }
+  .card:hover {
+    background: var(--color-surface-2);
+  }
+  .card:hover .card__title {
+    color: var(--color-signal);
+  }
+  .card:hover .card__go {
+    color: var(--color-signal);
+  }
+
+  .card__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--color-panel);
+  }
+  .card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .card__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--color-signal);
+    box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.6);
+  }
+  .card__play::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    border-width: 8px 0 8px 13px;
+    border-color: transparent transparent transparent #fff;
+  }
+
+  .card__stamp {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.9rem;
+    margin-bottom: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .card__num {
+    color: var(--color-ink);
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+  }
+  .card__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--color-ink-60);
+  }
+  .card__date {
+    color: var(--color-ink-60);
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+  .card__title {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    transition: color 0.18s ease;
+  }
+  .card__snippet {
+    margin: 0 0 0.75rem;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-ink-75);
+    max-width: 60ch;
+  }
+  .card__go {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-60);
+    transition: color 0.18s ease;
+  }
+
+  @media (max-width: 760px) {
+    .card {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>
