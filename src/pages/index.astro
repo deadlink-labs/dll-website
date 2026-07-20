@@ -75,16 +75,14 @@ astro  v5.18.2  ready in 415 ms
 
   {/* Band 3 — Featured then recent log entries. */}
   {
-    hero.length > 0 && (
+    hero.length > 1 && (
       <section class="band" id="featured">
         <SectionLabel num="02" label="Featured" />
         {/* Rich cards (thumbnail + snippet) — the inviting top of the archive
-            (§5.1). NOTE: renders every heroPost, so heroPosts[0] currently
-            appears both as the bench hero above and as the first card here.
-            Once more heroPosts are curated, switch to hero.slice(1) to drop the
-            duplicate. */}
+            (§5.1). heroPosts[0] is already the bench hero above, so the Featured
+            band renders the REST (hero.slice(1)) to avoid showing it twice. */}
         <div class="card-grid">
-          {hero.map((entry) => (
+          {hero.slice(1).map((entry) => (
             <FeedCard entry={entry} />
           ))}
         </div>
