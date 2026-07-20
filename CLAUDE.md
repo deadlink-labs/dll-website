@@ -330,6 +330,10 @@ Then Marcelo's story as the 30-year pattern of being early and learning by build
 
 ## 6. Voice & writing rules
 
+The rules below are the summary. The full, example-driven voice guide is
+**`VOICE.md`** at the repo root (moves, lexicon, before/after pairs, self-check);
+read it before drafting or editing any post. The `/log-post` skill applies it.
+
 - First person, plain US English, short sentences. Specific beats clever.
 - Numbers and artifacts, never self-describing adjectives.
 - Questions as titles for experiments ("Can X become Y?").
