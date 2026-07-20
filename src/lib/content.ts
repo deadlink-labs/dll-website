@@ -18,6 +18,10 @@ export interface SiteConfig {
     heroPosts: string[];
     recentPostsCount: number;
     featuredProducts?: string[];
+    // Off-nav "Shipped for clients" proof list (§5.1 band 6). Curation, not
+    // frontmatter (§4): name + status label are display; an optional slug links
+    // the row to a published log case study.
+    clientWork?: { name: string; status: string; slug?: string }[];
   };
 }
 
@@ -84,6 +88,7 @@ export interface HomepageData {
   hero: LogEntry[]; // heroPosts, array order = display order
   recent: LogEntry[]; // chronological slice, excluding heroPosts
   featuredProducts: ProductEntry[]; // featuredProducts, array order
+  clientWork: { name: string; status: string; href?: string }[]; // §5.1 band 6
 }
 
 export async function getHomepageData(): Promise<HomepageData> {
@@ -114,7 +119,19 @@ export async function getHomepageData(): Promise<HomepageData> {
     return entry;
   });
 
-  return { hero, recent, featuredProducts };
+  // 4. CLIENT WORK — off-nav proof list (§5.1 band 6). A given slug must resolve
+  //    to a published log case study (fail the build on a typo, like heroPosts);
+  //    an entry with no slug renders as plain text (client with no post yet).
+  const clientWork = (config.homepage.clientWork ?? []).map((c) => {
+    if (c.slug) {
+      const entry = logBySlug.get(c.slug);
+      if (!entry) throw new Error(`[content] clientWork slug "${c.slug}" is not a published log entry (§7).`);
+      return { name: c.name, status: c.status, href: `/log/${entry.id}` };
+    }
+    return { name: c.name, status: c.status };
+  });
+
+  return { hero, recent, featuredProducts, clientWork };
 }
 
 // --- display helpers ---------------------------------------------------------

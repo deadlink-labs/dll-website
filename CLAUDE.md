@@ -226,7 +226,11 @@ Lives at the content-repo root. Homepage placement only:
   "homepage": {
     "heroPosts": ["building-deadlink-labs-website", "hazefield-devlog-01"],
     "recentPostsCount": 8,
-    "featuredProducts": ["cassette-mixtapes", "hexcast"]
+    "featuredProducts": ["cassette-mixtapes", "hexcast"],
+    "clientWork": [
+      { "name": "Uruguay Outfitters", "status": "SHIPPED · 2026", "slug": "uruguay-outfitters-website" },
+      { "name": "Crehana", "status": "CASE STUDY", "slug": "crehana-post-production" }
+    ]
   }
 }
 ```
@@ -234,6 +238,7 @@ Lives at the content-repo root. Homepage placement only:
 - `heroPosts` — ordered log slugs in the featured section; **array order = display order**.
 - `recentPostsCount` — how many chronological log entries below the hero.
 - `featuredProducts` — ordered product slugs; may be empty or omitted.
+- `clientWork` — ordered entries for the off-nav "Shipped for clients" band (§5.1 band 6). Each has a display `name` and `status` label; an optional `slug` links the row to a published log case study. Omit `slug` for a client with no post yet (renders as plain text). Array order = display order; may be empty or omitted.
 
 Convention: **arrays are curation, numbers are automatic slices.** Reordering the homepage = moving array lines; no content file is touched.
 
@@ -250,7 +255,7 @@ Convention: **arrays are curation, numbers are automatic slices.** Reordering th
 Fail the build with a message naming the offending file/slug on any violation. The last live deploy stays up.
 - Only `web-status: published` content is included anywhere.
 - Published content has `web-title` and `web-pub-date` (`web-snippet`, `web-type` optional).
-- Every `heroPosts` slug resolves to a published `log/` entry; every `featuredProducts` slug to a published `products/` entry.
+- Every `heroPosts` slug resolves to a published `log/` entry; every `featuredProducts` slug to a published `products/` entry; every `clientWork` `slug` (when present) to a published `log/` entry.
 - `recentPostsCount` is a non-negative integer.
 - **Slugs are globally unique** (Obsidian only blocks duplicates within a folder).
 - `web-type` matches its folder where present.
@@ -292,7 +297,7 @@ Structure v2 §4.1 / §6. The page is generated from `site.config.json` + publis
 3. **Hero — the current experiment's question.** Eyebrow: `● Currently on the bench · EXP NNN` (pulsing orange dot). H1 = the live experiment's **question** at 60px (e.g. *"Can a house quietly run its own systems without anyone tending them?"*). Below it the lab-record stamp (`LOG NNN · IN PROGRESS · … `), a short overview paragraph, one dark specimen panel (e.g. a `tail -f` log), and a "Step into the log →" link. The hero is the current experiment's question — NOT a hand-written personal positioning H1.
 4. **Featured log entries** (from `heroPosts`) → **Recent log entries** (chronological slice). The living archive.
 5. **Featured products** (from `featuredProducts`, optional).
-6. **Shipped for clients** (off-nav consulting surface): stamped list — **Uruguay Outfitters** · `SHIPPED · 2026`, **Crehana** · `CASE STUDY`.
+6. **Shipped for clients** (off-nav consulting surface): stamped list — **Uruguay Outfitters** · `SHIPPED · 2026`, **Crehana** · `CASE STUDY`. Driven by `site.config.json` → `homepage.clientWork` (§4); each entry may link to its log case study via an optional `slug`.
 7. **Who runs this:** one paragraph — "Marcelo Brouard, Buenos Aires. Thirty years turning messy operations into systems that run themselves — post-production, AI automation, dashboards, and the occasional website." + buttons `See the work →` and `Work with me`.
 8. **Footer / colophon.** A warm invitation leads the footer: `Let's make something together →` (sentence case among the mono chrome, routes to the About Work-with-me section — the availability signal, see §1). Then the manifesto line in mono: `BUILD TO UNDERSTAND · DOCUMENT TO REMEMBER · SHARE SO OTHERS CAN BUILD FURTHER`. Contact email, YouTube, LinkedIn, GitHub, RSS. Colophon: `Astro · IBM Plex · Vercel · Updated MM.YYYY` (see §3).
 

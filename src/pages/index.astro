@@ -14,16 +14,10 @@ import FeedCard from '../components/FeedCard.astro';
 import ProductCard from '../components/ProductCard.astro';
 import { getHomepageData } from '../lib/content';
 
-const { hero, recent, featuredProducts } = await getHomepageData();
+const { hero, recent, featuredProducts, clientWork } = await getHomepageData();
 const current = hero[0]; // the current experiment on the bench
 // Oversized record number for the hero gutter (model-number treatment).
 const heroNum = current?.data.number != null ? String(current.data.number).padStart(3, '0') : '001';
-
-// Client work surfaced off-nav (§5.1 band 6). Placeholder stand-ins.
-const clientWork = [
-  { name: 'Uruguay Outfitters', note: 'Shipped · 2026' },
-  { name: 'Crehana', note: 'Case study' },
-];
 
 // JSON-LD Person schema — lives on Home and About (§2).
 const personSchema = {
@@ -127,8 +121,20 @@ astro  v5.18.2  ready in 415 ms
       {
         clientWork.map((c) => (
           <li class="clients__row">
-            <span class="clients__name">{c.name}</span>
-            <span class="clients__note">{c.note}</span>
+            {c.href ? (
+              <a class="clients__link" href={c.href}>
+                <span class="clients__name">{c.name}</span>
+                <span class="clients__note">
+                  {c.status}
+                  <span class="clients__go" aria-hidden="true">→</span>
+                </span>
+              </a>
+            ) : (
+              <Fragment>
+                <span class="clients__name">{c.name}</span>
+                <span class="clients__note">{c.status}</span>
+              </Fragment>
+            )}
           </li>
         ))
       }
@@ -344,6 +350,28 @@ astro  v5.18.2  ready in 415 ms
     letter-spacing: 0.1em;
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
+  }
+  /* Linked rows (client work with a case-study post) fill the row and link out. */
+  .clients__link {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  .clients__link:hover .clients__name {
+    color: var(--color-signal);
+  }
+  .clients__go {
+    margin-left: 0.6em;
+    color: var(--color-signal);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+  .clients__link:hover .clients__go {
+    opacity: 1;
   }
 
   .who {
