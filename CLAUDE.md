@@ -179,7 +179,13 @@ Rules:
 - **Each post is its own folder; the folder name is the slug.** URLs: `/log/<slug>` and `/products/<slug>`.
 - **Files are plain `.md`** (not `.mdx`) so Obsidian treats them as native notes. The `<slug>/<slug>.md` naming (not `index.md`) keeps note names meaningful in Obsidian. Interactive components use the fenced-block convention (below), never raw inline JSX.
 - **Assets are co-located** in a sibling `assets/`, referenced with standard relative markdown: `![alt](./assets/hero.webp)`. Astro's image pipeline optimizes them at build — no per-image setup. (Obsidian `![[embed]]` syntax is NOT used.)
-- Sorting **always** uses the `web-pub-date` frontmatter field.
+- Sorting **always** uses the `web-pub-date` frontmatter field (newest first).
+  Equal dates break deterministically so feed order never depends on filesystem
+  read order: higher `web-number` first (numbers ascend as you publish, so the
+  higher number is the more recent record), then slug. Assigning `web-number` in
+  publish order keeps the feed intuitive — LOG 001 is the oldest, at the bottom.
+  This tiebreaker is a refinement of the pub-date rule, not a second sort key: the
+  author still controls order entirely through `web-pub-date`.
 
 ### Frontmatter — the `web-*` namespace (Structure v2 §3.3)
 Posts are authored from an Obsidian template that mixes vault-internal fields with a `web-*` namespace. **The build reads ONLY the `web-*` fields.** Every unprefixed field (`type`, `created`, `project`, `people`, `source`, `url`, …) is invisible to the site.

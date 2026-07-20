@@ -47,20 +47,37 @@ function loadSiteConfig(): SiteConfig {
 // Public IF AND ONLY IF web-status is exactly "published" (§4). Anything else —
 // draft, typo, or missing — is invisible, so a forgotten tag never leaks.
 const isPublished = (entry: LogEntry | ProductEntry) => entry.data.published;
-const byDateDesc = (a: LogEntry | ProductEntry, b: LogEntry | ProductEntry) =>
-  b.data.pubDate.getTime() - a.data.pubDate.getTime();
+
+// Feed order (CLAUDE.md §4): newest first by web-pub-date. That is the primary
+// key and the only one the author sets by hand. Ties MUST then resolve
+// deterministically — a bare date compare returns 0 on equal dates, and since
+// Array.sort is stable the order would fall through to the glob's read order
+// (effectively the filesystem), which nothing should depend on. So equal dates
+// break by higher web-number first (record numbers ascend as you publish, so on
+// a same-day tie the higher number is the more recent record — this also keeps
+// the feed intuitive: LOG 001 oldest, at the bottom), then by slug as a final
+// stable key for numberless same-day posts. A numberless post sorts after a
+// numbered one on the same day.
+const byRecency = (a: LogEntry | ProductEntry, b: LogEntry | ProductEntry) => {
+  const byDate = b.data.pubDate.getTime() - a.data.pubDate.getTime();
+  if (byDate !== 0) return byDate;
+  const an = a.data.number ?? -Infinity;
+  const bn = b.data.number ?? -Infinity;
+  if (an !== bn) return bn - an;
+  return a.id.localeCompare(b.id);
+};
 
 export async function getPublishedLog(): Promise<LogEntry[]> {
   const entries = (await getCollection('log')).filter(isPublished);
   validateTypeMatchesFolder(entries, 'log');
   assertUniqueNumbers(entries);
-  return entries.sort(byDateDesc);
+  return entries.sort(byRecency);
 }
 
 export async function getPublishedProducts(): Promise<ProductEntry[]> {
   const entries = (await getCollection('products')).filter(isPublished);
   validateTypeMatchesFolder(entries, 'products');
-  return entries.sort(byDateDesc);
+  return entries.sort(byRecency);
 }
 
 // --- validations that fail the build (§7) ------------------------------------
