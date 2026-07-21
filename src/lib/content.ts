@@ -146,6 +146,7 @@ export interface HomepageData {
     thumb?: ImageMetadata;
     title?: string;
     snippet?: string;
+    record?: string; // "LOG 002" — the linked case study's stamp number (§3)
   }[];
 }
 
@@ -192,6 +193,9 @@ export async function getHomepageData(): Promise<HomepageData> {
         thumb: entry.data.thumb,
         title: entry.data.title,
         snippet: entry.data.snippet,
+        // Stamp the row with the case study's record number, like every other
+        // record surface (§3). Omitted if the entry carries no web-number.
+        record: entry.data.number != null ? recordLabel(entry) : undefined,
       };
     }
     return { name: c.name, status: c.status };
