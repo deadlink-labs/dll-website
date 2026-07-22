@@ -1,0 +1,11 @@
+{
+  "homepage": {
+    "heroPosts": ["building-deadlink-labs-website"],
+    "recentPostsCount": 8,
+    "featuredProducts": ["cassette-mixtapes", "hazefield"],
+    "clientWork": [
+      { "name": "Uruguay Outfitters", "status": "SHIPPED · 2026", "slug": "uruguay-outfitters-website" },
+      { "name": "Crehana", "status": "CASE STUDY", "slug": "crehana-post-production" }
+    ]
+  }
+}

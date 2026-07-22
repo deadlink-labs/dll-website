@@ -36,6 +36,14 @@ const {
 
 // Title template (§2): "Deadlink Labs — Marcelo Brouard" on home; "{Page} · Deadlink Labs" elsewhere.
 const pageTitle = title ? `${title} · Deadlink Labs` : 'Deadlink Labs — Marcelo Brouard';
+
+// --- SEARCH-ENGINE INDEXING SWITCH (site-wide, single source of truth) ---
+// While the site is still being built with placeholder/draft content, we keep
+// every page out of search results. `noindex, nofollow` tells crawlers not to
+// index any page or follow its links. Every HTML page renders through this
+// layout, so flipping this one flag turns indexing on or off for the whole site.
+// FLIP TO `true` WHEN THE REAL CONTENT IS READY TO BE FOUND ON GOOGLE.
+const ALLOW_INDEXING = false;
 ---
 
 <!doctype html>
@@ -47,6 +55,8 @@ const pageTitle = title ? `${title} · Deadlink Labs` : 'Deadlink Labs — Marce
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Marcelo Brouard" />
+    {/* Keep the whole site out of search until the real content is ready — flip ALLOW_INDEXING above. */}
+    {!ALLOW_INDEXING && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <link rel="alternate" type="application/rss+xml" title="Deadlink Labs — Log" href="/rss.xml" />
     {/* Per-page head extras — e.g. JSON-LD Person schema on Home + About (§2). */}

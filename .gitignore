@@ -10,9 +10,7 @@ dist/
 # vercel
 .vercel/
 
-# content pipeline (CLAUDE.md §4): content/ is shallow-cloned at build time
-# from the private content repo, and symlinked locally. Never committed here.
-content/
+# content/ committed directly for now (Obsidian pipeline comes later)
 
 # environment variables
 .env

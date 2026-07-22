@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+  <text x="110" y="330" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" letter-spacing="9" fill="#ece8e1" fill-opacity="0.6">DEADLINK LABS</text>
+  <text x="112" y="384" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="4" fill="#ece8e1" fill-opacity="0.38">BUILD TO UNDERSTAND</text>
+  <g transform="translate(293,-2) scale(2.65)">
+      <line x1="148" y1="216" x2="116" y2="170" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="116" y1="170" x2="176" y2="160" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="148" y1="216" x2="176" y2="160" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="116" y1="170" x2="160" y2="116" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="176" y1="160" x2="160" y2="116" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="176" y1="160" x2="220" y2="200" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="148" y1="216" x2="220" y2="200" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="176" y1="160" x2="224" y2="136" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="160" y1="116" x2="224" y2="136" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="220" y1="200" x2="224" y2="136" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="220" y1="200" x2="272" y2="160" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="224" y1="136" x2="272" y2="160" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="224" y1="136" x2="252" y2="94" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="160" y1="116" x2="252" y2="94" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="272" y1="160" x2="252" y2="94" stroke="#ece8e1" stroke-opacity="0.75" stroke-width="1.15" stroke-linecap="round"/>
+      <line x1="252" y1="94" x2="312" y2="80" stroke="#f04a00" stroke-opacity="0.9" stroke-width="1.35" stroke-linecap="round"/>
+      <line x1="272" y1="160" x2="312" y2="80" stroke="#f04a00" stroke-opacity="0.9" stroke-width="1.35" stroke-linecap="round"/>
+      <circle cx="148" cy="216" r="3.4" fill="#ece8e1"/>
+      <circle cx="116" cy="170" r="3.4" fill="#ece8e1"/>
+      <circle cx="176" cy="160" r="3.4" fill="#ece8e1"/>
+      <circle cx="160" cy="116" r="3.4" fill="#ece8e1"/>
+      <circle cx="220" cy="200" r="3.4" fill="#ece8e1"/>
+      <circle cx="224" cy="136" r="3.4" fill="#ece8e1"/>
+      <circle cx="272" cy="160" r="3.4" fill="#ece8e1"/>
+      <circle cx="252" cy="94" r="3.4" fill="#ece8e1"/>
+      
+      <circle cx="312" cy="80" r="11" fill="none" stroke="#f04a00" stroke-opacity="0.3" stroke-width="1.2"/>
+      <circle cx="312" cy="80" r="6.2" fill="#f04a00"/>
+  </g>
+</svg>
