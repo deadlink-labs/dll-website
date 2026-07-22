@@ -322,7 +322,7 @@ The heart of the lab — a notebook, not a blog. Build logs, technical research,
 - **Series** — related video parts, if any.
 - **Backlinks + "This thread continues"** — related records, next-in-series, referenced-by (built from preserved wikilinks in future; plain links in v1).
 
-First entry ever: **LOG 001** — *Can I design and ship my own website with AI, in public?* — documents this site being planned and built, and links the YouTube video when published.
+First entry ever: **LOG 001** — *Designing and building deadlinklabs.com with AI, in public* — documents this site being planned and built, and links the YouTube video when published.
 
 ### 5.3 Products `/products`
 Header: "Deadlink Labs / Products". Mature artifacts — may be commercial, free, open source, or private beta. A product page may include overview, purpose, features, status, screenshots, downloads, external links, and related log entries. Products are destinations; logs tell their story.
