@@ -4,10 +4,12 @@ type: work journal
 created: 2026-07-14
 project: "[[DLL Web]]"
 people: []
+aliases:
+  - "LOG 001"   # the filename already gives me the title + graph in Obsidian; this just lets me jump by number
 
 # --- web-* namespace (the ONLY fields the site reads) ---
 web-status: published
-web-title: "Designing and building deadlinklabs.com with AI, in public"
+web-title: "Building the Deadlink Labs website with AI, in public"
 web-pub-date: 2026-07-14
 web-snippet: "The decisions behind deadlinklabs.com, and why: the brief-first workflow, the stack, the hosting, and the Obsidian pipeline that runs it all."
 web-type: log
@@ -18,7 +20,7 @@ web-tags: [ASTRO, DESIGN, AI-ASSISTED, WORKFLOW]
 web-thumb: "./assets/thumb.webp"   # network-mark header tile (generated); source at assets/thumb.svg
 ---
 
-For thirty years I built things and had no link to send when someone asked to
+For more than 20 years I built things and had no link to send when someone asked to
 see the work. Post-production pipelines, home automation, dashboards, music
 tools, the occasional website. The work was real. The URL did not exist. I was
 the dead link.

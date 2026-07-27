@@ -53,13 +53,13 @@ The vault contains a folder — `dll-website-content/` — whose internal struct
 content/
     log/
         2026/
-            building-deadlink-labs-website/
-                building-deadlink-labs-website.md
+            building-deadlinklabs-with-ai-in-public/                     <- folder = slug
+                Building the Deadlink Labs website with AI, in public.md  <- file = post TITLE
                 assets/
                     graph.webp
     products/
-        cassette-mixtapes/
-            cassette-mixtapes.md
+        cassette-mixtapes/                                           <- folder = slug
+            Cassette Mixtapes.md                                     <- file = product TITLE
             assets/
                 hero.webp
                 ui-01.webp
@@ -72,7 +72,7 @@ content/
 - **Type = the section folder.** First path segment under `content/` is the type: `log` or `products`. The site derives type from the folder and nothing else.
 - **Log nests by year** (`log/<year>/…`); **products stay flat** (`products/…`). The year folder is filesystem organization only — never parsed for dates or URLs.
 - **Each post is its own folder; the folder name is the slug.**
-- **Files are plain `.md`** (not `.mdx`). Obsidian treats `.md` as native notes; `.mdx` opens as inert plain text and breaks wikilinks/preview. The `.md` file is named after its folder (`<slug>/<slug>.md`), not `index.md`, so note names stay meaningful in Obsidian. The redundancy is intentional. Interactive components use the fenced-block convention (§3.5), never raw inline JSX — which keeps every note valid markdown in Obsidian.
+- **Files are plain `.md`** (not `.mdx`). Obsidian treats `.md` as native notes; `.mdx` opens as inert plain text and breaks wikilinks/preview. **The folder name is the slug; the `.md` inside is named for the post's TITLE** (e.g. `building-deadlinklabs-with-ai-in-public/Building the Deadlink Labs website with AI, in public.md`), not the folder and not `index.md`, so the note reads with its real title everywhere in Obsidian — quick-switcher, graph, backlinks. The filename is free-form and never reaches the URL; the folder does. Navigate the vault by title (the filename) or by number/nickname via `aliases` (an Obsidian-internal field the site ignores), and browse the ordered index with an Obsidian **Base** over the `log` folder sorted by `web-number` — never number the folders to fake an order. Interactive components use the fenced-block convention (§3.5), never raw inline JSX — which keeps every note valid markdown in Obsidian.
 - **Assets are co-located** in a sibling `assets/`, referenced with standard relative markdown: `![alt](./assets/hero.webp)`. The framework optimizes these at build; subfolders cost nothing.
 - URLs: `/log/<slug>` and `/products/<slug>`. The year never appears in the URL.
 - Sorting **always** uses the `web-pub-date` frontmatter field.
@@ -212,7 +212,7 @@ Lives at the repo root. Contains only homepage placement.
 ```json
 {
   "homepage": {
-    "heroPosts": ["building-deadlink-labs-website", "hazefield-devlog-01"],
+    "heroPosts": ["building-deadlinklabs-with-ai-in-public", "hazefield-devlog-01"],
     "recentPostsCount": 8,
     "featuredProducts": ["cassette-mixtapes", "hexcast"]
   }
@@ -254,7 +254,7 @@ Fail the build with a message naming the offending file/slug on any violation. T
 - `recentPostsCount` is a non-negative integer.
 - **Slugs are globally unique.** (Obsidian only blocks duplicate names _within_ a folder, so `log/2026/foo` and `log/2027/foo` could both map to `/log/foo`.)
 - **`web-type` matches its folder** where present (`log/…` → `log`, `products/…` → `product`). Mismatch fails the build. This lets the property exist for Obsidian Bases while guaranteeing it can never silently disagree with the real (folder-derived) type.
-- Optional lint: each post's `.md` filename matches its folder name.
+- Optional lint: each post folder holds exactly one `.md`. Its filename is the post's TITLE (readable in Obsidian), deliberately NOT the folder name — the slug comes from the folder, so the filename is free-form. The loader derives the slug from the folder and never reads the filename.
 
 ---
 

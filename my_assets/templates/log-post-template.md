@@ -1,9 +1,11 @@
 ---
 # =============================================================================
 # LOG POST TEMPLATE  ·  Deadlink Labs
-# Copy this whole file into content/log/<year>/<slug>/<slug>.md in the content
-# vault. The folder name IS the slug and the URL (/log/<slug>); the <year> is
-# organization only and never appears in the URL. Name the .md after its folder.
+# Copy this whole file into content/log/<year>/<slug>/<Post Title>.md in the
+# content vault. The folder name IS the slug and the URL (/log/<slug>); the <year>
+# is organization only and never appears in the URL. Name the .md after the post
+# TITLE (readable in Obsidian's switcher/graph), NOT the folder — the slug comes
+# from the folder, so the filename is free-form.
 # =============================================================================
 
 # --- Obsidian-internal (the SITE IGNORES all of these) -----------------------
@@ -11,6 +13,8 @@ type: work journal
 created: 2026-01-01          # your vault date; not read by the site
 project: "[[ ]]"
 people: []
+aliases:                     # Obsidian-only nav handles (site ignores); filename already gives the title
+  - "LOG 000"                #   jump by number; add a nickname if useful
 
 # --- web-* namespace (the ONLY fields the site reads) ------------------------
 web-status: draft            # gate: set to EXACTLY "published" to go live. Anything else = invisible.

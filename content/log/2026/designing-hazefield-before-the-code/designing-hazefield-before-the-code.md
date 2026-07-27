@@ -100,7 +100,7 @@ first and the typing there last.
 ## This thread continues
 
 - [Hazefield](/products/hazefield) — what it becomes when it ships.
-- [Can I design and ship my own website with AI, in public?](/log/building-deadlink-labs-website) — the same idea on a different project: think first, then build.
+- [Can I design and ship my own website with AI, in public?](/log/building-deadlinklabs-with-ai-in-public) — the same idea on a different project: think first, then build.
 
 The code is not written yet. The hard part mostly is.
 

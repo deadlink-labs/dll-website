@@ -163,12 +163,12 @@ content/
   log/
     <year>/                         # filesystem organization only — never parsed for dates/URLs
       <slug>/
-        <slug>.md                   # the .md is named after its folder, not index.md
+        <title>.md                  # the .md is named for the post TITLE (readable in Obsidian), not the folder
         assets/
           graph.webp
   products/
     <slug>/                         # products stay flat (no year nesting)
-      <slug>.md
+      <title>.md                    # named for the post TITLE, not the folder
       assets/
         hero.webp
 ```
@@ -177,7 +177,7 @@ Rules:
 - **Type = the section folder.** First segment under `content/` is the type: `log` or `products`. Type is derived from the folder and nothing else.
 - **Log nests by year** (`log/<year>/…`); **products stay flat**. The year folder is filesystem organization — it never appears in the URL.
 - **Each post is its own folder; the folder name is the slug.** URLs: `/log/<slug>` and `/products/<slug>`.
-- **Files are plain `.md`** (not `.mdx`) so Obsidian treats them as native notes. The `<slug>/<slug>.md` naming (not `index.md`) keeps note names meaningful in Obsidian. Interactive components use the fenced-block convention (below), never raw inline JSX.
+- **Files are plain `.md`** (not `.mdx`) so Obsidian treats them as native notes. **The folder name is the slug; the `.md` inside is named for the post's TITLE** (e.g. `building-deadlinklabs-with-ai-in-public/Building the Deadlink Labs website with AI, in public.md`), not the folder and not `index.md` — so the note reads with its real title everywhere in Obsidian (quick-switcher, graph, backlinks). The filename is free-form and never reaches the URL; the folder does. Vault navigation: find a post by its title (the filename) or by its number/nickname via `aliases` (an Obsidian-internal field the site ignores — see §4 frontmatter), and browse the ordered index with an Obsidian **Base** over the `log` folder sorted by `web-number`. Do NOT number folders to fake an order — order lives in `web-pub-date`/`web-number`, never in the folder name. Interactive components use the fenced-block convention (below), never raw inline JSX.
 - **Assets are co-located** in a sibling `assets/`, referenced with standard relative markdown: `![alt](./assets/hero.webp)`. Astro's image pipeline optimizes them at build — no per-image setup. (Obsidian `![[embed]]` syntax is NOT used.)
 - Sorting **always** uses the `web-pub-date` frontmatter field (newest first).
   Equal dates break deterministically so feed order never depends on filesystem
@@ -197,6 +197,8 @@ type: work journal
 created: 2026-07-14
 project: "[[DLL Web]]"
 people: []
+aliases:                      # Obsidian-only nav handles (site ignores); the .md filename already gives the title
+  - "LOG 012"                 #   jump by number; add a nickname if useful
 
 # --- web-* namespace (the ONLY fields the site reads) ---
 web-status: published         # ONLY "published" renders (visibility gate)
@@ -212,6 +214,7 @@ web-thumb: "./assets/thumb.webp"  # optional; feed-card thumbnail + video poster
 ---
 ```
 
+- `aliases` (Obsidian-internal; site ignores) → nav handles for the note in Obsidian's quick-switcher / graph / backlinks. The `.md` filename already provides the title, so `aliases` just adds extras like `LOG 012` or a nickname. Not required, never read by the build.
 - `web-title` → page heading + `<title>` (so the note body should not also open with an `#` H1).
 - `web-snippet` → cards + meta description. Optional.
 - `web-status` → visibility gate. **Public if and only if `web-status: published`.** Anything else — `draft`, a typo, or a missing field — is invisible. An untagged note must resolve to invisible, so a forgotten tag never leaks.
@@ -232,7 +235,7 @@ Lives at the content-repo root. Homepage placement only:
 ```json
 {
   "homepage": {
-    "heroPosts": ["building-deadlink-labs-website", "hazefield-devlog-01"],
+    "heroPosts": ["building-deadlinklabs-with-ai-in-public", "hazefield-devlog-01"],
     "recentPostsCount": 8,
     "featuredProducts": ["cassette-mixtapes", "hexcast"],
     "clientWork": [
@@ -240,7 +243,7 @@ Lives at the content-repo root. Homepage placement only:
       { "name": "Crehana", "status": "CASE STUDY", "slug": "crehana-post-production" }
     ]
   }
-}
+} 
 ```
 
 - `heroPosts` — ordered log slugs in the featured section; **array order = display order**.
@@ -268,7 +271,7 @@ Fail the build with a message naming the offending file/slug on any violation. T
 - **Slugs are globally unique** (Obsidian only blocks duplicates within a folder).
 - **`web-number` is unique among published log entries.** Drafts are exempt (invisible; a collision surfaces when a draft is republished). Only defined numbers are checked. On a duplicate the build fails, naming the two offending slugs and the next free number.
 - `web-type` matches its folder where present.
-- Optional lint: each post's `.md` filename matches its folder name.
+- Optional lint: each post folder holds exactly one `.md`. Its filename is the post's TITLE (readable in Obsidian), deliberately NOT the folder name — the slug comes from the folder, so the filename is free-form (see §4 content model). The loader derives the slug from the folder and does not read the filename.
 
 ### Interactive components — the fenced-block convention (Structure v2 §3.6)
 Interactivity is embedded with a **custom code-fence**, never raw inline JSX. A build-time remark plugin recognizes a reserved fence label and swaps the block for the matching Astro/React component (hydrated as an island); the block's contents are the component's config.
@@ -391,9 +394,10 @@ All commits follow this convention.
 
 - **Format:** `vMAJOR.MINOR.PATCH`, following Semantic Versioning, with **zero-padded MINOR (two digits)** and **PATCH (three digits)**. Example: `v0.01.001`.
 - **MAJOR:** `0` = in development, `1` = site is live and confirmed online. Increment to `1` only at confirmed launch, then continue the same logic.
-- **MINOR:** increment for major changes to layout or site structure.
-- **PATCH:** increment for smaller changes — fixes, tweaks, content, refinements.
-- **Commit messages** begin with the version number, followed by an em dash and a short description. Example: `v0.01.001 — reconciled blueprint`.
+- **MINOR:** tracks the build-in-public video episode (log) number — LOG 002 = `v1.02`, LOG 003 = `v1.03`, and so on. Each documented episode gets its own MINOR, so the version tells you which episode built the current state. (This refines the earlier "MINOR = structural change" rule; each episode is a meaningful chunk of work, so it stays in the spirit of SemVer.)
+- **PATCH:** increment per commit/step *within* an episode — fixes, tweaks, content, refinements. The MINOR stays fixed at the episode number until the next episode begins.
+- **LOG 001 exception:** already committed as the `v1.00` launch (the `0 → 1` moment), so `v1.01` is unused; the episode-matching rule starts clean at LOG 002 (`v1.02`).
+- **Commit messages** begin with the version number, followed by an em dash and a short description. Example: `v1.02.000 — Obsidian publishing pipeline`.
 
 ---
 

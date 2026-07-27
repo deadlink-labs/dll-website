@@ -40,10 +40,12 @@ Pick the mode from what the user asked for.
    specimen tile (mono labels, a scarce orange live node; see LOG 001's
    network-mark tile and LOG 003's pipeline tile) rather than stock/AI imagery.
    Confirm what the tile should depict before generating it.
-4. Place the file per CLAUDE.md §4: `content/log/<year>/<slug>/<slug>.md` (log) or
-   `content/products/<slug>/<slug>.md` (products). Folder name = slug = the `.md`
-   filename. Remember `content/` is gitignored here (separate content repo) — say
-   so if the user expects it committed by the site repo.
+4. Place the file per CLAUDE.md §4: `content/log/<year>/<slug>/<title>.md` (log) or
+   `content/products/<slug>/<title>.md` (products). The folder name is the slug
+   (= URL); the `.md` inside is named for the post's TITLE (readable in Obsidian),
+   not the folder. Optionally add an Obsidian-internal `aliases` entry (e.g. the log
+   number) for quick-switcher jumps. Remember `content/` is gitignored here
+   (separate content repo) — say so if the user expects it committed by the site repo.
 
 ### CHECK — an existing draft → flagged + rewritten
 1. Read the draft.

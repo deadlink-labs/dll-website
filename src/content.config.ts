@@ -5,9 +5,11 @@
 // build time and FAILS THE BUILD on any violation (required validation, §7).
 //
 // Type is derived from the folder (log | products), never from frontmatter.
-// Log nests by year (log/<year>/<slug>/<slug>.md); products stay flat
-// (products/<slug>/<slug>.md). The slug is ALWAYS the post's folder name — the
-// year segment and the filename never reach the URL.
+// Log nests by year (log/<year>/<slug>/<title>.md); products stay flat
+// (products/<slug>/<title>.md). The slug is ALWAYS the post's folder name — the
+// year segment and the filename never reach the URL. The .md file is named for
+// the post's TITLE (readable in Obsidian — switcher, graph, backlinks), not the
+// folder, so the filename is intentionally free-form.
 //
 // NOTE — decision flagged for review: the lab-record stamp (CLAUDE.md §3) needs a
 // record number, a lab status token, and thread tags, but §4's documented
@@ -87,26 +89,21 @@ const webSchema = (image: ImageFunction) =>
       thumb: data['web-thumb'],
     }));
 
-// Slug = the post's own folder name. Enforces the depth of each tree (log is
-// year-nested, products flat) and the "<slug>/<slug>.md" filename lint (§7).
+// Slug = the post's own folder name. The .md inside is named for the post's TITLE
+// (readable in Obsidian), NOT the folder, so the filename is free-form and never
+// reaches the URL. Enforces only the depth of each tree (log is year-nested,
+// products flat); assumes one .md per post folder.
 const slugFromFolder = (collection: 'log' | 'products') => ({ entry }: { entry: string }) => {
   const parts = entry.split('/');
   const expectedDepth = collection === 'log' ? 3 : 2; // year/slug/file vs slug/file
   if (parts.length !== expectedDepth) {
     throw new Error(
       `[content] ${collection}/${entry}: expected ${
-        collection === 'log' ? '<year>/<slug>/<slug>.md' : '<slug>/<slug>.md'
+        collection === 'log' ? '<year>/<slug>/<title>.md' : '<slug>/<title>.md'
       }`,
     );
   }
-  const file = parts[parts.length - 1]!.replace(/\.md$/, '');
-  const folder = parts[parts.length - 2]!;
-  if (file !== folder) {
-    throw new Error(
-      `[content] ${collection}/${entry}: file "${file}.md" must be named after its folder "${folder}/"`,
-    );
-  }
-  return folder;
+  return parts[parts.length - 2]!; // the folder name = the slug
 };
 
 const log = defineCollection({
