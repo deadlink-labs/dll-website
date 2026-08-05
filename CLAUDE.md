@@ -310,7 +310,9 @@ Structure v2 §4.1 / §6. The page is generated from `site.config.json` + publis
 4. **Featured log entries** (from `heroPosts`) → **Recent log entries** (chronological slice). The living archive.
 5. **Featured products** (from `featuredProducts`, optional).
 6. **Shipped for clients** (off-nav consulting surface): stamped list — **Uruguay Outfitters** · `SHIPPED · 2026`, **Crehana** · `CASE STUDY`. Driven by `site.config.json` → `homepage.clientWork` (§4); each entry may link to its log case study via an optional `slug`.
-7. **Who runs this:** one paragraph — "Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run themselves: post-production teams, pipeline automation, data and dashboards, AI workflows, and the occasional website." + buttons `See the work →` and `Work with me`. This is the canonical positioning line: it is reused verbatim on About (as a two-line opening) and in both meta descriptions (`BaseLayout.astro`, `about.astro`). Change it in all four places or not at all.
+7. **Who runs this:** one paragraph — "Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run themselves: post-production teams, pipeline automation, data and dashboards, AI workflows, and the occasional website." + **one** button, `See the work →`. This is the canonical positioning line: it is reused verbatim on About (as a two-line opening) and in both meta descriptions (`BaseLayout.astro`, `about.astro`). Change it in all four places or not at all.
+
+   *A second `Work with me` button here was specified originally and deliberately dropped (2026-08-05). Band 7 is the last content band, so the footer's orange `Let's make something together →` sits directly below it pointing at the same `/about#work-with-me`. Two CTAs one scroll apart is asking twice, and it would put two orange elements on one screen. Do not re-add it.*
 8. **Footer / colophon.** A warm invitation leads the footer: `Let's make something together →` (sentence case among the mono chrome, routes to the About Work-with-me section — the availability signal, see §1). Then the manifesto line in mono: `BUILD TO UNDERSTAND · DOCUMENT TO REMEMBER · SHARE SO OTHERS CAN BUILD FURTHER`. Contact email, YouTube, LinkedIn, GitHub, RSS. Colophon: `Astro · IBM Plex · Vercel · Updated MM.YYYY` (see §3).
 
 ### 5.2 Log `/log`
@@ -377,13 +379,9 @@ read it before drafting or editing any post. The `/log-post` skill applies it.
 
 ## 7. Build order
 
-1. Repo scaffold (Astro + Tailwind + TypeScript), design tokens, base layout (sheet-on-desk, masthead running head, network-mark cover, stamp component, status-dot component). Deploy to Vercel immediately — iterate in public.
-2. Content collection + `web-*` schema + build-time validation. Wire the two-repo content pipeline (gitignored `content/`, prebuild shallow-clone, local symlink, Vercel Deploy Hook).
-3. Home (8A: cover, masthead, hero-from-current-experiment, featured/recent log, deterministic generation from `site.config.json`) + RSS. Publish LOG 001 (draft ok).
-4. Log feed + the record/experiment template (Decision Register, timeline, series, threads). First real log/experiment page.
-5. Products index + product pages with waitlists (Cassette Mixtapes, Hazefield).
-6. About (origin story, person, Now, manifesto, Work-with-me section + form, colophon).
-7. Uruguay Outfitters + Crehana case studies (surfaced on Home/Products/About). OG images, sitemap, JSON-LD, meta.
+**Moved to [ROADMAP.md](ROADMAP.md).** This file holds the rules; the roadmap
+holds the sequence — dated episodes, checkboxes, owners, and a decisions log.
+Check it before starting work, and tick the boxes as you go.
 
 ## 8. Don'ts (hard rules)
 
