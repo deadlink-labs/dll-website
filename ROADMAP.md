@@ -55,10 +55,10 @@ pushing it is the entire act of publishing.
 
 **The vault**
 - [x] `ME` Obsidian installed, vault exists — `~/Documents/Obsidian Vaults/zzzzMB`
-- [x] `ME` Templates core plugin enabled, `DATA/Templates` folder exists
-- [ ] `AI` Create `dll-website-content/` inside the vault — the one folder that becomes the site
-- [ ] `AI` Move the existing `content/` (posts + assets + `site.config.json`) into it
-- [ ] `AI` Create the `web-post` template note in `DATA/Templates`
+- [x] `ME` Templates core plugin enabled, folder set to `DATA/Templates`
+- [x] `AI` Create `dll-website-content/` inside the vault — the one folder that becomes the site `2026-08-05`
+- [x] `AI` Copy `content/` (19 files: posts, assets, `site.config.json`) into it `2026-08-05` — **copied, not moved**; the site-repo original is deleted later at the untrack step, so there are two copies until the content repo push succeeds
+- [x] `AI` Install the `web-post` template at `DATA/Templates/web-post.md` `2026-08-05` — a copy of [log-post-template.md](my_assets/templates/log-post-template.md), which stays the source of truth (VOICE.md §8); re-copy it if the repo one changes
 - [ ] `ME` Create an Obsidian **Base** over `log/`, sorted by `web-number`
 
 **The private repo**
@@ -80,6 +80,25 @@ pushing it is the entire act of publishing.
 
 > **Note:** `noindex` stays ON through this episode. The site does not open to
 > search until LOG 004.
+
+> ### ⚠ The `web-thumb` build trap — read before writing in Obsidian
+> `web-thumb` runs through Astro's image pipeline, which resolves the path **at
+> parse time, before `web-status` is consulted**. A thumb path pointing at a file
+> that does not exist yet **fails the whole build — even in a draft.** Verified
+> 2026-08-05: a `web-status: draft` note with a dangling `web-thumb` aborts
+> `npm run build` with `image-not-found`.
+>
+> This contradicts the schema's own stated draft-tolerance contract
+> ([content.config.ts](src/content.config.ts)), where `.superRefine` deliberately
+> lets half-finished drafts through. `image()` bypasses it.
+>
+> Once the pipeline is live this is a publishing outage: push a half-written note
+> and Vercel cannot build, so the last deploy stays frozen and nothing new goes
+> out. Mitigated for now by commenting `web-thumb` out in the template — write
+> the post, add the image, *then* uncomment.
+>
+> - [ ] `AI` Consider a real fix so a draft can never break the build (validate
+>   thumbs only for published posts, or resolve the path outside the schema)
 
 ---
 
