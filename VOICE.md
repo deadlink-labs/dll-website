@@ -85,9 +85,10 @@ Each pair is a generic-AI sentence next to the Deadlink Labs rewrite.
 **Self-description → artifacts.**
 - BAD: "I'm a passionate, detail-oriented builder with a proven track record of
   delivering innovative solutions."
-- GOOD: "For thirty years I built things: post-production pipelines, home
-  automation, dashboards. When someone asked to see the work, there was no link to
-  send."
+- GOOD: "20+ years turning messy operations into systems that run themselves:
+  post-production teams, pipeline automation, data and dashboards, AI workflows,
+  and the occasional website. When someone asked where they could see the work,
+  there was no link to send."
 
 **Hype → plain fact.**
 - BAD: "This project leverages cutting-edge AI to unlock a seamless, transformative

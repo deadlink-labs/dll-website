@@ -13,7 +13,7 @@ Two companion documents in `my_assets/` are the authorities this brief is reconc
 
 ## 1. What this is
 
-The personal laboratory and professional home of **Marcelo Brouard**: 30 years of making operations run better with technology (sound post-production, AI automation, dashboards, home automation, web). It is first a **creative laboratory** — a living, growing archive where the work speaks before the person — and, through that lab, a **proof-of-work archive** that also serves as a consulting funnel and, eventually, a small product storefront.
+The personal laboratory and professional home of **Marcelo Brouard**: 20+ years of making operations run better with technology (post-production teams, pipeline automation, data and dashboards, AI workflows, home automation, web). It is first a **creative laboratory** — a living, growing archive where the work speaks before the person — and, through that lab, a **proof-of-work archive** that also serves as a consulting funnel and, eventually, a small product storefront.
 
 Register (from Structure v2): a working lab, not a startup site or portfolio. Visitors discover the work first, the artifacts second, the person last. *Build to understand. Document to remember. Share so others can build further.*
 
@@ -310,7 +310,7 @@ Structure v2 §4.1 / §6. The page is generated from `site.config.json` + publis
 4. **Featured log entries** (from `heroPosts`) → **Recent log entries** (chronological slice). The living archive.
 5. **Featured products** (from `featuredProducts`, optional).
 6. **Shipped for clients** (off-nav consulting surface): stamped list — **Uruguay Outfitters** · `SHIPPED · 2026`, **Crehana** · `CASE STUDY`. Driven by `site.config.json` → `homepage.clientWork` (§4); each entry may link to its log case study via an optional `slug`.
-7. **Who runs this:** one paragraph — "Marcelo Brouard, Buenos Aires. Thirty years turning messy operations into systems that run themselves — post-production, AI automation, dashboards, and the occasional website." + buttons `See the work →` and `Work with me`.
+7. **Who runs this:** one paragraph — "Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run themselves: post-production teams, pipeline automation, data and dashboards, AI workflows, and the occasional website." + buttons `See the work →` and `Work with me`. This is the canonical positioning line: it is reused verbatim on About (as a two-line opening) and in both meta descriptions (`BaseLayout.astro`, `about.astro`). Change it in all four places or not at all.
 8. **Footer / colophon.** A warm invitation leads the footer: `Let's make something together →` (sentence case among the mono chrome, routes to the About Work-with-me section — the availability signal, see §1). Then the manifesto line in mono: `BUILD TO UNDERSTAND · DOCUMENT TO REMEMBER · SHARE SO OTHERS CAN BUILD FURTHER`. Contact email, YouTube, LinkedIn, GitHub, RSS. Colophon: `Astro · IBM Plex · Vercel · Updated MM.YYYY` (see §3).
 
 ### 5.2 Log `/log`
@@ -338,11 +338,17 @@ No prices until purchasable. When live: buy button (payment provider TBD — do 
 ### 5.4 About `/about`
 Replaces the former "The Lab" page. Context, not marketing: what Deadlink Labs is, a concise "Build to Understand" manifesto (short version, not the full Blueprint), a brief intro to the person, working principles, and a colophon (stack, design system, workflow, credits). JSON-LD `Person` schema lives here and on Home.
 
-**Opens with the name's origin story (locked copy — refine wording with Marcelo but keep the beat):**
-For thirty years I built things — post-production pipelines, home automation, dashboards, music, tools. But when someone asked "where can I see your work?", there was no link to send. The work was real; the URL didn't exist. I was the dead link.
+**The page is deliberately lean.** Its job is to say who runs this, explain the name, and get to the one commercial ask fast — not to recite a career. Band order: opening → tools → Work with me → contact form. Nothing else.
+
+**Opens with who runs this, then the name's origin story (locked copy — refine wording with Marcelo but keep the beat):**
+Marcelo Brouard. Buenos Aires, Argentina.
+20+ years turning messy operations into systems that run themselves: post-production teams, pipeline automation, data and dashboards, AI workflows, and the occasional website.
+When someone asked where they could see the work, there was no link to send. The work was real. The URL did not exist. I was the dead link.
 This lab is the fix. Everything I build now gets documented, numbered, and archived here. Nothing 404s anymore.
 
-Then Marcelo's story as the 30-year pattern of being early and learning by building: internet research in '96, conservatory piano + electronic engineering, 20+ years in sound post ending as Post-Production Lead, DIY home automation on MQTT/ESP a decade ago, first ChatGPT account at Crehana, now shipping AI-assisted production sites. First person, concrete events, zero adjectives about himself. Also: portrait photo, a **Now** section (what he's working on this month — easy to edit), tools he actually uses.
+Then **tools he actually uses** (Obsidian, Claude, VS Code, GitHub, Suno, Google AI Studio) — a mono chip row, no commentary. The build stack is already stated in the footer colophon, so it is not repeated here. Portrait photo still to come.
+
+**Deliberately absent, do not re-add without a reason:** a "Now" section (it goes stale the moment it is written, and the Log feed *is* the now) and a career-arc / "The pattern" section (it read as résumé recitation; the arc belongs in log entries, where it is carried by artifacts).
 
 **Work with me (off-nav consulting home).** A short section on the About page (and the "Work with me" CTA from Home routes here), in the approved voice:
 
@@ -353,7 +359,7 @@ Then Marcelo's story as the 30-year pattern of being early and learning by build
 > 2. A plan. I map what to automate, build, or simplify, with clear scope and a fixed price.
 > 3. The build. I ship, document everything, and hand it over working. You own all of it.
 
-**Proof:** inline links to the Uruguay Outfitters and Crehana case studies. **Contact:** direct email + a short form (name, company, "what's eating your time?"). No calendars, no pricing tables in v1. This is the ONE commercial ask on the site.
+**Proof:** a single `Shipped for clients →` link to the Home band (`/#clients`), which already carries the thumbnails, stamps and snippets for Uruguay Outfitters and Crehana. One surface for client proof, not two — do not duplicate the case-study list here. **Contact:** direct email + a short form (name, company, "what's eating your time?"). No calendars, no pricing tables in v1. This is the ONE commercial ask on the site.
 
 ---
 

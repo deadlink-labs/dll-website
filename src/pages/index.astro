@@ -102,8 +102,10 @@ astro  v5.18.2  ready in 415 ms
   }
 
   {/* Band 4 — Shipped for clients (off-nav consulting surface). Real shipped
-      proof leads coming-soon products (§5.1 order intentionally inverted). */}
-  <section class="band">
+      proof leads coming-soon products (§5.1 order intentionally inverted).
+      The id is the anchor target for the About page's proof link (/#clients);
+      global.css gives every [id] scroll-margin so it clears the sticky nav. */}
+  <section class="band" id="clients">
     <SectionLabel num="04" label="Shipped for clients" />
     <ul class="clients">
       {
@@ -165,8 +167,9 @@ astro  v5.18.2  ready in 415 ms
     <SectionLabel num="06" label="Who runs this" />
     <div class="who">
       <p class="who__text">
-        Marcelo Brouard, Buenos Aires. Thirty years turning messy operations into systems that run
-        themselves: post-production, AI automation, dashboards, and the occasional website.
+        Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run
+        themselves: post-production teams, pipeline automation, data and dashboards, AI workflows,
+        and the occasional website.
       </p>
       <div class="who__actions">
         <a class="btn" href="/log">See the work →</a>

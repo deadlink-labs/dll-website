@@ -1,18 +1,25 @@
 ---
 // Footer / colophon — per the settled Home design (Deadlink-Labs-Home.dc.html).
 // Manifesto line, then channels + colophon on one row. Rendered by BaseLayout
-// as the sheet's closing band on every page. Contact + social hrefs are
-// PLACEHOLDERS — confirm the real addresses before launch.
+// as the sheet's closing band on every page.
 // (The design shows the colophon in ink-15; that fails the AA contrast floor
 // for text, so it renders in ink-60 here.)
 const stamp = new Intl.DateTimeFormat('en-US', { month: '2-digit', year: 'numeric' })
   .format(new Date())
   .replace('/', '.');
 
-const channels = [
+// A channel without an href renders as plain text, not a link — the channel is
+// named but has nowhere to point yet. Better than a link to a bare root URL.
+// NOTE: hello@deadlinklabs.com is still unconfirmed; the rest are real.
+interface Channel {
+  label: string;
+  href?: string;
+}
+
+const channels: Channel[] = [
   { label: 'Email', href: 'mailto:hello@deadlinklabs.com' },
-  { label: 'YouTube', href: 'https://youtube.com/' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+  { label: 'YouTube' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/mbrouard/' },
   { label: 'GitHub', href: 'https://github.com/deadlink-labs' },
   { label: 'RSS', href: '/rss.xml' },
 ];
@@ -30,9 +37,13 @@ const channels = [
       {
         channels.map((c) => (
           <li>
-            <a href={c.href} class="colophon__link">
-              {c.label}
-            </a>
+            {c.href ? (
+              <a href={c.href} class="colophon__link">
+                {c.label}
+              </a>
+            ) : (
+              <span class="colophon__link colophon__link--plain">{c.label}</span>
+            )}
           </li>
         ))
       }
@@ -117,6 +128,13 @@ const channels = [
   .colophon__link:focus-visible {
     outline: 2px solid var(--color-signal);
     outline-offset: 3px;
+  }
+
+  /* Named but unlinked (see the channels array). Shares the type treatment so
+     the row stays even, but must not imply it is clickable — the base class's
+     :hover would otherwise turn it orange on a <span>. */
+  .colophon__link--plain:hover {
+    color: var(--color-ink-60);
   }
 
   .colophon__set {

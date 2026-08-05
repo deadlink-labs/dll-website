@@ -53,6 +53,14 @@
     outline: 2px solid var(--color-signal);
     outline-offset: 2px;
   }
+
+  /* The nav is sticky (Nav.astro), so an in-page anchor would otherwise land
+     underneath it. Clears the bar (1.375rem padding top and bottom + the mono
+     line) with room to breathe. Covers every anchor target on the site:
+     /#clients, /about#work-with-me, #bench, #featured, #products. */
+  [id] {
+    scroll-margin-top: 5rem;
+  }
 }
 
 /* --- Terminal specimen (shared) -------------------------------------------
