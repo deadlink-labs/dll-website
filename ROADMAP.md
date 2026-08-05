@@ -61,6 +61,12 @@ pushing it is the entire act of publishing.
 - [x] `AI` Install the `web-post` template at `DATA/Templates/web-post.md` `2026-08-05` — a copy of [log-post-template.md](my_assets/templates/log-post-template.md), which stays the source of truth (VOICE.md §8); re-copy it if the repo one changes
 - [ ] `ME` Create an Obsidian **Base** over `log/`, sorted by `web-number`
 
+> **⏸ Everything below this line is for the live recording** (decided
+> 2026-08-05). The vault prep above is done and can be shown as already set up;
+> publishing the repo, the token, the wiring and the magic moment are the beats
+> that teach, so they get performed on camera rather than pre-run by an agent.
+> Do not execute them ahead of the shoot.
+
 **The private repo**
 - [ ] `BOTH` Create `deadlink-labs/dll-website-content` — **private**, in the org
 - [ ] `BOTH` First push of the content repo
