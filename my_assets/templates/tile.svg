@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <!-- ===================================================================
+       SPECIMEN TILE — starter. Copy into a post's assets/ and rename.
+       The written spec is CLAUDE.md §3 "Specimen tiles".
+       Constants and the arithmetic: src/lib/tile-system.mjs
+
+       RAIL          content box x 64 → 1216 (1152 wide), margin 64 all round
+       COLOURS       #23201b panel · #ece8e1 ink (via opacity) · #f04a00 signal
+       FONT          keep the stack on every <text>: the raster path needs it,
+                     and remark-svg-specimen strips it when inlining so the
+                     page's IBM Plex Mono takes over
+
+       TYPE SCALE    hero-to-eyebrow ~5:1. ONE hero per tile, and it must be a
+                     fact, not a label.
+                       eyebrow   24  op 0.45     micro      22  op 0.45
+                       support   28  op 0.55     secondary  56-96 op 0.55-0.75
+                       hero     110-130 op 0.95  weight 600
+
+       FLOOR         nothing carrying words below 0.45 opacity (3.79:1)
+       ORANGE        exactly one live node per tile: faint halo + solid dot
+       LINES         no separator hairlines. Only chart elements may be lines
+                     (axes, target lines, gauge tracks, spines, ticks).
+       SMALL SIZE    a tile renders at 310 CSS px on a phone (0.242 scale):
+                     a 120px hero ≈ 29px, a 22px label ≈ 5px. Put nothing
+                     load-bearing in the micro tier.
+
+       WIDTH MATH    Plex Mono advance is 0.6em, so
+                       width = chars × (size × 0.6 + letterSpacing)
+                     Check every run against the rail before committing, or
+                     import assertFits() and let it throw.
+       =================================================================== -->
+
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <!-- EYEBROW · what this tile is. Small, recedes. Do not let it echo the H2
+       immediately above it in the post. -->
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">EYEBROW · WHAT THIS TILE IS</text>
+
+  <!-- HERO · the one thing the eye should land on. A number wherever possible. -->
+  <text x="64" y="260" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="130" font-weight="600" fill="#ece8e1" fill-opacity="0.95">00%</text>
+  <text x="64" y="310" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">WHAT THE HERO MEASURES</text>
+
+  <!-- EVIDENCE · chart, diagram or secondary stats. Roughly y 360-600. -->
+
+  <!-- THE ONE LIVE NODE. Move it to whatever the tile's live point is. -->
+  <circle cx="1126" cy="440" r="36" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="1126" cy="440" r="15" fill="#f04a00"/>
+
+  <!-- FOOTNOTE · one line, optional. Plain sentence, not a slogan. -->
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">ONE PLAIN LINE, IF IT EARNS ITS PLACE.</text>
+</svg>

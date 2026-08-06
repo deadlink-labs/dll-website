@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "tiles": "node scripts/svg-to-webp.mjs",
+    "cover": "node scripts/generate-cover.mjs",
     "astro": "astro"
   },
   "dependencies": {

@@ -131,6 +131,69 @@ Almost none. YouTube thumbnails carry visuals in log feeds. One portrait of Marc
 
 **Every record carries a header image.** Each post opens with contained header media (record width, 16:9, rounded — never a full-bleed hero): the video facade when `web-video` is set, otherwise the `web-thumb`. When a post has no photograph to earn the slot, generate an **on-brand graphite specimen tile** in the house style (mono labels, a scarce orange live node — see LOG 001's network-mark tile and LOG 003's pipeline tile) rather than reaching for stock or AI imagery. The same `web-thumb` is reused on the homepage feed card and the Shipped-for-clients band.
 
+### Specimen tiles (the settled system)
+
+The graphite tiles are the site's only house-made imagery. Their alignment is
+**computed, not drawn** — station positions derive from label widths, which is how
+a legend row lands flush on both margins. The constants and the arithmetic live in
+[`src/lib/tile-system.mjs`](src/lib/tile-system.mjs); import it rather than
+retyping numbers. Nudging a tile in a visual editor breaks the derivation silently,
+which is why Canva/Figma round-trips are not part of this workflow.
+
+**Canvas and rail.** 1280×720, 64px margin, content box x 64 → 1216 (1152 wide).
+Three colours only: `--panel #23201b`, `--on-panel #ece8e1` (modulated by opacity),
+`--signal #f04a00`.
+
+**Instrument-panel type scale.** Hierarchy comes from big jumps, not gentle steps —
+hero-to-eyebrow is roughly **5:1**. One hero per tile, and it must be a *fact*, not
+a label; if the title outranks the number, the tile has no focal point.
+
+| Role | Size | Opacity | Contrast on panel |
+|---|---|---|---|
+| Eyebrow | 24 | 0.45 | 3.79:1 |
+| Micro | 22 | 0.45 | 3.79:1 |
+| Support label | 28 | 0.55 | 4.98:1 |
+| Secondary value | 56–96 | 0.55–0.75 | ≥4.98:1 |
+| Hero | 110–130 | 0.95 | 10.99:1 |
+
+**Contrast floor: nothing carrying words below 0.45.** The 0.32 tier used early on
+computed to 2.59:1 and failed every WCAG threshold.
+
+**Cover tiles — four zones** (`assets/thumb.svg`, one per post): stamp baseline
+100 · optional modular client mark 152–230 · wordmark 222 · subtitle 272 · graphic
+320–590 · legend 660. Generate with `npm run cover` (see
+[`scripts/generate-cover.mjs`](scripts/generate-cover.mjs)); it derives the
+staircase stations from the legend widths and **fails naming the offending label**
+if anything would cross the rail or collide.
+
+**Hard rules for every tile:**
+- **Exactly one orange live node**, as a faint halo plus a solid dot. If a tile
+  has two, one is wrong.
+- **No separator hairlines.** Only chart elements may be lines: axes, target
+  lines, gauge tracks, timeline spines, meter ticks. Rules that merely divide were
+  removed on purpose — they added nothing and read as clutter.
+- Labels sized so the tile survives its smallest render. A tile shows at **310
+  CSS px on a phone**, a 0.242 scale: a 120px hero lands at ~29px (unmistakable),
+  a 22px micro label at ~5px (decorative). Put nothing load-bearing in the micro tier.
+
+**Delivery split.** In-post tiles are referenced as plain `![alt](./assets/x.svg)`
+and **inlined as vectors** by [`remark-svg-specimen.mjs`](src/plugins/remark-svg-specimen.mjs)
+— inlined rather than `<img src>` because an SVG behind `<img>` is sandboxed from
+the page's fonts and would lose IBM Plex Mono. Covers stay **raster**, rendered at
+2× by `npm run tiles`, because `web-thumb` feeds the homepage card, the
+Shipped-for-clients band and OG cards, and social platforms will not accept SVG.
+
+> **Build caveat.** The `.svg` files the remark plugin reads are build inputs Astro
+> does not track. Editing a tile without touching its `.md` replays a cached render
+> from `node_modules/.astro/data-store.json` (which survives `rm -rf .astro`) and the
+> change silently does not ship. `npm run build` and `npm run dev` therefore pass
+> `--force`. Do not remove it.
+
+**Excalidraw** is sanctioned for *loose* diagrams — architecture sketches, rough
+flows — kept in the vault, in a deliberately different register from these tiles.
+Do not use it for specimen tiles: its hand-drawn styling fights the system, its SVG
+export is machine output rather than hand-editable, and dragging cannot hold the rail.
+
 ### Accessibility floor
 Semantic HTML, visible keyboard focus (signal orange ring), contrast AA minimum everywhere (check orange on paper for text — use it for accents, not body text), alt text on all images.
 
