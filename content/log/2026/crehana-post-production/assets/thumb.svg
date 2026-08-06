@@ -2,49 +2,60 @@
   <rect width="1280" height="720" fill="#23201b"/>
   <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
 
-  <!-- Stays raster (web-thumb feeds the homepage card, the clients band and OG
-       cards), so it is proportioned to survive three sizes: 176px in the clients
-       band, 310px as a phone header, 720px on desktop. -->
-  <text x="64" y="104" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="4" fill="#ece8e1" fill-opacity="0.5">LOG 010 · SHIPPED · CASE STUDY</text>
+  <!-- COVER GRID — content box x 64 → 1216, four stacked zones:
+         1 stamp      baseline 100
+         2 title      mark 152-230, wordmark baseline 222, subtitle 272
+         3 graphic    hairline 320, stations 390-570
+         4 legend     drop lines to 622, labels baseline 660
+       Every element sits on the same 64px margin rail. This tile stays raster
+       (web-thumb feeds the feed card, the clients band and OG cards) and must
+       read at three sizes: 176px, 310px, 720px. -->
 
-  <!-- Crehana mark, rebuilt on its own 3x3 module grid and flattened to panel ink.
-       Cells filled: (0,0) (2,0) (1,1) (2,1) (0,2) (2,2). Module 32, origin 64,238.
-       Group `opacity`, not `fill-opacity`: the rects overlap at cell (2,1) to
-       avoid a seam, and per-child alpha would composite that cell twice. -->
+  <!-- Zone 1 · stamp -->
+  <text x="64" y="100" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="4" fill="#ece8e1" fill-opacity="0.5">LOG 010 · SHIPPED · CASE STUDY</text>
+
+  <!-- Zone 2 · title block.
+       Crehana mark rebuilt on its own 3x3 module grid and flattened to panel ink.
+       Cells filled: (0,0) (2,0) (1,1) (2,1) (0,2) (2,2). Module 26, origin 64,152
+       — 78px tall against an 86px cap height, so the lockup reads 1.26x rather
+       than the 1.55x it was. Group `opacity`, not `fill-opacity`: the rects
+       overlap at cell (2,1) to avoid a seam, and per-child alpha would composite
+       that cell twice. -->
   <g fill="#ece8e1" opacity="0.72">
-    <rect x="128" y="238" width="32" height="96"/>
-    <rect x="96" y="270" width="64" height="32"/>
-    <rect x="64" y="238" width="32" height="32"/>
-    <rect x="64" y="302" width="32" height="32"/>
+    <rect x="116" y="152" width="26" height="78"/>
+    <rect x="90" y="178" width="52" height="26"/>
+    <rect x="64" y="152" width="26" height="26"/>
+    <rect x="64" y="204" width="26" height="26"/>
   </g>
+  <text x="178" y="222" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="86" font-weight="600" letter-spacing="8" fill="#ece8e1" fill-opacity="0.9">CREHANA</text>
+  <text x="178" y="272" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="30" letter-spacing="4" fill="#ece8e1" fill-opacity="0.55">CONTENT OPERATION → SYSTEM</text>
 
-  <text x="196" y="322" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="86" font-weight="600" letter-spacing="8" fill="#ece8e1" fill-opacity="0.9">CREHANA</text>
-  <text x="196" y="374" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="30" letter-spacing="4" fill="#ece8e1" fill-opacity="0.55">CONTENT OPERATION → SYSTEM</text>
+  <!-- Zone 3 · graphic. The growth staircase: horizontal runs joined by 45°
+       risers (the network mark's angle family), climbing to the live node. This
+       shape is the read that survives at 176px in the clients band. Stations are
+       positioned so the legend labels below land flush on both margins. -->
+  <line x1="64" y1="320" x2="1216" y2="320" stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1"/>
 
-  <!-- The growth staircase: horizontal runs joined by 45° risers (the three angle
-       families of the network mark), climbing to the live node. This shape is the
-       read that survives at 176px in the clients band. -->
-  <path d="M250,560 L480,560 L540,500 L770,500 L830,440 L1050,440 L1110,380" fill="none" stroke="#ece8e1" stroke-opacity="0.4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M184,570 L438,570 L498,510 L752,510 L812,450 L1066,450 L1126,390" fill="none" stroke="#ece8e1" stroke-opacity="0.4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <circle cx="250" cy="560" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
-  <circle cx="540" cy="500" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
-  <circle cx="830" cy="440" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
-  <circle cx="1110" cy="380" r="36" fill="#f04a00" fill-opacity="0.12"/>
-  <circle cx="1110" cy="380" r="15" fill="#f04a00"/>
+  <circle cx="184" cy="570" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="498" cy="510" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="812" cy="450" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="1126" cy="390" r="36" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="1126" cy="390" r="15" fill="#f04a00"/>
 
-  <!-- Drop lines to a single label baseline, so the labels read as a row of
-       instrument legends instead of hanging off the wrong segment. -->
+  <!-- Zone 4 · legend. Drop lines tie each label to its station, so the labels
+       read as a row of instrument legends rather than hanging off a segment. -->
   <g stroke="#ece8e1" stroke-opacity="0.14" stroke-width="1">
-    <line x1="250" y1="580" x2="250" y2="622"/>
-    <line x1="540" y1="520" x2="540" y2="622"/>
-    <line x1="830" y1="460" x2="830" y2="622"/>
-    <line x1="1110" y1="426" x2="1110" y2="622"/>
+    <line x1="184" y1="583" x2="184" y2="622"/>
+    <line x1="498" y1="523" x2="498" y2="622"/>
+    <line x1="812" y1="463" x2="812" y2="622"/>
+    <line x1="1126" y1="426" x2="1126" y2="622"/>
   </g>
-
   <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="30" letter-spacing="2" fill="#ece8e1">
-    <text x="250" y="660" fill-opacity="0.45">SPREADSHEETS</text>
-    <text x="540" y="660" fill-opacity="0.45">DASHBOARDS</text>
-    <text x="830" y="660" fill-opacity="0.45">ONE BOARD</text>
-    <text x="1110" y="660" fill-opacity="0.6">AUTOMATED</text>
+    <text x="184" y="660" fill-opacity="0.45">SPREADSHEETS</text>
+    <text x="498" y="660" fill-opacity="0.45">DASHBOARDS</text>
+    <text x="812" y="660" fill-opacity="0.45">ONE BOARD</text>
+    <text x="1126" y="660" fill-opacity="0.6">AUTOMATED</text>
   </g>
 </svg>
