@@ -5,7 +5,6 @@
   <!-- Hero is the headline fact: output roughly doubled. The chart is evidence,
        the other two stats are secondary at 60/.7. -->
   <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">POST-PRODUCTION THROUGHPUT</text>
-  <line x1="64" y1="130" x2="1216" y2="130" stroke="#ece8e1" stroke-opacity="0.10" stroke-width="1"/>
 
   <!-- Bars are large filled areas, so they read well below the text floor.
        The trend line is thin and carries the story, so it sits at 0.6. -->
@@ -22,15 +21,11 @@
   <circle cx="626" cy="200" r="34" fill="#f04a00" fill-opacity="0.12"/>
   <circle cx="626" cy="200" r="14" fill="#f04a00"/>
 
-  <line x1="720" y1="200" x2="720" y2="600" stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1"/>
-
   <text x="780" y="300" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="130" font-weight="600" fill="#ece8e1" fill-opacity="0.95">≈2×</text>
   <text x="780" y="348" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">MINUTES / MONTH</text>
-  <line x1="780" y1="396" x2="1216" y2="396" stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1"/>
 
   <text x="780" y="470" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="60" font-weight="600" fill="#ece8e1" fill-opacity="0.7">&lt;48H</text>
   <text x="780" y="506" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">CORRECTIONS · WAS WEEKS</text>
-  <line x1="780" y1="536" x2="1216" y2="536" stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1"/>
 
   <text x="780" y="600" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="60" font-weight="600" fill="#ece8e1" fill-opacity="0.7">100%</text>
   <text x="780" y="636" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">PIPELINE UPTIME</text>

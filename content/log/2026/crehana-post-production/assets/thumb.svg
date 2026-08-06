@@ -34,7 +34,6 @@
        risers (the network mark's angle family), climbing to the live node. This
        shape is the read that survives at 176px in the clients band. Stations are
        positioned so the legend labels below land flush on both margins. -->
-  <line x1="64" y1="320" x2="1216" y2="320" stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1"/>
 
   <path d="M184,570 L438,570 L498,510 L752,510 L812,450 L1066,450 L1126,390" fill="none" stroke="#ece8e1" stroke-opacity="0.4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 
@@ -44,14 +43,7 @@
   <circle cx="1126" cy="390" r="36" fill="#f04a00" fill-opacity="0.12"/>
   <circle cx="1126" cy="390" r="15" fill="#f04a00"/>
 
-  <!-- Zone 4 · legend. Drop lines tie each label to its station, so the labels
-       read as a row of instrument legends rather than hanging off a segment. -->
-  <g stroke="#ece8e1" stroke-opacity="0.14" stroke-width="1">
-    <line x1="184" y1="583" x2="184" y2="622"/>
-    <line x1="498" y1="523" x2="498" y2="622"/>
-    <line x1="812" y1="463" x2="812" y2="622"/>
-    <line x1="1126" y1="426" x2="1126" y2="622"/>
-  </g>
+  <!-- Zone 4 · legend, one label per station. -->
   <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="30" letter-spacing="2" fill="#ece8e1">
     <text x="184" y="660" fill-opacity="0.45">SPREADSHEETS</text>
     <text x="498" y="660" fill-opacity="0.45">DASHBOARDS</text>

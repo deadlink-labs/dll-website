@@ -6,7 +6,6 @@
        meters below are the evidence. A single ratio against a limit is a meter,
        not a dial; the track spans 0-120% of goal and the tick at 823 is 100%. -->
   <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">TEAM METRICS</text>
-  <line x1="64" y1="130" x2="1216" y2="130" stroke="#ece8e1" stroke-opacity="0.10" stroke-width="1"/>
 
   <text x="64" y="250" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="130" font-weight="600" fill="#ece8e1" fill-opacity="0.95">24/7</text>
   <text x="64" y="300" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">OPEN TO EVERYONE · NO MANAGER GATE</text>
