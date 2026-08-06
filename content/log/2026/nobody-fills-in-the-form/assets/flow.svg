@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="540" viewBox="0 0 1280 540">
   <!-- ===================================================================
        FROM AUDIO TO REPORT - the client deck's slide 04, redrawn at this
        canvas size. Icons are the deck's own paths, not substitutes.
@@ -7,6 +7,11 @@
        between is steel because it is infrastructure.
        Connectors animate; the keyframe and the reduced-motion guard are
        in this file so it works opened anywhere.
+
+       Six step titles and nothing else. The per-step descriptions that
+       used to sit under them were four lines of 17px each, unreadable at
+       feed size and redundant with the paragraph directly below the
+       image, which says the same thing in prose and says it better.
        =================================================================== -->
   <style>
     @keyframes flowdash { to { stroke-dashoffset: -12; } }
@@ -14,7 +19,7 @@
       [style*="flowdash"] { animation: none !important; }
     }
   </style>
-  <rect width="1280" height="640" fill="#F1EFEA"/>
+  <rect width="1280" height="540" fill="#F1EFEA"/>
 
   <text x="64" y="76" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">FROM AUDIO TO REPORT, STEP BY STEP</text>
 
@@ -72,47 +77,18 @@
   <!-- ── titles ───────────────────────────────────────────────────── -->
   <g text-anchor="middle" font-family="'IBM Plex Sans',sans-serif" font-size="21" font-weight="600" fill="#14181B">
     <text x="160" y="330">Sends an audio</text>
-    <text x="352" y="330">Instant ack</text>
+    <text x="352" y="330">Instant reply</text>
     <text x="544" y="330">Transcribed</text>
     <text x="544" y="360">locally</text>
     <text x="736" y="330">The AI sorts it</text>
     <text x="928" y="330">Asks for what</text>
     <text x="928" y="360">is missing</text>
     <text x="1120" y="330">Report +</text>
-    <text x="1120" y="358">history</text>
-  </g>
-
-  <!-- ── descriptions ─────────────────────────────────────────────── -->
-  <g text-anchor="middle" font-family="'IBM Plex Sans',sans-serif" font-size="17" fill="#5A6470">
-    <text x="160" y="404">He says what he did</text>
-    <text x="160" y="430">on WhatsApp when he</text>
-    <text x="160" y="456">finishes. Photos too,</text>
-    <text x="160" y="482">if he took any.</text>
-
-    <text x="352" y="404">«Got it, writing the</text>
-    <text x="352" y="430">report now.»</text>
-
-    <text x="544" y="404">Inside their own</text>
-    <text x="544" y="430">server. Nothing is</text>
-    <text x="544" y="456">sent outside the</text>
-    <text x="544" y="482">network.</text>
-
-    <text x="736" y="404">Customer, machine,</text>
-    <text x="736" y="430">serial number, fault,</text>
-    <text x="736" y="456">cause, work done,</text>
-    <text x="736" y="482">spares.</text>
-
-    <text x="928" y="404">He answers and the</text>
-    <text x="928" y="430">report closes in the</text>
-    <text x="928" y="456">local database.</text>
-
-    <text x="1120" y="404">PDF in the company's</text>
-    <text x="1120" y="430">own format. The data</text>
-    <text x="1120" y="456">stays queryable.</text>
+    <text x="1120" y="360">history</text>
   </g>
 
   <!-- ── the line the whole slide exists to deliver ───────────────── -->
-  <rect x="64" y="536" width="1152" height="72" rx="4" fill="#FBF3EE"/>
-  <rect x="64" y="536" width="4" height="72" fill="#C0451A"/>
-  <text x="100" y="580" font-family="'IBM Plex Sans',sans-serif" font-size="23" fill="#14181B">The technician is in step 01 only. Everything else runs without him waiting on anyone.</text>
+  <rect x="64" y="404" width="1152" height="72" rx="4" fill="#FBF3EE"/>
+  <rect x="64" y="404" width="4" height="72" fill="#C0451A"/>
+  <text x="100" y="448" font-family="'IBM Plex Sans',sans-serif" font-size="23" fill="#14181B">The technician is in step 01 only. Everything else runs without him waiting on anyone.</text>
 </svg>

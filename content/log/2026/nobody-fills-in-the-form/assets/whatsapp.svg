@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="840" viewBox="0 0 1280 840">
   <!-- ===================================================================
        THE FOLLOW-UP - the client deck's chat panel (slide 06), redrawn as
        a phone so it reads as the thing the technician actually holds.
@@ -8,76 +8,94 @@
          #34B7F1 read receipt            #2E7D5B deck green (the close)
        Redrawn, so it is in English. The real exchange was in Spanish; the
        verbatim artifact is pipeline.svg. Contact name is generic.
+
+       GEOMETRY - the device is 19.5:9, the ratio of the phone in his
+       pocket. The first version was 496x672 (1.36:1, a tablet) with the
+       bubble type sized to the slide instead of to the screen, so the
+       chat read like a billboard and the prop read like a drawing of a
+       phone by someone who had not held one. Screen 340x736; every
+       measurement below derives from that box, so the type sits at the
+       size it would sit at on the glass.
        =================================================================== -->
-  <rect width="1280" height="720" fill="#F1EFEA"/>
+  <rect width="1280" height="840" fill="#F1EFEA"/>
 
   <!-- ── the phone ────────────────────────────────────────────────── -->
   <g>
-    <rect x="392" y="24" width="496" height="672" rx="52" fill="#14181B"/>
-    <rect x="404" y="36" width="472" height="648" rx="42" fill="#ECE5DD"/>
-    <clipPath id="screen"><rect x="404" y="36" width="472" height="648" rx="42"/></clipPath>
+    <rect x="458" y="40" width="364" height="760" rx="48" fill="#14181B"/>
+    <rect x="470" y="52" width="340" height="736" rx="36" fill="#ECE5DD"/>
+    <clipPath id="screen"><rect x="470" y="52" width="340" height="736" rx="36"/></clipPath>
 
     <g clip-path="url(#screen)">
       <!-- header -->
-      <rect x="404" y="36" width="472" height="104" fill="#075E54"/>
-      <circle cx="452" cy="98" r="26" fill="#0B7367"/>
-      <g transform="translate(438,84) scale(1.16)" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="470" y="52" width="340" height="86" fill="#075E54"/>
+      <circle cx="506" cy="99" r="19" fill="#0B7367"/>
+      <g transform="translate(495.4,88.4) scale(0.88)" fill="none" stroke="#FFFFFF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5"/><path d="M9 13.5h6M9 17h4"/>
       </g>
-      <text x="490" y="93" font-family="'IBM Plex Sans',sans-serif" font-size="23" font-weight="600" fill="#FFFFFF">Service Reports</text>
-      <text x="490" y="119" font-family="'IBM Plex Mono',monospace" font-size="19" fill="#9FD3CB">online</text>
+      <text x="536" y="94" font-family="'IBM Plex Sans',sans-serif" font-size="17" font-weight="600" fill="#FFFFFF">Service Reports</text>
+      <text x="536" y="116" font-family="'IBM Plex Mono',monospace" font-size="13" fill="#9FD3CB">online</text>
+
+      <!-- day divider -->
+      <rect x="594" y="164" width="92" height="30" rx="15" fill="#E3DFD5"/>
+      <text x="638" y="184" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" letter-spacing="2" fill="#8A8377">TODAY</text>
 
       <!-- 01 · everything missing, in one message -->
       <g>
-        <path d="M428,168 h332 a14,14 0 0 1 14,14 v148 a14,14 0 0 1 -14,14 h-332 a14,14 0 0 1 -14,-14 v-148 z" fill="#FFFFFF"/>
-        <text x="434" y="200" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">Almost done, I just need:</text>
-        <text x="434" y="232" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">· serial number of the exchanger?</text>
-        <text x="434" y="264" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">· which spares did you use?</text>
-        <text x="434" y="296" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">· what time did you finish?</text>
-        <text x="752" y="322" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#9AA3A0">17:38</text>
+        <path d="M496,228 h272 a14,14 0 0 1 14,14 v128 a14,14 0 0 1 -14,14 h-272 a14,14 0 0 1 -14,-14 v-128 z" fill="#FFFFFF"/>
+        <g font-family="'IBM Plex Sans',sans-serif" font-size="15" fill="#14181B">
+          <text x="498" y="262">Almost done, I just need:</text>
+          <text x="498" y="288">· serial number of the exchanger?</text>
+          <text x="498" y="314">· which spares did you use?</text>
+          <text x="498" y="340">· what time did you finish?</text>
+        </g>
+        <text x="766" y="368" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="12" fill="#9AA3A0">17:38</text>
       </g>
 
       <!-- 02 · answered in ten seconds, from the van -->
       <g>
-        <path d="M520,360 h332 a14,14 0 0 1 14,14 v116 a14,14 0 0 1 -14,14 h-332 a14,14 0 0 1 -14,-14 v-116 z" fill="#DCF8C6"/>
-        <text x="526" y="394" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">AX-40-2219, two NBR gaskets</text>
-        <text x="526" y="426" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">and I finished 17:40</text>
-        <text x="806" y="478" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#7D8B7A">17:41</text>
-        <g transform="translate(816,464)" fill="none" stroke="#34B7F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M1.5 8.4l4 4L14 3.6"/><path d="M11 8.4l4 4L23.5 3.6"/>
+        <path d="M784,408 h-262 a14,14 0 0 0 -14,14 v88 a14,14 0 0 0 14,14 h262 a14,14 0 0 0 14,-14 v-88 z" fill="#DCF8C6"/>
+        <g font-family="'IBM Plex Sans',sans-serif" font-size="15" fill="#14181B">
+          <text x="524" y="442">AX-40-2219, two NBR gaskets</text>
+          <text x="524" y="468">and I finished 17:40</text>
+        </g>
+        <text x="748" y="496" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="12" fill="#7D8B7A">17:41</text>
+        <g transform="translate(756,487)" fill="none" stroke="#34B7F1" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 6l3 3 6.4-6.8"/><path d="M8 6l3 3 6.4-6.8"/>
         </g>
       </g>
 
       <!-- 03 · closed -->
       <g>
-        <path d="M428,524 h296 a14,14 0 0 1 14,14 v64 a14,14 0 0 1 -14,14 h-296 a14,14 0 0 1 -14,-14 v-64 z" fill="#FFFFFF"/>
-        <text x="434" y="558" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">Got it. Writing the report.</text>
-        <text x="716" y="590" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#9AA3A0">17:41</text>
+        <path d="M496,552 h224 a14,14 0 0 1 14,14 v50 a14,14 0 0 1 -14,14 h-224 a14,14 0 0 1 -14,-14 v-50 z" fill="#FFFFFF"/>
+        <text x="498" y="586" font-family="'IBM Plex Sans',sans-serif" font-size="15" fill="#14181B">Got it. Writing the report.</text>
+        <text x="718" y="612" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="12" fill="#9AA3A0">17:41</text>
       </g>
 
-      <!-- status strip -->
-      <rect x="404" y="636" width="472" height="48" fill="#FBFAF8"/>
-      <circle cx="470" cy="660" r="13" fill="#2E7D5B"/>
-      <g transform="translate(463,653)" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M2.2 7.4l2.7 2.7L10.4 4.4"/>
+      <!-- status strip · the reading of the exchange, on the glass -->
+      <rect x="470" y="700" width="340" height="88" fill="#FBFAF8"/>
+      <circle cx="522" cy="732" r="11" fill="#2E7D5B"/>
+      <g transform="translate(516.5,726.5)" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1.8 6l2.2 2.2L8.6 3.6"/>
       </g>
-      <text x="494" y="667" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="1" fill="#2E7D5B">one round · report closed</text>
+      <text x="542" y="738" font-family="'IBM Plex Mono',monospace" font-size="14" letter-spacing="0.5" fill="#2E7D5B">one round · report closed</text>
+      <rect x="580" y="766" width="120" height="5" rx="2.5" fill="#C4C1BA"/>
     </g>
   </g>
 
   <!-- ── the reading, on the paper beside it ──────────────────────── -->
-  <text x="64" y="212" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">EVERYTHING MISSING</text>
-  <text x="64" y="278" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">In a single</text>
-  <text x="64" y="336" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#C0451A">message</text>
-  <text x="64" y="392" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">Two rounds maximum, never a</text>
-  <text x="64" y="422" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">third. If something goes</text>
-  <text x="64" y="452" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">unanswered, the report closes</text>
-  <text x="64" y="482" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">anyway and logs what is missing.</text>
+  <text x="64" y="316" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">ALREADY ON HIS PHONE</text>
+  <text x="64" y="386" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="700" fill="#14181B">Zero apps</text>
+  <g font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">
+    <text x="64" y="448">It is the WhatsApp he already</text>
+    <text x="64" y="480">has, plus one contact. He</text>
+    <text x="64" y="512">opens it and talks.</text>
+  </g>
 
-  <text x="930" y="212" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">ZERO APPS</text>
-  <text x="930" y="278" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">Zero</text>
-  <text x="930" y="336" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">training</text>
-  <text x="930" y="392" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">It is the WhatsApp he</text>
-  <text x="930" y="422" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">already uses, with one</text>
-  <text x="930" y="452" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">more contact.</text>
+  <text x="854" y="316" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">HE JUST ANSWERS</text>
+  <text x="854" y="386" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="700" fill="#14181B">Zero training</text>
+  <g font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">
+    <text x="854" y="448">It asks once, he answers in a</text>
+    <text x="854" y="480">single line from the van, and</text>
+    <text x="854" y="512">the report closes.</text>
+  </g>
 </svg>

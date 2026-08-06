@@ -69,7 +69,7 @@ conditions at that point, not at the artifact. The form was never the problem.
 
 Six steps. The technician is in exactly one of them.
 
-![Six steps from audio to report, with animated connectors. The technician sends an audio, gets an instant acknowledgement, the audio is transcribed on their own server, the data is structured, anything missing is asked for once, and the report and its history come out the other end. Only step 01 is green, because only step 01 involves a person.](./assets/flow.svg)
+![Six titled steps from audio to report, with animated connectors: sends an audio, instant reply, transcribed locally, the AI sorts it, asks for what is missing, report and history. Only step 01 is green, because only step 01 involves a person, and only step 06 is orange, because only the report reaches a customer.](./assets/flow.svg)
 
 He opens WhatsApp, finds a contact, and talks. If he took photos he sends those
 too. He gets an acknowledgement immediately, which matters more than it sounds
@@ -101,7 +101,7 @@ So every design choice attacks adoption:
 - **He always gets his report.** He can read what the system put in his mouth and
   correct it.
 
-![A phone showing the follow-up exchange in WhatsApp. The system asks for everything it is missing in a single message, the technician answers in one line from the van, and the report closes in one round.](./assets/whatsapp.svg)
+![A phone showing the follow-up exchange in WhatsApp. The system asks for everything it is missing in a single message, the technician answers in one line from the van, and the report closes in one round. Read on either side of it: zero apps, because it is the WhatsApp he already has plus one contact, and zero training, because he just answers.](./assets/whatsapp.svg)
 
 *The exchange as it would run, translated. The real one is in Spanish, because
 the technician is. The system says it is close to closing and asks three things at

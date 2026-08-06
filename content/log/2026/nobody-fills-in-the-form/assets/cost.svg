@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
   <!-- ===================================================================
        AN INCOMPLETE REPORT COSTS THREE TIMES OVER - the deck's slide
        02. The deck's card system: a 4px top rule in the card's accent, a
@@ -6,68 +6,62 @@
        Colour carries meaning here and is not decoration: accent = the
        cost being paid today, steel = the internal gap, green = the thing
        they could be building instead.
+       Head on one line and three lines of body per card: the earlier
+       six-line version pushed card 02's head past its own edge and made
+       the reader work for a slide that has one idea in it.
        =================================================================== -->
-  <rect width="1280" height="720" fill="#F1EFEA"/>
+  <rect width="1280" height="640" fill="#F1EFEA"/>
 
   <text x="64" y="76" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">THE PROBLEM</text>
-  <text x="64" y="146" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">An incomplete report</text>
-  <text x="64" y="196" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">costs three times over</text>
+  <text x="64" y="150" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">An incomplete report costs three times over</text>
 
   <!-- ── hacia afuera · the cost being paid today ─────────────────── -->
-  <rect x="64" y="252" width="362" height="4" fill="#C0451A"/>
-  <rect x="64" y="256" width="362" height="356" fill="#FBF3EE" stroke="#E3BFA9" stroke-width="1"/>
-  <circle cx="122" cy="314" r="26" fill="#C0451A"/>
-  <g transform="translate(110,302)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="64" y="206" width="362" height="4" fill="#C0451A"/>
+  <rect x="64" y="210" width="362" height="268" fill="#FBF3EE" stroke="#E3BFA9" stroke-width="1"/>
+  <circle cx="122" cy="268" r="26" fill="#C0451A"/>
+  <g transform="translate(110,256)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M7 17L17 7M9 7h8v8"/>
   </g>
-  <text x="164" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#C0451A">OUTWARD</text>
-  <text x="92" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Risk at the customer</text>
+  <text x="164" y="276" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#C0451A">OUTWARD</text>
+  <text x="92" y="344" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Risk at the customer</text>
   <g font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#5A6470">
-    <text x="92" y="440">Pharma, dairy and food</text>
-    <text x="92" y="466">plants file these reports</text>
-    <text x="92" y="492">as quality documents.</text>
-    <text x="92" y="540">An incomplete report is not</text>
-    <text x="92" y="566">a badly filled form. It is</text>
-    <text x="92" y="592">an audit finding.</text>
+    <text x="92" y="396">Pharma and dairy plants file these</text>
+    <text x="92" y="424">as quality documents. Incomplete</text>
+    <text x="92" y="452">is an audit finding, not a bad form.</text>
   </g>
 
   <!-- ── hacia adentro · the gap nobody is looking at ─────────────── -->
-  <rect x="458" y="252" width="362" height="4" fill="#2C566E"/>
-  <rect x="458" y="256" width="362" height="356" fill="#F6F8F9" stroke="#CDD6DB" stroke-width="1"/>
-  <circle cx="516" cy="314" r="26" fill="#2C566E"/>
-  <g transform="translate(504,302)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="458" y="206" width="362" height="4" fill="#2C566E"/>
+  <rect x="458" y="210" width="362" height="268" fill="#F6F8F9" stroke="#CDD6DB" stroke-width="1"/>
+  <circle cx="516" cy="268" r="26" fill="#2C566E"/>
+  <g transform="translate(504,256)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M17 7L7 17M15 17H7V9"/>
   </g>
-  <text x="558" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2C566E">INWARD</text>
-  <text x="486" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">History that does not exist</text>
+  <text x="558" y="276" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2C566E">INWARD</text>
+  <text x="486" y="344" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">A history nobody has</text>
   <g font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#5A6470">
-    <text x="486" y="440">Without structured data</text>
-    <text x="486" y="466">there is no failure history</text>
-    <text x="486" y="492">per machine or customer.</text>
-    <text x="486" y="540">Every service starts at</text>
-    <text x="486" y="566">zero, and spares and</text>
-    <text x="486" y="592">warranties are guessed.</text>
+    <text x="486" y="396">No structured data, so no history</text>
+    <text x="486" y="424">per machine. Every service starts</text>
+    <text x="486" y="452">at zero and spares are guessed.</text>
   </g>
 
   <!-- ── hacia adelante · the asset not being built ───────────────── -->
-  <rect x="852" y="252" width="362" height="4" fill="#2E7D5B"/>
-  <rect x="852" y="256" width="362" height="356" fill="#F0F5F1" stroke="#C3D5C9" stroke-width="1"/>
-  <circle cx="910" cy="314" r="26" fill="#2E7D5B"/>
-  <g transform="translate(898,302)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="852" y="206" width="362" height="4" fill="#2E7D5B"/>
+  <rect x="852" y="210" width="362" height="268" fill="#F0F5F1" stroke="#C3D5C9" stroke-width="1"/>
+  <circle cx="910" cy="268" r="26" fill="#2E7D5B"/>
+  <g transform="translate(898,256)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 17l6-6 4 4 8-8M15 7h6v6"/>
   </g>
-  <text x="952" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2E7D5B">FORWARD</text>
-  <text x="880" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">An asset going unbuilt</text>
+  <text x="952" y="276" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2E7D5B">FORWARD</text>
+  <text x="880" y="344" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">An asset going unbuilt</text>
   <g font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#5A6470">
-    <text x="880" y="440">That history is the base of</text>
-    <text x="880" y="466">a real after-sales service.</text>
-    <text x="880" y="540">The same Industry 4.0</text>
-    <text x="880" y="566">ground they are already</text>
-    <text x="880" y="592">talking to customers about.</text>
+    <text x="880" y="396">That same history is what an</text>
+    <text x="880" y="424">after-sales service gets built on,</text>
+    <text x="880" y="452">and the Industry 4.0 they sell.</text>
   </g>
 
   <!-- ── the constraint that decides the whole design ─────────────── -->
-  <rect x="64" y="640" width="1150" height="56" rx="4" fill="#FBF3EE"/>
-  <rect x="64" y="640" width="4" height="56" fill="#C0451A"/>
-  <text x="100" y="675" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">The problem is not the form. It is the conditions it gets filled in.</text>
+  <rect x="64" y="520" width="1150" height="56" rx="4" fill="#FBF3EE"/>
+  <rect x="64" y="520" width="4" height="56" fill="#C0451A"/>
+  <text x="100" y="555" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">The problem is not the form. It is the conditions it gets filled in.</text>
 </svg>
