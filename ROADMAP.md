@@ -5,8 +5,10 @@ The build plan for **deadlinklabs.com**, episode by episode. This file holds the
 we do next", it is here. If you are asking "how must it be done", it is there.
 
 **Work is organized by video episode.** Each episode is a chunk of build worth
-documenting, and it sets the version (CLAUDE.md §9): LOG 002 ships `v1.02.000`,
-LOG 003 ships `v1.03.000`. Patch digits tick within an episode.
+documenting. **Episodes do not set the version** — that mapping was retired
+2026-08-05. Versions live in CLAUDE.md §9: MINOR moves only when Marcelo says so
+(currently `v1.02`), and PATCH ticks once per commit regardless of which episode
+the work belongs to.
 
 `[x]` done · `[ ]` not started · `[~]` in progress
 **Owner:** `ME` = Marcelo, by hand (browser, GUI, account signup) · `AI` = doable
@@ -47,8 +49,8 @@ in the repo by an agent · `BOTH` = paired.
 
 ## LOG 002 · Obsidian publishing pipeline `[~] IN PROGRESS`
 
-**Ships:** `v1.02.000` · **Working title:** *I Push a Note in Obsidian. Site
-Rebuilds Itself.* · **Target: TBD**
+**Working title:** *I Push a Note in Obsidian. Site Rebuilds Itself.* ·
+**Target: TBD**
 
 Goal: the site repo contains **zero posts**. Writing a note in Obsidian and
 pushing it is the entire act of publishing.
@@ -82,7 +84,7 @@ pushing it is the entire act of publishing.
 - [ ] `ME` Vercel Deploy Hook (`content-push`, branch `main`)
 - [ ] `ME` GitHub webhook on the content repo → the hook URL, push event only
 - [ ] `BOTH` Verify: push a note → webhook fires → Vercel rebuilds → post is live
-- [ ] `AI` Commit `v1.02.000 — Obsidian publishing pipeline`
+- [ ] `AI` Commit the episode — next PATCH in the current MINOR (CLAUDE.md §9)
 
 > **Note:** `noindex` stays ON through this episode. The site does not open to
 > search until LOG 004.
@@ -110,7 +112,7 @@ pushing it is the entire act of publishing.
 
 ## LOG 003 · Contact form + real domain email `[ ] NEXT`
 
-**Ships:** `v1.03.000` · **Working title:** *My Website Can Now Email Me* ·
+**Working title:** *My Website Can Now Email Me* ·
 **Target: 2026-08-06** (email config planned for this session or the next)
 
 Two separate pipes, easy to conflate: **sending** (form → Resend → inbox) and
@@ -136,7 +138,7 @@ episode, not the form markup.
 - [ ] `AI` Success / error states, honest failure copy
 - [ ] `AI` Spam handling (honeypot or similar — no third-party captcha, it would break the no-tracking rule)
 - [ ] `AI` Remove the `data-placeholder="not wired to Resend yet"` markers
-- [ ] `AI` Commit `v1.03.000`
+- [ ] `AI` Commit the episode (CLAUDE.md §9)
 
 > **Two forms, not one.** The contact form and the waitlist go to different
 > Resend surfaces (API vs. Audiences). Do not wire one and call the episode done.
@@ -145,7 +147,7 @@ episode, not the form markup.
 
 ## LOG 004 · Going public + analytics `[ ]`
 
-**Ships:** `v1.04.000` · **Working title:** *Opening the Doors* · **Target: TBD**
+**Working title:** *Opening the Doors* · **Target: TBD**
 
 Prerequisite: enough **real** posts that opening to search is not embarrassing.
 Do not flip the switch over a wall of placeholders.
@@ -155,20 +157,20 @@ Do not flip the switch over a wall of placeholders.
 - [ ] `AI` **Flip `ALLOW_INDEXING` to `true`** ([BaseLayout.astro:47](src/layouts/BaseLayout.astro#L47)) — the single switch, site-wide
 - [ ] `ME` Google Search Console: verify the property, submit the sitemap
 - [ ] `ME` Cloudflare Web Analytics (cookieless — no banner, no consent tooling)
-- [ ] `AI` Commit `v1.04.000`
+- [ ] `AI` Commit the episode (CLAUDE.md §9)
 
 ---
 
 ## LOG 005 · The presentation layer `[ ]`
 
-**Ships:** `v1.05.000` · **Working title:** *Making the Link Look Alive* ·
+**Working title:** *Making the Link Look Alive* ·
 **Target: TBD** · Season-one finale.
 
 - [ ] `AI` `astro-og-canvas` — build-time OG share cards in the house style
 - [ ] `AI` Full favicon set derived from the network mark (**the small-size logo variant the brief deferred** — CLAUDE.md §3)
 - [ ] `AI` Expand JSON-LD: `sameAs` on Person, Article schema on log posts
 - [ ] `AI` Custom on-brand 404
-- [ ] `AI` Commit `v1.05.000`
+- [ ] `AI` Commit the episode (CLAUDE.md §9)
 
 ---
 

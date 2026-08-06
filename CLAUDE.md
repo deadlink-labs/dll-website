@@ -331,6 +331,14 @@ First entry ever: **LOG 001** — *Designing and building deadlinklabs.com with 
 
 ### 5.3 Products `/products`
 Header: "Deadlink Labs / Products". Mature artifacts — may be commercial, free, open source, or private beta. A product page may include overview, purpose, features, status, screenshots, downloads, external links, and related log entries. Products are destinations; logs tell their story.
+
+**"Mature artifact" is an internal qualification rule, not page copy.** It defines what earns a slot here (§3 Products page rule); it must never be printed on the site — it reads as a museum label, and "mature" claims quality where the site states facts. The approved page lede is:
+
+> Tools and artifacts that made it to the shelf. For sale, free, open source, or private beta. Each one has a page; the log entries tell how it got built.
+
+The shelf/bench pair is system vocabulary: the Log is the bench (`● Currently on the bench` on Home, "on the bench" in the VOICE.md lexicon), and Products is what left it. Keep both metaphors pointing the same way. "Tools and artifacts" is deliberately wider than "tools" so a future pack, font, sample library, or track still fits the page without a rewrite.
+
+**Rejected for this lede: "went public"** (and any public/private framing). Every log entry is public too, so the axis does not separate Products from Log, and it contradicts `private beta` in the very next sentence. The dead-link motif it reaches for belongs in a log entry where something genuinely crosses from private to public.
 - **Cassette Mixtapes** · COMING SOON — A preparation studio for digital mixtapes: playlists, metadata, streaming-spec validation, loudness analysis. Waitlist form.
 - **Hazefield** · COMING SOON — A generative drone/ambient music engine for long-form evolving soundscapes. Waitlist form.
 - **HEXCAST** — a music visualizer product; surface here when it reaches product maturity, otherwise it stays a log/research thread.
@@ -396,12 +404,13 @@ Check it before starting work, and tick the boxes as you go.
 
 All commits follow this convention.
 
-- **Format:** `vMAJOR.MINOR.PATCH`, following Semantic Versioning, with **zero-padded MINOR (two digits)** and **PATCH (three digits)**. Example: `v0.01.001`.
+- **Format:** `vMAJOR.MINOR.PATCH`, following Semantic Versioning, with **zero-padded MINOR (two digits)** and **PATCH (three digits)**. Example: `v1.02.014`.
 - **MAJOR:** `0` = in development, `1` = site is live and confirmed online. Increment to `1` only at confirmed launch, then continue the same logic.
-- **MINOR:** tracks the build-in-public video episode (log) number — LOG 002 = `v1.02`, LOG 003 = `v1.03`, and so on. Each documented episode gets its own MINOR, so the version tells you which episode built the current state. (This refines the earlier "MINOR = structural change" rule; each episode is a meaningful chunk of work, so it stays in the spirit of SemVer.)
-- **PATCH:** increment per commit/step *within* an episode — fixes, tweaks, content, refinements. The MINOR stays fixed at the episode number until the next episode begins.
-- **LOG 001 exception:** already committed as the `v1.00` launch (the `0 → 1` moment), so `v1.01` is unused; the episode-matching rule starts clean at LOG 002 (`v1.02`).
-- **Commit messages** begin with the version number, followed by an em dash and a short description. Example: `v1.02.000 — Obsidian publishing pipeline`.
+- **MINOR:** bumps **only when Marcelo explicitly says so**, or when PATCH runs out of numbers (`999` → next MINOR, PATCH restarts at `001`). Nothing else moves it — not an episode, not a redesign, not a new page. **Current line: `v1.02.xxx`. Stay here until told otherwise.**
+- **PATCH:** increment once per commit. It does not reset at an episode, a feature, or a page; it just keeps counting inside the current MINOR.
+- **Versions are NOT tied to LOG or video episode numbers.** (Episode-linked MINOR retired 2026-08-05.) Log numbers count published records and climb forever on their own schedule; a version describes the state of the software. Coupling them meant LOG 037 would force `v1.37` — it does not scale, and it makes the version say nothing about the site. Episodes are tracked in [ROADMAP.md](ROADMAP.md); versions are tracked here. Do not reintroduce the mapping.
+- **Historical note:** `v1.00` was the launch (the `0 → 1` moment). `v1.01` was never used. `v1.02` was opened under the retired episode rule; it stays as the current line rather than being renumbered, since `v1.02.001` and `v1.02.002` are already pushed.
+- **Commit messages** begin with the version number, followed by an em dash and a short description. Example: `v1.02.003 — Products lede`.
 
 ---
 
