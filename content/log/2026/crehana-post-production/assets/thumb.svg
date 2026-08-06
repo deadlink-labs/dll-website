@@ -1,20 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
   <rect width="1280" height="720" fill="#23201b"/>
   <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
-  <text x="120" y="118" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="26" letter-spacing="6" fill="#ece8e1" fill-opacity="0.55">PREPRODUCTION PIPELINE</text>
-  <line x1="120" y1="360" x2="1160" y2="360" stroke="#ece8e1" stroke-opacity="0.22" stroke-width="2"/>
-  <circle cx="120" cy="360" r="10" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
-    <circle cx="328" cy="360" r="10" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
-    <circle cx="536" cy="360" r="10" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
-    <circle cx="744" cy="360" r="10" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
-    <circle cx="952" cy="360" r="10" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
-  <circle cx="1160" cy="360" r="34" fill="#f04a00" fill-opacity="0.12"/>
-  <circle cx="1160" cy="360" r="14" fill="#f04a00"/>
-  <text x="120" y="440" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.5">PLAN</text>
-    <text x="328" y="440" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.5">BACKLOG</text>
-    <text x="536" y="440" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.5">DOCS</text>
-    <text x="744" y="440" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.5">QA</text>
-    <text x="952" y="440" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.5">SOURCING</text>
-    <text x="1160" y="440" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.72">PRODUCTION</text>
-  <text x="120" y="648" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="3" fill="#ece8e1" fill-opacity="0.32">ONE SOURCE OF TRUTH</text>
+
+  <!-- Record stamp -->
+  <text x="110" y="110" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">LOG 010 · SHIPPED · CASE STUDY</text>
+
+  <!-- Crehana mark, rebuilt on its own 3x3 module grid and flattened to panel ink.
+       Cells filled: (0,0) (2,0) (1,1) (2,1) (0,2) (2,2). Module 28, origin 110,238.
+       Group `opacity`, not `fill-opacity`: the rects overlap at cell (2,1) to avoid
+       a seam, and per-child alpha would composite that cell twice. -->
+  <g fill="#ece8e1" opacity="0.72">
+    <rect x="166" y="238" width="28" height="84"/>
+    <rect x="138" y="266" width="56" height="28"/>
+    <rect x="110" y="238" width="28" height="28"/>
+    <rect x="110" y="294" width="28" height="28"/>
+  </g>
+
+  <!-- Client wordmark + what the record is about -->
+  <text x="230" y="318" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="86" font-weight="600" letter-spacing="8" fill="#ece8e1" fill-opacity="0.9">CREHANA</text>
+  <text x="230" y="366" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.5">CONTENT OPERATION → SYSTEM</text>
+
+  <!-- The growth staircase: horizontal runs joined by 45° risers (the three angle
+       families of the network mark), climbing to the live node. This is the read
+       that survives at 176px in the clients band. -->
+  <path d="M250,560 L480,560 L540,500 L770,500 L830,440 L1050,440 L1110,380" fill="none" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="250" cy="560" r="10" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="540" cy="500" r="10" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="830" cy="440" r="10" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="1110" cy="380" r="34" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="1110" cy="380" r="14" fill="#f04a00"/>
+
+  <!-- Drop lines to a single label baseline, so the labels read as a row of
+       instrument legends instead of hanging off the wrong segment. -->
+  <g stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1">
+    <line x1="250" y1="578" x2="250" y2="618"/>
+    <line x1="540" y1="518" x2="540" y2="618"/>
+    <line x1="830" y1="458" x2="830" y2="618"/>
+    <line x1="1110" y1="422" x2="1110" y2="618"/>
+  </g>
+
+  <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="17" letter-spacing="2" fill="#ece8e1">
+    <text x="250" y="644" fill-opacity="0.4">SPREADSHEETS</text>
+    <text x="540" y="644" fill-opacity="0.4">DASHBOARDS</text>
+    <text x="830" y="644" fill-opacity="0.4">ONE BOARD</text>
+    <text x="1110" y="644" fill-opacity="0.55">AUTOMATED</text>
+  </g>
 </svg>

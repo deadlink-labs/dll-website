@@ -180,7 +180,7 @@ Not assigned to an episode yet. Pull one up when it earns a slot.
 
 - [ ] Replace the remaining placeholder posts with real write-ups
 - [ ] Uruguay Outfitters case study — real post (currently a placeholder the Home band links to)
-- [ ] Crehana case study — real post
+- [x] Crehana case study — real post (LOG 010, six specimen tiles, `npm run tiles`)
 - [ ] Portrait photo on About (CLAUDE.md §5.4 calls for one; the page ships without it)
 - [ ] `[~]` Cover mark identity work — **uncommitted WIP** on branch `identity-dropout-cover`: modified `src/components/Cover.astro`, untracked `src/components/DropoutMark.astro`
 - [ ] Products: purchasable checkout + payment provider (explicitly **not v1** — CLAUDE.md §5.3)

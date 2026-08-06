@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <text x="110" y="140" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="26" letter-spacing="4" fill="#ece8e1" fill-opacity="0.6">WHERE IT STARTED</text>
+  <text x="110" y="174" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="16" letter-spacing="3" fill="#ece8e1" fill-opacity="0.4">THREE YEARS, ONE CLIENT, TWO SIDES OF THE CONTRACT</text>
+
+  <!-- Client mark, top right: the whole arc is Crehana work. Same 3x3 module
+       grid as the cover, module 28, origin 1086,104. Group `opacity` so the
+       cell (2,1) overlap does not composite twice. -->
+  <g fill="#ece8e1" opacity="0.55">
+    <rect x="1142" y="104" width="28" height="84"/>
+    <rect x="1114" y="132" width="56" height="28"/>
+    <rect x="1086" y="104" width="28" height="28"/>
+    <rect x="1086" y="160" width="28" height="28"/>
+  </g>
+
+  <!-- The spine -->
+  <line x1="250" y1="400" x2="1030" y2="400" stroke="#ece8e1" stroke-opacity="0.22" stroke-width="2"/>
+
+  <circle cx="250" cy="400" r="12" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="640" cy="400" r="12" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="1030" cy="400" r="34" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="1030" cy="400" r="14" fill="#f04a00"/>
+
+  <!-- Above the line: when and where -->
+  <text x="250" y="360" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.5">2021 · BUEHUB</text>
+  <text x="640" y="360" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.5">2022 · BRAZIL</text>
+  <text x="1030" y="360" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.5">2022-24 · LATAM</text>
+
+  <!-- Below the line: what came out of each -->
+  <text x="250" y="452" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.72">DUBBING · 25+ PEOPLE</text>
+  <text x="640" y="452" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.72">200+ COURSES · PT</text>
+  <text x="1030" y="452" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.72">THE SYSTEM</text>
+
+  <!-- Which side of the contract -->
+  <text x="250" y="506" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="16" letter-spacing="2" fill="#ece8e1" fill-opacity="0.4">FROM OUTSIDE</text>
+  <text x="640" y="506" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="16" letter-spacing="2" fill="#ece8e1" fill-opacity="0.4">FROM INSIDE</text>
+  <text x="1030" y="506" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="16" letter-spacing="2" fill="#ece8e1" fill-opacity="0.4">RUNNING IT</text>
+
+  <text x="110" y="648" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="18" letter-spacing="3" fill="#ece8e1" fill-opacity="0.32">IT RAN ON PEOPLE. PEOPLE DO NOT SCALE.</text>
+</svg>

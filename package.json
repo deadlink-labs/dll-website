@@ -10,6 +10,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "tiles": "node scripts/svg-to-webp.mjs",
     "astro": "astro"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "@astrojs/check": "^0.9.4",
     "@tailwindcss/vite": "^4.1.0",
     "@types/node": "^26.1.1",
+    "sharp": "0.34.5",
     "tailwindcss": "^4.1.0",
     "typescript": "^5.7.0"
   }

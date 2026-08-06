@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <text x="110" y="140" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="26" letter-spacing="4" fill="#ece8e1" fill-opacity="0.6">ONE BOARD, SIX STAGES</text>
+  <text x="110" y="174" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="16" letter-spacing="3" fill="#ece8e1" fill-opacity="0.4">A COURSE MOVES LEFT TO RIGHT, WITH AN OWNER AND A DUE DATE</text>
+
+  <!-- Column headers + rules. Pitch 179, column width 163. -->
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="15" letter-spacing="1.5" fill="#ece8e1" fill-opacity="0.5">
+    <text x="110" y="232">PLAN</text>
+    <text x="289" y="232">BACKLOG</text>
+    <text x="468" y="232">DOCS</text>
+    <text x="647" y="232">QA DOCS</text>
+    <text x="826" y="232">SOURCING</text>
+    <text x="1005" y="232">PRODUCTION</text>
+  </g>
+  <g stroke="#ece8e1" stroke-opacity="0.22" stroke-width="1">
+    <line x1="110" y1="250" x2="273" y2="250"/>
+    <line x1="289" y1="250" x2="452" y2="250"/>
+    <line x1="468" y1="250" x2="631" y2="250"/>
+    <line x1="647" y1="250" x2="810" y2="250"/>
+    <line x1="826" y1="250" x2="989" y2="250"/>
+    <line x1="1005" y1="250" x2="1168" y2="250"/>
+  </g>
+
+  <!-- Cards. Height 46, gap 12, uneven counts so it reads as a live board. -->
+  <g fill="#ece8e1" fill-opacity="0.14">
+    <rect x="110" y="272" width="163" height="46" rx="2"/>
+    <rect x="110" y="330" width="163" height="46" rx="2"/>
+    <rect x="110" y="388" width="163" height="46" rx="2"/>
+
+    <rect x="289" y="272" width="163" height="46" rx="2"/>
+    <rect x="289" y="330" width="163" height="46" rx="2"/>
+    <rect x="289" y="388" width="163" height="46" rx="2"/>
+    <rect x="289" y="446" width="163" height="46" rx="2"/>
+
+    <rect x="468" y="272" width="163" height="46" rx="2"/>
+    <rect x="468" y="330" width="163" height="46" rx="2"/>
+
+    <rect x="647" y="272" width="163" height="46" rx="2"/>
+    <rect x="647" y="330" width="163" height="46" rx="2"/>
+    <rect x="647" y="388" width="163" height="46" rx="2"/>
+
+    <rect x="826" y="272" width="163" height="46" rx="2"/>
+    <rect x="826" y="330" width="163" height="46" rx="2"/>
+
+    <rect x="1005" y="272" width="163" height="46" rx="2"/>
+    <rect x="1005" y="330" width="163" height="46" rx="2"/>
+    <rect x="1005" y="388" width="163" height="46" rx="2"/>
+  </g>
+
+  <!-- One title line per card. -->
+  <g fill="#ece8e1" fill-opacity="0.26">
+    <rect x="122" y="290" width="104" height="3" rx="1.5"/>
+    <rect x="122" y="348" width="126" height="3" rx="1.5"/>
+    <rect x="122" y="406" width="88" height="3" rx="1.5"/>
+
+    <rect x="301" y="290" width="118" height="3" rx="1.5"/>
+    <rect x="301" y="348" width="92" height="3" rx="1.5"/>
+    <rect x="301" y="406" width="130" height="3" rx="1.5"/>
+    <rect x="301" y="464" width="100" height="3" rx="1.5"/>
+
+    <rect x="480" y="290" width="96" height="3" rx="1.5"/>
+    <rect x="480" y="348" width="124" height="3" rx="1.5"/>
+
+    <rect x="659" y="290" width="112" height="3" rx="1.5"/>
+    <rect x="659" y="348" width="86" height="3" rx="1.5"/>
+    <rect x="659" y="406" width="122" height="3" rx="1.5"/>
+
+    <rect x="838" y="290" width="94" height="3" rx="1.5"/>
+    <rect x="838" y="348" width="120" height="3" rx="1.5"/>
+
+    <rect x="1017" y="290" width="108" height="3" rx="1.5"/>
+    <rect x="1047" y="348" width="98" height="3" rx="1.5"/>
+    <rect x="1017" y="406" width="116" height="3" rx="1.5"/>
+  </g>
+
+  <!-- The one live card: launching now. -->
+  <circle cx="1029" cy="349" r="14" fill="#f04a00" fill-opacity="0.14"/>
+  <circle cx="1029" cy="349" r="6.5" fill="#f04a00"/>
+
+  <!-- Bottom band: what the board buys you, on both edges of one rule. -->
+  <line x1="110" y1="580" x2="1168" y2="580" stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1"/>
+  <text x="110" y="624" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="3" fill="#ece8e1" fill-opacity="0.32">ONE SOURCE OF TRUTH</text>
+  <text x="1168" y="624" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="3" fill="#ece8e1" fill-opacity="0.32">EVERY STAGE CARRIES AN SLA</text>
+</svg>

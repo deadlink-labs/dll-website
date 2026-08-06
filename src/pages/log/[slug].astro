@@ -184,11 +184,19 @@ const label = recordLabel(entry);
   .prose :global(strong) {
     font-weight: 600;
   }
+  /* Tailwind preflight strips list markers globally; prose lists want them back
+     (the li::marker rule below styles them). */
   .prose :global(ul),
   .prose :global(ol) {
     margin: 0 0 1.4rem;
     padding-left: 1.4rem;
     max-width: 68ch;
+  }
+  .prose :global(ul) {
+    list-style: disc;
+  }
+  .prose :global(ol) {
+    list-style: decimal;
   }
   .prose :global(li) {
     margin: 0 0 0.5rem;
