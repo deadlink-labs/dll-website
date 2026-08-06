@@ -33,13 +33,16 @@
   <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-weight="600" fill="#ece8e1">
     <text x="240" y="480" font-size="72" fill-opacity="0.55">25+</text>
     <text x="620" y="480" font-size="96" fill-opacity="0.72">200+</text>
-    <text x="1000" y="480" font-size="110" fill-opacity="0.95">SYSTEM</text>
+    <text x="1000" y="480" font-size="110" fill-opacity="0.95">600+</text>
   </g>
+  <!-- PT vs LATAM is what stops two adjacent course counts reading as a
+       contradiction: the second is the Brazil subset, the third the total. -->
   <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">
     <text x="240" y="530">PEOPLE</text>
-    <text x="620" y="530">COURSES</text>
-    <text x="1000" y="530">DASHBOARDS · JIRA</text>
+    <text x="620" y="530">COURSES · PT</text>
+    <text x="1000" y="530">COURSES · LATAM</text>
   </g>
+  <text x="1000" y="566" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">JIRA · DASHBOARDS · SLACK AUTO</text>
 
-  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">IT RAN ON PEOPLE. PEOPLE DO NOT SCALE.</text>
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">THEY WERE FLYING BLIND. NOW EVERY STEP HAS A DASHBOARD.</text>
 </svg>

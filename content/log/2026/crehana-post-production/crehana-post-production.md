@@ -81,16 +81,19 @@ touch the engine.
 ## Centralize it
 
 Then I moved the whole workflow into Jira and made it the only place the work
-lived. Production plan, backlog, documents, QA documents, sourcing, production.
-Each one a stage a course moves through, with an owner and a due date. The
-spreadsheets went away, and so did a Notion board that had quietly stopped being
-true months earlier.
+lived. Here is what that bought.
+
+- **Six stages, one board.** Production plan, backlog, documents, QA documents,
+  sourcing, production. A course moves through them in order.
+- **One source of truth.** The spreadsheets went away, and so did a Notion board
+  that had quietly stopped being true months earlier.
+- **Clear handoffs.** Every stage has an owner and a due date, so work stopped
+  falling into the gap between two departments.
+- **An SLA on every stage.** Once a stage has an owner and a date, you can say
+  what late means, and the board says it instead of a person.
 
 That one change did more than any script I wrote. When every team reads the same
 board, the meetings about who has what stop happening.
-
-It also made the SLAs possible. Once a stage has an owner and a date, you can say
-what late means, and the board can say it instead of a person.
 
 ![A six-stage Jira board: plan, backlog, documents, QA documents, sourcing, production, with one course live in the production stage.](./assets/board.svg)
 
@@ -104,14 +107,16 @@ software. Jira, Python, and Google Sheets did nearly all of it.
 - Track scores and launch progress.
 - Publish the upcoming launch calendar straight off the board, instead of someone
   rebuilding it by hand every week.
-- Notify the next owner. Send the instructor their update.
+- Notify the next owner when a stage changes hands, and send the instructor
+  their update over Slack and email.
 - Break down cost per course, so the numbers arrived without anyone assembling
   them.
 
 The results were the kind you can measure. Post-production output went from about
 500 minutes a month to over 1,000. Correction turnaround dropped from weeks to
 under 48 hours. The pipeline held at full uptime. Throughput, counted in courses
-out the door, rose about 80 percent.
+out the door, rose about 80 percent. Across the three years the operation shipped
+more than 600 courses.
 
 One honest note. That automation meant a role we had been staffing stopped being
 necessary. That is the part of this work nobody puts on a slide, and it is worth
@@ -165,9 +170,9 @@ distribution became something you could look at instead of argue about.
 **The work became predictable.** How booked the studios were, and what was coming
 next, stopped being a surprise, so planning replaced firefighting.
 
-![Team metrics open to everyone 24/7: three editors' monthly output shown as meters against a goal line, one of them past it.](./assets/meters.svg)
+![A self-served OKR card: monthly output in minutes against a target line, a gauge showing progress toward the quarter goal, and correction turnaround against its 48 hour SLA.](./assets/meters.svg)
 
-*Recreated for this post. The shape is faithful; the labels are roles rather than people, and the figures are not Crehana's real per-person output.*
+*One contributor's card, rebuilt from the real dashboard with the name removed. Anyone on the team could open their own, at any hour, without asking a manager.*
 
 ## The decisions, on the record
 

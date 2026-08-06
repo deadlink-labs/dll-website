@@ -55,6 +55,16 @@
     <rect x="880" y="567" width="220" height="3" rx="1.5"/>
   </g>
 
+  <!-- Flow chevrons in the 40px gutters, centred on each row's card stack. The
+       wrap from DOCS to QA DOCS is carried by reading order, as it is in text —
+       a wrap arrow would have to cross the whole tile. -->
+  <g fill="none" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M436,290 L446,300 L436,310"/>
+    <path d="M833,290 L843,300 L833,310"/>
+    <path d="M436,510 L446,520 L436,530"/>
+    <path d="M833,510 L843,520 L833,530"/>
+  </g>
+
   <!-- The one live card: launching now -->
   <circle cx="890" cy="477" r="15" fill="#f04a00" fill-opacity="0.14"/>
   <circle cx="890" cy="477" r="7" fill="#f04a00"/>
