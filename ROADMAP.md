@@ -45,6 +45,21 @@ in the repo by an agent · `BOTH` = paired.
 - [x] `v1.00.002` — title-named post files, Obsidian-readable `2026-07-27`
 - [x] `v1.00.003` — positioning line, footer channels, About restructure `2026-08-05`
 
+### LOG 011 · Field service reports, a pilot proposal
+`v1.02.011` · **written 2026-08-06**
+
+- [x] Client deck translated into five specimen tiles, not ported as CSS (the deck
+      is navy + Plex Serif + coloured cards; the site is none of those)
+- [x] Cover generated from `npm run cover`, no client mark (the client is anonymous)
+- [x] First animated in-post tile: marching dashes on the pipeline connectors,
+      driven from [\[slug\].astro](src/pages/log/[slug].astro) via a `.flow` class
+      that survives the SVG inliner
+- [x] First `prefers-reduced-motion` guard in the codebase
+- [x] Third `clientWork` row, labelled `PROPOSAL · 2026`
+- [ ] `AI` Add a reduced-motion guard to the cover mark's rAF loop
+      ([NetworkMark.astro](src/components/NetworkMark.astro)) — it currently runs
+      forever with no visibility check and no motion query
+
 ---
 
 ## LOG 002 · Obsidian publishing pipeline `[~] IN PROGRESS`

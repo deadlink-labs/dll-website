@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <!-- The three-way cost of a report nobody finishes. Hero is the count of
+       named costs; the live node marks the one that is being paid today, in
+       someone else's plant. Spec: CLAUDE.md §3 · constants: src/lib/tile-system.mjs -->
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">THE COST OF AN UNFINISHED SERVICE REPORT</text>
+
+  <text x="64" y="300" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="130" font-weight="600" fill="#ece8e1" fill-opacity="0.95">3×</text>
+  <text x="64" y="350" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">WAYS ONE INCOMPLETE REPORT COSTS</text>
+
+  <!-- Column markers. The outward cost is live: it is the one being paid now. -->
+  <circle cx="100" cy="470" r="36" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="100" cy="470" r="15" fill="#f04a00"/>
+  <circle cx="484" cy="470" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="868" cy="470" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+
+  <text x="64" y="524" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="3" fill="#ece8e1" fill-opacity="0.55">OUTWARD</text>
+  <text x="64" y="568" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">AN AUDIT FINDING IN</text>
+  <text x="64" y="598" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">THE CUSTOMER'S PLANT</text>
+
+  <text x="448" y="524" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="3" fill="#ece8e1" fill-opacity="0.55">INWARD</text>
+  <text x="448" y="568" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">NO FAILURE HISTORY.</text>
+  <text x="448" y="598" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">EVERY SERVICE AT ZERO</text>
+
+  <text x="832" y="524" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="3" fill="#ece8e1" fill-opacity="0.55">FORWARD</text>
+  <text x="832" y="568" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">THE ASSET THEY ARE</text>
+  <text x="832" y="598" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">NOT BUILDING</text>
+</svg>

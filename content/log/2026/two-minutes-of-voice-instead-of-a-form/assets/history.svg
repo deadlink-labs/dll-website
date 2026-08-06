@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <!-- The subproduct. The report is the deliverable; the structured history is
+       the asset. Curve is a projection at the volume the costing assumes, and
+       the footnote says so. Live node sits at month six, where the history
+       becomes worth selling against. -->
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">THE SUBPRODUCT · WHAT THE REPORTS LEAVE BEHIND</text>
+
+  <path d="M100,500 L204,440 L308,380 L412,320 L516,260 L620,200 L620,560 L100,560 Z" fill="#ece8e1" fill-opacity="0.1"/>
+  <line x1="64" y1="560" x2="680" y2="560" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="1"/>
+  <path d="M100,500 L204,440 L308,380 L412,320 L516,260 L620,200" fill="none" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="100" cy="500" r="8" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="204" cy="440" r="8" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="308" cy="380" r="8" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="412" cy="320" r="8" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="516" cy="260" r="8" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="620" cy="200" r="36" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="620" cy="200" r="15" fill="#f04a00"/>
+
+  <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">
+    <text x="100" y="596">M1</text>
+    <text x="204" y="596">M2</text>
+    <text x="308" y="596">M3</text>
+    <text x="412" y="596">M4</text>
+    <text x="516" y="596">M5</text>
+    <text x="620" y="596">M6</text>
+  </g>
+
+  <text x="720" y="300" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="120" font-weight="600" fill="#ece8e1" fill-opacity="0.95">≈600</text>
+  <text x="720" y="344" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">RECORDS BY MONTH SIX</text>
+
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">
+    <text x="720" y="444">PREVENTIVE CONTRACTS</text>
+    <text x="720" y="492">SPARES, CALCULATED</text>
+    <text x="720" y="540">A CUSTOMER PORTAL</text>
+  </g>
+
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">PROJECTED AT THE 100 SERVICES A MONTH IN THE COSTING.</text>
+</svg>

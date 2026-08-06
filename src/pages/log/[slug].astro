@@ -182,6 +182,29 @@ const label = recordLabel(entry);
   .prose :global(.specimen-fig svg text) {
     font-family: var(--font-mono);
   }
+  /* Marching dashes on a pipeline tile's connectors. The one piece of motion
+     allowed inside a post: the dashes ARE the chart (CLAUDE.md §3 permits lines
+     that carry the diagram, and bans the ones that merely divide), on a tile
+     about data moving through a pipeline.
+
+     It works because remark-svg-specimen inlines the tile as a real vector and
+     strips only width/height/font-family, so class survives and page CSS can
+     drive it. The dasharray stays in the .svg so the file is still a dashed
+     diagram on its own, opened in Obsidian or anywhere else; only the movement
+     lives here. Nothing else on the site animates while the reader is reading. */
+  @keyframes specimen-flow {
+    to {
+      stroke-dashoffset: -24;
+    }
+  }
+  .prose :global(.specimen-fig svg .flow) {
+    animation: specimen-flow 1.1s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .prose :global(.specimen-fig svg .flow) {
+      animation: none;
+    }
+  }
   /* ```terminal fenced-block -> specimen panel. Re-assert the specimen metrics
      over the generic prose <pre> above (base look lives in global.css). */
   .prose :global(pre.specimen) {
