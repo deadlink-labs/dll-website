@@ -15,7 +15,7 @@ web-title: "Nobody fills in the form. I automated it away with n8n and Claude."
 web-pub-date: 2026-07-29
 web-snippet: "Field technicians never finished their service reports. A two-minute WhatsApp voice note in, a finished report out: Whisper transcribing on their own server, Claude structuring, n8n running the whole flow."
 web-type: log
-web-number: 11
+web-number: 12
 web-stage: SHIPPED
 web-tags: [CLIENT-WORK, AI, N8N, WHATSAPP, WHISPER]
 web-thumb: "./assets/thumb.webp"   # the post's own artwork, not a generated tile; source at assets/thumb.svg
