@@ -46,16 +46,27 @@ in the repo by an agent · `BOTH` = paired.
 - [x] `v1.00.003` — positioning line, footer channels, About restructure `2026-08-05`
 
 ### LOG 011 · Field service reports, a pilot proposal
-`v1.02.011` · **written 2026-08-06**
+`v1.02.011` – `v1.02.013` · **written 2026-08-06**
 
-- [x] Client deck translated into five specimen tiles, not ported as CSS (the deck
-      is navy + Plex Serif + coloured cards; the site is none of those)
-- [x] Cover generated from `npm run cover`, no client mark (the client is anonymous)
-- [x] First animated in-post tile: marching dashes on the pipeline connectors,
-      driven from [\[slug\].astro](src/pages/log/[slug].astro) via a `.flow` class
-      that survives the SVG inliner
-- [x] First `prefers-reduced-motion` guard in the codebase
-- [x] Third `clientWork` row, labelled `PROPOSAL · 2026`
+- [x] The proposal written up, anonymous to sector level
+- [x] `clientWork` row labelled `PROPOSAL · 2026`, first in the band
+- [x] First `prefers-reduced-motion` guards in the codebase
+
+**`v1.02.011` shipped this wrong and `v1.02.013` fixed it.** The first pass
+converted the client deck into monochrome graphite tiles on the argument that
+CLAUDE.md required it. It did not, and the deck's palette turns out to be a cousin
+of the site's, not an alien. The cover came out of `npm run cover` and was a near
+duplicate of LOG 010's.
+
+- [x] The deck's **n8n canvas lifted verbatim**, colour and animation intact
+- [x] WhatsApp chat rebuilt as a phone, in WhatsApp's own colours
+- [x] Six-step flow and both card artifacts rebuilt in the deck's palette
+- [x] Cover built from the post's own artwork (phone + canvas), not generated
+- [x] [remark-svg-specimen](src/plugins/remark-svg-specimen.mjs) no longer strips
+      *every* `font-family`, only the graphite stack — it was flattening the
+      canvas's deliberate Sans/Mono mix to all mono
+- [x] Rule recorded in CLAUDE.md §3: when the post has artwork, use the artwork
+
 - [ ] `AI` Add a reduced-motion guard to the cover mark's rAF loop
       ([NetworkMark.astro](src/components/NetworkMark.astro)) — it currently runs
       forever with no visibility check and no motion query

@@ -7,17 +7,18 @@ people: []
 aliases:
   - "LOG 011"
   - "Service report proposal"
+  - "Informes de servicio"
 
 # --- web-* namespace (the ONLY fields the site reads) ---
 web-status: published
-web-title: "Two minutes of voice instead of a form"
+web-title: "Nobody fills in the form. I automated it away with n8n and Claude."
 web-pub-date: 2026-07-29
-web-snippet: "A pilot proposal for a manufacturer whose technicians never finish their service reports: the technician talks for two minutes on WhatsApp, and the system writes the report."
+web-snippet: "Field technicians never finished their service reports. A two-minute WhatsApp voice note in, a finished report out: Whisper transcribing on their own server, Claude structuring, n8n running the whole flow."
 web-type: log
 web-number: 11
 web-stage: SHIPPED
-web-tags: [CLIENT-WORK, AI, N8N, WHATSAPP]
-web-thumb: "./assets/thumb.webp"   # on-brand specimen tile (generated); source at assets/thumb.svg
+web-tags: [CLIENT-WORK, AI, N8N, WHATSAPP, WHISPER]
+web-thumb: "./assets/thumb.webp"   # the post's own artwork, not a generated tile; source at assets/thumb.svg
 ---
 
 A field technician finishes a service at a customer's plant, gets in the van, and
@@ -53,7 +54,7 @@ Then there is the side nobody is looking at. Without structured data there is no
 failure history per machine and per customer. Every service starts from zero.
 Spares and warranties get estimated by feel, because there is nothing to count.
 
-![The cost of an unfinished service report, three ways: outward, an audit finding in the customer's plant; inward, no failure history, so every service starts at zero; forward, the asset they are not building.](./assets/cost.svg)
+![Three cards from the proposal. Outward: an audit finding in the customer's plant, because pharmaceutical and dairy quality departments file these reports as controlled documents. Inward: no failure history, so every service starts at zero and spares are estimated by feel. Forward: the asset they are not building.](./assets/cost.svg)
 
 The constraint that decides everything came out of watching how the report
 actually gets filled in, not from the form itself. The technician is dirty, in a
@@ -68,7 +69,7 @@ conditions at that point, not at the artifact. The form was never the problem.
 
 Six steps. The technician is in exactly one of them.
 
-![Six steps from audio to report: the technician sends the audio, gets an instant acknowledgement, the audio is transcribed, the data is structured, anything missing is asked for, and the report and its history come out the other end. Step 01 is the only one the technician is in.](./assets/flow.svg)
+![Six steps from audio to report, with animated connectors. The technician sends an audio, gets an instant acknowledgement, the audio is transcribed on their own server, the data is structured, anything missing is asked for once, and the report and its history come out the other end. Only step 01 is green, because only step 01 involves a person.](./assets/flow.svg)
 
 He opens WhatsApp, finds a contact, and talks. If he took photos he sends those
 too. He gets an acknowledgement immediately, which matters more than it sounds
@@ -100,7 +101,7 @@ So every design choice attacks adoption:
 - **He always gets his report.** He can read what the system put in his mouth and
   correct it.
 
-![The follow-up exchange, in Spanish. The system asks for everything it is missing in one message, the technician answers in a single line from the van, and the report closes in one round.](./assets/whatsapp.svg)
+![A phone showing the follow-up exchange in WhatsApp, in Spanish. The system asks for everything it is missing in a single message, the technician answers in one line from the van, and the report closes in one round.](./assets/whatsapp.svg)
 
 *The exchange as it would run. The system says it is close to closing and asks
 three things at once: serial number of the exchanger, which spares, what time he
@@ -128,11 +129,11 @@ the PDF: no. Sending it: no.
 One out of ten. The other nine are plumbing, and plumbing has to give the same
 answer every time.
 
-![The flow: WhatsApp trigger, local transcription, model structuring, a completeness check, storage and PDF, all inside the customer's own server. The ask-again loop is capped at two rounds. One dashed line leaves the boundary, and it is the model call, at about USD 3.30 a month for 100 services.](./assets/pipeline.svg)
+![The n8n canvas: a WhatsApp trigger, Whisper transcribing, Claude structuring, a completeness check, PostgreSQL and PDF generation, with an ask-again branch that loops back to the structuring step, capped at two rounds. Data animates along the connectors. Claude is the only node outlined in orange, because it is the only step that calls out of the network.](./assets/pipeline.svg)
 
-*The flow as it runs. Everything inside the frame is on their own hardware. The
-one line crossing the boundary is the model call, and it carries text, never
-audio.*
+*The n8n canvas from the proposal, unaltered. Everything in it runs on their own
+hardware except the Claude node, outlined in orange, which is the single call that
+leaves the network. It carries text, never audio.*
 
 If a model runs the whole pipeline, every execution is a fresh decision. One day
 it names a field differently. One day it decides to tidy up the work description
@@ -182,12 +183,13 @@ more, and it is the reason I would have wanted this project.
 
 At the volume the costing assumes, six months in they have a few hundred
 structured service records: which machine, at which customer, failed how, and what
-was replaced. No competitor selling into those plants has that.
+was replaced. No competitor selling into those plants has that, and it accumulates
+whether anyone is paying attention to it or not.
 
-![What the reports leave behind: a curve accumulating to roughly 600 structured service records by month six, which is what makes preventive contracts, calculated spare stock and a customer portal possible.](./assets/history.svg)
+![Three cards on what the reports leave behind at six months: preventive maintenance contracts sold on data rather than intuition, spare stock held at customer sites moving from estimated to counted, and a customer portal that is a sellable product built from the same data.](./assets/history.svg)
 
-*Projected at the hundred services a month the costing uses. The point is the
-shape, not the number.*
+*The three cards straight out of the proposal deck, in Spanish as they were
+sent. The report is the deliverable. The history is the asset.*
 
 Three things become possible with it, and none of them are possible without it.
 "This machine had four corrective interventions in a year" is the sentence that

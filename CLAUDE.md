@@ -135,6 +135,8 @@ Almost none. YouTube thumbnails carry visuals in log feeds. One portrait of Marc
 
 **Every record carries a header image.** Each post opens with contained header media (record width, 16:9, rounded — never a full-bleed hero): the video facade when `web-video` is set, otherwise the `web-thumb`. When a post has no photograph to earn the slot, generate an **on-brand graphite specimen tile** in the house style (mono labels, a scarce orange live node — see LOG 001's network-mark tile and LOG 003's pipeline tile) rather than reaching for stock or AI imagery. The same `web-thumb` is reused on the homepage feed card and the Shipped-for-clients band.
 
+**When the post already has artwork, use the artwork** (settled 2026-08-06, LOG 011). A client deck, a real dashboard, a tool's own canvas: bring it in at full fidelity, colour and motion included, and let it sit on the paper as a specimen. The site's palette is narrow because most posts have nothing to show, not because colour is banned — a source with its own considered design system usually sits on the paper without a fight (the LOG 011 deck's `#F1EFEA` paper and `#C0451A` accent are within a hair of `--paper` and `--signal`). **`npm run cover` is for posts with no artwork of their own.** It draws one staircase and swaps the words, so two posts generated from it look like the same image — which is exactly what happened to LOG 010 and LOG 011 before this rule existed. If the post ships with something worth looking at, build the cover out of that instead. Two covers that differ only in wording is a failure of the cover, not a success of the system.
+
 ### Specimen tiles (the settled system)
 
 The graphite tiles are the site's only house-made imagery. Their alignment is

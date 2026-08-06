@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1750" height="430" viewBox="0 0 1750 430">
+  <!-- ===================================================================
+       THE n8n CANVAS - lifted from the client deck, not redrawn.
+       Source: Claude Design "Plantilla Pitch Consultoria", slide 08.
+       Carries no client name; the workflow is named for what it does.
+
+       Self-contained on purpose. The keyframe and the reduced-motion
+       guard live in this file rather than in the page, so it still
+       animates opened on its own, in Obsidian, or anywhere else. The
+       page adds nothing.
+
+       Palette is the deck's own (tokens/colors.css):
+         #2C566E steel   infrastructure and data
+         #C0451A accent  the one step that needs judgement
+         #F4F2EE canvas  #D3CFC7 lines  #8A8377 muted
+       Type is deliberately mixed: Plex Sans for node titles, Plex Mono
+       for the sublabels. remark-svg-specimen must NOT strip these.
+       =================================================================== -->
+  <style>
+    @keyframes n8nflow { to { stroke-dashoffset: -10; } }
+    @media (prefers-reduced-motion: reduce) {
+      [style*="n8nflow"] { animation: none !important; }
+    }
+  </style>
+
+    <defs><pattern id="n8ngrid3" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.6" fill="#D3CFC7"></circle></pattern></defs>
+    <rect x="1" y="1" width="1748" height="428" rx="12" fill="#FFFFFF" stroke="#D3CFC7" stroke-width="2"></rect>
+    <rect x="2" y="48" width="1746" height="380" fill="#F4F2EE"></rect>
+    <rect x="2" y="48" width="1746" height="380" fill="url(#n8ngrid3)"></rect>
+    <path d="M1 48H1749" stroke="#D3CFC7" stroke-width="2" fill="none"></path>
+    <circle cx="28" cy="24" r="6" fill="#D3CFC7"></circle><circle cx="52" cy="24" r="6" fill="#D3CFC7"></circle><circle cx="76" cy="24" r="6" fill="#D3CFC7"></circle>
+    <text x="104" y="33" font-family="'IBM Plex Mono',monospace" font-size="24" fill="#8A8377">informe-de-servicio · última ejecución: OK</text>
+    <path d="M270,189 H301" stroke="#2C566E" stroke-width="2" fill="none" stroke-dasharray="7 7" style="animation:n8nflow .9s linear infinite"></path><path d="M301,182 l11,7 -11,7z" fill="#2C566E"></path>
+    <path d="M562,189 H593" stroke="#2C566E" stroke-width="2" fill="none" stroke-dasharray="7 7" style="animation:n8nflow .9s linear infinite"></path><path d="M593,182 l11,7 -11,7z" fill="#2C566E"></path>
+    <path d="M854,189 H885" stroke="#2C566E" stroke-width="2" fill="none" stroke-dasharray="7 7" style="animation:n8nflow .9s linear infinite"></path><path d="M885,182 l11,7 -11,7z" fill="#2C566E"></path>
+    <path d="M1146,189 H1177" stroke="#2C566E" stroke-width="2" fill="none" stroke-dasharray="7 7" style="animation:n8nflow .9s linear infinite"></path><path d="M1177,182 l11,7 -11,7z" fill="#2C566E"></path>
+    <path d="M1438,189 H1469" stroke="#2C566E" stroke-width="2" fill="none" stroke-dasharray="7 7" style="animation:n8nflow .9s linear infinite"></path><path d="M1469,182 l11,7 -11,7z" fill="#2C566E"></path>
+    <text x="1150" y="171" font-family="'IBM Plex Mono',monospace" font-size="25" fill="#5A6470">sí</text>
+    <path d="M1021,248 V336 Q1021,346 1011,346 H991" stroke="#8A8377" stroke-width="2" fill="none" stroke-dasharray="7 7" style="animation:n8nflow .9s linear infinite"></path>
+    <path d="M991,339 l-11,7 11,7z" fill="#8A8377"></path>
+    <text x="1035" y="322" font-family="'IBM Plex Mono',monospace" font-size="25" fill="#5A6470">no</text>
+    <path d="M700,346 H660 Q650,346 650,336 V259" stroke="#8A8377" stroke-width="2" fill="none" stroke-dasharray="7 7" style="animation:n8nflow .9s linear infinite"></path>
+    <path d="M643,259 l7,-11 7,11z" fill="#8A8377"></path>
+    <rect x="20" y="130" width="250" height="118" rx="12" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.8"></rect>
+    <rect x="38" y="148" width="40" height="40" rx="10" fill="#E7EFE9"></rect>
+    <g transform="translate(45,155) scale(1.0833)" fill="#2E7D5B"><path d="M12 2.2A9.7 9.7 0 0 0 3.7 17L2.3 21.7l4.9-1.4A9.7 9.7 0 1 0 12 2.2zm0 1.9a7.8 7.8 0 1 1-4 14.5l-.4-.2-2.5.7.7-2.4-.25-.4A7.8 7.8 0 0 1 12 4.1z"></path><path d="M9.1 7.6c-.16-.36-.33-.37-.48-.38h-.4a.79.79 0 0 0-.57.27 2.4 2.4 0 0 0-.75 1.79A4.2 4.2 0 0 0 7.8 11a8.5 8.5 0 0 0 3.55 3.12c1.72.68 2.07.54 2.44.5a2.1 2.1 0 0 0 1.4-.98 1.7 1.7 0 0 0 .12-.98c-.05-.09-.18-.14-.38-.24s-1.19-.59-1.37-.65-.32-.1-.45.1-.52.65-.63.78-.23.15-.43.05a6.9 6.9 0 0 1-2.03-1.25 7.6 7.6 0 0 1-1.4-1.75c-.15-.25 0-.38.1-.5s.22-.26.33-.4a1.5 1.5 0 0 0 .22-.36.4.4 0 0 0 0-.38c-.06-.1-.45-1.1-.62-1.5z"></path></g>
+    <text x="38" y="214" font-family="'IBM Plex Sans',sans-serif" font-size="26" font-weight="600" fill="#14181B">WhatsApp</text>
+    <text x="38" y="240" font-family="'IBM Plex Mono',monospace" font-size="24" fill="#5A6470">trigger</text>
+    <circle cx="20" cy="189" r="6" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"></circle>
+    <circle cx="270" cy="189" r="6" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"></circle>
+    <rect x="312" y="130" width="250" height="118" rx="12" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.8"></rect>
+    <rect x="330" y="148" width="40" height="40" rx="10" fill="#E3EBF0"></rect>
+    <g transform="translate(337,155) scale(1.0833)" fill="none" stroke="#2C566E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4M8 6.5v11M12 4v16M16 8v8M20 11v2"></path></g>
+    <text x="330" y="214" font-family="'IBM Plex Sans',sans-serif" font-size="26" font-weight="600" fill="#14181B">Whisper</text>
+    <text x="330" y="240" font-family="'IBM Plex Mono',monospace" font-size="24" fill="#5A6470">transcribir</text>
+    <circle cx="312" cy="189" r="6" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"></circle>
+    <circle cx="562" cy="189" r="6" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"></circle>
+    <rect x="604" y="130" width="250" height="118" rx="12" fill="#FFFFFF" stroke="#C0451A" stroke-width="1.8"></rect>
+    <rect x="622" y="148" width="40" height="40" rx="10" fill="#FBEADF"></rect>
+    <g transform="translate(629,155) scale(1.0833)" fill="none" stroke="#C0451A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5v15M5.5 8.25l13 7.5M5.5 15.75l13-7.5"></path></g>
+    <text x="622" y="214" font-family="'IBM Plex Sans',sans-serif" font-size="26" font-weight="600" fill="#14181B">Claude</text>
+    <text x="622" y="240" font-family="'IBM Plex Mono',monospace" font-size="24" fill="#C0451A">estructurar ↗</text>
+    <circle cx="604" cy="189" r="6" fill="#FFFFFF" stroke="#C0451A" stroke-width="1.6"></circle>
+    <circle cx="854" cy="189" r="6" fill="#FFFFFF" stroke="#C0451A" stroke-width="1.6"></circle>
+    <rect x="896" y="130" width="250" height="118" rx="12" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.8"></rect>
+    <rect x="914" y="148" width="40" height="40" rx="10" fill="#E3EBF0"></rect>
+    <g transform="translate(921,155) scale(1.0833)" fill="none" stroke="#2C566E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h4l6 10h4M5 17h4"></path></g>
+    <text x="914" y="214" font-family="'IBM Plex Sans',sans-serif" font-size="26" font-weight="600" fill="#14181B">¿Completo?</text>
+    <text x="914" y="240" font-family="'IBM Plex Mono',monospace" font-size="24" fill="#5A6470">IF</text>
+    <circle cx="896" cy="189" r="6" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"></circle>
+    <circle cx="1146" cy="189" r="6" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"></circle>
+    <rect x="1188" y="130" width="250" height="118" rx="12" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.8"></rect>
+    <rect x="1206" y="148" width="40" height="40" rx="10" fill="#E3EBF0"></rect>
+    <g transform="translate(1213,155) scale(1.0833)" fill="none" stroke="#2C566E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7.5" ry="2.8"></ellipse><path d="M4.5 6v12c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8V6M4.5 12c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8"></path></g>
+    <text x="1206" y="214" font-family="'IBM Plex Sans',sans-serif" font-size="26" font-weight="600" fill="#14181B">PostgreSQL</text>
+    <text x="1206" y="240" font-family="'IBM Plex Mono',monospace" font-size="24" fill="#5A6470">guardar</text>
+    <circle cx="1188" cy="189" r="6" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"></circle>
+    <circle cx="1438" cy="189" r="6" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"></circle>
+    <rect x="1480" y="130" width="250" height="118" rx="12" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.8"></rect>
+    <rect x="1498" y="148" width="40" height="40" rx="10" fill="#E3EBF0"></rect>
+    <g transform="translate(1505,155) scale(1.0833)" fill="none" stroke="#2C566E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"></path><path d="M14 3v5h5"></path><path d="M9 14h6M9 17.5h4"></path></g>
+    <text x="1498" y="214" font-family="'IBM Plex Sans',sans-serif" font-size="26" font-weight="600" fill="#14181B">Gotenberg</text>
+    <text x="1498" y="240" font-family="'IBM Plex Mono',monospace" font-size="24" fill="#5A6470">PDF</text>
+    <circle cx="1480" cy="189" r="6" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"></circle>
+    <circle cx="1730" cy="189" r="6" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"></circle>
+    <rect x="700" y="296" width="280" height="100" rx="12" fill="#FFFFFF" stroke="#8A8377" stroke-width="1.8"></rect>
+    <rect x="718" y="312" width="36" height="36" rx="9" fill="#EDEAE4"></rect>
+    <g transform="translate(724,318) scale(1.0833)" fill="none" stroke="#5A6470" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4V5z"></path></g>
+    <text x="718" y="370" font-family="'IBM Plex Sans',sans-serif" font-size="26" font-weight="600" fill="#14181B">Repreguntar</text>
+    <text x="874" y="370" font-family="'IBM Plex Mono',monospace" font-size="24" fill="#5A6470">máx. 2</text>
+</svg>

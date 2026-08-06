@@ -11,6 +11,13 @@ import '@fontsource-variable/ibm-plex-sans';
 import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/500.css';
 import '@fontsource/ibm-plex-mono/600.css';
+// Plex Serif, latin and one weight only (~20 KB). NOT for the site's own
+// typography — §3 still rules serif out of chrome and prose. It exists so that
+// specimen artifacts brought in from elsewhere render as they were designed:
+// the LOG 011 proposal deck sets its headings in Plex Serif, and without this
+// they fall back to Georgia in the browser while the rasterized cover uses the
+// real face. Same superfamily, so the colophon's "IBM Plex" still holds.
+import '@fontsource/ibm-plex-serif/latin-600.css';
 
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';

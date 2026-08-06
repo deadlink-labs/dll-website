@@ -30,8 +30,18 @@ import { dirname, resolve } from 'node:path';
 
 /** Attributes we strip from the root <svg> so it scales to its container. */
 const SIZE_ATTR_RE = /\s(?:width|height)="[^"]*"/g;
-/** Hand-authored tiles carry a font stack per text node; the page's CSS owns it now. */
-const FONT_ATTR_RE = /\sfont-family="[^"]*"/g;
+/**
+ * Graphite tiles carry the house stack on every text node (the raster path needs
+ * it); once inlined the page's webfont should own it instead, so we drop it.
+ *
+ * Matched on the stack's `DejaVu Sans Mono` fallback rather than on
+ * `font-family` generally, and that narrowness is the point. An artifact brought
+ * in from somewhere else — a client deck, a tool's own canvas — chooses its fonts
+ * deliberately, and the n8n canvas in LOG 011 mixes Plex Sans for node titles
+ * with Plex Mono for sublabels. Stripping every font-family flattened it to all
+ * mono and quietly destroyed the thing worth showing.
+ */
+const FONT_ATTR_RE = /\sfont-family="[^"]*DejaVu Sans Mono[^"]*"/g;
 
 function escapeAttr(s) {
   return String(s)

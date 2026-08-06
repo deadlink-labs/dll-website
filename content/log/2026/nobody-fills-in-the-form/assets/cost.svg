@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <!-- ===================================================================
+       UN INFORME INCOMPLETO CUESTA TRES VECES - the client deck's slide
+       02. The deck's card system: a 4px top rule in the card's accent, a
+       tinted body, an icon badge, a mono eyebrow, a serif head.
+       Colour carries meaning here and is not decoration: accent = the
+       cost being paid today, steel = the internal gap, green = the thing
+       they could be building instead.
+       =================================================================== -->
+  <rect width="1280" height="720" fill="#F1EFEA"/>
+
+  <text x="64" y="76" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">EL PROBLEMA</text>
+  <text x="64" y="146" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">Un informe incompleto</text>
+  <text x="64" y="196" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">cuesta tres veces</text>
+
+  <!-- ── hacia afuera · the cost being paid today ─────────────────── -->
+  <rect x="64" y="252" width="362" height="4" fill="#C0451A"/>
+  <rect x="64" y="256" width="362" height="356" fill="#FBF3EE" stroke="#E3BFA9" stroke-width="1"/>
+  <circle cx="122" cy="314" r="26" fill="#C0451A"/>
+  <g transform="translate(110,302)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 17L17 7M9 7h8v8"/>
+  </g>
+  <text x="164" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#C0451A">HACIA AFUERA</text>
+  <text x="92" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Riesgo frente al cliente</text>
+  <g font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#5A6470">
+    <text x="92" y="440">Farma, láctea y alimentos</text>
+    <text x="92" y="466">auditan esos informes como</text>
+    <text x="92" y="492">documentos de calidad.</text>
+    <text x="92" y="540">Un informe incompleto no es</text>
+    <text x="92" y="566">un papel mal llenado: es un</text>
+    <text x="92" y="592">hallazgo de auditoría.</text>
+  </g>
+
+  <!-- ── hacia adentro · the gap nobody is looking at ─────────────── -->
+  <rect x="458" y="252" width="362" height="4" fill="#2C566E"/>
+  <rect x="458" y="256" width="362" height="356" fill="#F6F8F9" stroke="#CDD6DB" stroke-width="1"/>
+  <circle cx="516" cy="314" r="26" fill="#2C566E"/>
+  <g transform="translate(504,302)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 7L7 17M15 17H7V9"/>
+  </g>
+  <text x="558" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2C566E">HACIA ADENTRO</text>
+  <text x="486" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Histórico que no existe</text>
+  <g font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#5A6470">
+    <text x="486" y="440">Sin datos estructurados no</text>
+    <text x="486" y="466">hay seguimiento de fallas</text>
+    <text x="486" y="492">por equipo ni por cliente.</text>
+    <text x="486" y="540">Cada servicio arranca de</text>
+    <text x="486" y="566">cero, y repuestos y</text>
+    <text x="486" y="592">garantías se estiman a ojo.</text>
+  </g>
+
+  <!-- ── hacia adelante · the asset not being built ───────────────── -->
+  <rect x="852" y="252" width="362" height="4" fill="#2E7D5B"/>
+  <rect x="852" y="256" width="362" height="356" fill="#F0F5F1" stroke="#C3D5C9" stroke-width="1"/>
+  <circle cx="910" cy="314" r="26" fill="#2E7D5B"/>
+  <g transform="translate(898,302)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 17l6-6 4 4 8-8M15 7h6v6"/>
+  </g>
+  <text x="952" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2E7D5B">HACIA ADELANTE</text>
+  <text x="880" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Activo desaprovechado</text>
+  <g font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#5A6470">
+    <text x="880" y="440">Ese histórico es el cimiento</text>
+    <text x="880" y="466">del postventa diferenciado.</text>
+    <text x="880" y="540">Es el mismo terreno de</text>
+    <text x="880" y="566">Industria 4.0 donde ya está</text>
+    <text x="880" y="592">comunicando a sus clientes.</text>
+  </g>
+
+  <!-- ── the constraint that decides the whole design ─────────────── -->
+  <rect x="64" y="640" width="1150" height="56" rx="4" fill="#FBF3EE"/>
+  <rect x="64" y="640" width="4" height="56" fill="#C0451A"/>
+  <text x="100" y="675" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">El problema no es el formulario: es el contexto en que se llena.</text>
+</svg>
