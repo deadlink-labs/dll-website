@@ -1,13 +1,19 @@
-// Rasterize the hand-authored specimen tiles (CLAUDE.md §3 "graphite specimen
-// tile") from SVG to WebP, so the conversion is a committed, repeatable step
-// instead of an undocumented one-liner.
+// Rasterize a cover tile from SVG to WebP, so the conversion is a committed,
+// repeatable step instead of an undocumented one-liner.
 //
-//   npm run tiles                       # every content/**/assets/*.svg
-//   npm run tiles -- path/to/assets     # one directory
+//   npm run tiles                       # every content/**/assets/thumb.svg
+//   npm run tiles -- path/to/assets     # every .svg in that directory
 //   npm run tiles -- path/to/tile.svg   # one file
 //
-// Tiles are authored at their intrinsic size (1280x720) and written 1:1 — no
-// upscale, no density override — which is what every surface expects (16:9).
+// Only `thumb.svg` (the web-thumb cover) still needs a raster: it feeds the
+// homepage feed card, the Shipped-for-clients band, and OG share cards, which
+// social platforms will not accept as SVG. In-post specimen tiles are inlined as
+// vectors instead (src/plugins/remark-svg-specimen.mjs), so a bare run
+// deliberately skips them rather than littering unused .webp files.
+//
+// Rendered at 2x the authored size (2560x1440 from a 1280x720 tile) so Astro has
+// enough pixels to serve a 720px slot on a retina display; it downscales to the
+// widths each surface asks for.
 //
 // Fonts: the SVGs ask for IBM Plex Mono. It lives in node_modules only as
 // .woff2, which a rasterizer cannot read, so it must be installed system-wide
@@ -22,6 +28,8 @@ import sharp from 'sharp';
 
 const CONTENT_ROOT = 'content';
 const QUALITY = 82;
+/** Raster covers are rendered at this multiple of the authored SVG size. */
+const SCALE = 2;
 
 /** Warn once if the brand mono is missing, since the failure is silent. */
 function checkFont() {
@@ -64,7 +72,11 @@ async function collect(dir) {
 }
 
 async function resolveTargets(args) {
-  if (args.length === 0) return collect(CONTENT_ROOT);
+  // Bare run: only the covers. Everything else is inlined as a vector.
+  if (args.length === 0) {
+    const all = await collect(CONTENT_ROOT);
+    return all.filter((p) => basename(p) === 'thumb.svg');
+  }
   const targets = [];
   for (const arg of args) {
     const info = await stat(arg);
@@ -85,8 +97,9 @@ checkFont();
 
 for (const src of targets) {
   const out = join(dirname(src), `${basename(src, '.svg')}.webp`);
-  // density 72 keeps the raster at the SVG's own width/height attributes.
-  const { width, height } = await sharp(src, { density: 72 })
+  // density scales the raster relative to the SVG's own width/height attributes:
+  // 72 is 1:1, so 72 * SCALE renders at SCALE times the authored size.
+  const { width, height } = await sharp(src, { density: 72 * SCALE })
     .webp({ quality: QUALITY })
     .toFile(out);
   console.log(`✓ ${out}  ${width}x${height}`);

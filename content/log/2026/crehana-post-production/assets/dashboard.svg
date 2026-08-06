@@ -1,27 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
   <rect width="1280" height="720" fill="#23201b"/>
   <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
-  <text x="110" y="140" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="26" letter-spacing="4" fill="#ece8e1" fill-opacity="0.6">POST-PRODUCTION THROUGHPUT</text>
-  <text x="110" y="174" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="16" letter-spacing="3" fill="#ece8e1" fill-opacity="0.4">MINUTES / MONTH</text>
-  <line x1="110" y1="560" x2="720" y2="560" stroke="#ece8e1" stroke-opacity="0.3" stroke-width="1"/>
-  <rect x="131.8" y="408.2" width="58" height="151.8" fill="#ece8e1" fill-opacity="0.2" rx="2"/>
-    <rect x="233.5" y="390.0" width="58" height="170.0" fill="#ece8e1" fill-opacity="0.2" rx="2"/>
-    <rect x="335.2" y="359.6" width="58" height="200.4" fill="#ece8e1" fill-opacity="0.2" rx="2"/>
-    <rect x="436.8" y="317.1" width="58" height="242.9" fill="#ece8e1" fill-opacity="0.2" rx="2"/>
-    <rect x="538.5" y="274.6" width="58" height="285.4" fill="#ece8e1" fill-opacity="0.2" rx="2"/>
-    <rect x="640.2" y="241.3" width="58" height="318.8" fill="#ece8e1" fill-opacity="0.2" rx="2"/>
-  <path d="M160.8,408.2 L262.5,390.0 L364.2,359.6 L465.8,317.1 L567.5,274.6 L669.2,241.3" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
-  <circle cx="669.2" cy="241.3" r="14" fill="#f04a00" fill-opacity="0.14"/>
-  <circle cx="669.2" cy="241.3" r="6.5" fill="#f04a00"/>
-  <text x="110" y="600" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="14" letter-spacing="3" fill="#ece8e1" fill-opacity="0.32">MONTHS →</text>
-  <line x1="790" y1="200" x2="790" y2="560" stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1"/>
-  
-    <text x="830" y="250" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="52" font-weight="600" fill="#ece8e1" fill-opacity="0.9">≈2×</text>
-    <text x="830" y="284" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="16" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">MINUTES / MONTH</text>
-    <line x1="830" y1="310" x2="1170" y2="310" stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1"/>
-    <text x="830" y="368" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="52" font-weight="600" fill="#ece8e1" fill-opacity="0.9">&lt;48H</text>
-    <text x="830" y="402" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="16" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">CORRECTIONS · WAS WEEKS</text>
-    <line x1="830" y1="428" x2="1170" y2="428" stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1"/>
-    <text x="830" y="486" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="52" font-weight="600" fill="#ece8e1" fill-opacity="0.9">100%</text>
-    <text x="830" y="520" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="16" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">PIPELINE UPTIME</text>
+
+  <!-- Type is sized as a share of the 1280 frame so it survives being rendered
+       at ~345px on a phone (0.27 scale). Margins 64 (5%), title 44 (3.4%),
+       labels 26 (2%), stats 72. The old "MINUTES / MONTH" subtitle and
+       "MONTHS →" axis note are gone: the KPI rail already says the unit, and
+       the caption says the rest. -->
+  <text x="64" y="120" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="44" letter-spacing="5" fill="#ece8e1" fill-opacity="0.6">POST-PRODUCTION THROUGHPUT</text>
+
+  <!-- Bars: large filled areas, so they read well below the text contrast floor.
+       The trend line is thin and carries the story, so it sits at 0.6. -->
+  <g fill="#ece8e1" fill-opacity="0.3">
+    <rect x="64" y="431.5" width="72" height="210.5" rx="2"/>
+    <rect x="176.8" y="406.3" width="72" height="235.7" rx="2"/>
+    <rect x="289.6" y="364.1" width="72" height="277.9" rx="2"/>
+    <rect x="402.4" y="305.2" width="72" height="336.8" rx="2"/>
+    <rect x="515.2" y="246.3" width="72" height="395.7" rx="2"/>
+    <rect x="628" y="200" width="72" height="442" rx="2"/>
+  </g>
+  <line x1="64" y1="642" x2="700" y2="642" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="1"/>
+  <path d="M100,431.5 L212.8,406.3 L325.6,364.1 L438.4,305.2 L551.2,246.3 L664,200" fill="none" stroke="#ece8e1" stroke-opacity="0.6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="664" cy="200" r="34" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="664" cy="200" r="14" fill="#f04a00"/>
+
+  <line x1="760" y1="200" x2="760" y2="642" stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1"/>
+
+  <!-- KPI rail -->
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" fill="#ece8e1">
+    <text x="800" y="280" font-size="72" font-weight="600" fill-opacity="0.9">≈2×</text>
+    <text x="800" y="322" font-size="26" letter-spacing="2" fill-opacity="0.5">MINUTES / MONTH</text>
+    <text x="800" y="440" font-size="72" font-weight="600" fill-opacity="0.9">&lt;48H</text>
+    <text x="800" y="482" font-size="26" letter-spacing="2" fill-opacity="0.5">CORRECTIONS · WAS WEEKS</text>
+    <text x="800" y="600" font-size="72" font-weight="600" fill-opacity="0.9">100%</text>
+    <text x="800" y="642" font-size="26" letter-spacing="2" fill-opacity="0.5">PIPELINE UPTIME</text>
+  </g>
+  <g stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1">
+    <line x1="800" y1="352" x2="1216" y2="352"/>
+    <line x1="800" y1="512" x2="1216" y2="512"/>
+  </g>
 </svg>

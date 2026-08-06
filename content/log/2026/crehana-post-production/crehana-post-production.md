@@ -53,7 +53,7 @@ holding the whole picture in their head. That is the part worth being honest abo
 It worked, and it did not scale. You cannot hire your way out of a process problem
 forever.
 
-![Three years at Crehana: 2021 building the dubbing division from outside via BueHub, 2022 launching Brazil from inside, then 2022 to 2024 building the system across Latam.](./assets/arc.webp)
+![Three years at Crehana: 2021 building the dubbing division from outside via BueHub, 2022 launching Brazil from inside, then 2022 to 2024 building the system across Latam.](./assets/arc.svg)
 
 TAKEAWAY: heroics are a real strategy for about six months. After that they are a
 liability, because the operation now depends on the people who can perform them.
@@ -71,7 +71,7 @@ Once the numbers were on a screen instead of in a rumor, the bottlenecks named
 themselves. Nobody had to be talked into believing that corrections were the
 problem. You could see that corrections were the problem.
 
-![Dashboard: post-production minutes per month roughly doubling, corrections under 48 hours, full pipeline uptime.](./assets/dashboard.webp)
+![Dashboard: post-production minutes per month roughly doubling, corrections under 48 hours, full pipeline uptime.](./assets/dashboard.svg)
 
 *Recreated for this post. The growth ratios are faithful; Crehana's raw internal numbers are not shown.*
 
@@ -92,7 +92,7 @@ board, the meetings about who has what stop happening.
 It also made the SLAs possible. Once a stage has an owner and a date, you can say
 what late means, and the board can say it instead of a person.
 
-![A six-stage Jira board: plan, backlog, documents, QA documents, sourcing, production, with one course live in the last column.](./assets/board.webp)
+![A six-stage Jira board: plan, backlog, documents, QA documents, sourcing, production, with one course live in the production stage.](./assets/board.svg)
 
 ## Automate it
 
@@ -138,7 +138,7 @@ $10,000 and cut the turnaround at the same time. Add the efficiency savings in
 review time and production minutes, and the number I handed over when I left was
 more than $22,000 a year.
 
-![Ledger of cancelled subscriptions: Frame at $3,240 a year, Trint replaced by Whisper at $12,340, Dropbox at $840, totaling $16,420 a year, plus more than $10,000 from AI-assisted translation.](./assets/ledger.webp)
+![Ledger of cancelled subscriptions: Frame at $3,240 a year, Trint replaced by Whisper at $12,340, Dropbox at $840, totaling $16,420 a year, plus more than $10,000 from AI-assisted translation.](./assets/ledger.svg)
 
 TAKEAWAY: an unused subscription is a standing invoice. Auditing the stack is some
 of the cheapest money you will ever find.
@@ -165,7 +165,7 @@ distribution became something you could look at instead of argue about.
 **The work became predictable.** How booked the studios were, and what was coming
 next, stopped being a surprise, so planning replaced firefighting.
 
-![Three editors' monthly output shown as meters against a goal line, one of them past it.](./assets/meters.webp)
+![Three editors' monthly output shown as meters against a goal line, one of them past it.](./assets/meters.svg)
 
 *Recreated for this post. The shape is faithful; the labels are roles rather than people, and the figures are not Crehana's real per-person output.*
 

@@ -2,35 +2,34 @@
   <rect width="1280" height="720" fill="#23201b"/>
   <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
 
-  <text x="110" y="140" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="26" letter-spacing="4" fill="#ece8e1" fill-opacity="0.6">OUTPUT AGAINST GOAL</text>
-  <text x="110" y="174" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="16" letter-spacing="3" fill="#ece8e1" fill-opacity="0.4">MINUTES / MONTH · THE SAME VIEW EVERYONE ELSE HAD</text>
+  <text x="64" y="110" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="44" letter-spacing="5" fill="#ece8e1" fill-opacity="0.6">OUTPUT AGAINST GOAL</text>
 
   <!-- A single ratio against a limit is a meter, not a dial. Track spans 0-120%
-       of goal; the tick at x=873 is 100%. -->
-  <text x="873" y="228" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="14" letter-spacing="2" fill="#ece8e1" fill-opacity="0.4">GOAL</text>
+       of goal; the tick at x=883 is 100%. -->
+  <text x="883" y="200" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">GOAL</text>
 
   <!-- Row 1 · 92% -->
-  <text x="110" y="267" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.5">EDITOR A</text>
-  <rect x="340" y="253" width="640" height="14" rx="2" fill="#ece8e1" fill-opacity="0.12"/>
-  <rect x="340" y="253" width="491" height="14" rx="2" fill="#ece8e1" fill-opacity="0.5"/>
-  <line x1="873" y1="242" x2="873" y2="278" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="1"/>
-  <text x="1170" y="272" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" font-weight="600" fill="#ece8e1" fill-opacity="0.9">92%</text>
+  <text x="64" y="292" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">EDITOR A</text>
+  <rect x="400" y="270" width="580" height="20" rx="2" fill="#ece8e1" fill-opacity="0.14"/>
+  <rect x="400" y="270" width="445" height="20" rx="2" fill="#ece8e1" fill-opacity="0.5"/>
+  <line x1="883" y1="256" x2="883" y2="304" stroke="#ece8e1" stroke-opacity="0.4" stroke-width="2"/>
+  <text x="1216" y="300" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="56" font-weight="600" fill="#ece8e1" fill-opacity="0.9">92%</text>
 
   <!-- Row 2 · 104%, the one that crossed the line -->
-  <text x="110" y="387" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.5">EDITOR B</text>
-  <rect x="340" y="373" width="640" height="14" rx="2" fill="#ece8e1" fill-opacity="0.12"/>
-  <rect x="340" y="373" width="555" height="14" rx="2" fill="#ece8e1" fill-opacity="0.5"/>
-  <line x1="873" y1="362" x2="873" y2="398" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="1"/>
-  <circle cx="895" cy="380" r="14" fill="#f04a00" fill-opacity="0.14"/>
-  <circle cx="895" cy="380" r="6.5" fill="#f04a00" stroke="#23201b" stroke-width="2"/>
-  <text x="1170" y="392" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" font-weight="600" fill="#ece8e1" fill-opacity="0.9">104%</text>
+  <text x="64" y="432" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">EDITOR B</text>
+  <rect x="400" y="410" width="580" height="20" rx="2" fill="#ece8e1" fill-opacity="0.14"/>
+  <rect x="400" y="410" width="503" height="20" rx="2" fill="#ece8e1" fill-opacity="0.5"/>
+  <line x1="883" y1="396" x2="883" y2="444" stroke="#ece8e1" stroke-opacity="0.4" stroke-width="2"/>
+  <circle cx="903" cy="420" r="17" fill="#f04a00" fill-opacity="0.14"/>
+  <circle cx="903" cy="420" r="8" fill="#f04a00" stroke="#23201b" stroke-width="2"/>
+  <text x="1216" y="440" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="56" font-weight="600" fill="#ece8e1" fill-opacity="0.9">104%</text>
 
   <!-- Row 3 · 78% -->
-  <text x="110" y="507" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="2" fill="#ece8e1" fill-opacity="0.5">EDITOR C</text>
-  <rect x="340" y="493" width="640" height="14" rx="2" fill="#ece8e1" fill-opacity="0.12"/>
-  <rect x="340" y="493" width="416" height="14" rx="2" fill="#ece8e1" fill-opacity="0.5"/>
-  <line x1="873" y1="482" x2="873" y2="518" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="1"/>
-  <text x="1170" y="512" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" font-weight="600" fill="#ece8e1" fill-opacity="0.9">78%</text>
+  <text x="64" y="572" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">EDITOR C</text>
+  <rect x="400" y="550" width="580" height="20" rx="2" fill="#ece8e1" fill-opacity="0.14"/>
+  <rect x="400" y="550" width="377" height="20" rx="2" fill="#ece8e1" fill-opacity="0.5"/>
+  <line x1="883" y1="536" x2="883" y2="584" stroke="#ece8e1" stroke-opacity="0.4" stroke-width="2"/>
+  <text x="1216" y="580" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="56" font-weight="600" fill="#ece8e1" fill-opacity="0.9">78%</text>
 
-  <text x="110" y="648" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="18" letter-spacing="3" fill="#ece8e1" fill-opacity="0.32">SELF-SERVE, 24/7. NOBODY WAITED TO KNOW WHERE THEY STOOD.</text>
+  <text x="64" y="668" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="26" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">SELF-SERVE, 24/7. NOBODY WAITED TO KNOW WHERE THEY STOOD.</text>
 </svg>

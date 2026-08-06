@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import remarkTerminal from './src/plugins/remark-terminal.mjs';
+import remarkSvgSpecimen from './src/plugins/remark-svg-specimen.mjs';
 
 // Deadlink Labs — deadlinklabs.com
 // A content archive, not an app. Astro ships zero JavaScript by default;
@@ -18,8 +19,10 @@ export default defineConfig({
   },
 
   // Fenced-block components (CLAUDE.md §3.6): ```terminal -> specimen panel.
+  // remarkSvgSpecimen inlines relative .svg tiles so they scale as vectors and
+  // inherit the page's IBM Plex Mono; raster images keep the image pipeline.
   markdown: {
-    remarkPlugins: [remarkTerminal],
+    remarkPlugins: [remarkTerminal, remarkSvgSpecimen],
   },
 
   // Prose-first output. No experimental client hydration by default.

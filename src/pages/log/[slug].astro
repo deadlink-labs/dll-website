@@ -39,7 +39,7 @@ const label = recordLabel(entry);
           <Image
             src={entry.data.thumb}
             alt=""
-            widths={[480, 720, 960]}
+            widths={[480, 720, 960, 1440]}
             sizes="(max-width: 760px) 100vw, 720px"
             loading="eager"
           />
@@ -166,6 +166,21 @@ const label = recordLabel(entry);
     margin-top: 0;
     font-size: 13px;
     color: var(--color-ink-60);
+  }
+  /* Inlined .svg specimen tiles (src/plugins/remark-svg-specimen.mjs). Vector,
+     so they stay sharp at any pixel density. Inlining is what lets the tile
+     text inherit the page webfont instead of a sandboxed system fallback. */
+  .prose :global(.specimen-fig) {
+    margin: 1.75rem 0 0.6rem;
+  }
+  .prose :global(.specimen-fig svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  .prose :global(.specimen-fig svg text) {
+    font-family: var(--font-mono);
   }
   /* ```terminal fenced-block -> specimen panel. Re-assert the specimen metrics
      over the generic prose <pre> above (base look lives in global.css). */
