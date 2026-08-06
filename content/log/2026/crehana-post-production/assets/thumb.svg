@@ -12,7 +12,7 @@
        read at three sizes: 176px, 310px, 720px. -->
 
   <!-- Zone 1 · stamp -->
-  <text x="64" y="100" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="4" fill="#ece8e1" fill-opacity="0.5">LOG 010 · SHIPPED · CASE STUDY</text>
+  <text x="64" y="100" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="4" fill="#ece8e1" fill-opacity="0.5">SHIPPED · CASE STUDY</text>
 
   <!-- Zone 2 · title block.
        Crehana mark rebuilt on its own 3x3 module grid and flattened to panel ink.

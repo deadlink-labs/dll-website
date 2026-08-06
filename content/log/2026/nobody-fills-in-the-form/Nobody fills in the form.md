@@ -101,12 +101,11 @@ So every design choice attacks adoption:
 - **He always gets his report.** He can read what the system put in his mouth and
   correct it.
 
-![A phone showing the follow-up exchange in WhatsApp, in Spanish. The system asks for everything it is missing in a single message, the technician answers in one line from the van, and the report closes in one round.](./assets/whatsapp.svg)
+![A phone showing the follow-up exchange in WhatsApp. The system asks for everything it is missing in a single message, the technician answers in one line from the van, and the report closes in one round.](./assets/whatsapp.svg)
 
-*The exchange as it would run. The system says it is close to closing and asks
-three things at once: serial number of the exchanger, which spares, what time he
-finished. He answers with "AX-40-2219, two NBR gaskets and I finished 17:40" and
-that is the whole interaction.*
+*The exchange as it would run, translated. The real one is in Spanish, because
+the technician is. The system says it is close to closing and asks three things at
+once, he answers in a single line from the van, and that is the whole interaction.*
 
 The two-round cap is the decision I would defend hardest. Chasing a technician a
 third time is exactly the friction this was built to remove. A report at ninety
@@ -131,9 +130,10 @@ answer every time.
 
 ![The n8n canvas: a WhatsApp trigger, Whisper transcribing, Claude structuring, a completeness check, PostgreSQL and PDF generation, with an ask-again branch that loops back to the structuring step, capped at two rounds. Data animates along the connectors. Claude is the only node outlined in orange, because it is the only step that calls out of the network.](./assets/pipeline.svg)
 
-*The n8n canvas from the proposal, unaltered. Everything in it runs on their own
-hardware except the Claude node, outlined in orange, which is the single call that
-leaves the network. It carries text, never audio.*
+*The n8n canvas exactly as it was sent, Spanish and all, because it is the
+artifact rather than a drawing of one. Everything in it runs on their own hardware
+except the Claude node, outlined in orange: the single call that leaves the
+network, carrying text and never audio.*
 
 If a model runs the whole pipeline, every execution is a fresh decision. One day
 it names a field differently. One day it decides to tidy up the work description
@@ -188,8 +188,8 @@ whether anyone is paying attention to it or not.
 
 ![Three cards on what the reports leave behind at six months: preventive maintenance contracts sold on data rather than intuition, spare stock held at customer sites moving from estimated to counted, and a customer portal that is a sellable product built from the same data.](./assets/history.svg)
 
-*The three cards straight out of the proposal deck, in Spanish as they were
-sent. The report is the deliverable. The history is the asset.*
+*The three cards from the proposal deck, translated. The report is the
+deliverable. The history is the asset.*
 
 Three things become possible with it, and none of them are possible without it.
 "This machine had four corrective interventions in a year" is the sentence that

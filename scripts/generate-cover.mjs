@@ -6,7 +6,7 @@
 //
 //   npm run cover -- \
 //     --out content/log/2026/<slug>/assets/thumb.svg \
-//     --stamp "LOG 011 · SHIPPED · CASE STUDY" \
+//     --stamp "SHIPPED · CASE STUDY" \
 //     --title "CREHANA" \
 //     --subtitle "CONTENT OPERATION → SYSTEM" \
 //     --steps "SPREADSHEETS,DASHBOARDS,ONE BOARD,AUTOMATED" \
@@ -62,6 +62,21 @@ for (const required of ['out', 'stamp', 'title']) {
     console.error(`Missing --${required}\n\nSee the header of scripts/generate-cover.mjs for usage.`);
     process.exit(1);
   }
+}
+
+// A cover must not carry its record number. The feed row, the clients band and
+// the record stamp all print it beside the image, and baking it into a raster
+// freezes it: renumber the record and the artwork is wrong everywhere it has
+// already been cached. Status and kind only. (CLAUDE.md §3 Imagery.)
+const recordNumber = args.stamp.match(/\b(LOG|EXP|DEC)\s*0*\d+\b/i);
+if (recordNumber) {
+  console.error(
+    `[generate-cover] --stamp contains a record number: "${recordNumber[0]}"\n` +
+      `  The feed already prints it next to the cover, and a number baked into\n` +
+      `  the image is wrong the day the record is renumbered.\n` +
+      `  Use status and kind only, e.g. "SHIPPED · CASE STUDY".`,
+  );
+  process.exit(1);
 }
 
 const parts = [];

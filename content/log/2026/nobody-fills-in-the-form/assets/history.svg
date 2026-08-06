@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
   <!-- ===================================================================
-       EL SUBPRODUCTO QUE VALE MÁS - the client deck's slide 05.
+       THE SUBPRODUCT WORTH MORE THAN THE REPORT - the deck's slide 05.
        Same card system as cost.svg. Two steel cards for what the data
        makes possible internally, one accent card for the thing that
        becomes a product. The report is the deliverable; this is the asset.
        =================================================================== -->
   <rect width="1280" height="720" fill="#F1EFEA"/>
 
-  <text x="64" y="76" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">EL SUBPRODUCTO QUE VALE MÁS</text>
-  <text x="64" y="146" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">A los seis meses: el histórico real</text>
-  <text x="64" y="196" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">de cada equipo, en cada cliente</text>
+  <text x="64" y="76" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">THE SUBPRODUCT WORTH MORE THAN THE REPORT</text>
+  <text x="64" y="146" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">At six months: the real history</text>
+  <text x="64" y="196" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">of every machine, at every customer</text>
 
   <!-- ── what it sells ────────────────────────────────────────────── -->
   <rect x="64" y="252" width="362" height="4" fill="#2C566E"/>
@@ -18,15 +18,15 @@
   <g transform="translate(110,302)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M4 20V12M10 20V5M16 20v-6M4 20h16"/>
   </g>
-  <text x="164" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2C566E">CONTRATOS</text>
-  <text x="92" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Mantenimiento</text>
-  <text x="92" y="426" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">preventivo vendible</text>
+  <text x="164" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2C566E">CONTRACTS</text>
+  <text x="92" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Preventive maintenance</text>
+  <text x="92" y="426" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">you can sell</text>
   <g font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#5A6470">
-    <text x="92" y="476">«Este equipo tuvo 4</text>
-    <text x="92" y="502">correctivos en un año» es la</text>
-    <text x="92" y="528">frase que vende un contrato</text>
-    <text x="92" y="554">de mantenimiento.</text>
-    <text x="92" y="588">Con datos, no con intuición.</text>
+    <text x="92" y="476">«This machine had four</text>
+    <text x="92" y="502">corrective jobs in a year» is</text>
+    <text x="92" y="528">the sentence that sells a</text>
+    <text x="92" y="554">maintenance contract.</text>
+    <text x="92" y="588">With data, not a hunch.</text>
   </g>
 
   <!-- ── what it counts ───────────────────────────────────────────── -->
@@ -37,13 +37,13 @@
     <rect x="4" y="5" width="6" height="14" rx="1.5"/><rect x="14" y="5" width="6" height="14" rx="1.5"/>
   </g>
   <text x="558" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2C566E">STOCK</text>
-  <text x="486" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Mirror stock calculado</text>
+  <text x="486" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Mirror stock, counted</text>
   <g font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#5A6470">
-    <text x="486" y="446">El consumo real de repuestos</text>
-    <text x="486" y="472">por cliente y por equipo</text>
-    <text x="486" y="498">convierte el stock en</text>
-    <text x="486" y="524">consignación de estimado</text>
-    <text x="486" y="550">a calculado.</text>
+    <text x="486" y="446">Real spare consumption per</text>
+    <text x="486" y="472">customer and per machine</text>
+    <text x="486" y="498">turns consignment stock</text>
+    <text x="486" y="524">from estimated into</text>
+    <text x="486" y="550">calculated.</text>
   </g>
 
   <!-- ── what it becomes ──────────────────────────────────────────── -->
@@ -53,17 +53,17 @@
   <g transform="translate(898,302)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z"/>
   </g>
-  <text x="952" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#C0451A">PRODUCTO</text>
-  <text x="880" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">El puente a</text>
-  <text x="880" y="426" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Industria 4.0</text>
+  <text x="952" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#C0451A">PRODUCT</text>
+  <text x="880" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">The bridge to</text>
+  <text x="880" y="426" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Industry 4.0</text>
   <g font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#5A6470">
-    <text x="880" y="476">Un portal donde el cliente</text>
-    <text x="880" y="502">consulta su propio histórico</text>
-    <text x="880" y="528">es producto vendible.</text>
-    <text x="880" y="588">Y nace de este mismo dato.</text>
+    <text x="880" y="476">A portal where a customer</text>
+    <text x="880" y="502">looks up their own history</text>
+    <text x="880" y="528">is a sellable product.</text>
+    <text x="880" y="588">And it is born of this data.</text>
   </g>
 
   <rect x="64" y="640" width="1150" height="56" rx="4" fill="#F0F5F1"/>
   <rect x="64" y="640" width="4" height="56" fill="#2E7D5B"/>
-  <text x="100" y="675" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">El informe es el entregable de hoy. El histórico es el activo que queda.</text>
+  <text x="100" y="675" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">The report is today's deliverable. The history is the asset that stays.</text>
 </svg>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
   <!-- ===================================================================
-       UN INFORME INCOMPLETO CUESTA TRES VECES - the client deck's slide
+       AN INCOMPLETE REPORT COSTS THREE TIMES OVER - the deck's slide
        02. The deck's card system: a 4px top rule in the card's accent, a
        tinted body, an icon badge, a mono eyebrow, a serif head.
        Colour carries meaning here and is not decoration: accent = the
@@ -9,9 +9,9 @@
        =================================================================== -->
   <rect width="1280" height="720" fill="#F1EFEA"/>
 
-  <text x="64" y="76" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">EL PROBLEMA</text>
-  <text x="64" y="146" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">Un informe incompleto</text>
-  <text x="64" y="196" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">cuesta tres veces</text>
+  <text x="64" y="76" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">THE PROBLEM</text>
+  <text x="64" y="146" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">An incomplete report</text>
+  <text x="64" y="196" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">costs three times over</text>
 
   <!-- ── hacia afuera · the cost being paid today ─────────────────── -->
   <rect x="64" y="252" width="362" height="4" fill="#C0451A"/>
@@ -20,15 +20,15 @@
   <g transform="translate(110,302)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M7 17L17 7M9 7h8v8"/>
   </g>
-  <text x="164" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#C0451A">HACIA AFUERA</text>
-  <text x="92" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Riesgo frente al cliente</text>
+  <text x="164" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#C0451A">OUTWARD</text>
+  <text x="92" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Risk at the customer</text>
   <g font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#5A6470">
-    <text x="92" y="440">Farma, láctea y alimentos</text>
-    <text x="92" y="466">auditan esos informes como</text>
-    <text x="92" y="492">documentos de calidad.</text>
-    <text x="92" y="540">Un informe incompleto no es</text>
-    <text x="92" y="566">un papel mal llenado: es un</text>
-    <text x="92" y="592">hallazgo de auditoría.</text>
+    <text x="92" y="440">Pharma, dairy and food</text>
+    <text x="92" y="466">plants file these reports</text>
+    <text x="92" y="492">as quality documents.</text>
+    <text x="92" y="540">An incomplete report is not</text>
+    <text x="92" y="566">a badly filled form. It is</text>
+    <text x="92" y="592">an audit finding.</text>
   </g>
 
   <!-- ── hacia adentro · the gap nobody is looking at ─────────────── -->
@@ -38,15 +38,15 @@
   <g transform="translate(504,302)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M17 7L7 17M15 17H7V9"/>
   </g>
-  <text x="558" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2C566E">HACIA ADENTRO</text>
-  <text x="486" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Histórico que no existe</text>
+  <text x="558" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2C566E">INWARD</text>
+  <text x="486" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">History that does not exist</text>
   <g font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#5A6470">
-    <text x="486" y="440">Sin datos estructurados no</text>
-    <text x="486" y="466">hay seguimiento de fallas</text>
-    <text x="486" y="492">por equipo ni por cliente.</text>
-    <text x="486" y="540">Cada servicio arranca de</text>
-    <text x="486" y="566">cero, y repuestos y</text>
-    <text x="486" y="592">garantías se estiman a ojo.</text>
+    <text x="486" y="440">Without structured data</text>
+    <text x="486" y="466">there is no failure history</text>
+    <text x="486" y="492">per machine or customer.</text>
+    <text x="486" y="540">Every service starts at</text>
+    <text x="486" y="566">zero, and spares and</text>
+    <text x="486" y="592">warranties are guessed.</text>
   </g>
 
   <!-- ── hacia adelante · the asset not being built ───────────────── -->
@@ -56,18 +56,18 @@
   <g transform="translate(898,302)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 17l6-6 4 4 8-8M15 7h6v6"/>
   </g>
-  <text x="952" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2E7D5B">HACIA ADELANTE</text>
-  <text x="880" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">Activo desaprovechado</text>
+  <text x="952" y="322" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="2" fill="#2E7D5B">FORWARD</text>
+  <text x="880" y="392" font-family="'IBM Plex Serif',Georgia,serif" font-size="27" font-weight="600" fill="#14181B">An asset going unbuilt</text>
   <g font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#5A6470">
-    <text x="880" y="440">Ese histórico es el cimiento</text>
-    <text x="880" y="466">del postventa diferenciado.</text>
-    <text x="880" y="540">Es el mismo terreno de</text>
-    <text x="880" y="566">Industria 4.0 donde ya está</text>
-    <text x="880" y="592">comunicando a sus clientes.</text>
+    <text x="880" y="440">That history is the base of</text>
+    <text x="880" y="466">a real after-sales service.</text>
+    <text x="880" y="540">The same Industry 4.0</text>
+    <text x="880" y="566">ground they are already</text>
+    <text x="880" y="592">talking to customers about.</text>
   </g>
 
   <!-- ── the constraint that decides the whole design ─────────────── -->
   <rect x="64" y="640" width="1150" height="56" rx="4" fill="#FBF3EE"/>
   <rect x="64" y="640" width="4" height="56" fill="#C0451A"/>
-  <text x="100" y="675" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">El problema no es el formulario: es el contexto en que se llena.</text>
+  <text x="100" y="675" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">The problem is not the form. It is the conditions it gets filled in.</text>
 </svg>

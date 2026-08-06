@@ -1,113 +1,137 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
   <!-- ===================================================================
-       COVER - deliberately NOT from scripts/generate-cover.mjs.
-       That generator draws one staircase and swaps the words, which is
-       right for a post with nothing to show and wrong here: it produced a
-       near-duplicate of Crehana's cover for a post that ships with a real
-       animated canvas. This cover is made of the post's own artwork.
+       COVER - two objects, no words of its own.
 
-       Left: the phone the technician actually holds. Right: the n8n flow
-       he never sees. That pairing is the whole proposal in one frame, and
-       it is unmistakable at feed-card size.
-       Rasterized to thumb.webp by `npm run tiles`; social will not take SVG.
+       Deliberately NOT from scripts/generate-cover.mjs: that generator
+       draws one staircase and swaps the words, which is right for a post
+       with nothing to show and produced a near-duplicate of the Crehana
+       cover here.
+
+       NO RECORD NUMBER ON A COVER. The feed row already prints it, and
+       baking it into the image means the image is wrong the day a record
+       is renumbered.
+
+       No headline either. A poster at feed-card size can carry two things
+       and this carries the two that matter: the phone the technician
+       holds, and the flow he never sees.
+
+       This flowchart is a redrawing, so its labels are English. The
+       verbatim canvas from the deck lives in pipeline.svg and stays in
+       the language it was sent in.
        =================================================================== -->
   <rect width="1280" height="720" fill="#F1EFEA"/>
 
-  <!-- ── stamp ────────────────────────────────────────────────────── -->
-  <rect x="64" y="56" width="14" height="14" fill="#C0451A"/>
-  <text x="94" y="70" font-family="'IBM Plex Mono',monospace" font-size="22" letter-spacing="4" fill="#8A8377">LOG 011 · PROPUESTA DE PILOTO</text>
-
-  <!-- ── the line ─────────────────────────────────────────────────── -->
-  <text x="64" y="176" font-family="'IBM Plex Serif',Georgia,serif" font-size="62" font-weight="600" fill="#14181B">Habla dos minutos.</text>
-  <text x="64" y="248" font-family="'IBM Plex Serif',Georgia,serif" font-size="62" font-weight="600" fill="#C0451A">El sistema escribe</text>
-  <text x="64" y="320" font-family="'IBM Plex Serif',Georgia,serif" font-size="62" font-weight="600" fill="#C0451A">el informe.</text>
-
   <!-- ── the phone ────────────────────────────────────────────────── -->
   <g>
-    <rect x="64" y="378" width="286" height="300" rx="34" fill="#14181B"/>
-    <rect x="74" y="388" width="266" height="280" rx="26" fill="#ECE5DD"/>
-    <clipPath id="cover-screen"><rect x="74" y="388" width="266" height="280" rx="26"/></clipPath>
+    <rect x="72" y="60" width="380" height="600" rx="46" fill="#14181B"/>
+    <rect x="86" y="74" width="352" height="572" rx="34" fill="#ECE5DD"/>
+    <clipPath id="cover-screen"><rect x="86" y="74" width="352" height="572" rx="34"/></clipPath>
     <g clip-path="url(#cover-screen)">
-      <rect x="74" y="388" width="266" height="58" fill="#075E54"/>
-      <circle cx="106" cy="418" r="16" fill="#0B7367"/>
-      <g transform="translate(98,410) scale(0.72)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5"/>
+      <rect x="86" y="74" width="352" height="86" fill="#075E54"/>
+      <circle cx="130" cy="118" r="23" fill="#0B7367"/>
+      <g transform="translate(118,106) scale(1.0)" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5"/><path d="M9 13.5h6M9 17h4"/>
       </g>
-      <text x="132" y="415" font-family="'IBM Plex Sans',sans-serif" font-size="15" font-weight="600" fill="#FFFFFF">Informes de Servicio</text>
-      <text x="132" y="433" font-family="'IBM Plex Mono',monospace" font-size="12" fill="#9FD3CB">en línea</text>
+      <text x="166" y="113" font-family="'IBM Plex Sans',sans-serif" font-size="21" font-weight="600" fill="#FFFFFF">Service Reports</text>
+      <text x="166" y="137" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#9FD3CB">online</text>
 
-      <path d="M88,464 h182 a10,10 0 0 1 10,10 v56 a10,10 0 0 1 -10,10 h-182 a10,10 0 0 1 -10,-10 v-56 z" fill="#FFFFFF"/>
-      <text x="94" y="488" font-family="'IBM Plex Sans',sans-serif" font-size="14" fill="#14181B">Me falta poco para cerrar:</text>
-      <text x="94" y="510" font-family="'IBM Plex Sans',sans-serif" font-size="14" fill="#14181B">· ¿N.º de serie?</text>
-      <text x="264" y="530" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#9AA3A0">17:38</text>
+      <path d="M104,192 h250 a12,12 0 0 1 12,12 v128 a12,12 0 0 1 -12,12 h-250 a12,12 0 0 1 -12,-12 v-128 z" fill="#FFFFFF"/>
+      <text x="110" y="224" font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#14181B">Almost done, I just need:</text>
+      <text x="110" y="254" font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#14181B">· serial number?</text>
+      <text x="110" y="282" font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#14181B">· which spares?</text>
+      <text x="110" y="310" font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#14181B">· what time did you finish?</text>
+      <text x="348" y="334" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="15" fill="#9AA3A0">17:38</text>
 
-      <path d="M148,552 h182 a10,10 0 0 1 10,10 v52 a10,10 0 0 1 -10,10 h-182 a10,10 0 0 1 -10,-10 v-52 z" fill="#DCF8C6"/>
-      <text x="154" y="576" font-family="'IBM Plex Sans',sans-serif" font-size="14" fill="#14181B">AX-40-2219, dos</text>
-      <text x="154" y="596" font-family="'IBM Plex Sans',sans-serif" font-size="14" fill="#14181B">juntas NBR</text>
-      <text x="300" y="614" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#7D8B7A">17:41</text>
-      <g transform="translate(306,604) scale(0.62)" fill="none" stroke="#34B7F1" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M170,368 h250 a12,12 0 0 1 12,12 v100 a12,12 0 0 1 -12,12 h-250 a12,12 0 0 1 -12,-12 v-100 z" fill="#DCF8C6"/>
+      <text x="176" y="400" font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#14181B">AX-40-2219, two NBR</text>
+      <text x="176" y="428" font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#14181B">gaskets, finished 17:40</text>
+      <text x="392" y="474" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="15" fill="#7D8B7A">17:41</text>
+      <g transform="translate(400,462) scale(0.82)" fill="none" stroke="#34B7F1" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
         <path d="M1.5 8.4l4 4L14 3.6"/><path d="M11 8.4l4 4L23.5 3.6"/>
       </g>
 
-      <rect x="74" y="638" width="266" height="30" fill="#FBFAF8"/>
-      <circle cx="112" cy="653" r="8" fill="#2E7D5B"/>
-      <g transform="translate(107,648)" fill="none" stroke="#FFFFFF" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M1.6 5.2l1.9 1.9L7.4 3.2"/>
+      <path d="M104,516 h214 a12,12 0 0 1 12,12 v58 a12,12 0 0 1 -12,12 h-214 a12,12 0 0 1 -12,-12 v-58 z" fill="#FFFFFF"/>
+      <text x="110" y="554" font-family="'IBM Plex Sans',sans-serif" font-size="19" fill="#14181B">Got it. Writing it up.</text>
+      <text x="312" y="580" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="15" fill="#9AA3A0">17:41</text>
+
+      <rect x="86" y="606" width="352" height="40" fill="#FBFAF8"/>
+      <circle cx="130" cy="626" r="11" fill="#2E7D5B"/>
+      <g transform="translate(124,620)" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1.9 6.2l2.3 2.3L8.9 3.8"/>
       </g>
-      <text x="128" y="658" font-family="'IBM Plex Mono',monospace" font-size="12" fill="#2E7D5B">informe cerrado</text>
+      <text x="150" y="633" font-family="'IBM Plex Mono',monospace" font-size="16" fill="#2E7D5B">one round · report closed</text>
     </g>
   </g>
 
   <!-- ── the flow he never sees ───────────────────────────────────── -->
   <g>
-    <rect x="398" y="378" width="818" height="300" rx="10" fill="#FFFFFF" stroke="#D3CFC7" stroke-width="2"/>
-    <rect x="400" y="412" width="814" height="264" fill="#F4F2EE"/>
-    <path d="M398 412H1216" stroke="#D3CFC7" stroke-width="2" fill="none"/>
-    <circle cx="418" cy="395" r="5" fill="#D3CFC7"/><circle cx="436" cy="395" r="5" fill="#D3CFC7"/><circle cx="454" cy="395" r="5" fill="#D3CFC7"/>
-    <text x="476" y="401" font-family="'IBM Plex Mono',monospace" font-size="16" fill="#8A8377">informe-de-servicio · última ejecución: OK</text>
+    <rect x="504" y="112" width="712" height="496" rx="12" fill="#FFFFFF" stroke="#D3CFC7" stroke-width="2"/>
+    <rect x="506" y="158" width="708" height="448" fill="#F4F2EE"/>
+    <path d="M504 158H1216" stroke="#D3CFC7" stroke-width="2" fill="none"/>
+    <circle cx="528" cy="135" r="6" fill="#D3CFC7"/><circle cx="550" cy="135" r="6" fill="#D3CFC7"/><circle cx="572" cy="135" r="6" fill="#D3CFC7"/>
+    <text x="598" y="142" font-family="'IBM Plex Mono',monospace" font-size="18" fill="#8A8377">service-report · last run: OK</text>
 
-    <g stroke="#2C566E" stroke-width="2" fill="none" stroke-dasharray="6 6">
-      <path d="M568,502 H592"/><path d="M736,502 H760"/><path d="M904,502 H928"/><path d="M1072,502 H1096"/>
+    <g stroke="#2C566E" stroke-width="2.5" fill="none" stroke-dasharray="7 7" stroke-linejoin="round">
+      <path d="M760,244 H790"/>
+      <path d="M760,376 H790"/>
+      <path d="M760,508 H790"/>
+      <path d="M900,288 V310 H660 V322"/>
+      <path d="M900,420 V442 H660 V454"/>
     </g>
     <g fill="#2C566E">
-      <path d="M592,496 l9,6 -9,6z"/><path d="M760,496 l9,6 -9,6z"/><path d="M928,496 l9,6 -9,6z"/><path d="M1096,496 l9,6 -9,6z"/>
+      <path d="M790,237 l11,7 -11,7z"/>
+      <path d="M790,369 l11,7 -11,7z"/>
+      <path d="M790,501 l11,7 -11,7z"/>
+      <path d="M653,322 l7,11 7,-11z"/>
+      <path d="M653,454 l7,11 7,-11z"/>
     </g>
 
-    <!-- WhatsApp -->
-    <rect x="424" y="458" width="144" height="88" rx="10" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"/>
-    <rect x="438" y="470" width="28" height="28" rx="7" fill="#E7EFE9"/>
-    <g transform="translate(444,476) scale(0.68)" fill="#2E7D5B"><path d="M12 2.2A9.7 9.7 0 0 0 3.7 17L2.3 21.7l4.9-1.4A9.7 9.7 0 1 0 12 2.2zm0 1.9a7.8 7.8 0 1 1-4 14.5l-.4-.2-2.5.7.7-2.4-.25-.4A7.8 7.8 0 0 1 12 4.1z"/></g>
-    <text x="438" y="518" font-family="'IBM Plex Sans',sans-serif" font-size="17" font-weight="600" fill="#14181B">WhatsApp</text>
-    <text x="438" y="537" font-family="'IBM Plex Mono',monospace" font-size="15" fill="#5A6470">trigger</text>
+    <!-- WhatsApp in -->
+    <rect x="560" y="200" width="200" height="88" rx="12" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.8"/>
+    <rect x="578" y="216" width="34" height="34" rx="9" fill="#E7EFE9"/>
+    <g transform="translate(584,222) scale(0.92)" fill="#2E7D5B"><path d="M12 2.2A9.7 9.7 0 0 0 3.7 17L2.3 21.7l4.9-1.4A9.7 9.7 0 1 0 12 2.2zm0 1.9a7.8 7.8 0 1 1-4 14.5l-.4-.2-2.5.7.7-2.4-.25-.4A7.8 7.8 0 0 1 12 4.1z"/></g>
+    <text x="578" y="262" font-family="'IBM Plex Sans',sans-serif" font-size="20" font-weight="600" fill="#14181B">Voice note in</text>
 
     <!-- Whisper -->
-    <rect x="592" y="458" width="144" height="88" rx="10" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"/>
-    <rect x="606" y="470" width="28" height="28" rx="7" fill="#E3EBF0"/>
-    <g transform="translate(612,476) scale(0.68)" fill="none" stroke="#2C566E" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 6.5v11M12 4v16M16 8v8M20 11v2"/></g>
-    <text x="606" y="518" font-family="'IBM Plex Sans',sans-serif" font-size="17" font-weight="600" fill="#14181B">Whisper</text>
-    <text x="606" y="537" font-family="'IBM Plex Mono',monospace" font-size="15" fill="#5A6470">local</text>
+    <rect x="800" y="200" width="200" height="88" rx="12" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.8"/>
+    <rect x="818" y="216" width="34" height="34" rx="9" fill="#E3EBF0"/>
+    <g transform="translate(824,222) scale(0.92)" fill="none" stroke="#2C566E" stroke-width="2" stroke-linecap="round"><path d="M4 10v4M8 6.5v11M12 4v16M16 8v8M20 11v2"/></g>
+    <text x="818" y="256" font-family="'IBM Plex Sans',sans-serif" font-size="20" font-weight="600" fill="#14181B">Whisper</text>
+    <text x="818" y="278" font-family="'IBM Plex Mono',monospace" font-size="16" fill="#5A6470">on their server</text>
 
-    <!-- Claude · the one step that needs judgement -->
-    <rect x="760" y="458" width="144" height="88" rx="10" fill="#FFFFFF" stroke="#C0451A" stroke-width="1.8"/>
-    <rect x="774" y="470" width="28" height="28" rx="7" fill="#FBEADF"/>
-    <g transform="translate(780,476) scale(0.68)" fill="none" stroke="#C0451A" stroke-width="2.2" stroke-linecap="round"><path d="M12 4.5v15M5.5 8.25l13 7.5M5.5 15.75l13-7.5"/></g>
-    <text x="774" y="518" font-family="'IBM Plex Sans',sans-serif" font-size="17" font-weight="600" fill="#14181B">Claude</text>
-    <text x="774" y="537" font-family="'IBM Plex Mono',monospace" font-size="15" fill="#C0451A">estructurar</text>
+    <!-- Claude · the only outbound call -->
+    <rect x="560" y="332" width="200" height="88" rx="12" fill="#FFFFFF" stroke="#C0451A" stroke-width="2"/>
+    <rect x="578" y="348" width="34" height="34" rx="9" fill="#FBEADF"/>
+    <g transform="translate(584,354) scale(0.92)" fill="none" stroke="#C0451A" stroke-width="2" stroke-linecap="round"><path d="M12 4.5v15M5.5 8.25l13 7.5M5.5 15.75l13-7.5"/></g>
+    <text x="578" y="388" font-family="'IBM Plex Sans',sans-serif" font-size="20" font-weight="600" fill="#14181B">Claude</text>
+    <text x="578" y="410" font-family="'IBM Plex Mono',monospace" font-size="16" fill="#C0451A">structure</text>
 
-    <!-- Postgres -->
-    <rect x="928" y="458" width="144" height="88" rx="10" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"/>
-    <rect x="942" y="470" width="28" height="28" rx="7" fill="#E3EBF0"/>
-    <g transform="translate(948,476) scale(0.68)" fill="none" stroke="#2C566E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7.5" ry="2.8"/><path d="M4.5 6v12c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8V6"/></g>
-    <text x="942" y="518" font-family="'IBM Plex Sans',sans-serif" font-size="17" font-weight="600" fill="#14181B">Postgres</text>
-    <text x="942" y="537" font-family="'IBM Plex Mono',monospace" font-size="15" fill="#5A6470">guardar</text>
+    <!-- completeness check -->
+    <rect x="800" y="332" width="200" height="88" rx="12" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.8"/>
+    <rect x="818" y="348" width="34" height="34" rx="9" fill="#E3EBF0"/>
+    <g transform="translate(824,354) scale(0.92)" fill="none" stroke="#2C566E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h4l6 10h4M5 17h4"/></g>
+    <text x="818" y="388" font-family="'IBM Plex Sans',sans-serif" font-size="20" font-weight="600" fill="#14181B">Complete?</text>
+    <text x="818" y="410" font-family="'IBM Plex Mono',monospace" font-size="16" fill="#5A6470">ask again, max 2</text>
 
-    <!-- PDF -->
-    <rect x="1096" y="458" width="106" height="88" rx="10" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.6"/>
-    <rect x="1110" y="470" width="28" height="28" rx="7" fill="#E3EBF0"/>
-    <g transform="translate(1116,476) scale(0.68)" fill="none" stroke="#2C566E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5"/></g>
-    <text x="1110" y="518" font-family="'IBM Plex Sans',sans-serif" font-size="17" font-weight="600" fill="#14181B">PDF</text>
-    <text x="1110" y="537" font-family="'IBM Plex Mono',monospace" font-size="15" fill="#5A6470">informe</text>
+    <!-- store -->
+    <rect x="560" y="464" width="200" height="88" rx="12" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.8"/>
+    <rect x="578" y="480" width="34" height="34" rx="9" fill="#E3EBF0"/>
+    <g transform="translate(584,486) scale(0.92)" fill="none" stroke="#2C566E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7.5" ry="2.8"/><path d="M4.5 6v12c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8V6"/></g>
+    <text x="578" y="520" font-family="'IBM Plex Sans',sans-serif" font-size="20" font-weight="600" fill="#14181B">PostgreSQL</text>
+    <text x="578" y="542" font-family="'IBM Plex Mono',monospace" font-size="16" fill="#5A6470">their database</text>
 
-    <text x="424" y="622" font-family="'IBM Plex Mono',monospace" font-size="16" fill="#8A8377">La transcripción corre adentro. El audio no sale de la red.</text>
+    <!-- report out -->
+    <rect x="800" y="464" width="200" height="88" rx="12" fill="#FFFFFF" stroke="#2C566E" stroke-width="1.8"/>
+    <rect x="818" y="480" width="34" height="34" rx="9" fill="#E3EBF0"/>
+    <g transform="translate(824,486) scale(0.92)" fill="none" stroke="#2C566E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5"/><path d="M9 13.5h6M9 17h4"/></g>
+    <text x="818" y="520" font-family="'IBM Plex Sans',sans-serif" font-size="20" font-weight="600" fill="#14181B">Report out</text>
+
+    <text x="1040" y="271" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#8A8377">audio never</text>
+    <text x="1040" y="293" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#8A8377">leaves the</text>
+    <text x="1040" y="315" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#8A8377">network</text>
+
+    <text x="1040" y="403" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#C0451A">the only</text>
+    <text x="1040" y="425" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#C0451A">outbound</text>
+    <text x="1040" y="447" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#C0451A">call</text>
   </g>
 </svg>

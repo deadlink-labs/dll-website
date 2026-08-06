@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
   <!-- ===================================================================
-       THE FOLLOW-UP - the client deck's chat panel (slide 06), rebuilt as
+       THE FOLLOW-UP - the client deck's chat panel (slide 06), redrawn as
        a phone so it reads as the thing the technician actually holds.
        Colours are WhatsApp's own, which is the point: the whole proposal
        rests on this being an app nobody has to learn.
          #075E54 header   #ECE5DD canvas   #DCF8C6 outgoing bubble
          #34B7F1 read receipt            #2E7D5B deck green (the close)
-       Contact name is generic; the client is not identified anywhere.
+       Redrawn, so it is in English. The real exchange was in Spanish; the
+       verbatim artifact is pipeline.svg. Contact name is generic.
        =================================================================== -->
   <rect width="1280" height="720" fill="#F1EFEA"/>
 
@@ -23,24 +24,24 @@
       <g transform="translate(438,84) scale(1.16)" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"/><path d="M14 3v5h5"/><path d="M9 13.5h6M9 17h4"/>
       </g>
-      <text x="490" y="93" font-family="'IBM Plex Sans',sans-serif" font-size="23" font-weight="600" fill="#FFFFFF">Informes de Servicio</text>
-      <text x="490" y="119" font-family="'IBM Plex Mono',monospace" font-size="19" fill="#9FD3CB">en línea</text>
+      <text x="490" y="93" font-family="'IBM Plex Sans',sans-serif" font-size="23" font-weight="600" fill="#FFFFFF">Service Reports</text>
+      <text x="490" y="119" font-family="'IBM Plex Mono',monospace" font-size="19" fill="#9FD3CB">online</text>
 
       <!-- 01 · everything missing, in one message -->
       <g>
         <path d="M428,168 h332 a14,14 0 0 1 14,14 v148 a14,14 0 0 1 -14,14 h-332 a14,14 0 0 1 -14,-14 v-148 z" fill="#FFFFFF"/>
-        <text x="434" y="200" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">Me falta poco para cerrar:</text>
-        <text x="434" y="232" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">· ¿N.º de serie del intercambiador?</text>
-        <text x="434" y="264" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">· ¿Qué repuestos usaste?</text>
-        <text x="434" y="296" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">· ¿A qué hora terminaste?</text>
+        <text x="434" y="200" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">Almost done, I just need:</text>
+        <text x="434" y="232" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">· serial number of the exchanger?</text>
+        <text x="434" y="264" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">· which spares did you use?</text>
+        <text x="434" y="296" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">· what time did you finish?</text>
         <text x="752" y="322" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#9AA3A0">17:38</text>
       </g>
 
       <!-- 02 · answered in ten seconds, from the van -->
       <g>
         <path d="M520,360 h332 a14,14 0 0 1 14,14 v116 a14,14 0 0 1 -14,14 h-332 a14,14 0 0 1 -14,-14 v-116 z" fill="#DCF8C6"/>
-        <text x="526" y="394" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">AX-40-2219, dos juntas NBR</text>
-        <text x="526" y="426" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">y terminé 17:40</text>
+        <text x="526" y="394" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">AX-40-2219, two NBR gaskets</text>
+        <text x="526" y="426" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">and I finished 17:40</text>
         <text x="806" y="478" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#7D8B7A">17:41</text>
         <g transform="translate(816,464)" fill="none" stroke="#34B7F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M1.5 8.4l4 4L14 3.6"/><path d="M11 8.4l4 4L23.5 3.6"/>
@@ -50,7 +51,7 @@
       <!-- 03 · closed -->
       <g>
         <path d="M428,524 h296 a14,14 0 0 1 14,14 v64 a14,14 0 0 1 -14,14 h-296 a14,14 0 0 1 -14,-14 v-64 z" fill="#FFFFFF"/>
-        <text x="434" y="558" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">Listo. Generando el informe.</text>
+        <text x="434" y="558" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#14181B">Got it. Writing the report.</text>
         <text x="716" y="590" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="17" fill="#9AA3A0">17:41</text>
       </g>
 
@@ -60,23 +61,23 @@
       <g transform="translate(463,653)" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
         <path d="M2.2 7.4l2.7 2.7L10.4 4.4"/>
       </g>
-      <text x="494" y="667" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="1" fill="#2E7D5B">Una ronda · informe cerrado</text>
+      <text x="494" y="667" font-family="'IBM Plex Mono',monospace" font-size="18" letter-spacing="1" fill="#2E7D5B">one round · report closed</text>
     </g>
   </g>
 
   <!-- ── the reading, on the paper beside it ──────────────────────── -->
-  <text x="64" y="212" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">TODO LO QUE FALTA</text>
-  <text x="64" y="278" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">En un solo</text>
-  <text x="64" y="336" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#C0451A">mensaje</text>
-  <text x="64" y="392" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">Máximo dos rondas, nunca una</text>
-  <text x="64" y="422" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">tercera. Si algo queda sin</text>
-  <text x="64" y="452" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">contestar, el informe cierra</text>
-  <text x="64" y="482" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">igual y el faltante se registra.</text>
+  <text x="64" y="212" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">EVERYTHING MISSING</text>
+  <text x="64" y="278" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">In a single</text>
+  <text x="64" y="336" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#C0451A">message</text>
+  <text x="64" y="392" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">Two rounds maximum, never a</text>
+  <text x="64" y="422" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">third. If something goes</text>
+  <text x="64" y="452" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">unanswered, the report closes</text>
+  <text x="64" y="482" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">anyway and logs what is missing.</text>
 
-  <text x="930" y="212" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">CERO APPS</text>
-  <text x="930" y="278" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">Cero</text>
-  <text x="930" y="336" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">capacitación</text>
-  <text x="930" y="392" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">Es el WhatsApp que el</text>
-  <text x="930" y="422" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">técnico ya usa, con un</text>
-  <text x="930" y="452" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">contacto más.</text>
+  <text x="930" y="212" font-family="'IBM Plex Mono',monospace" font-size="20" letter-spacing="3" fill="#8A8377">ZERO APPS</text>
+  <text x="930" y="278" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">Zero</text>
+  <text x="930" y="336" font-family="'IBM Plex Serif',Georgia,serif" font-size="46" font-weight="600" fill="#14181B">training</text>
+  <text x="930" y="392" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">It is the WhatsApp he</text>
+  <text x="930" y="422" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">already uses, with one</text>
+  <text x="930" y="452" font-family="'IBM Plex Sans',sans-serif" font-size="21" fill="#5A6470">more contact.</text>
 </svg>
