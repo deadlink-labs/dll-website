@@ -2,34 +2,37 @@
   <rect width="1280" height="720" fill="#23201b"/>
   <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
 
-  <text x="64" y="110" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="44" letter-spacing="5" fill="#ece8e1" fill-opacity="0.6">OUTPUT AGAINST GOAL</text>
+  <!-- Hero is the claim: the numbers were open to everyone, always. The three
+       meters below are the evidence. A single ratio against a limit is a meter,
+       not a dial; the track spans 0-120% of goal and the tick at 823 is 100%. -->
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">TEAM METRICS</text>
+  <line x1="64" y1="130" x2="1216" y2="130" stroke="#ece8e1" stroke-opacity="0.10" stroke-width="1"/>
 
-  <!-- A single ratio against a limit is a meter, not a dial. Track spans 0-120%
-       of goal; the tick at x=883 is 100%. -->
-  <text x="883" y="200" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">GOAL</text>
+  <text x="64" y="250" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="130" font-weight="600" fill="#ece8e1" fill-opacity="0.95">24/7</text>
+  <text x="64" y="300" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">OPEN TO EVERYONE · NO MANAGER GATE</text>
+
+  <text x="823" y="372" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">GOAL</text>
 
   <!-- Row 1 · 92% -->
-  <text x="64" y="292" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">EDITOR A</text>
-  <rect x="400" y="270" width="580" height="20" rx="2" fill="#ece8e1" fill-opacity="0.14"/>
-  <rect x="400" y="270" width="445" height="20" rx="2" fill="#ece8e1" fill-opacity="0.5"/>
-  <line x1="883" y1="256" x2="883" y2="304" stroke="#ece8e1" stroke-opacity="0.4" stroke-width="2"/>
-  <text x="1216" y="300" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="56" font-weight="600" fill="#ece8e1" fill-opacity="0.9">92%</text>
+  <text x="64" y="429" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">EDITOR A</text>
+  <rect x="340" y="411" width="580" height="18" rx="2" fill="#ece8e1" fill-opacity="0.14"/>
+  <rect x="340" y="411" width="445" height="18" rx="2" fill="#ece8e1" fill-opacity="0.5"/>
+  <line x1="823" y1="398" x2="823" y2="442" stroke="#ece8e1" stroke-opacity="0.4" stroke-width="2"/>
+  <text x="1216" y="440" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="56" font-weight="600" fill="#ece8e1" fill-opacity="0.8">92%</text>
 
   <!-- Row 2 · 104%, the one that crossed the line -->
-  <text x="64" y="432" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">EDITOR B</text>
-  <rect x="400" y="410" width="580" height="20" rx="2" fill="#ece8e1" fill-opacity="0.14"/>
-  <rect x="400" y="410" width="503" height="20" rx="2" fill="#ece8e1" fill-opacity="0.5"/>
-  <line x1="883" y1="396" x2="883" y2="444" stroke="#ece8e1" stroke-opacity="0.4" stroke-width="2"/>
-  <circle cx="903" cy="420" r="17" fill="#f04a00" fill-opacity="0.14"/>
-  <circle cx="903" cy="420" r="8" fill="#f04a00" stroke="#23201b" stroke-width="2"/>
-  <text x="1216" y="440" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="56" font-weight="600" fill="#ece8e1" fill-opacity="0.9">104%</text>
+  <text x="64" y="529" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">EDITOR B</text>
+  <rect x="340" y="511" width="580" height="18" rx="2" fill="#ece8e1" fill-opacity="0.14"/>
+  <rect x="340" y="511" width="503" height="18" rx="2" fill="#ece8e1" fill-opacity="0.5"/>
+  <line x1="823" y1="498" x2="823" y2="542" stroke="#ece8e1" stroke-opacity="0.4" stroke-width="2"/>
+  <circle cx="843" cy="520" r="15" fill="#f04a00" fill-opacity="0.14"/>
+  <circle cx="843" cy="520" r="7" fill="#f04a00" stroke="#23201b" stroke-width="2"/>
+  <text x="1216" y="540" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="56" font-weight="600" fill="#ece8e1" fill-opacity="0.8">104%</text>
 
   <!-- Row 3 · 78% -->
-  <text x="64" y="572" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">EDITOR C</text>
-  <rect x="400" y="550" width="580" height="20" rx="2" fill="#ece8e1" fill-opacity="0.14"/>
-  <rect x="400" y="550" width="377" height="20" rx="2" fill="#ece8e1" fill-opacity="0.5"/>
-  <line x1="883" y1="536" x2="883" y2="584" stroke="#ece8e1" stroke-opacity="0.4" stroke-width="2"/>
-  <text x="1216" y="580" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="56" font-weight="600" fill="#ece8e1" fill-opacity="0.9">78%</text>
-
-  <text x="64" y="668" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="26" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">SELF-SERVE, 24/7. NOBODY WAITED TO KNOW WHERE THEY STOOD.</text>
+  <text x="64" y="629" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">EDITOR C</text>
+  <rect x="340" y="611" width="580" height="18" rx="2" fill="#ece8e1" fill-opacity="0.14"/>
+  <rect x="340" y="611" width="377" height="18" rx="2" fill="#ece8e1" fill-opacity="0.5"/>
+  <line x1="823" y1="598" x2="823" y2="642" stroke="#ece8e1" stroke-opacity="0.4" stroke-width="2"/>
+  <text x="1216" y="640" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="56" font-weight="600" fill="#ece8e1" fill-opacity="0.8">78%</text>
 </svg>

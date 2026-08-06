@@ -165,7 +165,7 @@ distribution became something you could look at instead of argue about.
 **The work became predictable.** How booked the studios were, and what was coming
 next, stopped being a surprise, so planning replaced firefighting.
 
-![Three editors' monthly output shown as meters against a goal line, one of them past it.](./assets/meters.svg)
+![Team metrics open to everyone 24/7: three editors' monthly output shown as meters against a goal line, one of them past it.](./assets/meters.svg)
 
 *Recreated for this post. The shape is faithful; the labels are roles rather than people, and the figures are not Crehana's real per-person output.*
 

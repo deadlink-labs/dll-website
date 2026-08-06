@@ -15,6 +15,15 @@
 // Raster images (.webp, .jpg, …) are left alone and keep going through Astro's
 // image pipeline. Only relative .svg references are touched — remote URLs and
 // absolute paths are ignored.
+//
+// CACHING CAVEAT — why package.json builds with `astro --force`:
+// the .svg files read here are build inputs that Astro does not know about, so
+// they are not part of a content entry's digest. Edit a tile without touching
+// its .md and Astro 5 replays the cached render from
+// `node_modules/.astro/data-store.json` (which survives `rm -rf .astro`), and
+// the change silently does not ship. `--force` clears that store every run. The
+// site builds in about a second, so the cache buys nothing here and the trap is
+// expensive: it looks like the edit worked.
 
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';

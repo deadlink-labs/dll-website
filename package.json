@@ -5,9 +5,9 @@
   "private": true,
   "description": "Deadlink Labs — the creative laboratory and professional home of Marcelo Brouard.",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
+    "dev": "astro dev --force",
+    "start": "astro dev --force",
+    "build": "astro check && astro build --force",
     "preview": "astro preview",
     "check": "astro check",
     "tiles": "node scripts/svg-to-webp.mjs",

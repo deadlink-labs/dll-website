@@ -2,43 +2,46 @@
   <rect width="1280" height="720" fill="#23201b"/>
   <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
 
-  <text x="64" y="112" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="44" letter-spacing="5" fill="#ece8e1" fill-opacity="0.6">WHERE IT STARTED</text>
+  <!-- INSTRUMENT-PANEL SCALE: eyebrow 24/.45 · hero 110/.95 · support 28/.55 ·
+       micro 22/.45. Hero-to-eyebrow ~5:1, so the fact outranks the label.
+       Progressive emphasis: the three beats grow left to right, node radii ramp
+       with them, and the eye lands on the destination where the live node is. -->
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">2021-2024 · THREE YEARS</text>
 
-  <!-- Client mark, same 3x3 module grid as the cover. Module 32, origin 1120,88.
-       Group `opacity`, not `fill-opacity`: the rects overlap at cell (2,1) to
-       avoid a seam, and per-child alpha would composite that cell twice. -->
-  <g fill="#ece8e1" opacity="0.55">
-    <rect x="1184" y="88" width="32" height="96"/>
-    <rect x="1152" y="120" width="64" height="32"/>
-    <rect x="1120" y="88" width="32" height="32"/>
-    <rect x="1120" y="152" width="32" height="32"/>
+  <!-- Client mark, module 20. Group `opacity` so the cell (2,1) overlap does not
+       composite twice. -->
+  <g fill="#ece8e1" opacity="0.5">
+    <rect x="1196" y="56" width="20" height="60"/>
+    <rect x="1176" y="76" width="40" height="20"/>
+    <rect x="1156" y="56" width="20" height="20"/>
+    <rect x="1156" y="96" width="20" height="20"/>
   </g>
 
-  <!-- Three beats on one spine. Stations at 260 / 640 / 1020. -->
-  <line x1="260" y1="385" x2="1020" y2="385" stroke="#ece8e1" stroke-opacity="0.25" stroke-width="2"/>
-  <circle cx="260" cy="385" r="13" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
-  <circle cx="640" cy="385" r="13" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
-  <circle cx="1020" cy="385" r="36" fill="#f04a00" fill-opacity="0.12"/>
-  <circle cx="1020" cy="385" r="15" fill="#f04a00"/>
+  <line x1="64" y1="130" x2="1216" y2="130" stroke="#ece8e1" stroke-opacity="0.10" stroke-width="1"/>
 
-  <!-- When and where -->
-  <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.5">
-    <text x="260" y="310">2021 · BUEHUB</text>
-    <text x="640" y="310">2022 · BRAZIL</text>
-    <text x="1020" y="310">2022-24 · LATAM</text>
-  </g>
-
-  <!-- What came out of each: the proof, so it carries the weight -->
-  <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="40" letter-spacing="2" fill="#ece8e1" fill-opacity="0.85">
-    <text x="260" y="470">25+ PEOPLE</text>
-    <text x="640" y="470">200+ COURSES</text>
-    <text x="1020" y="470">THE SYSTEM</text>
-  </g>
   <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">
-    <text x="260" y="520">DUBBING DIVISION</text>
-    <text x="640" y="520">PORTUGUESE</text>
-    <text x="1020" y="520">DASHBOARDS · JIRA</text>
+    <text x="240" y="250">2021 · BUEHUB</text>
+    <text x="620" y="250">2022 · BRAZIL</text>
+    <text x="1000" y="250">2022-24 · LATAM</text>
   </g>
 
-  <text x="64" y="648" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="26" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">IT RAN ON PEOPLE. PEOPLE DO NOT SCALE.</text>
+  <line x1="240" y1="320" x2="1000" y2="320" stroke="#ece8e1" stroke-opacity="0.25" stroke-width="2"/>
+  <circle cx="240" cy="320" r="10" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="620" cy="320" r="13" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.6" stroke-width="2"/>
+  <circle cx="1000" cy="320" r="48" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="1000" cy="320" r="20" fill="#f04a00"/>
+
+  <!-- The proof, ranked. Shared baseline; size and opacity climb. -->
+  <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-weight="600" fill="#ece8e1">
+    <text x="240" y="480" font-size="72" fill-opacity="0.55">25+</text>
+    <text x="620" y="480" font-size="96" fill-opacity="0.72">200+</text>
+    <text x="1000" y="480" font-size="110" fill-opacity="0.95">SYSTEM</text>
+  </g>
+  <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">
+    <text x="240" y="530">PEOPLE</text>
+    <text x="620" y="530">COURSES</text>
+    <text x="1000" y="530">DASHBOARDS · JIRA</text>
+  </g>
+
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">IT RAN ON PEOPLE. PEOPLE DO NOT SCALE.</text>
 </svg>

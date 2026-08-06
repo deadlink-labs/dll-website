@@ -2,33 +2,34 @@
   <rect width="1280" height="720" fill="#23201b"/>
   <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
 
-  <text x="64" y="110" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="44" letter-spacing="5" fill="#ece8e1" fill-opacity="0.6">WHAT GOT CANCELLED</text>
+  <!-- Hero is the total. Line items recede to 30px so the eye lands on the
+       number, not the list. Eyebrow rewritten: the old "WHAT GOT CANCELLED"
+       echoed the H2 directly above it in the post. -->
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">ANNUAL RUN RATE · REMOVED</text>
+  <line x1="64" y1="130" x2="1216" y2="130" stroke="#ece8e1" stroke-opacity="0.10" stroke-width="1"/>
 
-  <!-- A ledger, not a chart: four numbers in a column want a table.
-       Labels left, amounts right, ruled like an account. -->
-  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" fill="#ece8e1" fill-opacity="0.75">
-    <text x="64" y="250" letter-spacing="3">FRAME</text>
-    <text x="1216" y="250" letter-spacing="2" text-anchor="end">−$3,240 / YR</text>
-    <text x="64" y="340" letter-spacing="3">TRINT → WHISPER</text>
-    <text x="1216" y="340" letter-spacing="2" text-anchor="end">−$12,340 / YR</text>
-    <text x="64" y="430" letter-spacing="3">DROPBOX</text>
-    <text x="1216" y="430" letter-spacing="2" text-anchor="end">−$840 / YR</text>
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="30" fill="#ece8e1">
+    <text x="64" y="220" letter-spacing="3" fill-opacity="0.6">FRAME</text>
+    <text x="1216" y="220" letter-spacing="2" text-anchor="end" fill-opacity="0.7">−$3,240 / YR</text>
+    <text x="64" y="306" letter-spacing="3" fill-opacity="0.6">TRINT → WHISPER</text>
+    <text x="1216" y="306" letter-spacing="2" text-anchor="end" fill-opacity="0.7">−$12,340 / YR</text>
+    <text x="64" y="392" letter-spacing="3" fill-opacity="0.6">DROPBOX</text>
+    <text x="1216" y="392" letter-spacing="2" text-anchor="end" fill-opacity="0.7">−$840 / YR</text>
   </g>
   <g stroke="#ece8e1" stroke-opacity="0.14" stroke-width="1">
-    <line x1="64" y1="278" x2="1216" y2="278"/>
-    <line x1="64" y1="368" x2="1216" y2="368"/>
-    <line x1="64" y1="458" x2="1216" y2="458"/>
+    <line x1="64" y1="246" x2="1216" y2="246"/>
+    <line x1="64" y1="332" x2="1216" y2="332"/>
+    <line x1="64" y1="418" x2="1216" y2="418"/>
   </g>
 
   <!-- Subtotal rule, the accounting double line -->
-  <line x1="64" y1="496" x2="1216" y2="496" stroke="#ece8e1" stroke-opacity="0.32" stroke-width="1"/>
+  <line x1="64" y1="456" x2="1216" y2="456" stroke="#ece8e1" stroke-opacity="0.32" stroke-width="1"/>
 
-  <circle cx="80" cy="565" r="17" fill="#f04a00" fill-opacity="0.14"/>
-  <circle cx="80" cy="565" r="8" fill="#f04a00"/>
-  <text x="120" y="580" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="40" letter-spacing="4" fill="#ece8e1" fill-opacity="0.55">TOTAL</text>
-  <text x="1216" y="586" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="72" font-weight="600" letter-spacing="2" fill="#ece8e1" fill-opacity="0.9">$16,420 / YR</text>
+  <circle cx="80" cy="550" r="15" fill="#f04a00" fill-opacity="0.14"/>
+  <circle cx="80" cy="550" r="7" fill="#f04a00"/>
+  <text x="112" y="560" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="4" fill="#ece8e1" fill-opacity="0.5">TOTAL</text>
+  <text x="1216" y="560" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="120" font-weight="600" letter-spacing="2" fill="#ece8e1" fill-opacity="0.95">$16,420 / YR</text>
 
-  <!-- Different category: a process change, not a subscription -->
-  <text x="64" y="668" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">PLUS AI-ASSISTED TRANSLATION</text>
-  <text x="1216" y="668" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">−$10,000+</text>
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">PLUS AI-ASSISTED TRANSLATION</text>
+  <text x="1216" y="660" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">−$10,000+</text>
 </svg>

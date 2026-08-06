@@ -2,72 +2,74 @@
   <rect width="1280" height="720" fill="#23201b"/>
   <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
 
-  <text x="64" y="100" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="44" letter-spacing="5" fill="#ece8e1" fill-opacity="0.6">ONE BOARD, SIX STAGES</text>
-
-  <!-- Laid out 3x2 rather than 6 across. Six columns in 1280 leaves 163px each,
-       which cannot hold a legible header once the type is sized for a phone.
-       Three columns of 357 can. Reading order is left to right, top row first. -->
+  <!-- No number is forced here: the diagram IS the hero. The stage names carry
+       it at 44/.75 (PRODUCTION at .95, since it holds the live node) while the
+       cards recede to .16 so the names dominate the frame. Laid out 3x2 rather
+       than 6 across: six columns in 1280 leaves 163px each, too narrow for a
+       legible header. -->
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">CENTRALIZED IN JIRA</text>
+  <line x1="64" y1="130" x2="1216" y2="130" stroke="#ece8e1" stroke-opacity="0.10" stroke-width="1"/>
 
   <!-- Row 1 -->
-  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">
-    <text x="64" y="190">PLAN</text>
-    <text x="461" y="190">BACKLOG</text>
-    <text x="858" y="190">DOCS</text>
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="44" letter-spacing="2" fill="#ece8e1" fill-opacity="0.75">
+    <text x="64" y="200">PLAN</text>
+    <text x="461" y="200">BACKLOG</text>
+    <text x="858" y="200">DOCS</text>
   </g>
-  <g stroke="#ece8e1" stroke-opacity="0.25" stroke-width="1">
-    <line x1="64" y1="206" x2="421" y2="206"/>
-    <line x1="461" y1="206" x2="818" y2="206"/>
-    <line x1="858" y1="206" x2="1215" y2="206"/>
+  <g stroke="#ece8e1" stroke-opacity="0.22" stroke-width="1">
+    <line x1="64" y1="218" x2="421" y2="218"/>
+    <line x1="461" y1="218" x2="818" y2="218"/>
+    <line x1="858" y1="218" x2="1215" y2="218"/>
   </g>
   <g fill="#ece8e1" fill-opacity="0.16">
-    <rect x="64" y="224" width="357" height="40" rx="2"/>
-    <rect x="64" y="274" width="357" height="40" rx="2"/>
-    <rect x="461" y="224" width="357" height="40" rx="2"/>
-    <rect x="461" y="274" width="357" height="40" rx="2"/>
-    <rect x="461" y="324" width="357" height="40" rx="2"/>
-    <rect x="858" y="224" width="357" height="40" rx="2"/>
+    <rect x="64" y="238" width="357" height="38" rx="2"/>
+    <rect x="64" y="284" width="357" height="38" rx="2"/>
+    <rect x="461" y="238" width="357" height="38" rx="2"/>
+    <rect x="461" y="284" width="357" height="38" rx="2"/>
+    <rect x="461" y="330" width="357" height="38" rx="2"/>
+    <rect x="858" y="238" width="357" height="38" rx="2"/>
   </g>
   <g fill="#ece8e1" fill-opacity="0.3">
-    <rect x="86" y="241" width="196" height="4" rx="2"/>
-    <rect x="86" y="291" width="248" height="4" rx="2"/>
-    <rect x="483" y="241" width="232" height="4" rx="2"/>
-    <rect x="483" y="291" width="174" height="4" rx="2"/>
-    <rect x="483" y="341" width="264" height="4" rx="2"/>
-    <rect x="880" y="241" width="212" height="4" rx="2"/>
+    <rect x="86" y="255" width="196" height="3" rx="1.5"/>
+    <rect x="86" y="301" width="248" height="3" rx="1.5"/>
+    <rect x="483" y="255" width="232" height="3" rx="1.5"/>
+    <rect x="483" y="301" width="174" height="3" rx="1.5"/>
+    <rect x="483" y="347" width="264" height="3" rx="1.5"/>
+    <rect x="880" y="255" width="212" height="3" rx="1.5"/>
   </g>
 
   <!-- Row 2 -->
-  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="34" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">
-    <text x="64" y="420">QA DOCS</text>
-    <text x="461" y="420">SOURCING</text>
-    <text x="858" y="420">PRODUCTION</text>
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="44" letter-spacing="2" fill="#ece8e1">
+    <text x="64" y="420" fill-opacity="0.75">QA DOCS</text>
+    <text x="461" y="420" fill-opacity="0.75">SOURCING</text>
+    <text x="858" y="420" fill-opacity="0.95">PRODUCTION</text>
   </g>
-  <g stroke="#ece8e1" stroke-opacity="0.25" stroke-width="1">
-    <line x1="64" y1="436" x2="421" y2="436"/>
-    <line x1="461" y1="436" x2="818" y2="436"/>
-    <line x1="858" y1="436" x2="1215" y2="436"/>
+  <g stroke="#ece8e1" stroke-opacity="0.22" stroke-width="1">
+    <line x1="64" y1="438" x2="421" y2="438"/>
+    <line x1="461" y1="438" x2="818" y2="438"/>
+    <line x1="858" y1="438" x2="1215" y2="438"/>
   </g>
   <g fill="#ece8e1" fill-opacity="0.16">
-    <rect x="64" y="454" width="357" height="40" rx="2"/>
-    <rect x="64" y="504" width="357" height="40" rx="2"/>
-    <rect x="461" y="454" width="357" height="40" rx="2"/>
-    <rect x="858" y="454" width="357" height="40" rx="2"/>
-    <rect x="858" y="504" width="357" height="40" rx="2"/>
-    <rect x="858" y="554" width="357" height="40" rx="2"/>
+    <rect x="64" y="458" width="357" height="38" rx="2"/>
+    <rect x="64" y="504" width="357" height="38" rx="2"/>
+    <rect x="461" y="458" width="357" height="38" rx="2"/>
+    <rect x="858" y="458" width="357" height="38" rx="2"/>
+    <rect x="858" y="504" width="357" height="38" rx="2"/>
+    <rect x="858" y="550" width="357" height="38" rx="2"/>
   </g>
   <g fill="#ece8e1" fill-opacity="0.3">
-    <rect x="86" y="471" width="238" height="4" rx="2"/>
-    <rect x="86" y="521" width="182" height="4" rx="2"/>
-    <rect x="483" y="471" width="205" height="4" rx="2"/>
-    <rect x="916" y="471" width="196" height="4" rx="2"/>
-    <rect x="880" y="521" width="254" height="4" rx="2"/>
-    <rect x="880" y="571" width="220" height="4" rx="2"/>
+    <rect x="86" y="475" width="238" height="3" rx="1.5"/>
+    <rect x="86" y="521" width="182" height="3" rx="1.5"/>
+    <rect x="483" y="475" width="205" height="3" rx="1.5"/>
+    <rect x="916" y="475" width="196" height="3" rx="1.5"/>
+    <rect x="880" y="521" width="254" height="3" rx="1.5"/>
+    <rect x="880" y="567" width="220" height="3" rx="1.5"/>
   </g>
 
   <!-- The one live card: launching now -->
-  <circle cx="892" cy="473" r="16" fill="#f04a00" fill-opacity="0.14"/>
-  <circle cx="892" cy="473" r="7.5" fill="#f04a00"/>
+  <circle cx="890" cy="477" r="15" fill="#f04a00" fill-opacity="0.14"/>
+  <circle cx="890" cy="477" r="7" fill="#f04a00"/>
 
-  <line x1="64" y1="622" x2="1216" y2="622" stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1"/>
-  <text x="64" y="672" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="26" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">ONE SOURCE OF TRUTH · EVERY STAGE CARRIES AN SLA</text>
+  <line x1="64" y1="620" x2="1216" y2="620" stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1"/>
+  <text x="64" y="666" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">ONE SOURCE OF TRUTH · EVERY STAGE CARRIES AN SLA</text>
 </svg>
