@@ -122,9 +122,13 @@ Orange is scarce by design: the live node, status dots, link hover/underline acc
 
 ### Motion
 **CSS-first** (Astro ships zero JS by default; the 8A animations are pure CSS keyframes). The test for every animation: does it RESPOND to the visitor's action, or PERFORM at them? Respond stays, perform goes.
-Allowed: the cover-mark signal pulse on load and its rare ambient echo (the one sanctioned "performing" motion, confined to the cover mark — see §3 signature element 1), micro-interactions (hover states on feed items/cards, link transitions, status-dot pulse on in-progress), ONE subtle staggered entrance on feed lists, smooth layout transitions when filtering the Log. Damped, precise, instrument-like — Teenage Engineering feel.
+Allowed: the cover-mark signal pulse on load and its rare ambient echo (see §3 signature element 1), micro-interactions (hover states on feed items/cards, link transitions, status-dot pulse on in-progress), ONE subtle staggered entrance on feed lists, smooth layout transitions when filtering the Log. Damped, precise, instrument-like — Teenage Engineering feel.
 Framer Motion is NOT a baseline dependency; use it only inside an explicitly hydrated island if a specific interaction genuinely needs it.
 Banned: scroll-triggered reveals on prose, parallax, hero choreography, anything that moves while the visitor is reading.
+
+**This list is a default, not a gate** (settled 2026-08-06). A post gets the motion that post needs. When movement genuinely adds to the experience — a workflow a recruiter can watch run, a diagram whose whole subject is flow — build it, in the house register, and update this section. What does not change: the taste, the three colours, and the ban on anything that moves under prose the visitor is reading. The earlier framing that made the cover mark "the one sanctioned performing motion" was too tight and is retired; treat each case on whether it earns its place.
+
+**Animating a specimen tile.** `remark-svg-specimen` inlines tiles as real vectors and strips only `width`, `height` and `font-family`, so a `class` on an element survives into the page and CSS in [`src/pages/log/[slug].astro`](src/pages/log/[slug].astro) can drive it. Keep the static form in the `.svg` itself (a `stroke-dasharray`, say) so the file still reads as a finished diagram opened anywhere else, and put only the movement in CSS. Guard it with `prefers-reduced-motion`. Reference: the `.flow` marching dashes on LOG 011's `pipeline.svg` and the `@keyframes specimen-flow` rule. Cover tiles get no animation: they are rasterized to `.webp`.
 
 ### Imagery
 Almost none. YouTube thumbnails carry visuals in log feeds. One portrait of Marcelo on the About page. No stock, no 3D renders, no AI-generated imagery.
