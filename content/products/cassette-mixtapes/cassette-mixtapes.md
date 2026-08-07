@@ -12,6 +12,7 @@ web-type: products
 web-number: 1
 web-stage: COMING SOON
 web-tags: [AUDIO, METADATA, LOUDNESS]
+web-image: "./assets/screen.png"
 ---
 
 A preparation studio for digital mixtapes. It handles the parts that make a

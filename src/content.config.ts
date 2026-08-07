@@ -56,6 +56,9 @@ const webSchema = (image: ImageFunction) =>
       // Self-hosted poster in the post's assets/. Feed-card thumbnail AND the
       // video-facade poster, so no request hits YouTube until play.
       'web-thumb': image().optional(),
+      // Products only: the real UI capture that replaces ProductCard's
+      // "Capture pending" placeholder once a screen exists to show.
+      'web-image': image().optional(),
     })
     .passthrough()
     .superRefine((data, ctx) => {
@@ -87,6 +90,7 @@ const webSchema = (image: ImageFunction) =>
       waitlist: data['web-waitlist'] ?? false,
       videoId: parseYouTubeId(data['web-video']),
       thumb: data['web-thumb'],
+      image: data['web-image'],
     }));
 
 // Slug = the post's own folder name. The .md inside is named for the post's TITLE

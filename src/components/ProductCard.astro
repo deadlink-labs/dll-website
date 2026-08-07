@@ -8,6 +8,7 @@
 // The screen is always dark (graphite/display); the caption adapts to its
 // context through --pc-* custom properties (ink on paper, light on graphite),
 // so one component works in the light Products index and the dark Home band.
+import { Image } from 'astro:assets';
 import StatusDot from './StatusDot.astro';
 import type { ProductEntry } from '../lib/content';
 
@@ -15,13 +16,30 @@ interface Props {
   entry: ProductEntry;
 }
 const { entry } = Astro.props;
+const { image } = entry.data;
 const screenLabel = `${entry.data.title} UI`;
 ---
 
 <a class="product" href={`/products/${entry.id}`}>
   <div class="product__screen">
-    <span class="product__screen-cap">Capture pending</span>
-    <span class="product__screen-sub">{screenLabel}</span>
+    {
+      image ? (
+        <Image
+          class="product__screen-img"
+          src={image}
+          alt={screenLabel}
+          format="webp"
+          widths={[320, 640, 960, 1280]}
+          sizes="(max-width: 760px) 100vw, 480px"
+          loading="lazy"
+        />
+      ) : (
+        <>
+          <span class="product__screen-cap">Capture pending</span>
+          <span class="product__screen-sub">{screenLabel}</span>
+        </>
+      )
+    }
   </div>
   <div class="product__meta">
     <span class="product__status">
@@ -56,11 +74,18 @@ const screenLabel = `${entry.data.title} UI`;
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
+    padding: 16px;
     background-color: var(--color-panel-deep);
     background-image:
       linear-gradient(var(--color-on-panel-08) 1px, transparent 1px),
       linear-gradient(90deg, var(--color-on-panel-08) 1px, transparent 1px);
     background-size: 26px 26px;
+  }
+  .product__screen-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
   }
   .product__screen-cap {
     font-family: var(--font-mono);
