@@ -12,6 +12,7 @@
     "check": "astro check",
     "tiles": "node scripts/svg-to-webp.mjs",
     "cover": "node scripts/generate-cover.mjs",
+    "favicon": "node scripts/generate-favicon.mjs",
     "astro": "astro"
   },
   "dependencies": {
