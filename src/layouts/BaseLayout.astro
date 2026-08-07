@@ -66,13 +66,8 @@ const ALLOW_INDEXING = false;
     {!ALLOW_INDEXING && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <link rel="alternate" type="application/rss+xml" title="Deadlink Labs — Log" href="/rss.xml" />
-    {/* Transparent-bg favicon, ink mark for light chrome / white mark for dark chrome (media-matched);
-        the plain (no-media) pair is the fallback for browsers that don't support prefers-color-scheme on icons. */}
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" media="(prefers-color-scheme: light)" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" media="(prefers-color-scheme: light)" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32-dark.png" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16-dark.png" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {/* Per-page head extras — e.g. JSON-LD Person schema on Home + About (§2). */}
     <slot name="head" />
