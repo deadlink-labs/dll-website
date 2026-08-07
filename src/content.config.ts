@@ -41,6 +41,11 @@ const webSchema = (image: ImageFunction) =>
       // Sorting + displayed date. For products: the "entered the lab" date.
       'web-pub-date': z.coerce.date().optional(),
       'web-snippet': z.string().optional(),
+      // Products only: a short lead shown above the waitlist/beta form. When
+      // present, the page splits lead -> form -> full Content (below the form)
+      // instead of the default Content -> form order. Paragraphs separated by a
+      // blank line, plain text (not parsed as markdown).
+      'web-lead': z.string().optional(),
       // Authoring-only; validated against the folder in src/lib/content.ts.
       'web-type': z.enum(['log', 'products']).optional(),
       // --- stamp inputs (flagged decision, see header) ---
@@ -83,6 +88,7 @@ const webSchema = (image: ImageFunction) =>
       title: data['web-title'] ?? '',
       pubDate: data['web-pub-date'] ?? new Date(0),
       snippet: data['web-snippet'],
+      lead: data['web-lead'],
       declaredType: data['web-type'],
       number: data['web-number'],
       stage: data['web-stage'],

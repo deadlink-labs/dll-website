@@ -1,0 +1,95 @@
+---
+// Extracted from products/[slug].astro so a product page can place body content
+// both above and below the form (the lead/Content split — see that file).
+interface Props {
+  isPrivateBeta: boolean;
+}
+const { isPrivateBeta } = Astro.props;
+---
+
+<section class="waitlist" aria-labelledby="waitlist-heading">
+  <h2 id="waitlist-heading" class="waitlist__heading">
+    {isPrivateBeta ? 'Request beta access' : 'Join the waitlist'}
+  </h2>
+  <p class="waitlist__note">
+    {isPrivateBeta
+      ? 'Testing with a small group right now. Tell me a bit about what you make and I will get back to you.'
+      : 'Get told when it opens. No spam, one email when it is ready.'}
+  </p>
+  <form class="waitlist__form" method="post" action="#" data-placeholder="not wired to Resend yet">
+    <label class="waitlist__label" for="wl-email">Email</label>
+    <div class="waitlist__row">
+      <input class="waitlist__input" id="wl-email" name="email" type="email" placeholder="you@example.com" required />
+      <button class="waitlist__btn" type="submit">{isPrivateBeta ? 'Request access' : 'Join the waitlist'}</button>
+    </div>
+  </form>
+</section>
+
+<style>
+  .waitlist {
+    margin: 2.5rem 0;
+    padding: 1.75rem;
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-ink-15);
+    border-radius: 4px;
+  }
+  .waitlist__heading {
+    margin: 0 0 0.5rem;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+  .waitlist__note {
+    margin: 0 0 1.25rem;
+    font-size: 15px;
+    color: var(--color-ink-60);
+  }
+  .waitlist__label {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink-60);
+  }
+  .waitlist__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .waitlist__input {
+    flex: 1 1 220px;
+    padding: 0.7rem 0.9rem;
+    font: inherit;
+    font-size: 15px;
+    background: var(--color-paper);
+    border: 1px solid var(--color-ink-15);
+    border-radius: 4px;
+    color: var(--color-ink);
+  }
+  .waitlist__input:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 1px;
+  }
+  .waitlist__btn {
+    padding: 0.7rem 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #fff;
+    background: var(--color-signal);
+    border: 1px solid var(--color-signal);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .waitlist__btn:hover {
+    background: #d64300;
+  }
+  .waitlist__btn:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+</style>

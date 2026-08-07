@@ -8,6 +8,7 @@ import { render } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import StatusDot from '../../components/StatusDot.astro';
+import WaitlistForm from '../../components/WaitlistForm.astro';
 import { getPublishedProducts } from '../../lib/content';
 
 export const getStaticPaths = (async () => {
@@ -18,6 +19,16 @@ export const getStaticPaths = (async () => {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const comingSoon = entry.data.stage === 'COMING SOON';
+const isPrivateBeta = entry.data.stage === 'PRIVATE BETA';
+const showWaitlist = comingSoon || isPrivateBeta;
+// Products only: web-lead, when present, splits the page lead -> form -> full
+// Content (below the form) instead of the default Content -> form order. Plain
+// text, paragraphs separated by a blank line (see content.config.ts).
+const leadParagraphs =
+  entry.data.lead
+    ?.split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean) ?? [];
 ---
 
 <BaseLayout width="record" title={entry.data.title} description={entry.data.snippet}>
@@ -48,23 +59,29 @@ const comingSoon = entry.data.stage === 'COMING SOON';
       )
     }
 
-    <div class="prose">
-      <Content />
-    </div>
-
     {
-      comingSoon && (
-        <section class="waitlist" aria-labelledby="waitlist-heading">
-          <h2 id="waitlist-heading" class="waitlist__heading">Join the waitlist</h2>
-          <p class="waitlist__note">Get told when it opens. No spam, one email when it is ready.</p>
-          <form class="waitlist__form" method="post" action="#" data-placeholder="not wired to Resend yet">
-            <label class="waitlist__label" for="wl-email">Email</label>
-            <div class="waitlist__row">
-              <input class="waitlist__input" id="wl-email" name="email" type="email" placeholder="you@example.com" required />
-              <button class="waitlist__btn" type="submit">Join the waitlist</button>
-            </div>
-          </form>
-        </section>
+      leadParagraphs.length > 0 ? (
+        <>
+          {/* web-lead present: lead -> form -> full Content below the form
+              (the announcement/pitch continues after the CTA). */}
+          <div class="prose">
+            {leadParagraphs.map((p) => (
+              <p>{p}</p>
+            ))}
+          </div>
+          {showWaitlist && <WaitlistForm isPrivateBeta={isPrivateBeta} />}
+          <div class="prose">
+            <Content />
+          </div>
+        </>
+      ) : (
+        <>
+          {/* Default order, unchanged: full Content, then the form. */}
+          <div class="prose">
+            <Content />
+          </div>
+          {showWaitlist && <WaitlistForm isPrivateBeta={isPrivateBeta} />}
+        </>
       )
     }
 
@@ -122,72 +139,51 @@ const comingSoon = entry.data.stage === 'COMING SOON';
     margin: 0 0 1.4rem;
     max-width: 68ch;
   }
-
-  .waitlist {
-    margin-top: 2.5rem;
-    padding: 1.75rem;
-    background: var(--color-paper-raised);
-    border: 1px solid var(--color-ink-15);
-    border-radius: 4px;
-  }
-  .waitlist__heading {
-    margin: 0 0 0.5rem;
-    font-size: 20px;
-    letter-spacing: -0.01em;
+  /* Ported from log/[slug].astro for parity now that product bodies (Hazefield's
+     existing list, this page's new headings) actually use these elements. */
+  .prose :global(h2) {
+    margin: 2.5rem 0 1rem;
+    font-size: 24px;
+    letter-spacing: -0.02em;
     font-weight: 600;
   }
-  .waitlist__note {
-    margin: 0 0 1.25rem;
-    font-size: 15px;
-    color: var(--color-ink-60);
-  }
-  .waitlist__label {
-    display: block;
-    margin-bottom: 0.45rem;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-ink-60);
-  }
-  .waitlist__row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-  }
-  .waitlist__input {
-    flex: 1 1 220px;
-    padding: 0.7rem 0.9rem;
-    font: inherit;
-    font-size: 15px;
-    background: var(--color-paper);
-    border: 1px solid var(--color-ink-15);
-    border-radius: 4px;
+  .prose :global(a) {
     color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--color-signal);
+    text-underline-offset: 3px;
   }
-  .waitlist__input:focus-visible {
-    outline: 2px solid var(--color-signal);
-    outline-offset: 1px;
+  .prose :global(a:hover) {
+    color: var(--color-signal);
   }
-  .waitlist__btn {
-    padding: 0.7rem 1.2rem;
+  .prose :global(code) {
     font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #fff;
-    background: var(--color-signal);
-    border: 1px solid var(--color-signal);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.2s ease;
+    font-size: 0.9em;
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-ink-15);
+    border-radius: 3px;
+    padding: 0.05em 0.35em;
   }
-  .waitlist__btn:hover {
-    background: #d64300;
+  .prose :global(strong) {
+    font-weight: 600;
   }
-  .waitlist__btn:focus-visible {
-    outline: 2px solid var(--color-ink);
-    outline-offset: 2px;
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0 0 1.4rem;
+    padding-left: 1.4rem;
+    max-width: 68ch;
+  }
+  .prose :global(ul) {
+    list-style: disc;
+  }
+  .prose :global(ol) {
+    list-style: decimal;
+  }
+  .prose :global(li) {
+    margin: 0 0 0.5rem;
+  }
+  .prose :global(li::marker) {
+    color: var(--color-ink-60);
   }
 
   .product-page__back {
