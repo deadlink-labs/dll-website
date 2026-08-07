@@ -185,6 +185,40 @@ const leadParagraphs =
   .prose :global(li::marker) {
     color: var(--color-ink-60);
   }
+  /* Measurement tables (the meter-comparison receipts). Same hairline-ruled,
+     mono-headed treatment as the log record's decision register, minus that
+     page's first/last-column stamp rules: those are shaped for `DEC 014` +
+     status token columns, and here the columns hold track titles and LUFS
+     figures. First column stays proportional and wraps, so a long working
+     title reflows on a phone instead of forcing the page to scroll sideways. */
+  .prose :global(table) {
+    width: 100%;
+    max-width: 68ch;
+    margin: 0 0 1.4rem;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .prose :global(thead th) {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink-60);
+    font-weight: 500;
+    text-align: left;
+  }
+  .prose :global(th),
+  .prose :global(td) {
+    padding: 0.6rem 0.9rem 0.6rem 0;
+    border-bottom: 1px solid var(--color-ink-15);
+    vertical-align: top;
+  }
+  /* Numbers are the point of these tables, so they read as instrument output. */
+  .prose :global(tbody td:not(:first-child)) {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    white-space: nowrap;
+  }
 
   .product-page__back {
     margin-top: 2.5rem;
