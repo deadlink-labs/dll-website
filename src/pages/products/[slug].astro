@@ -5,6 +5,7 @@
 // (§4), so it does not post anywhere yet.
 import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import StatusDot from '../../components/StatusDot.astro';
 import { getPublishedProducts } from '../../lib/content';
@@ -26,6 +27,26 @@ const comingSoon = entry.data.stage === 'COMING SOON';
     <div class="product-page__status">
       <StatusDot stage={entry.data.stage} />
     </div>
+
+    {/* Header capture (mirrors the log record's header media, §3): the same
+        web-image ProductCard shows at listing size, here at hi-res. Products
+        author captures at 1600x1000 (16:10), not 16:9 — the box below matches
+        that native ratio rather than force-cropping to the log convention. */}
+    {
+      entry.data.image && (
+        <figure class="product-page__media">
+          <Image
+            src={entry.data.image}
+            alt={`${entry.data.title} UI`}
+            format="webp"
+            quality={100}
+            widths={[480, 720, 960, 1440]}
+            sizes="(max-width: 760px) 100vw, 720px"
+            loading="eager"
+          />
+        </figure>
+      )
+    }
 
     <div class="prose">
       <Content />
@@ -78,6 +99,18 @@ const comingSoon = entry.data.stage === 'COMING SOON';
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
+  }
+  /* Header capture — contained, not full-bleed (§3). Products author at 16:10
+     (ProductCard's ratio); logs use 16:9. Both round to the same 4px. */
+  .product-page__media {
+    margin: 0 0 2rem;
+  }
+  .product-page__media :global(img) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 4px;
   }
 
   .prose {
