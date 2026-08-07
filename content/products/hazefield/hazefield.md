@@ -12,6 +12,7 @@ web-type: products
 web-number: 2
 web-stage: COMING SOON
 web-tags: [GENERATIVE, AMBIENT, AUDIO]
+web-image: "./assets/screen.png"
 ---
 
 A generative engine for long-form drone and ambient music. It runs on macOS and
