@@ -38,7 +38,7 @@ const channels: Channel[] = [
         channels.map((c) => (
           <li>
             {c.href ? (
-              <a href={c.href} class="colophon__link">
+              <a href={c.href} class="colophon__link" target="_blank" rel="noopener noreferrer">
                 {c.label}
               </a>
             ) : (
