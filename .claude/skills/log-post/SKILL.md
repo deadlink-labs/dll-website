@@ -21,6 +21,22 @@ Before drafting or checking anything, read, in this order:
 If `VOICE.md` or the template has changed, those changes win over anything
 remembered from a previous run.
 
+## Step 0.5 — name the surface before writing a word
+
+The voice is two layers (VOICE.md §1). Layer 1 is fixed. **Layer 2 is a register
+dial you must set per surface**, so decide which row of VOICE.md §3 applies before
+drafting:
+
+- **video script** → teleprompter register, contractions avoided (a production
+  constraint, not a style rule), stage directions allowed
+- **log post** → notebook register, contractions natural
+- **product page / About Work-with-me** → human and direct, second person,
+  contractions on, faster rhythm
+
+Getting this wrong is the most common failure: a product page written in the
+notebook register reads like a manual to someone deciding whether to buy. State the
+surface you picked when you hand the draft back.
+
 ## Modes
 
 Pick the mode from what the user asked for.
@@ -56,21 +72,27 @@ Pick the mode from what the user asked for.
    about Marcelo to "improve" it.
 
 ### TRANSCRIPT — raw captions → clean transcript block
-Clean to the "written post" column of VOICE.md §6: punctuate, remove ums and stage
+Clean to the **log-post row** of VOICE.md §3: punctuate, remove ums and stage
 directions, keep spoken phrasing. Wrap in a `<details><summary>Video transcript</summary>`
 block with blank lines between paragraphs (so they render as real paragraphs).
 
 ## Always end with the self-check
 
-Before handing back a draft, silently run VOICE.md §7 and fix your own misses.
-Then state briefly which checks you verified (em dashes, exclamation marks,
-adjectives-about-Marcelo, startup words, question-title, takeaway present).
+Before handing back a draft, silently run VOICE.md §7 (both the Layer 1 list and
+the Layer 2 list for your surface) and fix your own misses. Then state briefly
+which checks you verified (em dashes, exclamation marks, adjectives-about-Marcelo,
+enthusiasm-as-evidence, startup words, title form, takeaway present) and which
+surface register you wrote in.
 
 ## Guardrails
 
 - Voice rules live in `VOICE.md`, not here. If asked to change the voice, edit
   `VOICE.md`, not this skill.
 - No em dashes, no exclamation marks, no adjectives about Marcelo, no startup
-  vocabulary — but these are enforced by reading VOICE.md, not from memory.
+  vocabulary, no enthusiasm doing the job of a number — but these are enforced by
+  reading VOICE.md, not from memory.
+- **Do not apply "prefer full words over contractions" to a written post.** That
+  rule was corrected 2026-08-07: it is a teleprompter constraint and lives only in
+  the script row of VOICE.md §3.
 - Do not fabricate outcomes, metrics, dates, or shipped things. Placeholder,
   clearly marked, or ask.

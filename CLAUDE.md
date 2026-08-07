@@ -454,11 +454,29 @@ The rules below are the summary. The full, example-driven voice guide is
 **`VOICE.md`** at the repo root (moves, lexicon, before/after pairs, self-check);
 read it before drafting or editing any post. The `/log-post` skill applies it.
 
+**The voice is two layers** (settled 2026-08-07, VOICE.md §1). Layer 1 is the
+discipline and never moves. Layer 2 is a register dial set per surface.
+
+**Layer 1, everywhere:**
 - First person, plain US English, short sentences. Specific beats clever.
 - Numbers and artifacts, never self-describing adjectives.
+- Warmth is never evidence. No "I'm excited about this", no enthusiasm standing in
+  for a number.
 - Questions as titles for experiments ("Can X become Y?").
 - UI copy: active voice, controls say what they do ("Join the waitlist", not "Submit").
 - No exclamation marks. No em dashes. No startup vocabulary (leverage, journey, empower, unlock).
+
+**Layer 2, per surface** (the full table is VOICE.md §3): a **video script** is
+written for a teleprompter, a **log post** reads as a notebook, a **product page**
+(and the About Work-with-me section) is human and direct, second person,
+contractions on. A product page is read by someone deciding whether to give you
+money or time, so it gets a warmer front door. Layer 1 still holds, which means
+there is no hype available: only the pain, stated plainly, and the numbers.
+
+*Contraction rule, corrected.* "Prefer full words" used to apply site-wide. It is a
+teleprompter production constraint (fewer elisions to trip on while reading aloud),
+not a writing rule, and it made written posts read like a manual. It now lives only
+in the script row. Do not reapply it to posts.
 
 ## 7. Build order
 
