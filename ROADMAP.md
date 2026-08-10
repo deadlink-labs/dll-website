@@ -116,8 +116,14 @@ so the heading spine alone shows the thinking to someone who only skims.
       the site now carries alt text; before this the header rendered with no alt
       attribute at all, which was survivable while every thumb was a generated
       tile and not once they became photographs
+- [x] Client-side install shown with a **reference** image of the antenna type.
+      The originals are lost, so CLAUDE.md §3 gained its one exception: a
+      stand-in is allowed when captioned as representative in words a skimmer
+      cannot miss, and when its filename does not claim a provenance it lacks
+- [x] Antenna corrected from "the size of a car door" to 60 by 45 cm, from the
+      real 24 by 18 in spec
 - [ ] `ME` Remaining Rural Point photographs (the Falcon, the laptop on the 12 V
-      outlet, the Pentium II, a roof antenna) if they turn up
+      outlet, the Pentium II, a real client install) if they turn up
 - [x] D-Link vs MikroTik settled: MikroTik routing at the base of the tower,
       D-Link access points at the subscriber houses
 - [ ] `AI` THROWBACK / 002 (Game Boy screen retrofit) and / 003 (home thermostat)

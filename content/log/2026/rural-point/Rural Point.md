@@ -143,9 +143,9 @@ an old HP laptop plugged into the 12-volt outlet, because laptop batteries in
 2006 were decorative. The laptop had a terminal open, pinging the access point
 on the tower continuously.
 
-The antenna was a grid parabolic, a big white open-frame dish roughly the size
-of a car door, bolted to a length of wooden pole. A 24 dBi grid, and the same
-model that would later end up on every subscriber's roof, which is not a
+The antenna was a grid parabolic: a big open-frame dish about 60 by 45
+centimeters, bolted to a length of wooden pole. A 24 dBi grid, and the same
+model that would later end up at every subscriber's house, which is not a
 coincidence. What matters about that number is the beamwidth: a dish
 like that radiates in a cone of maybe seven to ten degrees. It does not spray.
 You cannot wave it out of a car window and expect anything, because at that
@@ -262,12 +262,22 @@ and the radios that had to be high were high.
 *Redrawn for this post. Everything serviceable is at ground level, which was the
 only design decision made entirely out of respect for the climb.*
 
-At each house, a 24 dBi grid dish went on the roof, pointed back at the tower.
-The same kind of dish I'd been holding on a wooden pole during the survey, which
-is not a coincidence: the survey rig was the product, tested in advance. A
-D-Link access point lived next to it in a weatherproof plastic box, and the
-cable ran down into the house from there. Six to eight families, depending on
-the year.
+At each house, a 24 dBi grid dish pointed back at the tower. The same kind of
+dish I'd been holding on a wooden pole during the survey, which is not a
+coincidence: the survey rig was the product, tested in advance. Next to it, in a
+weatherproof plastic box, sat a D-Link access point running custom firmware, and
+the cable ran down into the house from there.
+
+Where it went depended on the house. A roof, the water tank, a tall side wall.
+Whichever had the cleanest line of sight back to the tower won, and that was the
+only thing that decided it. Six to eight families, depending on the year.
+
+![A grid parabolic antenna against a blue sky: a curved rectangular reflector made of pale aluminum bars on a horizontal frame, with a small boxed feed on an arm at its focus, clamped to a galvanized mast.](./assets/rural-point-client-AP-24dBi-antenna-reference.jpeg)
+
+*Custom-firmware D-Link access points behind aluminum grid parabolics like this
+one, roughly 60 by 45 centimeters, mounted wherever the line of sight back to the
+tower was cleanest. Not one of ours: I shot dozens of the real installs and
+cannot find a single one today, which is its own small lesson about archives.*
 
 The connection was about 1 Mbps symmetrical, shared across all of them.
 

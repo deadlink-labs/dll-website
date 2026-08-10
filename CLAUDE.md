@@ -136,7 +136,9 @@ Banned: scroll-triggered reveals on prose, parallax, hero choreography, anything
 
 Still banned, and this part does not move: **no stock photography, no AI-generated imagery, no 3D renders, no illustrative photograph of hardware that is not the hardware in question.** That last one is the trap. When LOG 013 needed to show a grid parabolic and no photograph of the actual dish survived, the answer was to describe it in prose and draw the geometry as a house specimen tile, not to reach for a picture of a similar antenna. An image on this site is evidence or it is a diagram. It is never an illustration.
 
-The test: *would this image still be true if the reader knew exactly where it came from?* A 2006 snapshot of the real tower passes. A clean product shot of someone else's identical hardware does not, no matter how honest the caption is.
+The test: *would this image still be true if the reader knew exactly where it came from?* A 2006 snapshot of the real tower passes. A clean product shot of someone else's identical hardware, captioned to imply it is yours, does not.
+
+**The one exception: a reference image, when the evidence is lost** (added 2026-08-10, LOG 013). Sometimes the work happened, was photographed, and the photographs are gone. A representative image of the *type* of equipment may stand in, on two conditions, both load-bearing. It is captioned as representative in the caption itself, in words a skimming reader cannot miss ("like this one", "not one of ours"). And its filename does not claim a provenance it lacks: LOG 013's is `rural-point-client-AP-24dBi-antenna-reference.jpeg`, deliberately without the `2006` the real photographs carry. What is still banned is the quiet version, where a catalog photo sits in the flow of real ones and the caption lets you assume. The point was never that stand-ins are dishonest. It is that an unlabelled one spends the credibility the real photographs earned.
 
 Where photographs do not exist, the fallback is unchanged: an **on-brand graphite specimen tile** (see Specimen tiles, below). Captions carry provenance — original, redrawn, or reconstructed — per "Redraw in English" below.
 
