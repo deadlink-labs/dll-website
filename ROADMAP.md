@@ -72,7 +72,7 @@ duplicate of LOG 010's.
       forever with no visibility check and no motion query
 
 ### LOG 013 · Rural Point, and the Throwback format
-`v1.02.033` – `v1.02.034` · **written 2026-08-09**
+`v1.02.033` – `v1.02.034` · **written 2026-08-09 → 2026-08-10**
 
 The first record of pre-lab work, and the format that will carry the rest of it.
 
@@ -96,10 +96,30 @@ returned **zero** — every apostrophe on the site was a possessive. The correct
 had been made in the doc and never applied to prose, which is exactly what "too
 clinical, too sanitized" was describing. LOG 013 is the first post written after it.
 
+**`v1.02.034` then applied it to everything already published.** All six published
+log posts plus the Hazefield product page were rewritten into the current register,
+and their H2 headings reworked to carry the method rather than label the section,
+so the heading spine alone shows the thinking to someone who only skims.
+
+- [x] LOG 001, 006, 010, 011, 012 rewritten in register; H2 spines reworked
+- [x] Hazefield product page moved from the notebook register to the product row
+- [x] LOG 011's CMS call promoted out of a bullet into its own section: who gets
+      to change what without calling a developer is the sharpest call in that job
+- [x] LOG 001 transcript said "thirty years", now twenty. It contradicted the
+      settled positioning and the post's own opening two screens above it
+- [x] Four Rural Point photographs placed, and a portrait height cap added to
+      `.prose img` so a 3:4 frame cannot push the caption off screen
+- [ ] `ME` **Confirm Gendarmería Nacional vs Prefectura Naval at the Atucha hop.**
+      The draft said Prefectura, the later note said Gendarmería; the post
+      currently says Gendarmería. Different forces, so one is a misremembering
 - [ ] `ME` Remaining Rural Point photographs (the Falcon, the laptop on the 12 V
       outlet, the Pentium II, a roof antenna) if they turn up
-- [ ] `ME` Confirm D-Link vs MikroTik at the subscriber houses
+- [x] D-Link vs MikroTik settled: MikroTik routing at the base of the tower,
+      D-Link access points at the subscriber houses
 - [ ] `AI` THROWBACK / 002 (Game Boy screen retrofit) and / 003 (home thermostat)
+- [ ] The four placeholder stubs (LOG 002/003/004/005) were deliberately skipped
+      in the voice pass. They are 86 to 130 words each and slated for replacement,
+      so polishing them is work that gets thrown away
 
 ---
 
