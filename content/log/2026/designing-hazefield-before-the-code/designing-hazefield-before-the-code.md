@@ -115,5 +115,3 @@ first and the typing there last.
 - [Can I design and ship my own website with AI, in public?](/log/building-deadlinklabs-with-ai-in-public). The same idea on a different project: think first, then build.
 
 The code isn't written yet. The hard part mostly is.
-
-Build to understand.

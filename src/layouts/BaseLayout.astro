@@ -19,6 +19,8 @@ import '@fontsource/ibm-plex-mono/600.css';
 // real face. Same superfamily, so the colophon's "IBM Plex" still holds.
 import '@fontsource/ibm-plex-serif/latin-600.css';
 
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
@@ -32,6 +34,13 @@ interface Props {
   width?: 'index' | 'record';
   /** Remove the main padding — for pages whose bands carry their own gutters (Home). */
   flush?: boolean;
+  /** Share-card image. Records pass their web-thumb; pages without one degrade
+      to a text-only card (see the og: block below). */
+  ogImage?: ImageMetadata;
+  /** og:type — "article" for records, "website" for everything else. */
+  ogType?: 'website' | 'article';
+  /** Alt text for the share image. Records pass their web-thumb-alt. */
+  ogImageAlt?: string;
 }
 
 const {
@@ -39,10 +48,38 @@ const {
   description = 'The creative laboratory and proof-of-work archive of Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run themselves.',
   width = 'index',
   flush = false,
+  ogImage,
+  ogType = 'website',
+  ogImageAlt,
 } = Astro.props;
+
+// --- SHARE CARDS ---
+// The site shipped with no Open Graph tags at all, so pasting any URL into
+// Slack, LinkedIn, WhatsApp or iMessage produced a bare link: no image, no
+// headline, no description. That, not a row of share buttons, is what decides
+// whether a link gets clicked — and no button on the page can fix it.
+//
+// The image is the record's own web-thumb, which §3 already designates for this
+// ("the same web-thumb is reused on the homepage feed card, the Shipped-for-
+// clients band and OG cards"). Rendered to JPEG because WebP support across
+// unfurlers is still uneven, and to 1200w because every platform samples around
+// there. Absolute URLs are mandatory: relative ones are silently dropped.
+const ogImageRendered = ogImage
+  ? await getImage({ src: ogImage, width: 1200, format: 'jpeg' })
+  : undefined;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = ogImageRendered
+  ? new URL(ogImageRendered.src, Astro.site).href
+  : undefined;
 
 // Title template (§2): "Deadlink Labs — Marcelo Brouard" on home; "{Page} · Deadlink Labs" elsewhere.
 const pageTitle = title ? `${title} · Deadlink Labs` : 'Deadlink Labs — Marcelo Brouard';
+
+// og:site_name already carries the brand, so repeating it in og:title would
+// print "Deadlink Labs" twice on one card. The <title> tag keeps its suffix —
+// that one is competing in a tab strip and a results page, which is a different
+// problem. The homepage has no page title of its own, so it uses the full one.
+const ogTitle = title ?? pageTitle;
 
 // --- SEARCH-ENGINE INDEXING SWITCH (site-wide, single source of truth) ---
 // While the site is still being built with placeholder/draft content, we keep
@@ -64,7 +101,23 @@ const ALLOW_INDEXING = false;
     <meta name="author" content="Marcelo Brouard" />
     {/* Keep the whole site out of search until the real content is ready — flip ALLOW_INDEXING above. */}
     {!ALLOW_INDEXING && <meta name="robots" content="noindex, nofollow" />}
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="canonical" href={canonicalUrl} />
+    {/* Share cards. Without these a pasted URL unfurls into nothing. */}
+    <meta property="og:site_name" content="Deadlink Labs" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    {ogImageRendered && <meta property="og:image:width" content={String(ogImageRendered.attributes.width ?? 1200)} />}
+    {ogImageRendered && <meta property="og:image:height" content={String(ogImageRendered.attributes.height ?? 675)} />}
+    {ogImageUrl && ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
+    {/* summary_large_image needs an image to be large about; without one the
+        big-card layout renders as an empty grey box, so fall back to summary. */}
+    <meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
     <link rel="alternate" type="application/rss+xml" title="Deadlink Labs — Log" href="/rss.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

@@ -355,5 +355,3 @@ You've built a very good demonstration that happens to still be running.
 This is the first of these. I have twenty years of projects that were never
 written down anywhere, and I'm going to work through the ones I can still find
 the photographs for.
-
-Build to understand.

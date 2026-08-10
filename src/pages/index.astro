@@ -81,7 +81,9 @@ const personSchema = {
         <div>
           <div class="hero">
             <p class="hero__eyebrow">Featured on the bench{heroRecord && ` · ${heroRecord}`}</p>
-            <h1 class="hero__question">{current.data.title}</h1>
+            <h1 class="hero__question">
+              <a class="hero__link" href={`/log/${current.id}`}>{current.data.title}</a>
+            </h1>
             {current.data.tags && current.data.tags.length > 0 && (
               <p class="hero__tags">{current.data.tags.join(' / ')}</p>
             )}
@@ -352,6 +354,21 @@ astro  v5.18.2  ready in 415 ms
     letter-spacing: -0.022em;
     font-weight: 600;
     color: var(--color-ink);
+  }
+  /* The hero headline is the biggest thing on the page and pointed at a record,
+     so people click it — it just was not a link. Same treatment as every other
+     title on this page (.card__title, .stamplist__title): inherits its type, no
+     underline at rest, signal orange on hover. The keyboard ring comes from the
+     global :focus-visible rule. It duplicates the "Step into the log" link
+     below on purpose; both go to the same record, and the headline is the
+     target a reader actually aims at. */
+  .hero__link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+  .hero__link:hover {
+    color: var(--color-signal);
   }
 
   .hero__tags {

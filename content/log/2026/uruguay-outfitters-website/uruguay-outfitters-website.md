@@ -137,5 +137,3 @@ loads in time, the mail that arrives, the photo the owner swapped without callin
 you.
 
 Everything the visitor praises sits on top of the work they never see.
-
-Build to understand.

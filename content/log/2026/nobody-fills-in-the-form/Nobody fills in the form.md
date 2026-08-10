@@ -291,5 +291,3 @@ else's engineer is willing to trust.
 
 And build the thing they asked for in a way that leaves behind the thing they
 didn't know to ask for. The report was the deliverable. The history is the asset.
-
-Build to understand.

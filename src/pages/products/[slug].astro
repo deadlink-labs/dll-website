@@ -31,7 +31,16 @@ const leadParagraphs =
     .filter(Boolean) ?? [];
 ---
 
-<BaseLayout width="record" title={entry.data.title} description={entry.data.snippet}>
+{/* No byline avatar here — products are destinations, not authored records —
+    but they still want a share card, so the thumb goes through. */}
+<BaseLayout
+  width="record"
+  title={entry.data.title}
+  description={entry.data.snippet}
+  ogImage={entry.data.thumb}
+  ogImageAlt={entry.data.thumbAlt}
+  ogType="article"
+>
   <article class="product-page">
     <p class="product-page__eyebrow">Deadlink Labs / Products</p>
     <h1 class="product-page__title">{entry.data.title}</h1>

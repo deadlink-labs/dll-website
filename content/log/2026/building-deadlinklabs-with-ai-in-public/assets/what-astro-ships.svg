@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <!-- WHAT ASTRO SHIPS. Three sources down a spine into one built page, and
+       deliberately no arrows — the spine already says which way it runs.
+
+       THE NUMBERS CAME OUT, and the reason is worth keeping. Two passes carried
+       a stat block on the right: first "45 KB / HTML + CSS, THIS PAGE", then
+       "0 / JS FILES REQUESTED" over "145 B / OF INLINE SCRIPT, ALL OF IT". Both
+       were measured and true. Both were cut anyway, because the reader this post
+       has to survive is a recruiter or an operator skimming, and a byte count of
+       inline script is insider detail to them — it reads as noise beside the one
+       thing they actually need, which is that the page is static and quiet.
+
+       Two things fell out of that. The tile lost the big-number-on-the-right
+       skeleton it shared with every other tile on the page, which was starting
+       to look like a template. And the closing line moved to the right rail,
+       where the numbers used to sit, so the composition still has a right edge.
+
+       IF THE ZERO EVER COMES BACK, it is the one worth restoring — "0 JS FILES
+       REQUESTED" is short, legible and checkable. Do NOT restore "0 KB
+       JAVASCRIPT", which would be a lie: inline script exists (145 B on a log
+       record, 2,182 B on the homepage). And do not restore a page-weight figure,
+       which goes stale the moment the post is edited — inlining these four tiles
+       already moved this page from 17 KB to 35 KB of HTML. -->
+
+
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">WHAT ASTRO SHIPS</text>
+
+  <!-- ── the spine: three sources down into one output ────────────────── -->
+  <line x1="110" y1="220" x2="110" y2="500" stroke="#ece8e1" stroke-opacity="0.25" stroke-width="2"/>
+
+  <g fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2">
+    <circle cx="110" cy="220" r="11"/>
+    <circle cx="110" cy="300" r="11"/>
+    <circle cx="110" cy="380" r="11"/>
+  </g>
+
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">
+    <text x="170" y="230">MARKDOWN NOTES</text>
+    <text x="170" y="310">ASTRO COMPONENTS</text>
+    <text x="170" y="390">DESIGN TOKENS</text>
+  </g>
+
+  <!-- ── what comes out, and the only orange on the tile ──────────────── -->
+  <circle cx="110" cy="500" r="44" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="110" cy="500" r="17" fill="#f04a00"/>
+  <text x="170" y="510" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.75">STATIC HTML</text>
+
+  <!-- ── the closing line, sitting where the numbers used to ──────────── -->
+  <g text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="56" letter-spacing="2" fill="#ece8e1" fill-opacity="0.72">
+    <text x="1216" y="330">NOTHING LOADS</text>
+    <text x="1216" y="400">TO PERFORM</text>
+    <text x="1216" y="470">AT THE READER.</text>
+  </g>
+</svg>

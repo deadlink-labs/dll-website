@@ -9,6 +9,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Stamp from '../../components/Stamp.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
+import avatar from '../../assets/avatar-2024-mb.jpeg';
 import { getPublishedLog, recordLabel, seriesLabel, formatDate } from '../../lib/content';
 
 export const getStaticPaths = (async () => {
@@ -22,13 +23,42 @@ const label = recordLabel(entry);
 const series = seriesLabel(entry);
 ---
 
-<BaseLayout width="record" title={entry.data.title} description={entry.data.snippet}>
+<BaseLayout
+  width="record"
+  title={entry.data.title}
+  description={entry.data.snippet}
+  ogImage={entry.data.thumb}
+  ogImageAlt={entry.data.thumbAlt}
+  ogType="article"
+>
   <article class="record">
     <div class="record__stamp">
       <Stamp label={label} series={series} stage={entry.data.stage} tags={entry.data.tags} />
     </div>
     <h1 class="record__title">{entry.data.title}</h1>
-    <p class="record__date">{formatDate(entry.data.pubDate)}</p>
+    {/* Byline. The name is here because it is nowhere else on this page: the
+        §3 running head ("Deadlink Labs · A working laboratory · Marcelo Brouard
+        · Buenos Aires") was never built, so the top bar is just the wordmark and
+        four links, and "Marcelo Brouard" appears in no visible text on a record
+        — only in <meta name="author">. A record is the page a recruiter lands on
+        first, arriving from a shared link rather than the homepage, so the
+        90-second test (§1) was failing quietly on every post in the archive.
+        Separator is a middot, the site's own (§3 masthead), not a rule: the
+        record tail just lost two hairlines and a third here would fight them. */}
+    <p class="record__byline">
+      <Image
+        class="record__avatar"
+        src={avatar}
+        alt="Marcelo Brouard"
+        width={28}
+        height={28}
+        densities={[1, 2, 3]}
+        loading="eager"
+      />
+      <span class="record__author">Marcelo Brouard</span>
+      <span class="record__sep" aria-hidden="true">·</span>
+      <span>{formatDate(entry.data.pubDate)}</span>
+    </p>
     {/* Header media (§5.2): the video facade when the post has a video (it shows
         the thumbnail with a play button), otherwise the web-thumb as a static
         header. Either way, a post with a thumbnail opens with it. */}
@@ -51,33 +81,87 @@ const series = seriesLabel(entry);
     <div class="prose">
       <Content />
     </div>
+    {/* The house closer. It lived in the note bodies until now — five records
+        ended with a bare "Build to understand." line and LOG 001 with a two-line
+        "// " variant — which meant every author had to remember it and no two
+        matched. It is positional, not editorial, so it belongs here (CLAUDE.md
+        §4: keep note bodies pure prose, drive the rest from the layout).
+        Log records only: products are destinations, not lab records.
+        It carried a second line, "// Build to Understand", for one pass. The
+        footer manifesto prints BUILD TO UNDERSTAND a few hundred pixels below,
+        so the record was saying it twice on one screen. */}
+    <div class="record__signoff">// Deadlink Labs</div>
     <p class="record__back"><a href="/log">← Back to the log</a></p>
   </article>
 
 </BaseLayout>
 
 <style>
+  /* No top padding. .sheet__body already contributes up to 56px above this, and
+     the sticky nav adds its own, which left ~150px of nothing before the first
+     line of a record — on the page that has to pass the 90-second test. The
+     spacing lives in one place now instead of two. */
   .record {
-    padding-block: 1rem 1.5rem;
+    padding-block: 0 1.5rem;
     max-width: 720px;
   }
   .record__stamp {
     margin-bottom: 1.5rem;
   }
+  /* 1.25rem, not the 0.75rem this carried before. That value was tuned when the
+     byline below was a plain 11px text line; the avatar made that row 28px tall
+     and the margin never moved, so a 28px object sat 12px under a 44px headline
+     whose line-height 1.1 already pulls descenders close to the box edge. The
+     gaps also ran backwards — 12px above the byline against 32px below it, so it
+     read as shoved into the title and abandoned over the image. */
   .record__title {
-    margin: 0 0 0.75rem;
+    margin: 0 0 1.25rem;
     font-size: clamp(1.9rem, 4vw, 2.75rem);
     line-height: 1.1;
     letter-spacing: -0.025em;
     font-weight: 600;
   }
-  .record__date {
-    margin: 0 0 2rem;
+  /* Byline row. NOT uppercase, and that is the whole point of it. This row
+     inherited the old .record__date treatment (11px mono, 0.1em, caps), which
+     put a person's name in the same visual class as the stamp directly above
+     it — so the record showed two shouting all-caps mono rows with the H1
+     sandwiched between them, and "MARCELO BROUARD" read as one more metadata
+     token rather than a human. Sentence case separates the byline from the
+     stamp without adding a typeface or a colour.
+     Letter-spacing drops to 0.02em because tracking is a caps device; at 0.1em
+     sentence-case mono looks stretched. 12px because lowercase reads smaller
+     than caps at the same size.
+     The avatar stays 28px: a Tim-Ferriss-scale 48px would tower over the line
+     and become the loudest thing between the H1 and the header image. */
+  .record__byline {
+    display: flex;
+    align-items: center;
+    /* 0.625rem: 8px was tight against a 28px circle. */
+    gap: 0.625rem;
+    /* 3rem closes the header cluster. Stamp, title and byline are one group at
+       24/20px internal spacing; this is the break before the image. */
+    margin: 0 0 3rem;
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.02em;
     color: var(--color-ink-60);
+  }
+  .record__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* The one round thing on a site with 0–4px radii. It is a face, and the
+       exception is the point: it reads as a person, not another card. */
+    flex: none;
+  }
+  /* Weight, not colour, separates the name from the date — the same move the
+     §3 masthead makes with its "Deadlink Labs" token. */
+  .record__author {
+    font-weight: 500;
+  }
+  .record__sep {
+    opacity: 0.5;
   }
   /* Header media — a contained specimen at the top of the record, not a
      full-bleed hero (§3). Mirrors the video facade frame. */
@@ -101,10 +185,25 @@ const series = seriesLabel(entry);
     color: var(--color-ink-60);
     font-style: italic;
   }
-  .record__back {
+  /* The sign-off closes the record on air alone — no rule above it. A hairline
+     there fenced the closer off from the prose it belongs to and read as a
+     second horizon one line above the back link's. 11.5px / 0.16em uppercase
+     ink-60 is the cover's "Build to Understand." setting from CLAUDE.md §3,
+     reused so a record ends in the type the site opens in. */
+  .record__signoff {
     margin-top: 2.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--color-ink-15);
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ink-60);
+  }
+  /* No rule here either. The tail carried one above the back link for a long
+     time and a second was briefly added above the sign-off; together they
+     fenced the closer between two horizons and made a mess of the end of the
+     record. The band closes on air alone now — prose, sign-off, way out. */
+  .record__back {
+    margin-top: 1.5rem;
     font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: 0.1em;

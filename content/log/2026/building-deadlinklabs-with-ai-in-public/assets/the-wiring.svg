@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <!-- THE WIRING. Station x positions are DERIVED, not drawn:
+       tile-system.stations(['VS CODE · GIT','GITHUB','VERCEL','CLOUDFLARE',
+       'THE DOMAIN'], 24, 2) -> [170.6, 411.4, 652.3, 893.1, 1134], which lands
+       the outer labels flush on the rail at exactly 64.0 and 1216.0. Tightest
+       neighbour gap is 76.9px against a 24px minimum.
+
+       'DEADLINKLABS.COM' was tried as the fifth label and stations() rejects it:
+       it leaves 15px against CLOUDFLARE. That is why the last station reads
+       THE DOMAIN and the actual domain sits on its own line, anchored flush
+       right at 1216 (centring it on the station overruns the rail to 1284.4).
+
+       GIT AND GITHUB ARE DELIBERATELY SEPARATE. Git is the version control and
+       runs locally; GitHub is the cloud copy. The post's prose collapsed the two
+       and the drawing is what makes the distinction visible.
+
+       OBSIDIAN IS DASHED BECAUSE IT IS NOT WIRED YET, and it joins at VERCEL
+       rather than at VS Code, which is where it will actually join: the vault is
+       its own content repo and a Deploy Hook triggers the rebuild, so it is a
+       second input arriving at build time. Its node sits at (482.3, 260) so the
+       drop to the Vercel station is exactly 45° — 170 across, 170 down. No hero
+       number: this is a topology diagram, so it follows the link-chain idiom.
+
+       The whole diagram sits 50px lower than the first pass, which put the spine
+       at y=380 and left 190px of dead ground under it. -->
+
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">THE WIRING</text>
+
+  <!-- ── the vault, not yet wired: dashed node, dashed 45° drop ───────── -->
+  <text x="482.3" y="220" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">OBSIDIAN VAULT · NEXT</text>
+  <line x1="490.1" y1="267.8" x2="643.1" y2="420.8" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="2" stroke-dasharray="7 7"/>
+  <circle cx="482.3" cy="260" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2" stroke-dasharray="5 4"/>
+
+  <!-- ── station labels ───────────────────────────────────────────────── -->
+  <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">
+    <text x="170.6" y="350">VS CODE · GIT</text>
+    <text x="411.4" y="350">GITHUB</text>
+    <text x="652.3" y="350">VERCEL</text>
+    <text x="893.1" y="350">CLOUDFLARE</text>
+    <text x="1134" y="350">THE DOMAIN</text>
+  </g>
+
+  <!-- ── the spine, my machine through three services to the address ──── -->
+  <line x1="170.6" y1="430" x2="1134" y2="430" stroke="#ece8e1" stroke-opacity="0.25" stroke-width="2"/>
+
+  <!-- ── settled stations; Vercel is larger because two inputs meet there ─ -->
+  <g fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2">
+    <circle cx="170.6" cy="430" r="11"/>
+    <circle cx="411.4" cy="430" r="11"/>
+    <circle cx="893.1" cy="430" r="11"/>
+  </g>
+  <circle cx="652.3" cy="430" r="13" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.6" stroke-width="2"/>
+
+  <!-- ── the one live node: the address that finally resolves ─────────── -->
+  <circle cx="1134" cy="430" r="48" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="1134" cy="430" r="20" fill="#f04a00"/>
+  <text x="1216" y="520" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">deadlinklabs.com</text>
+
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">OBSIDIAN INTEGRATION COMES IN THE NEXT POST.</text>
+</svg>

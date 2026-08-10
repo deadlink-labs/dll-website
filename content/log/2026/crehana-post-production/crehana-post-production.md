@@ -21,22 +21,20 @@ web-tags: [CASE-STUDY, AUTOMATION, DASHBOARDS, JIRA]
 web-thumb: "./assets/thumb.webp"   # on-brand specimen tile (generated); source at assets/thumb.svg
 web-thumb-alt: "Graphite specimen tile stamped SHIPPED, CASE STUDY, reading Crehana, content operation to system, above a rising staircase of four stations: spreadsheets, dashboards, one board, and automated, where a single orange node marks the end of the climb."
 ---
+A lot of operational problems look like people problems until you can see the system.
 
-When I arrived, nobody could tell me how many courses were in production. When I
-left, a dashboard could, in real time, and so could everyone else.
+When I arrived at Crehana, nobody could tell me how many courses were in production without asking several people, opening several spreadsheets, and piecing the answer together. When I left, a dashboard could tell you in real time, and so could everyone else.
 
-That gap is the job. Crehana is an online education company in Latin America. I
-spent about three years there, first from the outside and then running production,
-turning a content operation that ran on memory into one that ran on a system.
+That became the pattern for almost everything I worked on: **see it, centralize it, automate it, then cut what's left over.** Rather than adding people to a process that was difficult to understand, I wanted to understand the system first, then make the system do more of the work.
 
-The order was always the same. See it. Centralize it. Automate it. Then cut
-what's left over. The stack barely matters. The sequence is the whole game.
+Crehana is an online education company in Latin America. I spent about three years there, first from the outside and then running production, turning a content operation that ran on memory into one that ran on a system.
 
 ```terminal
 $ python production_plan.py
 reading the board from Jira...
 ✓ 214 courses tracked · 0 stuck over 48h · plan posted
 ```
+
 
 ## Two launches that ran on heroics
 
@@ -199,5 +197,3 @@ backwards and you automate a process nobody understands, on a stack nobody agree
 to.
 
 The tools are replaceable. Every one of them. The sequence is not.
-
-Build to understand.
