@@ -39,11 +39,12 @@ const series = seriesLabel(entry);
         <figure class="record__media">
           <Image
             src={entry.data.thumb}
-            alt=""
+            alt={entry.data.thumbAlt ?? ''}
             widths={[480, 720, 960, 1440]}
             sizes="(max-width: 760px) 100vw, 720px"
             loading="eager"
           />
+          {entry.data.thumbCaption && <figcaption>{entry.data.thumbCaption}</figcaption>}
         </figure>
       ) : null
     }
@@ -89,6 +90,16 @@ const series = seriesLabel(entry);
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: 4px;
+  }
+  /* Header caption, matching the in-body treatment (.prose p:has(> em:only-child))
+     so a caption reads the same whether it sits under the header image or under
+     a figure mid-post. */
+  .record__media figcaption {
+    margin-top: 0.6rem;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-ink-60);
+    font-style: italic;
   }
   .record__back {
     margin-top: 2.5rem;
@@ -163,15 +174,26 @@ const series = seriesLabel(entry);
     border-radius: 4px;
     margin: 1.75rem 0 0.6rem;
   }
-  /* Portrait photographs get a height cap. A 3:4 frame at the 720px prose width
-     renders ~960px tall, which pushes the caption and the paragraph after it off
-     the screen entirely: the reader loses the thread of the post to look at one
-     picture. Capping the height and centring keeps a tall photo inside roughly
-     one screen. object-fit is deliberately NOT used, so nothing is cropped. */
-  .prose :global(img[width][height]) {
-    max-height: 78vh;
-    width: auto;
-    margin-inline: auto;
+  /* Photographs are wrapped in a <figure> by remark-photo-figure, which also
+     resolves a PORTRAIT photo's real width at build and sets it as an inline
+     max-width. That is what keeps a caption aligned to the picture: the figure
+     is the shared box, so image and caption cannot drift apart the way two
+     sibling blocks do. A landscape photo has no inline width and fills the
+     column exactly as before. Nothing is ever cropped. */
+  .prose :global(.photo-fig) {
+    margin: 1.75rem auto 2rem;
+  }
+  .prose :global(.photo-fig p) {
+    margin: 0;
+  }
+  .prose :global(.photo-fig img) {
+    width: 100%;
+    margin: 0;
+  }
+  .prose :global(.photo-fig p:last-child:not(:first-child)) {
+    margin-top: 0.6rem;
+    font-size: 13px;
+    color: var(--color-ink-60);
   }
   .prose :global(p:has(> em:only-child)) {
     margin-top: 0;

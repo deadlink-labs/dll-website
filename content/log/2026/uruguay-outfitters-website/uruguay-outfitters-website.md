@@ -17,6 +17,8 @@ web-tags: [CLIENT-WORK, NEXT-JS, SANITY, VERCEL]
 # Optional media. web-video omitted (no video); web-thumb is the site's own OG image.
 # web-video: "https://youtu.be/XXXXXXXXXXX"
 web-thumb: "./assets/thumb.jpg"
+web-thumb-alt: "Aerial photograph of the lodge at sunset: a long stone building with a red tile roof on a ridge, a covered veranda and a small pool on the deck, the sun low over a wide river to the left, scrub and grassland all around."
+web-thumb-caption: "The lodge, in the client's own photography. This is the inventory: everything else on the site gets out of its way."
 ---
 
 Uruguay Outfitters sells a week of hunting and fishing to people who have never

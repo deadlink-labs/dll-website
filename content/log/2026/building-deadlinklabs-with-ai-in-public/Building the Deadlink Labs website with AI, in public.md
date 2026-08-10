@@ -18,6 +18,7 @@ web-stage: IN PROGRESS
 web-tags: [ASTRO, DESIGN, AI-ASSISTED, WORKFLOW]
 # web-video: "https://youtu.be/XXXXXXXXXXX"   # YouTube share link or bare ID -> renders the video facade at the top. Omit and no embed shows.
 web-thumb: "./assets/thumb.webp"   # network-mark header tile (generated); source at assets/thumb.svg
+web-thumb-alt: "The Deadlink Labs mark on a dark ground, set beside the words Deadlink Labs and Build to Understand: pale nodes joined by hairlines into a braced mesh at the lower left, thinning as it rises until two orange edges reach up to one glowing orange node at the top right."
 ---
 
 For more than 20 years I built things and had no link to send when someone asked to

@@ -19,6 +19,7 @@ web-number: 12
 web-stage: SHIPPED
 web-tags: [CLIENT-WORK, AI, N8N, WHATSAPP, WHISPER]
 web-thumb: "./assets/thumb.webp"   # the post's own artwork, not a generated tile; source at assets/thumb.svg
+web-thumb-alt: "Cover artwork: on the left a phone showing the WhatsApp exchange, the system asking for a serial number, spares and finish time, the technician answering in one line, and the report closing in one round. On the right the six-box flow behind it: voice note in, Whisper on their server, Claude structuring, a completeness check, PostgreSQL, report out, with Claude outlined in orange as the only call that leaves the network."
 ---
 
 A field technician finishes a service at a customer's plant, gets in the van, and

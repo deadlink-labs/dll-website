@@ -296,6 +296,8 @@ web-series: THROWBACK         # OPTIONAL series membership (§5.2)
 web-series-number: 1          # → "THROWBACK / 001"; permanent, unique per series
 web-video: "https://youtu.be/…"   # optional; top-of-post video facade
 web-thumb: "./assets/thumb.webp"  # optional; feed-card thumbnail + video poster
+web-thumb-alt: "..."              # optional; alt text for the header image
+web-thumb-caption: "..."          # optional; caption under the header image
 ---
 ```
 
@@ -309,6 +311,7 @@ web-thumb: "./assets/thumb.webp"  # optional; feed-card thumbnail + video poster
 - `web-series` / `web-series-number` → optional membership in a named series that numbers **independently of `web-number`**: LOG 013 is also `THROWBACK / 001`. Both halves are required for the label to render (a post with only one renders no label, rather than "THROWBACK / undefined"). Like `web-number`, the pair is a **permanent public identifier** — it is printed on the homepage band and stamped on the record — so it is authored by hand, must never change once published, and must be **unique within its series** (enforced at build; numbering is per series, so a future `FIELD NOTE / 001` coexists with `THROWBACK / 001`). It is deliberately NOT derived from `site.config.json`: a reorderable curation array would silently renumber records.
 - `web-video` → optional YouTube URL **or** bare ID. Renders a privacy-first facade at the top of the post — nothing loads from YouTube until the visitor clicks play (§4 embeds). A set-but-unparseable value fails the build. Absent → no embed.
 - `web-thumb` → optional self-hosted poster in the post's `assets/`, run through Astro's image pipeline. Used as the homepage feed-card thumbnail and the video-facade poster. Absent → no image.
+- `web-thumb-alt` / `web-thumb-caption` → optional, and separate on purpose. **Alt DESCRIBES** the image for someone who cannot see it; the **caption ADDS** something for everyone (provenance, what you are looking at). A generated tile that restates the post title wants alt and no caption. A photograph that is evidence wants both. Absent alt leaves the header image decorative, which is right for a tile and wrong for a photograph, so any post whose `web-thumb` is a real photograph must set it (§3 accessibility floor).
 - Products also accept `web-waitlist: true` (§5.3).
 - **No frontmatter passthrough.** The build whitelist-extracts the `web-*` fields into a typed object; raw frontmatter is never serialized into output (not the body, not `<meta>`, not structured data). Internal fields cannot leak into page source.
 - **Deliberately absent:** no `web-slug` (folder name is the slug), no `homepage`/`featured`/`order` (curation lives in `site.config.json`).

@@ -22,6 +22,8 @@ web-tags: [WIRELESS, RF, NETWORKING, INFRASTRUCTURE]
 web-series: THROWBACK
 web-series-number: 1
 web-thumb: "./assets/rural-point-2006-tower-AP-8dBi-omni-antena-its-me.webp"   # 16:9 crop of the summit photo
+web-thumb-alt: "Me at the top of the tower in 2006, grinning at the camera, next to a weatherproof enclosure with a hazard label and the white 8 dBi omnidirectional antenna on its bracket, countryside and blue sky behind."
+web-thumb-caption: "At the top, 2006. The white enclosure is the access point, the pole on the right is the 8 dBi omni that covered the property."
 ---
 
 In 2006 there was no 3G, no 4G, and no way to get online where we lived. The

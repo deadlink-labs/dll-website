@@ -19,6 +19,7 @@ web-stage: SHIPPED
 web-tags: [CASE-STUDY, AUTOMATION, DASHBOARDS, JIRA]
 # web-video: "https://youtu.be/XXXXXXXXXXX"
 web-thumb: "./assets/thumb.webp"   # on-brand specimen tile (generated); source at assets/thumb.svg
+web-thumb-alt: "Graphite specimen tile stamped SHIPPED, CASE STUDY, reading Crehana, content operation to system, above a rising staircase of four stations: spreadsheets, dashboards, one board, and automated, where a single orange node marks the end of the climb."
 ---
 
 When I arrived, nobody could tell me how many courses were in production. When I

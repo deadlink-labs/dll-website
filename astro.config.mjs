@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import remarkTerminal from './src/plugins/remark-terminal.mjs';
 import remarkSvgSpecimen from './src/plugins/remark-svg-specimen.mjs';
+import remarkPhotoFigure from './src/plugins/remark-photo-figure.mjs';
 
 // Deadlink Labs — deadlinklabs.com
 // A content archive, not an app. Astro ships zero JavaScript by default;
@@ -22,7 +23,11 @@ export default defineConfig({
   // remarkSvgSpecimen inlines relative .svg tiles so they scale as vectors and
   // inherit the page's IBM Plex Mono; raster images keep the image pipeline.
   markdown: {
-    remarkPlugins: [remarkTerminal, remarkSvgSpecimen],
+    // remarkPhotoFigure runs last: it wraps raster photographs (and their
+    // caption) in a <figure>, resolving a portrait photo's real width at build
+    // so its caption lines up with it. It skips .svg, which remarkSvgSpecimen
+    // has already turned into its own figure.
+    remarkPlugins: [remarkTerminal, remarkSvgSpecimen, remarkPhotoFigure],
   },
 
   // Prose-first output. No experimental client hydration by default.

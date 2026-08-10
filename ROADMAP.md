@@ -107,11 +107,15 @@ so the heading spine alone shows the thinking to someone who only skims.
       to change what without calling a developer is the sharpest call in that job
 - [x] LOG 001 transcript said "thirty years", now twenty. It contradicted the
       settled positioning and the post's own opening two screens above it
-- [x] Four Rural Point photographs placed, and a portrait height cap added to
-      `.prose img` so a 3:4 frame cannot push the caption off screen
-- [ ] `ME` **Confirm Gendarmería Nacional vs Prefectura Naval at the Atucha hop.**
-      The draft said Prefectura, the later note said Gendarmería; the post
-      currently says Gendarmería. Different forces, so one is a misremembering
+- [x] Atucha hop confirmed as **Gendarmería Nacional**, not Prefectura Naval
+- [x] Four photographs placed by section, and `remark-photo-figure` added so a
+      photograph and its caption share one `<figure>`. A portrait photo's real
+      width is resolved at build (`CAP_H × w/h`) and set on the figure, which is
+      what stops a tall picture drifting out of alignment with its own caption
+- [x] `web-thumb-alt` / `web-thumb-caption` on the schema. Every header image on
+      the site now carries alt text; before this the header rendered with no alt
+      attribute at all, which was survivable while every thumb was a generated
+      tile and not once they became photographs
 - [ ] `ME` Remaining Rural Point photographs (the Falcon, the laptop on the 12 V
       outlet, the Pentium II, a roof antenna) if they turn up
 - [x] D-Link vs MikroTik settled: MikroTik routing at the base of the tower,

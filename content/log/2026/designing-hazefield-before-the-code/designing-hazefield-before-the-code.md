@@ -16,6 +16,8 @@ web-stage: IN PROGRESS
 web-tags: [HAZEFIELD, BLUEPRINT, PRE-PRODUCTION, AI-ASSISTED]
 # web-video: "https://youtu.be/XXXXXXXXXXX"   # add when the build video is up
 web-thumb: "./assets/thumb.webp"              # screenshot of the Hazefield v3 interface mockup (16:9)
+web-thumb-alt: "The Hazefield v3 mockup, a dark instrument interface: eight vertical strips side by side, six in use and two switched off, each with source, pitch, arpeggiator, drift, filter, two LFOs, inserts and a mixer, feeding a master strip with EQ and a bus limiter. A transport bar runs along the bottom ending in a Render to WAV button."
+web-thumb-caption: "The clickable mockup, not a build. This is the interface being tested by using it, months before any code exists."
 ---
 
 Hazefield is a generative engine for long-form drone and ambient music. Eight

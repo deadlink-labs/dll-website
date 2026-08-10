@@ -69,6 +69,14 @@ const webSchema = (image: ImageFunction) =>
       // Self-hosted poster in the post's assets/. Feed-card thumbnail AND the
       // video-facade poster, so no request hits YouTube until play.
       'web-thumb': image().optional(),
+      // Alt text and caption for the header image. Separate on purpose: alt
+      // DESCRIBES the image for someone who cannot see it, the caption ADDS
+      // something for everyone (provenance, what you are looking at). A
+      // generated tile restating the post title wants alt and no caption; a
+      // photograph that is evidence wants both. Absent alt leaves the header
+      // decorative, which is correct for a tile and wrong for a photograph.
+      'web-thumb-alt': z.string().optional(),
+      'web-thumb-caption': z.string().optional(),
       // Products only: the real UI capture that replaces ProductCard's
       // "Capture pending" placeholder once a screen exists to show.
       'web-image': image().optional(),
@@ -106,6 +114,8 @@ const webSchema = (image: ImageFunction) =>
       waitlist: data['web-waitlist'] ?? false,
       videoId: parseYouTubeId(data['web-video']),
       thumb: data['web-thumb'],
+      thumbAlt: data['web-thumb-alt'],
+      thumbCaption: data['web-thumb-caption'],
       image: data['web-image'],
     }));
 
