@@ -19,11 +19,11 @@ export interface SiteConfig {
     heroPosts: string[];
     recentPostsCount: number;
     featuredProducts?: string[];
-    // Off-nav "Shipped for clients" proof list (§5.1 band 6). Curation, not
+    // Off-nav "Client work" proof list (§5.1 band 4). Curation, not
     // frontmatter (§4): name + status label are display; an optional slug links
     // the row to a published log case study.
     clientWork?: { name: string; status: string; slug?: string }[];
-    // Off-nav "Throwback" band (§5.1 band 6): pre-lab projects written up from
+    // Off-nav "Throwback" band (§5.1 band 7): pre-lab projects written up from
     // the archive. Curation is just an ordered list of slugs plus the year the
     // work happened; the THROWBACK / 001 label and everything else on the row
     // come from the post's own frontmatter, because the series number is a
@@ -54,22 +54,36 @@ function loadSiteConfig(): SiteConfig {
 // draft, typo, or missing — is invisible, so a forgotten tag never leaks.
 const isPublished = (entry: LogEntry | ProductEntry) => entry.data.published;
 
-// Feed order (CLAUDE.md §4): newest first by web-pub-date. That is the primary
-// key and the only one the author sets by hand. Ties MUST then resolve
-// deterministically — a bare date compare returns 0 on equal dates, and since
-// Array.sort is stable the order would fall through to the glob's read order
-// (effectively the filesystem), which nothing should depend on. So equal dates
-// break by higher web-number first (record numbers ascend as you publish, so on
-// a same-day tie the higher number is the more recent record — this also keeps
-// the feed intuitive: LOG 001 oldest, at the bottom), then by slug as a final
-// stable key for numberless same-day posts. A numberless post sorts after a
-// numbered one on the same day.
-const byRecency = (a: LogEntry | ProductEntry, b: LogEntry | ProductEntry) => {
-  const byDate = b.data.pubDate.getTime() - a.data.pubDate.getTime();
-  if (byDate !== 0) return byDate;
+// LOG feed order (CLAUDE.md §4): highest web-number first (settled 2026-08-10).
+// The record number is the log's spine — it is what the stamp prints, what other
+// records cite, and what the reader actually scans down the feed — so a feed that
+// runs 013, 012, 006, 010, 011 reads as broken even when every date is correct.
+// Ordering by number makes the sequence legible; the cost is that dates run out
+// of order wherever web-number and web-pub-date disagree. They currently do —
+// the archive is being seeded quickly and the dates are placeholders until the
+// Obsidian pipeline lands. Known tradeoff (§4), not something to fix here.
+//
+// web-number is optional (§4), so numberless posts have nothing to sort by. They
+// fall to the bottom (-Infinity in a descending compare) and order among
+// themselves by date, then slug. Ties MUST resolve deterministically: a bare
+// compare returning 0 would, since Array.sort is stable, fall through to the
+// glob's read order — effectively the filesystem, which nothing should depend on.
+// Numbers are unique among published entries (assertUniqueNumbers), so the
+// primary key never ties for a numbered post.
+const byRecordNumber = (a: LogEntry, b: LogEntry) => {
   const an = a.data.number ?? -Infinity;
   const bn = b.data.number ?? -Infinity;
   if (an !== bn) return bn - an;
+  const byDate = b.data.pubDate.getTime() - a.data.pubDate.getTime();
+  if (byDate !== 0) return byDate;
+  return a.id.localeCompare(b.id);
+};
+
+// PRODUCTS keep date order: newest "entered the lab" first (§4). They carry no
+// record number to sort by — the LOG NNN spine is a log thing.
+const byRecency = (a: ProductEntry, b: ProductEntry) => {
+  const byDate = b.data.pubDate.getTime() - a.data.pubDate.getTime();
+  if (byDate !== 0) return byDate;
   return a.id.localeCompare(b.id);
 };
 
@@ -78,7 +92,7 @@ export async function getPublishedLog(): Promise<LogEntry[]> {
   validateTypeMatchesFolder(entries, 'log');
   assertUniqueNumbers(entries);
   assertUniqueSeriesNumbers(entries);
-  return entries.sort(byRecency);
+  return entries.sort(byRecordNumber);
 }
 
 export async function getPublishedProducts(): Promise<ProductEntry[]> {
@@ -176,7 +190,7 @@ export interface HomepageData {
   hero: LogEntry[]; // heroPosts, array order = display order
   recent: LogEntry[]; // chronological slice, excluding heroPosts
   featuredProducts: ProductEntry[]; // featuredProducts, array order
-  // §5.1 band 6. When linked to a case study, the row also carries that post's
+  // §5.1 band 4. When linked to a case study, the row also carries that post's
   // title + snippet so the homepage sells the work without a click.
   clientWork: {
     name: string;
@@ -187,7 +201,7 @@ export interface HomepageData {
     snippet?: string;
     record?: string; // "LOG 002" — the linked case study's stamp number (§3)
   }[];
-  // §5.1 band 6. Same stamped-list shape as clientWork, but every row links to a
+  // §5.1 band 7. Same stamped-list shape as clientWork, but every row links to a
   // real post, and the label comes from the post's own web-series frontmatter.
   throwbacks: {
     label: string; // "THROWBACK / 001"
@@ -228,7 +242,7 @@ export async function getHomepageData(): Promise<HomepageData> {
     return entry;
   });
 
-  // 4. CLIENT WORK — off-nav proof list (§5.1 band 6). A given slug must resolve
+  // 4. CLIENT WORK — off-nav proof list (§5.1 band 4). A given slug must resolve
   //    to a published log case study (fail the build on a typo, like heroPosts);
   //    an entry with no slug renders as plain text (client with no post yet).
   const clientWork = (config.homepage.clientWork ?? []).map((c) => {
@@ -251,7 +265,7 @@ export async function getHomepageData(): Promise<HomepageData> {
     return { name: c.name, status: c.status };
   });
 
-  // 5. THROWBACK — pre-lab records from the archive (§5.1 band 6). Unlike
+  // 5. THROWBACK — pre-lab records from the archive (§5.1 band 7). Unlike
   //    clientWork every row must resolve, and the post must carry the series
   //    frontmatter that produces its label: a row whose label came from the
   //    config would be a second, drifting source of truth for a permanent number.

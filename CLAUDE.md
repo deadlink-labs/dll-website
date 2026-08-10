@@ -104,6 +104,8 @@ Orange is scarce by design: the live node, status dots, link hover/underline acc
 - **Type scale (desktop):** 60 / 44 / 30 / 24 / 20 / 17 / 15 / 14 / 12.5 / 11. Mobile scales down one step.
   - `60` — homepage hero (the current experiment's question), line-height 1.06.
   - `44` — page/record titles, line-height 1.1.
+- **One size per role** (settled 2026-08-10). The ladder is not a menu to pick from per component. Every list/card **title** on a surface is the same size, every **snippet** is the same size, every **paragraph** is the same size — so a reader learns the hierarchy once. The homepage drifted to eight sans sizes (56 / 22 / 20 / 19 / 18 / 17 / 15 / 14.5) by each component choosing its own, and read as noise: `.stamplist__title`, `.card__title` and `.product__title` are now all **20**; `.stamplist__snippet`, `.card__snippet` and `.product__snippet` are all **15**; `.band-lede`, `.hero__overview` and `.who__text` are all **18**. `.feed-item__title` stays **17** — the Recent feed is a compact index row (number, status, title, date on one line), lighter than a thumbnail row by design, not by drift. **Adding a size to make one thing louder is the wrong lever** — use position, a rule, or air.
+  - *Known drift, deliberately not reconciled:* body ships at **18px** (`global.css`) where this ladder says 17, and the mono chrome runs 11 / 11.5 / 12 / 12.5. Both are their own decision, not something to fix incidentally mid-task.
 - **Headline tracking:** large headlines use tight **negative** letter-spacing (−0.02em to −0.025em). (This supersedes any earlier "no letter-spacing tricks" guidance — the negative tracking on big Plex Sans headlines is intentional and part of the 8A look.)
 - No decorative or serif faces anywhere.
 
@@ -264,13 +266,28 @@ Rules:
 - **Each post is its own folder; the folder name is the slug.** URLs: `/log/<slug>` and `/products/<slug>`.
 - **Files are plain `.md`** (not `.mdx`) so Obsidian treats them as native notes. **The folder name is the slug; the `.md` inside is named for the post's TITLE** (e.g. `building-deadlinklabs-with-ai-in-public/Building the Deadlink Labs website with AI, in public.md`), not the folder and not `index.md` — so the note reads with its real title everywhere in Obsidian (quick-switcher, graph, backlinks). The filename is free-form and never reaches the URL; the folder does. Vault navigation: find a post by its title (the filename) or by its number/nickname via `aliases` (an Obsidian-internal field the site ignores — see §4 frontmatter), and browse the ordered index with an Obsidian **Base** over the `log` folder sorted by `web-number`. Do NOT number folders to fake an order — order lives in `web-pub-date`/`web-number`, never in the folder name. Interactive components use the fenced-block convention (below), never raw inline JSX.
 - **Assets are co-located** in a sibling `assets/`, referenced with standard relative markdown: `![alt](./assets/hero.webp)`. Astro's image pipeline optimizes them at build — no per-image setup. (Obsidian `![[embed]]` syntax is NOT used.)
-- Sorting **always** uses the `web-pub-date` frontmatter field (newest first).
-  Equal dates break deterministically so feed order never depends on filesystem
-  read order: higher `web-number` first (numbers ascend as you publish, so the
-  higher number is the more recent record), then slug. Assigning `web-number` in
-  publish order keeps the feed intuitive — LOG 001 is the oldest, at the bottom.
-  This tiebreaker is a refinement of the pub-date rule, not a second sort key: the
-  author still controls order entirely through `web-pub-date`.
+- **Log feeds sort by `web-number`, highest first** (settled 2026-08-10). This
+  supersedes the earlier "sorting always uses `web-pub-date`" rule, which shipped
+  a feed reading 013, 012, 006, 010, 011 — correct by date and visibly broken to
+  anyone scanning it. The record number is the log's spine: it is what the stamp
+  prints, what other records cite, and what a reader actually follows down the
+  page, so the feed has to agree with it. One order everywhere the log is listed —
+  the homepage Recent band, `/log`, `/rss.xml`, and prev/next on record pages.
+  - **The cost, stated plainly:** where `web-number` and `web-pub-date` disagree,
+    the dates run out of order instead. As of 2026-08-10 they do disagree, and
+    that is expected: the archive is being seeded quickly so the site has real
+    work to show, and the dates are placeholders. They get set by hand when the
+    Obsidian pipeline lands (ROADMAP LOG 002) — a small, known tradeoff, not a
+    defect to design around. From then on, **assign `web-number` in publish
+    order** and the two agree by themselves: LOG 001 oldest, at the bottom.
+  - `web-number` is optional, so numberless posts have nothing to sort by: they
+    fall to the bottom of the feed and order among themselves by `web-pub-date`,
+    then slug. Ties must always break deterministically, or order falls through to
+    the content glob's read order — effectively the filesystem, which nothing
+    should depend on. Numbers are unique among published entries (§7), so the
+    primary key never ties for a numbered post.
+- **Products still sort by `web-pub-date`** (newest "entered the lab" first, then
+  slug). They carry no record number — the `LOG NNN` spine is a log thing.
 
 ### Frontmatter — the `web-*` namespace (Structure v2 §3.3)
 Posts are authored from an Obsidian template that mixes vault-internal fields with a `web-*` namespace. **The build reads ONLY the `web-*` fields.** Every unprefixed field (`type`, `created`, `project`, `people`, `source`, `url`, …) is invisible to the site.
@@ -343,7 +360,7 @@ Lives at the content-repo root. Homepage placement only:
 - `heroPosts` — ordered log slugs in the featured section; **array order = display order**.
 - `recentPostsCount` — how many chronological log entries below the hero.
 - `featuredProducts` — ordered product slugs; may be empty or omitted.
-- `clientWork` — ordered entries for the off-nav "Shipped for clients" band (§5.1 band 6). Each has a display `name` and `status` label; an optional `slug` links the row to a published log case study. Omit `slug` for a client with no post yet (renders as plain text). Array order = display order; may be empty or omitted.
+- `clientWork` — ordered entries for the off-nav "Client work" band (§5.1 band 4). Each has a display `name` and `status` label; an optional `slug` links the row to a published log case study. Omit `slug` for a client with no post yet (renders as plain text). Array order = display order; may be empty or omitted.
 - `throwbacks` — ordered entries for the "Throwback" band (§5.1 band 7, §5.2). Each is `{ status, slug }`, where `status` is the year the work happened ("2006") and `slug` **must** resolve to a published log entry carrying `web-series` / `web-series-number`. Unlike `clientWork` there is no unlinked form: a throwback row is always a real post, and everything else on the row (the `THROWBACK / NNN` label, the record number, title, snippet, thumbnail) is read from that post rather than restated here. Array order = display order; may be empty or omitted.
 
 Convention: **arrays are curation, numbers are automatic slices.** Reordering the homepage = moving array lines; no content file is touched.
@@ -400,14 +417,30 @@ Nav is **Home · Log · Products · About**. Copy below is approved; don't rewri
 ### 5.1 Home `/` — follows design 8A, auto-generated
 Structure v2 §4.1 / §6. The page is generated from `site.config.json` + published content, not hand-authored. Band order:
 
-1. **Cover** (8A truss mark + `Deadlink Labs` / `Build to Understand.`, viewport fold). See §3.
-2. **Masthead / running head** (8A header). See §3.
-3. **Hero — the current experiment's question.** Eyebrow: `● Currently on the bench · EXP NNN` (pulsing orange dot). H1 = the live experiment's **question** at 60px (e.g. *"Can a house quietly run its own systems without anyone tending them?"*). Below it the lab-record stamp (`LOG NNN · IN PROGRESS · … `), a short overview paragraph, one dark specimen panel (e.g. a `tail -f` log), and a "Step into the log →" link. The hero is the current experiment's question — NOT a hand-written personal positioning H1.
-4. **Featured log entries** (from `heroPosts`) → **Recent log entries** (chronological slice). The living archive.
-5. **Featured products** (from `featuredProducts`, optional).
-6. **Shipped for clients** (off-nav consulting surface): stamped list — **Uruguay Outfitters** · `SHIPPED · 2026`, **Crehana** · `CASE STUDY`. Driven by `site.config.json` → `homepage.clientWork` (§4); each entry may link to its log case study via an optional `slug`. *(Rendered before Products: real shipped proof leads coming-soon products.)*
-7. **Throwback** (off-nav archive surface): a stamped list of pre-lab projects written up from the archive, driven by `site.config.json` → `homepage.throwbacks` (§4). Each row prints `THROWBACK / NNN · LOG NNN · <year>`, the post title, snippet and thumbnail, and links to the record. It shares the stamped-list markup with band 6; the dark Products band sits between the two so they never read as one list. Rows appear only for posts that exist — the format is **not a schedule** (§5.2).
-8. **Who runs this:** one paragraph — "Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run themselves: post-production teams, pipeline automation, data and dashboards, AI workflows, and the occasional website." + **one** button, `See the work →`. This is the canonical positioning line: it is reused verbatim on About (as a two-line opening) and in both meta descriptions (`BaseLayout.astro`, `about.astro`). Change it in all four places or not at all.
+**Two numbering systems, kept apart** (settled 2026-08-10). The band numbers in *this list* count every band including the masthead and footer, which carry no rail label. The **rail numbers** (`01`…`06` in the left gutter) count only the labelled bands and are **derived at build time** from the bands that actually render — never hand-written, because bands are conditional (Products and Throwback vanish with an empty config array) and literal numbers drift silently the moment one flips. They did: the rail shipped starting at `03`, with no `01` anywhere on the page. A **record number** (`LOG 001`) is a third thing again — it says which post this is, not where you are on the page, and it belongs in a stamp. The hero gutter carried an oversized record number for a while and the rail read as two numbering systems in one column; the record number moved into the eyebrow stamp and the rail now carries section numbers only.
+
+1. **Cover** (8A truss mark + `Deadlink Labs` / `Build to Understand.`, viewport fold). See §3. Unnumbered.
+2. **Masthead / running head** (8A header). See §3. Unnumbered.
+3. **Featured** — rail `01`, the band that opens the page. `heroPosts[0]` renders as the bench **hero**: eyebrow `FEATURED ON THE BENCH · LOG NNN`, H1 = the live experiment's **question** at 60px (e.g. *"Can a house quietly run its own systems without anyone tending them?"*), a short overview paragraph, one dark specimen panel (e.g. a `tail -f` log), and a "Step into the log →" link. The status token (`● IN PROGRESS`) sits in the rail under the label. The hero is the current experiment's question — NOT a hand-written personal positioning H1.
+
+   *Any further `heroPosts` render as rich cards inside this same band*, under a hairline. They were a separate band once; it carried the same label, so the moment a second `heroPost` was added the page would have shown two bands both called "Featured", with two rail numbers. One band, one number.
+
+   *This band's rail number is the one exception to uniform rail sizing* (`size="lead"` on `SectionLabel`): `01` renders a step larger than the other bands' numbers. That is a deliberate hierarchy for the band that opens the page, and it is the only such exception — see §3's "one size per role".
+4. **Client work** — rail `02`, off-nav consulting surface: stamped list — **Heat exchanger manufacturer** · `PROPOSAL · 2026`, **Uruguay Outfitters** · `SHIPPED · 2026`, **Crehana** · `CASE STUDY`. Driven by `site.config.json` → `homepage.clientWork` (§4); each entry may link to its log case study via an optional `slug`.
+
+   *This band leads the archive and the products (settled 2026-08-10).* It is the site's only proof surface for goals #1 and #2 (§1), and it was reading as the quietest thing on the page: fourth scroll, the smallest row titles of any card band, and not one word of prose naming what the rows were. What fixed it: **position** — it sits directly after the hero, so an experiment still opens the page (the lab leads, per §1) but client proof arrives on the second scroll instead of the fourth; a **chapter-break rule** (`border-top: 1px solid var(--color-ink)`, following the footer) and **more air** (`padding-block: 3rem`); and a **lede** naming what the rows are. The emphasis is entirely monochrome and entirely structural.
+
+   *A warm `--color-surface-2` tint plate was built and rejected on sight (2026-08-10).* The argument for it was symmetry — the light sibling of the dark Products band. The argument is wrong: Products earns graphite because it showcases screens on a dark surface, and a coloured plate mid-sheet just stains the paper. **The paper is the design.** If a band needs weight, it gets a rule, air, or position, never a background. Do not re-propose the tint.
+
+   *The rows are the SAME component as Throwback's, deliberately.* An earlier `.stamplist--lead` modifier bumped this band's title, snippet and thumbnail one step up; it was removed with the type normalization (§3), because a page carrying eight sans sizes does not need a ninth to say "this matters". If the band ever reads too quiet, the thumbnail width is the lever — it costs no font size and no colour.
+
+   *What was rejected: making the rail label bold, or bold and orange.* All the band labels come from one `SectionLabel` rule; an 11px letter-spaced mono word in the gutter is not what a scanning reader reads, orange there would break §3's scarcity budget and compete with the status dots that carry real meaning, and once one label is orange every band wants one. Enlarging the section number was rejected for the same class of reason: it is a meaningless index, and blowing it up creates a second focal point against the hero. **Enlarge the content, not the chrome.**
+
+   *The label is "Client work", not "Shipped for clients" (settled 2026-08-10).* The band now carries proposals as well as shipped work, and a heading claiming "shipped" over a `PROPOSAL · 2026` row is a small lie the row itself contradicts. It also fits the 150px rail on one line. The `#clients` id and the `/#clients` anchor are unchanged.
+5. **Recent log entries** — rail `03`. A chronological slice of the published log, excluding `heroPosts` (which are already shown in band 3). The living archive.
+6. **Featured products** (from `featuredProducts`, optional) — rail `04`.
+7. **Throwback** — rail `05`, off-nav archive surface: a stamped list of pre-lab projects written up from the archive, driven by `site.config.json` → `homepage.throwbacks` (§4). Each row prints `THROWBACK / NNN · LOG NNN · <year>`, the post title, snippet and thumbnail, and links to the record. It shares the stamped-list markup with band 4; the dark Products band sits between the two so they never read as one list. Rows appear only for posts that exist — the format is **not a schedule** (§5.2).
+8. **Who runs this** — rail `06`. One paragraph — "Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run themselves: post-production teams, pipeline automation, data and dashboards, AI workflows, and the occasional website." + **one** button, `See the work →`. This is the canonical positioning line: it is reused verbatim on About (as a two-line opening) and in both meta descriptions (`BaseLayout.astro`, `about.astro`). Change it in all four places or not at all.
 
    *A second `Work with me` button here was specified originally and deliberately dropped (2026-08-05). Band 8 is the last content band, so the footer's orange `Let's make something together →` sits directly below it pointing at the same `/about#work-with-me`. Two CTAs one scroll apart is asking twice, and it would put two orange elements on one screen. Do not re-add it.*
 9. **Footer / colophon.** A warm invitation leads the footer: `Let's make something together →` (sentence case among the mono chrome, routes to the About Work-with-me section — the availability signal, see §1). Then the manifesto line in mono: `BUILD TO UNDERSTAND · DOCUMENT TO REMEMBER · SHARE SO OTHERS CAN BUILD FURTHER`. Contact email, YouTube, LinkedIn, GitHub, RSS. Colophon: `Astro · IBM Plex · Vercel · Updated MM.YYYY` (see §3).
@@ -474,7 +507,7 @@ Then **tools he actually uses** (Obsidian, Claude, VS Code, GitHub, Suno, Google
 > 2. A plan. I map what to automate, build, or simplify, with clear scope and a fixed price.
 > 3. The build. I ship, document everything, and hand it over working. You own all of it.
 
-**Proof:** a single `Shipped for clients →` link to the Home band (`/#clients`), which already carries the thumbnails, stamps and snippets for Uruguay Outfitters and Crehana. One surface for client proof, not two — do not duplicate the case-study list here. **Contact:** direct email + a short form (name, company, "what's eating your time?"). No calendars, no pricing tables in v1. This is the ONE commercial ask on the site.
+**Proof:** a single `Client work →` link to the Home band (`/#clients`), which already carries the thumbnails, stamps and snippets for every engagement. One surface for client proof, not two — do not duplicate the case-study list here. **Contact:** direct email + a short form (name, company, "what's eating your time?"). No calendars, no pricing tables in v1. This is the ONE commercial ask on the site.
 
 ---
 

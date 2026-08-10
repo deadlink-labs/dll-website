@@ -1,7 +1,14 @@
 ---
 // Home (/) — per the settled Home design (Deadlink-Labs-Home.dc.html) and
-// CLAUDE.md §5.1/§6. Band order: Cover · On the bench (hero) · Featured ·
-// Recent · Shipped for clients · Products · Throwback · Who runs this · Footer.
+// CLAUDE.md §5.1/§6. Band order: Cover · Featured (the bench hero) · Client work ·
+// Recent · Products · Throwback · Who runs this · Footer.
+//
+// Two numbering systems live on this page and they are NOT the same thing.
+// "Band N" in the comments below is CLAUDE.md §5.1's band index, which counts the
+// masthead (band 2, served by Nav.astro) and the footer; that is why these jump
+// from 1 to 3. The rail's 01…06 counts only the labelled bands and is derived at
+// build time (see `bands` below). A record number (LOG 001) is a third thing
+// again and belongs in a stamp, never in the rail.
 // Every band is a 150px mono label column + content; hairline rules divide
 // the sheet into bands. The hero, feeds, and products come deterministically
 // from site.config.json + published content — composed, not hand-authored.
@@ -13,12 +20,31 @@ import SectionLabel from '../components/SectionLabel.astro';
 import FeedItem from '../components/FeedItem.astro';
 import FeedCard from '../components/FeedCard.astro';
 import ProductCard from '../components/ProductCard.astro';
-import { getHomepageData } from '../lib/content';
+import { getHomepageData, recordLabel } from '../lib/content';
 
 const { hero, recent, featuredProducts, clientWork, throwbacks } = await getHomepageData();
 const current = hero[0]; // the current experiment on the bench
-// Oversized record number for the hero gutter (model-number treatment).
-const heroNum = current?.data.number != null ? String(current.data.number).padStart(3, '0') : '001';
+// "LOG 001" for the hero's eyebrow stamp, or nothing when the post carries no
+// web-number (§4 makes it optional). Formatted by the same helper as every other
+// stamp on the site. Never invent a number for a record that has none — the
+// gutter used to fall back to a decorative "001", which is a lie in a stamp.
+const heroRecord = current?.data.number != null ? recordLabel(current) : null;
+
+// The rail's section numbers must stay contiguous whichever bands actually
+// render — Products and Throwback vanish with an empty config array. Hard-coded
+// numbers drifted the moment one of those flipped: the rail shipped starting at
+// 03, with no 01 anywhere on the page. So derive them from the bands that
+// render, in render order. Only the Cover is unnumbered; the Featured band leads
+// the rail at 01.
+const bands = [
+  current && 'featured',
+  'clients',
+  recent.length > 0 && 'recent',
+  featuredProducts.length > 0 && 'products',
+  throwbacks.length > 0 && 'throwback',
+  'who',
+].filter(Boolean) as string[];
+const bandNum = (id: string) => String(bands.indexOf(id) + 1).padStart(2, '0');
 
 // JSON-LD Person schema — lives on Home and About (§2).
 const personSchema = {
@@ -39,56 +65,106 @@ const personSchema = {
   {/* Band 1 — Cover. */}
   <Cover />
 
-  {/* Band 2 — Hero: the current experiment's question. */}
+  {/* Band 3 — Featured: heroPosts[0] rendered as the bench hero, and any further
+      heroPosts as rich cards inside the SAME band. One Featured band, one rail
+      number — a separate cards band would have carried the same label and its own
+      number the moment a second heroPost was added. */}
   {
     current && (
       <section class="band band--hero" id="bench">
-        <div class="hero-index">
-          <span class="hero-index__kind">LOG</span>
-          <span class="hero-index__num">{heroNum}</span>
-          <span class="hero-index__status">
+        <SectionLabel num={bandNum('featured')} label="Featured" size="lead">
+          <span class="hero-status">
             <StatusDot stage={current.data.stage} label={false} />
             <span>{current.data.stage}</span>
           </span>
-        </div>
-        <div class="hero">
-          <p class="hero__eyebrow">Currently on the bench</p>
-          <h1 class="hero__question">{current.data.title}</h1>
-          {current.data.tags && current.data.tags.length > 0 && (
-            <p class="hero__tags">{current.data.tags.join(' / ')}</p>
-          )}
-          {current.data.snippet && <p class="hero__overview">{current.data.snippet}</p>}
-          <pre class="specimen" aria-label="Terminal capture"><code><span class="specimen__dim">$ npm run dev</span>
+        </SectionLabel>
+        <div>
+          <div class="hero">
+            <p class="hero__eyebrow">Featured on the bench{heroRecord && ` · ${heroRecord}`}</p>
+            <h1 class="hero__question">{current.data.title}</h1>
+            {current.data.tags && current.data.tags.length > 0 && (
+              <p class="hero__tags">{current.data.tags.join(' / ')}</p>
+            )}
+            {current.data.snippet && <p class="hero__overview">{current.data.snippet}</p>}
+            <pre class="specimen" aria-label="Terminal capture"><code><span class="specimen__dim">$ npm run dev</span>
 astro  v5.18.2  ready in 415 ms
 ┃ Local   <span class="specimen__on">http://localhost:4321/</span>
 <span class="specimen__dim">watching for file changes...</span></code></pre>
-          <a class="link-under" href={`/log/${current.id}`}>Step into the log →</a>
+            <a class="link-under" href={`/log/${current.id}`}>Step into the log →</a>
+          </div>
+          {hero.length > 1 && (
+            <div class="card-grid">
+              {hero.slice(1).map((entry) => (
+                <FeedCard entry={entry} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
     )
   }
 
-  {/* Band 3 — Featured then recent log entries. */}
-  {
-    hero.length > 1 && (
-      <section class="band" id="featured">
-        <SectionLabel num="02" label="Featured" />
-        {/* Rich cards (thumbnail + snippet) — the inviting top of the archive
-            (§5.1). heroPosts[0] is already the bench hero above, so the Featured
-            band renders the REST (hero.slice(1)) to avoid showing it twice. */}
-        <div class="card-grid">
-          {hero.slice(1).map((entry) => (
-            <FeedCard entry={entry} />
-          ))}
-        </div>
-      </section>
-    )
-  }
+  {/* Band 4 — Client work (off-nav consulting surface). Real client proof leads
+      BOTH the archive and the coming-soon products (§5.1 order intentionally
+      inverted), because this band is the page's proof surface for goals #1 and
+      #2 and it was reading as the quietest thing on the page. The emphasis is
+      all monochrome: this position, the .band--lead rule and air, and the lede.
+      The rows themselves are the SAME component as Throwback's, deliberately.
+      The id is the anchor target for the About page's proof link (/#clients);
+      global.css gives every [id] scroll-margin so it clears the sticky nav. */}
+  <section class="band band--lead" id="clients">
+    <SectionLabel num={bandNum('clients')} label="Client work" />
+    <div>
+      <p class="band-lede">
+        Work I built for other businesses. Each one has its own log entry.
+      </p>
+      <ul class="stamplist">
+        {
+          clientWork.map((c) => (
+            <li class="stamplist__row">
+              {c.href ? (
+                <a class="stamplist__link" href={c.href}>
+                  {c.thumb && (
+                    <Image
+                      class="stamplist__thumb"
+                      src={c.thumb}
+                      alt=""
+                      widths={[176, 352, 528]}
+                      sizes="176px"
+                      loading="lazy"
+                    />
+                  )}
+                  <div class="stamplist__text">
+                    <div class="stamplist__meta">
+                      <span class="stamplist__name">{c.name}</span>
+                      {c.record && <span class="stamplist__record">{c.record}</span>}
+                      <span class="stamplist__note">{c.status}</span>
+                    </div>
+                    {c.title && <span class="stamplist__title">{c.title}</span>}
+                    {c.snippet && <p class="stamplist__snippet">{c.snippet}</p>}
+                  </div>
+                  <span class="stamplist__go" aria-hidden="true">→</span>
+                </a>
+              ) : (
+                <div class="stamplist__text">
+                  <div class="stamplist__meta">
+                    <span class="stamplist__name">{c.name}</span>
+                    <span class="stamplist__note">{c.status}</span>
+                  </div>
+                </div>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 
+  {/* Band 5 — Recent log entries. */}
   {
     recent.length > 0 && (
       <section class="band">
-        <SectionLabel num="03" label="Recent" />
+        <SectionLabel num={bandNum('recent')} label="Recent" />
         <div>
           <div class="feed">
             {recent.map((entry) => (
@@ -101,58 +177,11 @@ astro  v5.18.2  ready in 415 ms
     )
   }
 
-  {/* Band 4 — Shipped for clients (off-nav consulting surface). Real shipped
-      proof leads coming-soon products (§5.1 order intentionally inverted).
-      The id is the anchor target for the About page's proof link (/#clients);
-      global.css gives every [id] scroll-margin so it clears the sticky nav. */}
-  <section class="band" id="clients">
-    <SectionLabel num="04" label="Shipped for clients" />
-    <ul class="stamplist">
-      {
-        clientWork.map((c) => (
-          <li class="stamplist__row">
-            {c.href ? (
-              <a class="stamplist__link" href={c.href}>
-                {c.thumb && (
-                  <Image
-                    class="stamplist__thumb"
-                    src={c.thumb}
-                    alt=""
-                    widths={[176, 352, 528]}
-                    sizes="176px"
-                    loading="lazy"
-                  />
-                )}
-                <div class="stamplist__text">
-                  <div class="stamplist__meta">
-                    <span class="stamplist__name">{c.name}</span>
-                    {c.record && <span class="stamplist__record">{c.record}</span>}
-                    <span class="stamplist__note">{c.status}</span>
-                  </div>
-                  {c.title && <span class="stamplist__title">{c.title}</span>}
-                  {c.snippet && <p class="stamplist__snippet">{c.snippet}</p>}
-                </div>
-                <span class="stamplist__go" aria-hidden="true">→</span>
-              </a>
-            ) : (
-              <div class="stamplist__text">
-                <div class="stamplist__meta">
-                  <span class="stamplist__name">{c.name}</span>
-                  <span class="stamplist__note">{c.status}</span>
-                </div>
-              </div>
-            )}
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
-  {/* Band 5 — Featured products. */}
+  {/* Band 6 — Featured products. */}
   {
     featuredProducts.length > 0 && (
       <section class="band band--dark" id="products">
-        <SectionLabel num="05" label="Products" tone="dark" />
+        <SectionLabel num={bandNum('products')} label="Products" tone="dark" />
         <div class="product-grid">
           {featuredProducts.map((entry) => (
             <ProductCard entry={entry} />
@@ -162,7 +191,7 @@ astro  v5.18.2  ready in 415 ms
     )
   }
 
-  {/* Band 6 — Throwback: projects from before the lab had a URL, written up
+  {/* Band 7 — Throwback: projects from before the lab had a URL, written up
       from the archive (§5.2). Deliberately NOT a schedule — a row appears when a
       project gets documented, not on a weekly cadence. Same stamped-list markup
       as the clients band; the dark Products band sits between them, so the two
@@ -171,7 +200,7 @@ astro  v5.18.2  ready in 415 ms
   {
     throwbacks.length > 0 && (
       <section class="band" id="throwback">
-        <SectionLabel num="06" label="Throwback" />
+        <SectionLabel num={bandNum('throwback')} label="Throwback" />
         <ul class="stamplist">
           {throwbacks.map((t) => (
             <li class="stamplist__row">
@@ -204,9 +233,9 @@ astro  v5.18.2  ready in 415 ms
     )
   }
 
-  {/* Band 7 — Who runs this. */}
+  {/* Band 8 — Who runs this. */}
   <section class="band band--who">
-    <SectionLabel num="07" label="Who runs this" />
+    <SectionLabel num={bandNum('who')} label="Who runs this" />
     <div class="who">
       <p class="who__text">
         Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run
@@ -257,34 +286,37 @@ astro  v5.18.2  ready in 415 ms
     --token-fg: var(--color-on-panel-60);
   }
 
-  /* Hero gutter: the live experiment rendered as an oversized model number. */
-  .hero-index {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.4rem;
-    padding-top: 4px;
-    font-family: var(--font-mono);
+  /* The client band is the page's proof surface (§5.1 band 4), so it opens with
+     a chapter-break rule and more air rather than a background. A warm
+     --color-surface-2 plate was tried and rejected on sight (2026-08-10):
+     Products earns graphite because it showcases screens on a dark surface, but
+     a coloured plate mid-sheet just stains the paper. The full-ink rule follows
+     Footer.astro, which already uses one to close the page. */
+  .band--lead {
+    border-top: 1px solid var(--color-ink);
+    padding-block: 3rem;
   }
-  .hero-index__kind {
-    font-size: 11px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--color-ink-60);
+
+  /* The one band that says in words what it is. Sized at 18px — the same
+     paragraph size as .hero__overview and .who__text, so it adds no new step to
+     the ladder and never outranks the hero it sits under. Named for the pattern,
+     not the band: Throwback is the obvious second caller. */
+  .band-lede {
+    margin: 0 0 1.75rem;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--color-ink-75);
+    max-width: 54ch;
   }
-  .hero-index__num {
-    font-size: clamp(2.5rem, 5vw, 3.25rem);
-    font-weight: 600;
-    line-height: 0.9;
-    letter-spacing: -0.03em;
-    color: var(--color-ink);
-    font-variant-numeric: tabular-nums;
-  }
-  .hero-index__status {
+
+  /* Slotted into the Featured band's SectionLabel, so it sits under the rail
+     label. Scoped styles still reach it because it is authored here. */
+  .hero-status {
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
-    margin-top: 0.35rem;
+    margin-top: -0.35rem;
+    font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -382,6 +414,12 @@ astro  v5.18.2  ready in 415 ms
   .card-grid > :global(* + *) {
     border-top: 1px solid var(--color-ink-08);
   }
+  /* Further featured posts sit under the hero inside the same band, divided by
+     the same hairline the cards use between themselves. */
+  .hero + .card-grid {
+    margin-top: 2rem;
+    border-top: 1px solid var(--color-ink-08);
+  }
 
   /* Stamped list — the shared row treatment behind BOTH the "Shipped for
      clients" band and the "Throwback" band: 176px thumb, a mono eyebrow built
@@ -463,21 +501,25 @@ astro  v5.18.2  ready in 415 ms
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
   }
-  /* Descriptive case-study title — sentence-case sans, consistent with the feed. */
+  /* Descriptive case-study title — sentence-case sans, consistent with the feed.
+     20px is THE row/card title size across the homepage (see also .card__title
+     and .product__title): one size per role, per §3. */
   .stamplist__title {
     display: block;
     font-family: var(--font-sans);
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 600;
     line-height: 1.3;
     letter-spacing: -0.011em;
     color: var(--color-ink);
     transition: color 0.18s ease;
   }
+  /* 15px is THE snippet size across the homepage (see also .card__snippet and
+     .product__snippet). */
   .stamplist__snippet {
     margin: 0.4rem 0 0;
     font-family: var(--font-sans);
-    font-size: 14.5px;
+    font-size: 15px;
     line-height: 1.55;
     color: var(--color-ink-60);
     max-width: 62ch;
@@ -495,6 +537,7 @@ astro  v5.18.2  ready in 415 ms
   .stamplist__link:hover .stamplist__go {
     opacity: 1;
   }
+
   @media (max-width: 600px) {
     .stamplist__link {
       flex-wrap: wrap;

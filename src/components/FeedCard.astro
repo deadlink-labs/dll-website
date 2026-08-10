@@ -136,10 +136,12 @@ const { stage, thumb, title, snippet, pubDate, videoId } = entry.data;
     letter-spacing: 0.04em;
     font-variant-numeric: tabular-nums;
   }
+  /* 20px is THE row/card title size across the homepage (see also
+     .stamplist__title and .product__title): one size per role, per §3. */
   .card__title {
     margin: 0 0 0.5rem;
     font-family: var(--font-sans);
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: -0.015em;
