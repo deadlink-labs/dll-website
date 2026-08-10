@@ -15,46 +15,65 @@ web-tags: [GENERATIVE, AMBIENT, AUDIO]
 web-image: "./assets/screen.png"
 ---
 
-A generative engine for long-form drone and ambient music. It runs on macOS and
-builds evolving soundscapes that move slowly and never quite repeat. You set it
-up, press play, and it keeps going for hours.
+You've had this happen. You leave a generative patch running, something genuinely
+beautiful goes by around minute forty, and it's gone. You can't get back to it,
+you can't render it, and you can't prove it ever happened.
 
-## How it is built
+Hazefield is a generative engine for long-form drone and ambient music on macOS.
+You set it up, press play, and it builds a soundscape that moves slowly and never
+quite repeats. Then it renders the whole thing to a file that is identical to what
+you heard. Not close to it. Identical.
+
+Fair warning before you read further: it's designed, not built. Full status at the
+bottom, and the waitlist is honest about it.
+
+## Eight strips, and every one drifts on its own
 
 Hazefield is eight vertical strips feeding one master bus. Think of a strip as a
 single layer of the sound.
 
 Each strip starts with a source: an internal synth, an audio sample, a noise bed,
 or an external plugin (VST or AU) you already own. On top of the audio it carries
-the parts that make a layer move on its own.
+the parts that make a layer move by itself.
 
-- Two LFOs. An LFO is a slow wave that nudges a value up and down over time. Here
-  they run between 0.01 and 0.5 Hz, so one full cycle takes seconds to minutes,
-  not a wobble you would notice.
-- Drift. A slow random walk that reshapes the harmonic balance of a strip over
+- **Two LFOs.** An LFO is a slow wave that nudges a value up and down over time.
+  Here they run between 0.01 and 0.5 Hz, so one full cycle takes seconds to
+  minutes. Not a wobble you'd notice. A tide.
+- **Drift.** A slow random walk that reshapes the harmonic balance of a strip over
   hours, so the texture keeps shifting and never lands back exactly where it
   started.
-- An arpeggiator slot, for the strips that play notes.
+- **An arpeggiator slot**, for the strips that play notes.
 
 Then comes the audio pipeline: varispeed (tape-style pitch), filters, pan, and
 volume, with insert effects after that. All eight strips sum into a master bus
 with EQ and a limiter.
 
-## The one rule that shapes everything
+Eight layers each wandering on their own clocks is why it doesn't loop. There's no
+loop to return to.
 
-Hazefield can render a session offline to a WAV file, up to several hours long.
-That rendered file has to be identical to what preview plays. Not close.
-Identical, down to the sample, and it is tested on every build.
+## What you hear in preview is the file, down to the sample
 
-TAKEAWAY: what you hear in preview is exactly what you get in the file. That
-single rule decides most of the engineering underneath it, from how the slow
-modulators tick to how external plugins are hosted.
+Hazefield renders a session offline to a WAV, up to several hours long. That
+rendered file has to be bit-identical to what preview played. Not close. Identical,
+and it's tested on every build.
 
-## Where it stands
+This is the rule the whole engine is bent around, and it's the reason for the
+awkward engineering underneath: why the slow modulators tick on one shared clock,
+why external plugins run in their own process. Every one of those choices exists so
+that the thing you liked at minute forty is the thing that comes out of the render.
 
-Honest status. Hazefield is a blueprint, not a build. The full design is written
-down and now on its fourth revision, but no code exists yet. That is deliberate.
-Decide the hard parts on paper, catch the contradictions there, and then build
-against a plan instead of guessing.
+TAKEAWAY: a generative tool you can't reproduce is a toy. The render matching the
+preview is the difference between a happy accident and a master.
 
-Not purchasable yet. Join the waitlist and you get told when it opens.
+## Honest status: a blueprint, not a build
+
+Hazefield is on the fourth revision of its design document and has zero lines of
+code. That's deliberate, not stalled. An audit of the blueprint caught eleven real
+problems while they were still sentences, including one that would have broken the
+render-matches-preview promise on the very first render. [Here's that whole
+process](/log/designing-hazefield-before-the-code), including the bugs.
+
+So: nothing to download, nothing to buy, and no date I'm willing to promise. If
+that's fine with you, get on the list and I'll tell you when it opens.
+
+Join the waitlist.

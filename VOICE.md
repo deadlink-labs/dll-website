@@ -67,6 +67,7 @@ and pretending they are one register is what made earlier drafts read like a man
 |---|---|---|---|---|
 | Video script (narrated) | Teleprompter | **Avoid.** Not a style choice: full words have fewer elisions to trip on while reading aloud and improvising | First person | Spoken. Asides and "so, yeah" are fine. Stage directions live here and nowhere else |
 | Log post | Notebook | **Natural.** Use them where you would say them | Mostly first person | Measured. The page is tighter than the mouth |
+| Throwback / field story | Told, not reported | **Yes** | First person | Story rhythm. Real paragraphs, and a scene is allowed to be a scene |
 | Product page, About Work-with-me | Human and direct | **Yes** | Second person, direct | Faster. May be funny. The reader is deciding whether to give you money or time |
 
 **Why the product register is different.** A log entry is read by someone who
@@ -75,6 +76,16 @@ deciding whether this solves a problem they have right now. Same discipline, war
 front door: "Hey, from the lab, here is what I built and here is why I built it."
 It is still not a landing page, because Layer 1 is still in force. There is no hype
 available to you. All you have is the pain, stated plainly, and the numbers.
+
+**Why the throwback register is different** (added 2026-08-09, LOG 013). A
+throwback is a record of work that happened years before the lab existed, and the
+evidence for it is photographs and memory rather than a repo and a dashboard. It
+is the one surface where a *scene* is load-bearing: the reader believes the
+engineering because they believe the afternoon. So the story gets told, at length,
+with the fear and the gravel road and the mate left in. What does not loosen is
+Layer 1. The numbers are still the numbers, the decisions still go in a register,
+and warmth is still never evidence. A throwback that is only a good story is a
+blog post. A throwback is a good story wrapped around a decision table.
 
 **Transcripts.** A transcript pasted into a post gets cleaned to the log-post row:
 punctuated, de-ummed, stage directions stripped. It stays a transcript (spoken
@@ -177,6 +188,22 @@ Each pair is a generic-AI sentence next to the Deadlink Labs rewrite.
 **Passive UI copy → active control.**
 - BAD: "Submit" / "Click here to sign up for updates."
 - GOOD: "Join the waitlist."
+
+**The one-line-paragraph drum solo → real paragraphs** (added 2026-08-09). The
+standalone beat (§4 Cadence) is a weapon, and it only works because it is rare. A
+draft where *every* paragraph is one sentence has no rhythm at all, just a
+uniform stutter, and the beats that were meant to land have nothing to land
+against. Roughly eight to ten standalone beats in a two-thousand-word post is
+plenty.
+- BAD: "It was 2006. / There was no 3G. / We were living in the countryside. / And
+  getting online was not easy. / The nearest city was Zárate. / About 15 kilometers
+  away. / So I decided to build my own network. / It was basically a tiny rural
+  ISP. / I just did not call it that."
+- GOOD: "In 2006 there was no 3G, no 4G, and no way to get online where we lived.
+  The nearest connection was in Zárate, about 15 kilometers away across the Buenos
+  Aires countryside. So I climbed a 35-meter radio tower and bolted an access point
+  to the top of it. / It didn't have a name at the time. I'm calling it Rural Point
+  now because it needs a filename."
 
 ### 6.2 The product register specifically
 

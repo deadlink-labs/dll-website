@@ -28,8 +28,8 @@ That gap is the job. Crehana is an online education company in Latin America. I
 spent about three years there, first from the outside and then running production,
 turning a content operation that ran on memory into one that ran on a system.
 
-The order was always the same. See it. Centralize it. Automate it. Then cut what is
-left over. The stack barely matters. The sequence is the whole game.
+The order was always the same. See it. Centralize it. Automate it. Then cut
+what's left over. The stack barely matters. The sequence is the whole game.
 
 ```terminal
 $ python production_plan.py
@@ -37,9 +37,9 @@ reading the board from Jira...
 ✓ 214 courses tracked · 0 stuck over 48h · plan posted
 ```
 
-## Where it started
+## Two launches that ran on heroics
 
-I did not start inside Crehana. In 2021 I came in from the outside, contracted
+I didn't start inside Crehana. In 2021 I came in from the outside, contracted
 through BueHub to launch their dubbing division. That meant hiring and running a
 remote team of more than 25 people across Argentina and Brazil, working in Spanish,
 Portuguese, and English.
@@ -49,8 +49,8 @@ time from inside the company: more than 200 courses produced in Portuguese in ab
 six months.
 
 Both of those ran on people. Long hours, tight coordination, and somebody always
-holding the whole picture in their head. That is the part worth being honest about.
-It worked, and it did not scale. You cannot hire your way out of a process problem
+holding the whole picture in their head. That's the part worth being honest about.
+It worked, and it didn't scale. You can't hire your way out of a process problem
 forever.
 
 ![Three years at Crehana: 2021 building the dubbing division from outside via BueHub, 2022 launching Brazil from inside, then 2022 to 2024 building the system across Latam.](./assets/arc.svg)
@@ -60,7 +60,7 @@ liability, because the operation now depends on the people who can perform them.
 
 ## See it
 
-The first thing I built was not automation. It was dashboards.
+The first thing I built wasn't automation. It was dashboards.
 
 Real-time views in Looker Studio and Metabase across the whole pipeline: how many
 minutes were in production, where courses were stuck, how long corrections took,
@@ -75,13 +75,13 @@ problem. You could see that corrections were the problem.
 
 *Recreated for this post. The growth ratios are faithful; Crehana's raw internal numbers are not shown.*
 
-TAKEAWAY: you cannot improve what you cannot see. Build the instrument before you
+TAKEAWAY: you can't improve what you can't see. Build the instrument before you
 touch the engine.
 
 ## Centralize it
 
 Then I moved the whole workflow into Jira and made it the only place the work
-lived. Here is what that bought.
+lived. Here's what that bought.
 
 - **Six stages, one board.** Production plan, backlog, documents, QA documents,
   sourcing, production. A course moves through them in order.
@@ -119,7 +119,7 @@ out the door, rose about 80 percent. Across the three years the operation shippe
 more than 600 courses.
 
 One honest note. That automation meant a role we had been staffing stopped being
-necessary. That is the part of this work nobody puts on a slide, and it is worth
+necessary. That's the part of this work nobody puts on a slide, and it's worth
 saying out loud.
 
 ```terminal
@@ -129,14 +129,14 @@ corrections   · 0 open past sla
 launch feed   · published from the board
 ```
 
-## Cut what is left over
+## Cut what's left over
 
 Some of the largest wins were subtractions.
 
 I audited the tool stack and cancelled what overlapped or went unused. Frame came
 off the bill at $3,240 a year. Trint was replaced by Whisper, which did the same
 job for the cost of running it, at $12,340 a year. A Dropbox cleanup took off
-another $840. That is $16,420 a year in tools nobody missed.
+another $840. That's $16,420 a year in tools nobody missed.
 
 Replacing a manual translation process with an AI-assisted one saved another
 $10,000 and cut the turnaround at the same time. Add the efficiency savings in
@@ -146,11 +146,11 @@ more than $22,000 a year.
 ![Ledger of cancelled subscriptions: Frame at $3,240 a year, Trint replaced by Whisper at $12,340, Dropbox at $840, totaling $16,420 a year, plus more than $10,000 from AI-assisted translation.](./assets/ledger.svg)
 
 TAKEAWAY: an unused subscription is a standing invoice. Auditing the stack is some
-of the cheapest money you will ever find.
+of the cheapest money you'll ever find.
 
 ## What the team got
 
-This is the part I care about most, and it is the easiest part to fake, so here is
+This is the part I care about most, and it's the easiest part to fake, so here's
 what actually changed.
 
 **People got their time back.** The manual reporting work, cost analysis per
@@ -160,7 +160,7 @@ on work that needed a person.
 
 **The chasing stopped.** Corrections used to sit for weeks while someone followed
 up. Once every stage carried an SLA, the system did the following up. That removed
-a whole category of friction, because "where is my correction" stopped being a
+a whole category of friction, because "where's my correction" stopped being a
 conversation between two colleagues.
 
 **Nobody waited to find out where they stood.** Team metrics and OKRs were open to
@@ -190,10 +190,10 @@ next, stopped being a surprise, so planning replaced firefighting.
 ## What carries over
 
 None of this started as a strategy. It started with one spreadsheet I was tired of
-updating by hand. That is usually where it starts.
+updating by hand. That's usually where it starts.
 
 If you run an operation that feels busy but blurry, the order matters more than the
-tools. See it, centralize it, automate it, then cut what is left over. Run that
+tools. See it, centralize it, automate it, then cut what's left over. Run that
 backwards and you automate a process nobody understands, on a stack nobody agreed
 to.
 

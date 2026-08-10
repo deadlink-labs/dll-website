@@ -22,14 +22,14 @@ web-thumb: "./assets/thumb.webp"   # the post's own artwork, not a generated til
 ---
 
 A field technician finishes a service at a customer's plant, gets in the van, and
-drives home. Somewhere in there he is supposed to fill in a service report. He
-usually does not, or he does half of it, and the half he skips is the half that
+drives home. Somewhere in there he's supposed to fill in a service report. He
+usually doesn't, or he does half of it, and the half he skips is the half that
 matters two years later.
 
 I spent a few weeks with that problem and shipped a four-week pilot proposal for
 it. The client is a manufacturer of heat exchangers, electrovalves, pumps and
 process equipment, sold and maintained inside food, dairy and pharmaceutical
-plants. They are not named here, and neither is anyone who works there.
+plants. They're not named here, and neither is anyone who works there.
 
 What I proposed is one sentence long: the technician talks for two minutes on
 WhatsApp, and the system writes the report.
@@ -42,25 +42,25 @@ postgres    running   healthy
 gotenberg   running   html in, pdf out
 ```
 
-## The finding
+## An unfinished report is an audit finding
 
-The report is not an internal formality. In a pharmaceutical or a dairy plant,
+The report isn't an internal formality. In a pharmaceutical or a dairy plant,
 quality receives it and files it as a controlled document. When an audit comes,
-that paper is what gets shown. So an unfinished report is not a form filled in
-badly. It is a finding, in somebody else's plant, with the manufacturer's name on
+that paper is what gets shown. So an unfinished report isn't a form filled in
+badly. It's a finding, in somebody else's plant, with the manufacturer's name on
 it.
 
-Then there is the side nobody is looking at. Without structured data there is no
+Then there's the side nobody is looking at. Without structured data there's no
 failure history per machine and per customer. Every service starts from zero.
-Spares and warranties get estimated by feel, because there is nothing to count.
+Spares and warranties get estimated by feel, because there's nothing to count.
 
 ![Three cards from the proposal. Outward: an audit finding in the customer's plant, because pharmaceutical and dairy quality departments file these reports as controlled documents. Inward: no failure history, so every service starts at zero and spares are estimated by feel. Forward: the asset they are not building.](./assets/cost.svg)
 
 The constraint that decides everything came out of watching how the report
 actually gets filled in, not from the form itself. The technician is dirty, in a
-hurry, in a plant that is not his, finishing at six in the evening. Anything that
-adds a step will not get used. That is not a training problem, and it will not be
-fixed by a better form.
+hurry, in a plant that isn't his, finishing at six in the evening. Anything that
+adds a step won't get used. That's not a training problem, and it won't be fixed
+by a better form.
 
 TAKEAWAY: when a process fails at the same point every time, look at the
 conditions at that point, not at the artifact. The form was never the problem.
@@ -82,15 +82,15 @@ the transcript is turned into the same fields every time (customer, machine,
 serial number, fault, cause, work done, spares), and the report comes out with
 the company's own formatting.
 
-## The only real risk
+## The only real risk is that nobody uses it
 
-The technical parts of this are not hard. Every one of them is a service that
-already exists. The risk is that the technicians do not use it, and that risk is
-not a technical problem, so it cannot be solved with a technical answer.
+The technical parts of this aren't hard. Every one of them is a service that
+already exists. The risk is that the technicians don't use it, and that risk
+isn't a technical problem, so it can't be solved with a technical answer.
 
 So every design choice attacks adoption:
 
-- **No new app and no training.** It is the WhatsApp he already has, plus one
+- **No new app and no training.** It's the WhatsApp he already has, plus one
   contact.
 - **No waiting.** The acknowledgement is instant. The processing runs while he
   drives back.
@@ -104,14 +104,14 @@ So every design choice attacks adoption:
 ![A phone showing the follow-up exchange in WhatsApp. The system asks for everything it is missing in a single message, the technician answers in one line from the van, and the report closes in one round. Read on either side of it: zero apps, because it is the WhatsApp he already has plus one contact, and zero training, because he just answers.](./assets/whatsapp.svg)
 
 *The exchange as it would run, translated. The real one is in Spanish, because
-the technician is. The system says it is close to closing and asks three things at
-once, he answers in a single line from the van, and that is the whole interaction.*
+the technician is. The system says it's close to closing and asks three things at
+once, he answers in a single line from the van, and that's the whole interaction.*
 
-The two-round cap is the decision I would defend hardest. Chasing a technician a
+The two-round cap is the decision I'd defend hardest. Chasing a technician a
 third time is exactly the friction this was built to remove. A report at ninety
 percent that arrives is worth more than a perfect one that never does, and the
 missing field can be filled by a person later. The technician who stops answering
-does not come back.
+doesn't come back.
 
 ## The AI goes at the edges, never in the middle
 
@@ -119,10 +119,10 @@ This is the part that transfers to every other project, so it gets its own
 heading.
 
 I counted the steps in the flow and asked which ones need judgement. Receiving
-the webhook: no. Checking the message is not a duplicate: no. Checking the number
+the webhook: no. Checking the message isn't a duplicate: no. Checking the number
 is authorized: no. Downloading the audio: no. Transcribing it: no. **Reading the
 technician's story and pulling the facts out of it: yes.** Saving to the database:
-no. Deciding whether something is missing: no, that is a length check. Generating
+no. Deciding whether something is missing: no, that's a length check. Generating
 the PDF: no. Sending it: no.
 
 One out of ten. The other nine are plumbing, and plumbing has to give the same
@@ -130,7 +130,7 @@ answer every time.
 
 ![The n8n canvas: a WhatsApp trigger, Whisper transcribing, Claude structuring, a completeness check, PostgreSQL and PDF generation, with an ask-again branch that loops back to the structuring step, capped at two rounds. Data animates along the connectors. Claude is the only node outlined in orange, because it is the only step that calls out of the network.](./assets/pipeline.svg)
 
-*The n8n canvas exactly as it was sent, Spanish and all, because it is the
+*The n8n canvas exactly as it was sent, Spanish and all, because it's the
 artifact rather than a drawing of one. Everything in it runs on their own hardware
 except the Claude node, outlined in orange: the single call that leaves the
 network, carrying text and never audio.*
@@ -138,8 +138,8 @@ network, carrying text and never audio.*
 If a model runs the whole pipeline, every execution is a fresh decision. One day
 it names a field differently. One day it decides to tidy up the work description
 so it reads better, and now the content of a document that will be audited has
-been changed by something nobody instructed. The variability is not a defect of
-the model. It is the whole point of the model. It is just a defect *here*.
+been changed by something nobody instructed. The variability isn't a defect of
+the model. It's the whole point of the model. It's just a defect *here*.
 
 Three things follow from that, and they are the architecture:
 
@@ -147,12 +147,12 @@ Three things follow from that, and they are the architecture:
 customer's name, which plant, which machine, and what broke. That is competitive
 information about somebody else's operation, spoken by a third party. Running it
 locally costs nothing but CPU and turns a long conversation with a pharmaceutical
-client into one sentence: the audio does not leave the network.
+client into one sentence: the audio doesn't leave the network.
 
 **The structured output is guaranteed, not requested.** The fields are defined as
 a schema that the API enforces, rather than described in the prompt and hoped for.
-Every key comes back every time, and a field the technician did not mention comes
-back empty instead of invented. That is the difference between a system you can
+Every key comes back every time, and a field the technician didn't mention comes
+back empty instead of invented. That's the difference between a system you can
 query in a year and a pile of text.
 
 **Four points touch the outside world, and each one is a variable.** Input,
@@ -169,7 +169,7 @@ STT_PROVIDER=whisper_local    # does not change
 LLM_PROVIDER=claude           # or gemini, or a local model
 ```
 
-That last one is not architecture for its own sake. It is what makes the answer
+That last one isn't architecture for its own sake. It's what makes the answer
 to "what if you leave" and "what if that provider has a bad day" a variable
 instead of a project.
 
@@ -179,7 +179,7 @@ else. A data pipeline has to be boring in the middle.
 ## The subproduct is worth more than the report
 
 The report fixes the problem they have today. The thing it leaves behind is worth
-more, and it is the reason I would have wanted this project.
+more, and it's the reason I'd have wanted this project.
 
 At the volume the costing assumes, six months in they have a few hundred
 structured service records: which machine, at which customer, failed how, and what
@@ -196,11 +196,11 @@ Three things become possible with it, and none of them are possible without it.
 sells a maintenance contract, and it needs data rather than an impression. Spare
 stock held at customer sites moves from estimated to counted. And a portal where
 a customer looks up the history of their own equipment is a product, built out of
-data they would already own.
+data they'd already own.
 
 There is one small, boring decision that decides whether any of that works. If the
 technician says a customer's nickname and we store it as free text, in six months
-the same customer exists four different ways and the history cannot be crossed
+the same customer exists four different ways and the history can't be crossed
 with anything. So the proposal asks for one spreadsheet of customer codes, exported
 from their ERP, and matches against it. Not an integration. Not access. A
 spreadsheet.
@@ -208,7 +208,7 @@ spreadsheet.
 TAKEAWAY: a field that costs nothing to add today costs a cleanup project later.
 Decide how records will be joined before you have any.
 
-## Four weeks
+## Four weeks, and what I left out of scope
 
 - **Week 1, discovery.** A full day in the field with a real service. Define the
   minimum useful report with maintenance and quality. Measure the baseline: of the
@@ -217,7 +217,7 @@ Decide how records will be joined before you have any.
 - **Week 2, prototype.** The whole flow running, tested internally, adjusted
   against real friction rather than imagined friction.
 - **Week 3, field pilot.** Two or three technicians on real services, iterating
-  daily. This is when the PDF gets built, because that is when the first report
+  daily. This is when the PDF gets built, because that's when the first report
   goes to an actual customer.
 - **Week 4, measured result.** Measure against the baseline. Hand over the code
   and the documentation on their infrastructure. Prioritize what comes next.
@@ -225,11 +225,11 @@ Decide how records will be joined before you have any.
 Explicitly out of scope, and written down as such: corporate hardening, hosting
 and backups; direct ERP integration, where the proposal only prepares the data to
 be joined later; and support after handover, which is quoted separately. Their
-IT lead owns where it runs, who has access, and what happens to the data. That is
+IT lead owns where it runs, who has access, and what happens to the data. That's
 his territory, and the design assumes it.
 
-The whole thing runs on about three dollars a month at a hundred services. That
-is the only recurring cost, it is prepaid credit rather than a contract, and if
+The whole thing runs on about three dollars a month at a hundred services. That's
+the only recurring cost, it's prepaid credit rather than a contract, and if
 the project stops, nothing keeps running.
 
 ## The decisions, on the record
@@ -255,7 +255,7 @@ a page of HTML served from the orchestrator do the same job with one less thing 
 maintain.
 
 DEC 011 stays open on purpose. Running the structuring on their own hardware
-would make the system fully on-premise at zero running cost, and I did not propose
+would make the system fully on-premise at zero running cost, and I didn't propose
 it, because a smaller model's failure mode is to fill in a number nobody said, and
 that number would land in a document that audits a pharmaceutical plant. So the
 raw transcript and the model name are stored on every record from day one. When
@@ -265,17 +265,17 @@ data instead of opinion.
 ## What happened next
 
 I sent it on 2026-07-29. Weeks have passed and there has been no reply, and at
-this point I do not expect one.
+this point I don't expect one.
 
-That is the honest ending, and it does not change what the work is. The proposal
+That's the honest ending, and it doesn't change what the work is. The proposal
 shipped. The thinking is on the record, the architecture holds, and the four-edge
 pattern and the local-transcription argument have both gone straight into how I
 scope the next one.
 
-If I ran it again I would change one thing. I would put the field day before the
-proposal instead of inside week 1 of it, even unpaid. Everything in here that I
-am confident about came from understanding how the work actually happens, and
-everything I am less sure about is a thing I had to assume.
+If I ran it again I'd change one thing. I'd put the field day before the
+proposal instead of inside week 1 of it, even unpaid. Everything in here that I'm
+confident about came from understanding how the work actually happens, and
+everything I'm less sure about is a thing I had to assume.
 
 ## What carries over
 
@@ -288,7 +288,7 @@ Put the model where language enters and leaves, and write ordinary deterministic
 code for everything between. That single rule is what makes a system somebody
 else's engineer is willing to trust.
 
-And build the thing they asked for in a way that leaves behind the thing they did
-not know to ask for. The report was the deliverable. The history is the asset.
+And build the thing they asked for in a way that leaves behind the thing they
+didn't know to ask for. The report was the deliverable. The history is the asset.
 
 Build to understand.
