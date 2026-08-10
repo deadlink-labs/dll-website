@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <!-- THE LINK CHAIN, 2006. Station x positions are DERIVED, not drawn:
+       tile-system.stations(['ZÁRATE · ISP','RELAY · ATUCHA','TOWER · EL ADUAR',
+       'SIX ROOFS'], 24, 2) -> [162.4, 489, 815.6, 1142.2], which lands the outer
+       labels flush on the rail at exactly 64.0 and 1216.0.
+
+       No hero number: this is a topology diagram, not a stat tile, so it follows
+       the flow.svg/pipeline.svg idiom rather than the cover idiom.
+
+       The live node is the TOWER, not the destination, and that is the whole
+       argument of the drawing. The spine arrives at one node and the six roofs
+       fan out of that same node, so the single point of failure is visible as
+       geometry before the caption says it. Node radii ramp toward it. -->
+
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">THE LINK CHAIN · 2006</text>
+
+  <!-- ── station labels ───────────────────────────────────────────────── -->
+  <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">
+    <text x="162.4" y="210">ZÁRATE · ISP</text>
+    <text x="489" y="210">RELAY · ATUCHA</text>
+    <text x="815.6" y="210">TOWER · EL ADUAR</text>
+    <text x="1142.2" y="210">SIX ROOFS</text>
+  </g>
+
+  <!-- ── the backhaul spine, ISP through the relay into the tower ─────── -->
+  <line x1="162.4" y1="330" x2="815.6" y2="330" stroke="#ece8e1" stroke-opacity="0.25" stroke-width="2"/>
+
+  <!-- ── local distribution: one tower, six roofs ─────────────────────── -->
+  <g stroke="#ece8e1" stroke-opacity="0.25" stroke-width="1.5">
+    <line x1="815.6" y1="330" x2="1142.2" y2="240"/>
+    <line x1="815.6" y1="330" x2="1142.2" y2="276"/>
+    <line x1="815.6" y1="330" x2="1142.2" y2="312"/>
+    <line x1="815.6" y1="330" x2="1142.2" y2="348"/>
+    <line x1="815.6" y1="330" x2="1142.2" y2="384"/>
+    <line x1="815.6" y1="330" x2="1142.2" y2="420"/>
+  </g>
+
+  <!-- ── settled nodes, radii ramping toward the tower ────────────────── -->
+  <circle cx="162.4" cy="330" r="10" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="489" cy="330" r="13" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.6" stroke-width="2"/>
+
+  <!-- ── the six subscriber roofs ─────────────────────────────────────── -->
+  <g fill="#23201b" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2">
+    <circle cx="1142.2" cy="240" r="9"/>
+    <circle cx="1142.2" cy="276" r="9"/>
+    <circle cx="1142.2" cy="312" r="9"/>
+    <circle cx="1142.2" cy="348" r="9"/>
+    <circle cx="1142.2" cy="384" r="9"/>
+    <circle cx="1142.2" cy="420" r="9"/>
+  </g>
+
+  <!-- ── the one live node: everything hangs on this ──────────────────── -->
+  <circle cx="815.6" cy="330" r="48" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="815.6" cy="330" r="20" fill="#f04a00"/>
+
+  <!-- ── the antenna at the top of the tower ──────────────────────────── -->
+  <text x="815.6" y="270" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">8 dBi OMNI · 35 M</text>
+
+  <!-- ── measured spans ───────────────────────────────────────────────── -->
+  <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">
+    <text x="489" y="490">BACKHAUL ≈15 KM</text>
+    <text x="978.9" y="490">LOCAL ≈4 KM</text>
+  </g>
+
+  <!-- ── shared capacity, stated plainly ──────────────────────────────── -->
+  <text x="815.6" y="570" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">≈1 Mbps SYMMETRICAL, SHARED</text>
+
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">ALL OF IT POINTED AT ONE STRUCTURE. THERE WAS NO SECOND TOWER.</text>
+</svg>

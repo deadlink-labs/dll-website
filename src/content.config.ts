@@ -52,6 +52,14 @@ const webSchema = (image: ImageFunction) =>
       'web-number': z.number().int().nonnegative().optional(),
       'web-stage': z.enum(STATUSES).optional(),
       'web-tags': z.array(z.string()).optional(),
+      // --- series membership (CLAUDE.md §5.2) ---
+      // A record may also belong to a named series that numbers independently of
+      // web-number: THROWBACK / 001 is LOG 013. Like web-number, the pair is a
+      // PERMANENT public identifier and is authored by hand, never derived from
+      // the curation array in site.config.json (a mutable array would silently
+      // renumber records). Uniqueness is enforced per series in src/lib/content.ts.
+      'web-series': z.string().optional(),
+      'web-series-number': z.number().int().positive().optional(),
       // Products only: render a waitlist form on the product page (§5.3).
       'web-waitlist': z.boolean().optional(),
       // --- optional media (both omit gracefully when absent) ---
@@ -93,6 +101,8 @@ const webSchema = (image: ImageFunction) =>
       number: data['web-number'],
       stage: data['web-stage'],
       tags: data['web-tags'] ?? [],
+      series: data['web-series'],
+      seriesNumber: data['web-series-number'],
       waitlist: data['web-waitlist'] ?? false,
       videoId: parseYouTubeId(data['web-video']),
       thumb: data['web-thumb'],

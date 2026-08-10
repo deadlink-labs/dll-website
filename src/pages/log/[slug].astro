@@ -9,7 +9,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Stamp from '../../components/Stamp.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
-import { getPublishedLog, recordLabel, formatDate } from '../../lib/content';
+import { getPublishedLog, recordLabel, seriesLabel, formatDate } from '../../lib/content';
 
 export const getStaticPaths = (async () => {
   const entries = await getPublishedLog();
@@ -19,12 +19,13 @@ export const getStaticPaths = (async () => {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const label = recordLabel(entry);
+const series = seriesLabel(entry);
 ---
 
 <BaseLayout width="record" title={entry.data.title} description={entry.data.snippet}>
   <article class="record">
     <div class="record__stamp">
-      <Stamp label={label} stage={entry.data.stage} tags={entry.data.tags} />
+      <Stamp label={label} series={series} stage={entry.data.stage} tags={entry.data.tags} />
     </div>
     <h1 class="record__title">{entry.data.title}</h1>
     <p class="record__date">{formatDate(entry.data.pubDate)}</p>
@@ -161,6 +162,16 @@ const label = recordLabel(entry);
     height: auto;
     border-radius: 4px;
     margin: 1.75rem 0 0.6rem;
+  }
+  /* Portrait photographs get a height cap. A 3:4 frame at the 720px prose width
+     renders ~960px tall, which pushes the caption and the paragraph after it off
+     the screen entirely: the reader loses the thread of the post to look at one
+     picture. Capping the height and centring keeps a tall photo inside roughly
+     one screen. object-fit is deliberately NOT used, so nothing is cropped. */
+  .prose :global(img[width][height]) {
+    max-height: 78vh;
+    width: auto;
+    margin-inline: auto;
   }
   .prose :global(p:has(> em:only-child)) {
     margin-top: 0;

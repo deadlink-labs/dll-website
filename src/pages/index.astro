@@ -1,7 +1,7 @@
 ---
 // Home (/) — per the settled Home design (Deadlink-Labs-Home.dc.html) and
 // CLAUDE.md §5.1/§6. Band order: Cover · On the bench (hero) · Featured ·
-// Recent · Products · Shipped for clients · Who runs this · Footer.
+// Recent · Shipped for clients · Products · Throwback · Who runs this · Footer.
 // Every band is a 150px mono label column + content; hairline rules divide
 // the sheet into bands. The hero, feeds, and products come deterministically
 // from site.config.json + published content — composed, not hand-authored.
@@ -15,7 +15,7 @@ import FeedCard from '../components/FeedCard.astro';
 import ProductCard from '../components/ProductCard.astro';
 import { getHomepageData } from '../lib/content';
 
-const { hero, recent, featuredProducts, clientWork } = await getHomepageData();
+const { hero, recent, featuredProducts, clientWork, throwbacks } = await getHomepageData();
 const current = hero[0]; // the current experiment on the bench
 // Oversized record number for the hero gutter (model-number treatment).
 const heroNum = current?.data.number != null ? String(current.data.number).padStart(3, '0') : '001';
@@ -107,15 +107,15 @@ astro  v5.18.2  ready in 415 ms
       global.css gives every [id] scroll-margin so it clears the sticky nav. */}
   <section class="band" id="clients">
     <SectionLabel num="04" label="Shipped for clients" />
-    <ul class="clients">
+    <ul class="stamplist">
       {
         clientWork.map((c) => (
-          <li class="clients__row">
+          <li class="stamplist__row">
             {c.href ? (
-              <a class="clients__link" href={c.href}>
+              <a class="stamplist__link" href={c.href}>
                 {c.thumb && (
                   <Image
-                    class="clients__thumb"
+                    class="stamplist__thumb"
                     src={c.thumb}
                     alt=""
                     widths={[176, 352, 528]}
@@ -123,22 +123,22 @@ astro  v5.18.2  ready in 415 ms
                     loading="lazy"
                   />
                 )}
-                <div class="clients__text">
-                  <div class="clients__meta">
-                    <span class="clients__name">{c.name}</span>
-                    {c.record && <span class="clients__record">{c.record}</span>}
-                    <span class="clients__note">{c.status}</span>
+                <div class="stamplist__text">
+                  <div class="stamplist__meta">
+                    <span class="stamplist__name">{c.name}</span>
+                    {c.record && <span class="stamplist__record">{c.record}</span>}
+                    <span class="stamplist__note">{c.status}</span>
                   </div>
-                  {c.title && <span class="clients__title">{c.title}</span>}
-                  {c.snippet && <p class="clients__snippet">{c.snippet}</p>}
+                  {c.title && <span class="stamplist__title">{c.title}</span>}
+                  {c.snippet && <p class="stamplist__snippet">{c.snippet}</p>}
                 </div>
-                <span class="clients__go" aria-hidden="true">→</span>
+                <span class="stamplist__go" aria-hidden="true">→</span>
               </a>
             ) : (
-              <div class="clients__text">
-                <div class="clients__meta">
-                  <span class="clients__name">{c.name}</span>
-                  <span class="clients__note">{c.status}</span>
+              <div class="stamplist__text">
+                <div class="stamplist__meta">
+                  <span class="stamplist__name">{c.name}</span>
+                  <span class="stamplist__note">{c.status}</span>
                 </div>
               </div>
             )}
@@ -162,9 +162,51 @@ astro  v5.18.2  ready in 415 ms
     )
   }
 
-  {/* Band 6 — Who runs this. */}
+  {/* Band 6 — Throwback: projects from before the lab had a URL, written up
+      from the archive (§5.2). Deliberately NOT a schedule — a row appears when a
+      project gets documented, not on a weekly cadence. Same stamped-list markup
+      as the clients band; the dark Products band sits between them, so the two
+      lists never read as one. The THROWBACK / NNN label comes from the post's
+      own frontmatter, never from site.config.json (§4). */}
+  {
+    throwbacks.length > 0 && (
+      <section class="band" id="throwback">
+        <SectionLabel num="06" label="Throwback" />
+        <ul class="stamplist">
+          {throwbacks.map((t) => (
+            <li class="stamplist__row">
+              <a class="stamplist__link" href={t.href}>
+                {t.thumb && (
+                  <Image
+                    class="stamplist__thumb"
+                    src={t.thumb}
+                    alt=""
+                    widths={[176, 352, 528]}
+                    sizes="176px"
+                    loading="lazy"
+                  />
+                )}
+                <div class="stamplist__text">
+                  <div class="stamplist__meta">
+                    <span class="stamplist__name">{t.label}</span>
+                    {t.record && <span class="stamplist__record">{t.record}</span>}
+                    <span class="stamplist__note">{t.status}</span>
+                  </div>
+                  <span class="stamplist__title">{t.title}</span>
+                  {t.snippet && <p class="stamplist__snippet">{t.snippet}</p>}
+                </div>
+                <span class="stamplist__go" aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {/* Band 7 — Who runs this. */}
   <section class="band band--who">
-    <SectionLabel num="06" label="Who runs this" />
+    <SectionLabel num="07" label="Who runs this" />
     <div class="who">
       <p class="who__text">
         Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run
@@ -341,16 +383,20 @@ astro  v5.18.2  ready in 415 ms
     border-top: 1px solid var(--color-ink-08);
   }
 
-  .clients {
+  /* Stamped list — the shared row treatment behind BOTH the "Shipped for
+     clients" band and the "Throwback" band: 176px thumb, a mono eyebrow built
+     out of stamp fields, a sans title, a snippet. Named for the pattern rather
+     than for either band, because it now has two callers. */
+  .stamplist {
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  .clients__row {
+  .stamplist__row {
     border-bottom: 1px solid var(--color-ink-08);
   }
   /* Linked rows (client work with a case-study post) fill the row and link out. */
-  .clients__link {
+  .stamplist__link {
     display: flex;
     align-items: flex-start;
     gap: 1.25rem;
@@ -359,7 +405,7 @@ astro  v5.18.2  ready in 415 ms
     color: inherit;
   }
   /* Case-study thumbnail — a splash of image anchoring the proof row. */
-  .clients__thumb {
+  .stamplist__thumb {
     width: 176px;
     height: 99px;
     object-fit: cover;
@@ -367,16 +413,16 @@ astro  v5.18.2  ready in 415 ms
     flex: none;
   }
   /* Text column grows to fill; min-width:0 lets the snippet wrap cleanly. */
-  .clients__text {
+  .stamplist__text {
     flex: 1;
     min-width: 0;
     padding-block: 1.5rem;
   }
-  .clients__link .clients__text {
+  .stamplist__link .stamplist__text {
     padding-block: 0;
   }
   /* Eyebrow: client name + status token, mono chrome above the title. */
-  .clients__meta {
+  .stamplist__meta {
     display: flex;
     align-items: baseline;
     flex-wrap: wrap;
@@ -386,14 +432,14 @@ astro  v5.18.2  ready in 415 ms
   }
   /* Middot separators between eyebrow fields, matching the lab-record stamp
      (§3: "LOG 012 · IN PROGRESS · …") and the dot already inside the status. */
-  .clients__record::before,
-  .clients__note::before {
+  .stamplist__record::before,
+  .stamplist__note::before {
     content: "·";
     margin: 0 0.5em;
     color: var(--color-ink-60);
     font-weight: 400;
   }
-  .clients__name {
+  .stamplist__name {
     font-size: 12px;
     color: var(--color-ink);
     text-transform: uppercase;
@@ -401,7 +447,7 @@ astro  v5.18.2  ready in 415 ms
   }
   /* Record stamp — same treatment as the feed's LOG number, so the client band
      reads as part of the one stamp system (§3). */
-  .clients__record {
+  .stamplist__record {
     font-size: 11px;
     font-weight: 500;
     color: var(--color-ink);
@@ -409,7 +455,7 @@ astro  v5.18.2  ready in 415 ms
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
   }
-  .clients__note {
+  .stamplist__note {
     font-size: 11px;
     color: var(--color-ink-60);
     text-transform: uppercase;
@@ -418,7 +464,7 @@ astro  v5.18.2  ready in 415 ms
     font-variant-numeric: tabular-nums;
   }
   /* Descriptive case-study title — sentence-case sans, consistent with the feed. */
-  .clients__title {
+  .stamplist__title {
     display: block;
     font-family: var(--font-sans);
     font-size: 19px;
@@ -428,7 +474,7 @@ astro  v5.18.2  ready in 415 ms
     color: var(--color-ink);
     transition: color 0.18s ease;
   }
-  .clients__snippet {
+  .stamplist__snippet {
     margin: 0.4rem 0 0;
     font-family: var(--font-sans);
     font-size: 14.5px;
@@ -436,30 +482,30 @@ astro  v5.18.2  ready in 415 ms
     color: var(--color-ink-60);
     max-width: 62ch;
   }
-  .clients__link:hover .clients__title {
+  .stamplist__link:hover .stamplist__title {
     color: var(--color-signal);
   }
-  .clients__go {
+  .stamplist__go {
     flex: none;
     align-self: center;
     color: var(--color-signal);
     opacity: 0;
     transition: opacity 0.18s ease;
   }
-  .clients__link:hover .clients__go {
+  .stamplist__link:hover .stamplist__go {
     opacity: 1;
   }
   @media (max-width: 600px) {
-    .clients__link {
+    .stamplist__link {
       flex-wrap: wrap;
       gap: 0.875rem;
     }
-    .clients__thumb {
+    .stamplist__thumb {
       width: 100%;
       height: auto;
       aspect-ratio: 16 / 9;
     }
-    .clients__go {
+    .stamplist__go {
       display: none;
     }
   }

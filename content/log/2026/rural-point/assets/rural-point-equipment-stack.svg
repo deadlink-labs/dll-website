@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <!-- WHAT SAT WHERE. The companion to chain.svg and deliberately NOT a second
+       drawing of the same path: chain.svg owns the topology (who connects to
+       whom, over what distance), this one owns the vertical stack (which box
+       sits at which height). No element appears in both.
+
+       The live node is the MikroTik at the BASE, not the radios at the top,
+       because the argument of the drawing is that nothing serviceable was put
+       at 35 meters. The orange is on the decision, not on the hardware.
+
+       Tower labels are anchored END at x=330 so the right half of the canvas
+       stays clear for the local link and the subscriber roof. Every text run
+       was rail-checked with tile-system.assertFits. -->
+
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">WHAT SAT WHERE · TOWER AND ROOF</text>
+
+  <!-- ── the mast ─────────────────────────────────────────────────────── -->
+  <line x1="380" y1="170" x2="380" y2="560" stroke="#ece8e1" stroke-opacity="0.25" stroke-width="2"/>
+  <!-- lattice suggestion: four cross braces, not a literal truss -->
+  <g stroke="#ece8e1" stroke-opacity="0.12" stroke-width="1.5">
+    <path d="M366,230 L394,290 M394,230 L366,290"/>
+    <path d="M366,320 L394,380 M394,320 L366,380"/>
+    <path d="M366,410 L394,470 M394,410 L366,470"/>
+  </g>
+
+  <!-- ── ground ───────────────────────────────────────────────────────── -->
+  <line x1="250" y1="560" x2="510" y2="560" stroke="#ece8e1" stroke-opacity="0.25" stroke-width="2"/>
+  <g stroke="#ece8e1" stroke-opacity="0.14" stroke-width="1.5">
+    <path d="M266,560 L252,576 M306,560 L292,576 M346,560 L332,576 M386,560 L372,576 M426,560 L412,576 M466,560 L452,576 M506,560 L492,576"/>
+  </g>
+
+  <!-- ── height dimension ─────────────────────────────────────────────── -->
+  <g stroke="#ece8e1" stroke-opacity="0.2" stroke-width="1.5">
+    <line x1="420" y1="170" x2="420" y2="560"/>
+    <line x1="412" y1="170" x2="428" y2="170"/>
+    <line x1="412" y1="560" x2="428" y2="560"/>
+  </g>
+  <text x="440" y="372" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">35 M</text>
+
+  <!-- ── top of the tower: radios only ────────────────────────────────── -->
+  <circle cx="380" cy="170" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="380" cy="215" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+
+  <!-- ── base of the tower: the one thing anyone ever had to touch ────── -->
+  <circle cx="380" cy="520" r="40" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="380" cy="520" r="16" fill="#f04a00"/>
+
+  <g text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">
+    <text x="330" y="176">8 dBi OMNI + AP</text>
+    <text x="330" y="221">BACKHAUL DISH</text>
+    <text x="330" y="515">MIKROTIK ROUTER</text>
+    <text x="330" y="548">PENTIUM II · VLC</text>
+  </g>
+
+  <!-- ── the local link, tower top to one subscriber roof ─────────────── -->
+  <line x1="380" y1="170" x2="940" y2="360" stroke="#ece8e1" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="7 7"/>
+  <text x="660" y="255" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">≈4 KM LOCAL LINK</text>
+
+  <!-- ── the subscriber end ───────────────────────────────────────────── -->
+  <text x="1015" y="310" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">EACH SUBSCRIBER ROOF</text>
+
+  <circle cx="940" cy="360" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <line x1="940" y1="360" x2="1030" y2="360" stroke="#ece8e1" stroke-opacity="0.25" stroke-width="1.5"/>
+  <rect x="1014" y="344" width="32" height="32" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <line x1="1030" y1="376" x2="1030" y2="440" stroke="#ece8e1" stroke-opacity="0.25" stroke-width="1.5"/>
+
+  <!-- roofline, and the cable continuing indoors -->
+  <line x1="880" y1="440" x2="1150" y2="440" stroke="#ece8e1" stroke-opacity="0.25" stroke-width="2"/>
+  <line x1="1030" y1="440" x2="1030" y2="472" stroke="#ece8e1" stroke-opacity="0.14" stroke-width="1.5" stroke-dasharray="5 5"/>
+
+  <g text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">
+    <text x="1015" y="522">24 dBi GRID → D-LINK AP</text>
+    <text x="1015" y="554">IN A WEATHERPROOF BOX</text>
+  </g>
+
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">EVERYTHING SERVICEABLE AT GROUND LEVEL. ONLY RADIOS UP TOP.</text>
+</svg>

@@ -71,6 +71,36 @@ duplicate of LOG 010's.
       ([NetworkMark.astro](src/components/NetworkMark.astro)) — it currently runs
       forever with no visibility check and no motion query
 
+### LOG 013 · Rural Point, and the Throwback format
+`v1.02.033` – `v1.02.034` · **written 2026-08-09**
+
+The first record of pre-lab work, and the format that will carry the rest of it.
+
+- [x] LOG 013 written: a 2006 wireless ISP, told in the new throwback register
+- [x] **First photographs ever shipped in a post body.** CLAUDE.md §3 *Imagery*
+      rewritten: "almost none" was a defense against stock photography that had
+      been mistaken for a house style
+- [x] `web-series` / `web-series-number` on the content schema — a permanent
+      identifier that numbers independently of `web-number` (LOG 013 is also
+      THROWBACK / 001), with a per-series uniqueness guard that fails the build
+- [x] Throwback band on Home (band 7), curated from `homepage.throwbacks`
+- [x] `.clients*` CSS renamed `.stamplist*` and shared by both stamped-list bands
+      rather than copied
+- [x] `Stamp.astro` takes an optional `series`, so the record stamps both numbers
+- [x] VOICE.md §3: a fourth register row, plus a before/after pair retiring the
+      one-line-paragraph tic
+
+**The voice finding behind this episode.** VOICE.md was corrected on 2026-08-07 to
+allow natural contractions in log posts. A grep of all nine posts then in `content/`
+returned **zero** — every apostrophe on the site was a possessive. The correction
+had been made in the doc and never applied to prose, which is exactly what "too
+clinical, too sanitized" was describing. LOG 013 is the first post written after it.
+
+- [ ] `ME` Remaining Rural Point photographs (the Falcon, the laptop on the 12 V
+      outlet, the Pentium II, a roof antenna) if they turn up
+- [ ] `ME` Confirm D-Link vs MikroTik at the subscriber houses
+- [ ] `AI` THROWBACK / 002 (Game Boy screen retrofit) and / 003 (home thermostat)
+
 ---
 
 ## LOG 002 · Obsidian publishing pipeline `[~] IN PROGRESS`
@@ -228,3 +258,6 @@ Short entries only. The reasoning lives in CLAUDE.md; this records *when* and
 | 2026-08-05 | Home band 06 ships **one** button (`See the work →`), not the two CLAUDE.md originally specified. The footer invite sits ~200px below it and points at the same place; a second CTA there would ask twice on one screen. |
 | 2026-08-05 | About drops the "Now" and career-arc sections. Now goes stale by design and the Log feed *is* the now; the arc read as résumé recitation. |
 | 2026-08-05 | Client proof lives on **one** surface: the Home `#clients` band. About links to it rather than duplicating the list. |
+| 2026-08-09 | **Throwback** is a format, not a schedule. Pre-lab projects get written up when Marcelo remembers one and the evidence survives. Explicitly not weekly, explicitly not "Throwback Thursday" — cadence pressure turns an archive into content. |
+| 2026-08-09 | Series numbers (`THROWBACK / 001`) live in **frontmatter**, not in `site.config.json`. Same argument as `web-number`: a permanent, externally-cited identifier must not come from a reorderable array. |
+| 2026-08-09 | **Real photographs are welcome, and a post uses as many as the story earns.** The old "almost none" rule was a defense against stock photography written when the archive was empty; it was never a house style. Still banned: stock, AI-generated, 3D renders, and any illustrative photo of hardware that is not the actual hardware. |

@@ -8,17 +8,28 @@ import StatusDot from './StatusDot.astro';
 interface Props {
   /** Record label, e.g. "LOG 001". */
   label: string;
+  /** Series label, e.g. "THROWBACK / 001". Optional; a record may belong to a
+      named series that numbers independently of its LOG number (CLAUDE.md §5.2). */
+  series?: string;
   /** Lab stage token, e.g. "IN PROGRESS". */
   stage?: string;
   /** Thread tags, joined with " / ". */
   tags?: string[];
 }
 
-const { label, stage, tags = [] } = Astro.props;
+const { label, series, stage, tags = [] } = Astro.props;
 ---
 
 <div class="stamp">
   <span class="stamp__label">{label}</span>
+  {
+    series && (
+      <>
+        <span class="stamp__sep">·</span>
+        <span class="stamp__series">{series}</span>
+      </>
+    )
+  }
   <span class="stamp__sep">·</span>
   {stage && <StatusDot stage={stage} />}
   {
@@ -52,6 +63,13 @@ const { label, stage, tags = [] } = Astro.props;
 
   .stamp__sep {
     color: var(--color-ink-15);
+  }
+
+  /* Series label sits at full ink like the record label: both are identifiers,
+     not metadata, and a reader citing "THROWBACK / 001" needs to find it. */
+  .stamp__series {
+    color: var(--color-ink);
+    font-weight: 500;
   }
 
   .stamp__tags {

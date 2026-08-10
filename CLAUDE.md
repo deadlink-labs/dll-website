@@ -131,7 +131,14 @@ Banned: scroll-triggered reveals on prose, parallax, hero choreography, anything
 **Animating a specimen tile.** `remark-svg-specimen` inlines tiles as real vectors and strips only `width`, `height` and `font-family`, so a `class` on an element survives into the page and CSS in [`src/pages/log/[slug].astro`](src/pages/log/[slug].astro) can drive it. Keep the static form in the `.svg` itself (a `stroke-dasharray`, say) so the file still reads as a finished diagram opened anywhere else, and put only the movement in CSS. Guard it with `prefers-reduced-motion`. Reference: the `.flow` marching dashes on LOG 011's `pipeline.svg` and the `@keyframes specimen-flow` rule. Cover tiles get no animation: they are rasterized to `.webp`.
 
 ### Imagery
-Almost none. YouTube thumbnails carry visuals in log feeds. One portrait of Marcelo on the About page. No stock, no 3D renders, no AI-generated imagery.
+
+**If the work has real pictures, use them, and use as many as the story earns** (settled 2026-08-09, LOG 013). This supersedes the old rule, which read "Almost none." That rule was written when the archive was empty and every candidate image would have been decoration; it was a defense against stock photography, and it got mistaken for a house style. It is not one. A photograph of the actual thing, taken at the time, is the strongest evidence this site can carry. LOG 013 is the first post to ship photographs in the body, and it uses every one that survives, because each of them is proof the work happened.
+
+Still banned, and this part does not move: **no stock photography, no AI-generated imagery, no 3D renders, no illustrative photograph of hardware that is not the hardware in question.** That last one is the trap. When LOG 013 needed to show a grid parabolic and no photograph of the actual dish survived, the answer was to describe it in prose and draw the geometry as a house specimen tile, not to reach for a picture of a similar antenna. An image on this site is evidence or it is a diagram. It is never an illustration.
+
+The test: *would this image still be true if the reader knew exactly where it came from?* A 2006 snapshot of the real tower passes. A clean product shot of someone else's identical hardware does not, no matter how honest the caption is.
+
+Where photographs do not exist, the fallback is unchanged: an **on-brand graphite specimen tile** (see Specimen tiles, below). Captions carry provenance — original, redrawn, or reconstructed — per "Redraw in English" below.
 
 **Every record carries a header image.** Each post opens with contained header media (record width, 16:9, rounded — never a full-bleed hero): the video facade when `web-video` is set, otherwise the `web-thumb`. When a post has no photograph to earn the slot, generate an **on-brand graphite specimen tile** in the house style (mono labels, a scarce orange live node — see LOG 001's network-mark tile and LOG 003's pipeline tile) rather than reaching for stock or AI imagery. The same `web-thumb` is reused on the homepage feed card and the Shipped-for-clients band.
 
@@ -145,7 +152,8 @@ Almost none. YouTube thumbnails carry visuals in log feeds. One portrait of Marc
 
 ### Specimen tiles (the settled system)
 
-The graphite tiles are the site's only house-made imagery. Their alignment is
+The graphite tiles are the site's house-made imagery, and the fallback whenever a
+post has no photograph or artifact of its own. Their alignment is
 **computed, not drawn** — station positions derive from label widths, which is how
 a legend row lands flush on both margins. The constants and the arithmetic live in
 [`src/lib/tile-system.mjs`](src/lib/tile-system.mjs); import it rather than
@@ -284,6 +292,8 @@ web-type: log                 # OPTIONAL, authoring-only; validated against the 
 web-number: 12                # stamp record number → "LOG 012" (optional)
 web-stage: IN PROGRESS        # stamp status token, §3 vocabulary (optional)
 web-tags: [LOCAL-LLM, PYTHON] # stamp thread tags (optional)
+web-series: THROWBACK         # OPTIONAL series membership (§5.2)
+web-series-number: 1          # → "THROWBACK / 001"; permanent, unique per series
 web-video: "https://youtu.be/…"   # optional; top-of-post video facade
 web-thumb: "./assets/thumb.webp"  # optional; feed-card thumbnail + video poster
 ---
@@ -296,6 +306,7 @@ web-thumb: "./assets/thumb.webp"  # optional; feed-card thumbnail + video poster
 - `web-pub-date` → sorting + displayed date.
 - `web-type` → Obsidian Bases only; the site derives type from the folder. Validated against the folder; a mismatch fails the build.
 - `web-number` / `web-stage` / `web-tags` → the lab-record stamp inputs (§3): record number, status token, thread tags. All optional; a post without them still renders (no number, no dot, no tags). **`web-number` is a permanent, stable identifier** — the "LOG 003" stamp is cited from other records (backlinks, "this thread continues"), the videos, and external links, so once published it must never change and must be unique (enforced at build — see §7). It is authored by hand, **never derived from date order** (date-ordering would silently renumber later records when a backdated entry is added). Numbers need not be contiguous.
+- `web-series` / `web-series-number` → optional membership in a named series that numbers **independently of `web-number`**: LOG 013 is also `THROWBACK / 001`. Both halves are required for the label to render (a post with only one renders no label, rather than "THROWBACK / undefined"). Like `web-number`, the pair is a **permanent public identifier** — it is printed on the homepage band and stamped on the record — so it is authored by hand, must never change once published, and must be **unique within its series** (enforced at build; numbering is per series, so a future `FIELD NOTE / 001` coexists with `THROWBACK / 001`). It is deliberately NOT derived from `site.config.json`: a reorderable curation array would silently renumber records.
 - `web-video` → optional YouTube URL **or** bare ID. Renders a privacy-first facade at the top of the post — nothing loads from YouTube until the visitor clicks play (§4 embeds). A set-but-unparseable value fails the build. Absent → no embed.
 - `web-thumb` → optional self-hosted poster in the post's `assets/`, run through Astro's image pipeline. Used as the homepage feed-card thumbnail and the video-facade poster. Absent → no image.
 - Products also accept `web-waitlist: true` (§5.3).
@@ -316,6 +327,9 @@ Lives at the content-repo root. Homepage placement only:
     "clientWork": [
       { "name": "Uruguay Outfitters", "status": "SHIPPED · 2026", "slug": "uruguay-outfitters-website" },
       { "name": "Crehana", "status": "CASE STUDY", "slug": "crehana-post-production" }
+    ],
+    "throwbacks": [
+      { "status": "2006", "slug": "rural-point" }
     ]
   }
 } 
@@ -325,6 +339,7 @@ Lives at the content-repo root. Homepage placement only:
 - `recentPostsCount` — how many chronological log entries below the hero.
 - `featuredProducts` — ordered product slugs; may be empty or omitted.
 - `clientWork` — ordered entries for the off-nav "Shipped for clients" band (§5.1 band 6). Each has a display `name` and `status` label; an optional `slug` links the row to a published log case study. Omit `slug` for a client with no post yet (renders as plain text). Array order = display order; may be empty or omitted.
+- `throwbacks` — ordered entries for the "Throwback" band (§5.1 band 7, §5.2). Each is `{ status, slug }`, where `status` is the year the work happened ("2006") and `slug` **must** resolve to a published log entry carrying `web-series` / `web-series-number`. Unlike `clientWork` there is no unlinked form: a throwback row is always a real post, and everything else on the row (the `THROWBACK / NNN` label, the record number, title, snippet, thumbnail) is read from that post rather than restated here. Array order = display order; may be empty or omitted.
 
 Convention: **arrays are curation, numbers are automatic slices.** Reordering the homepage = moving array lines; no content file is touched.
 
@@ -341,7 +356,8 @@ Convention: **arrays are curation, numbers are automatic slices.** Reordering th
 Fail the build with a message naming the offending file/slug on any violation. The last live deploy stays up.
 - Only `web-status: published` content is included anywhere.
 - Published content has `web-title` and `web-pub-date` (`web-snippet`, `web-type` optional).
-- Every `heroPosts` slug resolves to a published `log/` entry; every `featuredProducts` slug to a published `products/` entry; every `clientWork` `slug` (when present) to a published `log/` entry.
+- Every `heroPosts` slug resolves to a published `log/` entry; every `featuredProducts` slug to a published `products/` entry; every `clientWork` `slug` (when present) to a published `log/` entry; every `throwbacks` `slug` to a published `log/` entry **that carries both `web-series` and `web-series-number`**.
+- **`web-series-number` is unique within its series among published log entries** (same rule and reasoning as `web-number`, one level down). Numbering is per series name, so `THROWBACK / 001` and a future `FIELD NOTE / 001` do not collide. On a duplicate the build fails, naming both slugs and the next free number in that series.
 - `recentPostsCount` is a non-negative integer.
 - **Slugs are globally unique** (Obsidian only blocks duplicates within a folder).
 - **`web-number` is unique among published log entries.** Drafts are exempt (invisible; a collision surfaces when a draft is republished). Only defined numbers are checked. On a duplicate the build fails, naming the two offending slugs and the next free number.
@@ -384,11 +400,12 @@ Structure v2 §4.1 / §6. The page is generated from `site.config.json` + publis
 3. **Hero — the current experiment's question.** Eyebrow: `● Currently on the bench · EXP NNN` (pulsing orange dot). H1 = the live experiment's **question** at 60px (e.g. *"Can a house quietly run its own systems without anyone tending them?"*). Below it the lab-record stamp (`LOG NNN · IN PROGRESS · … `), a short overview paragraph, one dark specimen panel (e.g. a `tail -f` log), and a "Step into the log →" link. The hero is the current experiment's question — NOT a hand-written personal positioning H1.
 4. **Featured log entries** (from `heroPosts`) → **Recent log entries** (chronological slice). The living archive.
 5. **Featured products** (from `featuredProducts`, optional).
-6. **Shipped for clients** (off-nav consulting surface): stamped list — **Uruguay Outfitters** · `SHIPPED · 2026`, **Crehana** · `CASE STUDY`. Driven by `site.config.json` → `homepage.clientWork` (§4); each entry may link to its log case study via an optional `slug`.
-7. **Who runs this:** one paragraph — "Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run themselves: post-production teams, pipeline automation, data and dashboards, AI workflows, and the occasional website." + **one** button, `See the work →`. This is the canonical positioning line: it is reused verbatim on About (as a two-line opening) and in both meta descriptions (`BaseLayout.astro`, `about.astro`). Change it in all four places or not at all.
+6. **Shipped for clients** (off-nav consulting surface): stamped list — **Uruguay Outfitters** · `SHIPPED · 2026`, **Crehana** · `CASE STUDY`. Driven by `site.config.json` → `homepage.clientWork` (§4); each entry may link to its log case study via an optional `slug`. *(Rendered before Products: real shipped proof leads coming-soon products.)*
+7. **Throwback** (off-nav archive surface): a stamped list of pre-lab projects written up from the archive, driven by `site.config.json` → `homepage.throwbacks` (§4). Each row prints `THROWBACK / NNN · LOG NNN · <year>`, the post title, snippet and thumbnail, and links to the record. It shares the stamped-list markup with band 6; the dark Products band sits between the two so they never read as one list. Rows appear only for posts that exist — the format is **not a schedule** (§5.2).
+8. **Who runs this:** one paragraph — "Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run themselves: post-production teams, pipeline automation, data and dashboards, AI workflows, and the occasional website." + **one** button, `See the work →`. This is the canonical positioning line: it is reused verbatim on About (as a two-line opening) and in both meta descriptions (`BaseLayout.astro`, `about.astro`). Change it in all four places or not at all.
 
-   *A second `Work with me` button here was specified originally and deliberately dropped (2026-08-05). Band 7 is the last content band, so the footer's orange `Let's make something together →` sits directly below it pointing at the same `/about#work-with-me`. Two CTAs one scroll apart is asking twice, and it would put two orange elements on one screen. Do not re-add it.*
-8. **Footer / colophon.** A warm invitation leads the footer: `Let's make something together →` (sentence case among the mono chrome, routes to the About Work-with-me section — the availability signal, see §1). Then the manifesto line in mono: `BUILD TO UNDERSTAND · DOCUMENT TO REMEMBER · SHARE SO OTHERS CAN BUILD FURTHER`. Contact email, YouTube, LinkedIn, GitHub, RSS. Colophon: `Astro · IBM Plex · Vercel · Updated MM.YYYY` (see §3).
+   *A second `Work with me` button here was specified originally and deliberately dropped (2026-08-05). Band 8 is the last content band, so the footer's orange `Let's make something together →` sits directly below it pointing at the same `/about#work-with-me`. Two CTAs one scroll apart is asking twice, and it would put two orange elements on one screen. Do not re-add it.*
+9. **Footer / colophon.** A warm invitation leads the footer: `Let's make something together →` (sentence case among the mono chrome, routes to the About Work-with-me section — the availability signal, see §1). Then the manifesto line in mono: `BUILD TO UNDERSTAND · DOCUMENT TO REMEMBER · SHARE SO OTHERS CAN BUILD FURTHER`. Contact email, YouTube, LinkedIn, GitHub, RSS. Colophon: `Astro · IBM Plex · Vercel · Updated MM.YYYY` (see §3).
 
 ### 5.2 Log `/log`
 The heart of the lab — a notebook, not a blog. Build logs, technical research, AI workflows, design iterations, videos, hardware mods, music tools, lessons, failed experiments, architectural decisions. Chronological, newest first, grows indefinitely. Feed items: number + status dot + title + date (+ thumbnail if the entry has a video).
@@ -403,6 +420,14 @@ The heart of the lab — a notebook, not a blog. Build logs, technical research,
 - **Backlinks + "This thread continues"** — related records, next-in-series, referenced-by (built from preserved wikilinks in future; plain links in v1).
 
 First entry ever: **LOG 001** — *Designing and building deadlinklabs.com with AI, in public* — documents this site being planned and built, and links the YouTube video when published.
+
+**Throwback — the archive format** (added 2026-08-09, LOG 013 / THROWBACK 001). Twenty years of work happened before this lab had a URL, and none of it was written down. A throwback is a log entry that recovers one of those projects from memory and surviving photographs. It is an ordinary log entry in every mechanical sense (same folder, same collection, its own `web-number`) and additionally carries `web-series: THROWBACK` plus a `web-series-number` (§4), which stamps `THROWBACK / 001` on the record and drives the homepage band.
+
+- **What qualifies:** a real project, built and used, that predates the lab, and for which some evidence survives — photographs, files, hardware, anything. No evidence, no throwback. The photographs are the reason the format works.
+- **It is not a schedule.** Explicitly not Throwback Thursday and explicitly not weekly. A throwback gets written when Marcelo remembers a project and finds the material for it. Cadence pressure is what turns an archive into content.
+- **The number is permanent** and independent of `web-number`. LOG 013 is THROWBACK / 001, and neither number is derived from the other.
+- **Register:** the throwback row of VOICE.md §3, which is the site's loosest narrative setting. A scene is allowed to be a scene. Layer 1 still holds, and the post still ends in a decision register — a throwback is a good story wrapped around a decision table, not a good story instead of one.
+- **The homepage band is curated, not automatic**: a throwback appears there only if its slug is listed in `site.config.json` → `homepage.throwbacks` (§4). Writing one does not put it on the homepage.
 
 ### 5.3 Products `/products`
 Header: "Deadlink Labs / Products". Mature artifacts — may be commercial, free, open source, or private beta. A product page may include overview, purpose, features, status, screenshots, downloads, external links, and related log entries. Products are destinations; logs tell their story.

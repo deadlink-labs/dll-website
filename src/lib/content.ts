@@ -23,6 +23,12 @@ export interface SiteConfig {
     // frontmatter (§4): name + status label are display; an optional slug links
     // the row to a published log case study.
     clientWork?: { name: string; status: string; slug?: string }[];
+    // Off-nav "Throwback" band (§5.1 band 6): pre-lab projects written up from
+    // the archive. Curation is just an ordered list of slugs plus the year the
+    // work happened; the THROWBACK / 001 label and everything else on the row
+    // come from the post's own frontmatter, because the series number is a
+    // permanent identifier and must not live in a reorderable array (§4).
+    throwbacks?: { status: string; slug: string }[];
   };
 }
 
@@ -71,6 +77,7 @@ export async function getPublishedLog(): Promise<LogEntry[]> {
   const entries = (await getCollection('log')).filter(isPublished);
   validateTypeMatchesFolder(entries, 'log');
   assertUniqueNumbers(entries);
+  assertUniqueSeriesNumbers(entries);
   return entries.sort(byRecency);
 }
 
@@ -121,6 +128,38 @@ function assertUniqueNumbers(entries: LogEntry[]) {
   }
 }
 
+// web-series-number is the same kind of identifier as web-number, one level down:
+// "THROWBACK / 001" is printed on the homepage band, stamped on the record, and
+// cited from other records, so it must be unique WITHIN ITS SERIES and stable.
+// Numbering is per series, so THROWBACK / 001 and (some future) FIELD NOTE / 001
+// coexist happily. Published entries only, same reasoning as assertUniqueNumbers.
+function assertUniqueSeriesNumbers(entries: LogEntry[]) {
+  const seen = new Map<string, string>(); // "SERIES#N" -> slug
+  const maxBySeries = new Map<string, number>();
+  const dups: string[] = [];
+  for (const e of entries) {
+    const { series, seriesNumber: n } = e.data;
+    if (!series || n == null) continue;
+    maxBySeries.set(series, Math.max(maxBySeries.get(series) ?? 0, n));
+    const key = `${series}#${n}`;
+    const prev = seen.get(key);
+    if (prev) {
+      const label = `${series} / ${String(n).padStart(3, '0')}`;
+      dups.push(
+        `${label} is used by "${prev}" and "${e.id}" (next free in ${series}: ${
+          (maxBySeries.get(series) ?? 0) + 1
+        })`,
+      );
+    } else seen.set(key, e.id);
+  }
+  if (dups.length) {
+    throw new Error(
+      `[content] Duplicate web-series-number among published log entries: ${dups.join('; ')}. ` +
+        `Series numbers must be unique within their series and stable (§7).`,
+    );
+  }
+}
+
 function assertGloballyUniqueSlugs(log: LogEntry[], products: ProductEntry[]) {
   const seen = new Map<string, string>();
   for (const e of [...log, ...products]) {
@@ -147,6 +186,17 @@ export interface HomepageData {
     title?: string;
     snippet?: string;
     record?: string; // "LOG 002" — the linked case study's stamp number (§3)
+  }[];
+  // §5.1 band 6. Same stamped-list shape as clientWork, but every row links to a
+  // real post, and the label comes from the post's own web-series frontmatter.
+  throwbacks: {
+    label: string; // "THROWBACK / 001"
+    status: string; // the year the work happened, e.g. "2006"
+    href: string;
+    thumb?: ImageMetadata;
+    title: string;
+    snippet?: string;
+    record?: string; // "LOG 013"
   }[];
 }
 
@@ -201,7 +251,32 @@ export async function getHomepageData(): Promise<HomepageData> {
     return { name: c.name, status: c.status };
   });
 
-  return { hero, recent, featuredProducts, clientWork };
+  // 5. THROWBACK — pre-lab records from the archive (§5.1 band 6). Unlike
+  //    clientWork every row must resolve, and the post must carry the series
+  //    frontmatter that produces its label: a row whose label came from the
+  //    config would be a second, drifting source of truth for a permanent number.
+  const throwbacks = (config.homepage.throwbacks ?? []).map((t) => {
+    const entry = logBySlug.get(t.slug);
+    if (!entry) throw new Error(`[content] throwbacks slug "${t.slug}" is not a published log entry (§7).`);
+    const label = seriesLabel(entry);
+    if (!label) {
+      throw new Error(
+        `[content] throwbacks slug "${t.slug}" is missing web-series / web-series-number, ` +
+          `so it has no series label to stamp (§5.2).`,
+      );
+    }
+    return {
+      label,
+      status: t.status,
+      href: `/log/${entry.id}`,
+      thumb: entry.data.thumb,
+      title: entry.data.title,
+      snippet: entry.data.snippet,
+      record: entry.data.number != null ? recordLabel(entry) : undefined,
+    };
+  });
+
+  return { hero, recent, featuredProducts, clientWork, throwbacks };
 }
 
 // --- display helpers ---------------------------------------------------------
@@ -209,6 +284,16 @@ export async function getHomepageData(): Promise<HomepageData> {
 export function recordLabel(entry: LogEntry, prefix = 'LOG'): string {
   const n = entry.data.number;
   return n === undefined ? prefix : `${prefix} ${String(n).padStart(3, '0')}`;
+}
+
+// Series label for the stamp: "THROWBACK / 001". Independent of recordLabel — a
+// record can carry both (LOG 013 is also THROWBACK / 001). Undefined unless the
+// post declares both halves, so a partially-tagged post renders without a label
+// rather than something like "THROWBACK / undefined".
+export function seriesLabel(entry: LogEntry): string | undefined {
+  const { series, seriesNumber } = entry.data;
+  if (!series || seriesNumber == null) return undefined;
+  return `${series} / ${String(seriesNumber).padStart(3, '0')}`;
 }
 
 export function formatDate(date: Date): string {
