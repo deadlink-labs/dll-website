@@ -36,10 +36,16 @@ const stage = entry.data.stage;
     /* bleed the hover tint a touch past the text on both sides */
     padding-inline: 0.75rem;
     margin-inline: -0.75rem;
-    border-bottom: 1px solid var(--color-ink-08);
     text-decoration: none;
     color: inherit;
     transition: background 0.18s ease;
+  }
+
+  /* The rule divides one row from the next, so it sits BETWEEN them — never
+     under the last row, where it would draw a line with nothing beneath it and
+     double against the feed's own closing rule on /log. */
+  .feed-item + .feed-item {
+    border-top: 1px solid var(--color-ink-08);
   }
 
   .feed-item:hover {

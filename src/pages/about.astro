@@ -5,7 +5,9 @@
 // arrive fast, so there is no Now section (the Log feed IS the now) and no
 // résumé section. JSON-LD Person schema lives here and on Home (§2).
 // Contact form is UI only in v1 — Resend wiring lands with LOG 003.
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import avatar from '../assets/avatar-2024-mb.jpeg';
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -28,14 +30,39 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
   </Fragment>
 
   <article class="about">
+    {/* Identity header. "About" drops to the eyebrow and the name becomes the
+        H1, with the portrait beside it — the page reads as a person's page
+        rather than a filing label. §5.4's beat is intact (who runs this, then
+        the origin of the name); its first line just moved out of the prose and
+        into the header, where the name is now an H1 on the page that carries
+        the Person schema — which is what §2's "Googling Marcelo Brouard must
+        find this site" actually wants. The brand token is not lost: the nav
+        wordmark sits directly above this on every page. */}
     <header class="about__head">
-      <p class="about__eyebrow">Deadlink Labs</p>
-      <h1 class="about__title">About</h1>
+      <p class="about__eyebrow">About</p>
+      <div class="about__id">
+        <Image
+          class="about__portrait"
+          src={avatar}
+          alt="Marcelo Brouard"
+          width={150}
+          height={150}
+          densities={[1, 2]}
+          loading="eager"
+        />
+        <div>
+          <h1 class="about__title">Marcelo Brouard</h1>
+          {/* Dateline, in the record byline's treatment: mono, sentence case,
+              12px. Not uppercase — tracking is a caps device, and shouting the
+              city under a name would put it in the same class as a stamp. */}
+          <p class="about__where">Buenos Aires, Argentina</p>
+        </div>
+      </div>
     </header>
 
-    {/* Who runs this, then the origin of the name (locked beat, §5.4). */}
+    {/* The origin of the name (locked beat, §5.4). Opens on the canonical
+        positioning line now that the name and city are the header. */}
     <section class="prose about__origin">
-      <p>Marcelo Brouard. Buenos Aires, Argentina.</p>
       <p>
         20+ years turning messy operations into systems that run themselves: post-production teams,
         pipeline automation, data and dashboards, AI workflows, and the occasional website.
@@ -104,22 +131,43 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
     max-width: 720px;
   }
   .about__head {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
   .about__eyebrow {
-    margin: 0 0 0.75rem;
+    margin: 0 0 1.25rem;
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.16em;
     color: var(--color-ink-60);
   }
+  .about__id {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 1.75rem;
+    align-items: center;
+  }
+  /* Round, like the record byline and the Home band-06 portrait: the one round
+     thing on a site with 0–4px radii, because it is a face (§3). */
+  .about__portrait {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
   .about__title {
-    margin: 0;
+    margin: 0 0 0.5rem;
     font-size: clamp(1.9rem, 4vw, 2.75rem);
     letter-spacing: -0.02em;
     line-height: 1.1;
     font-weight: 600;
+  }
+  .about__where {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-60);
   }
 
   .prose {
@@ -137,6 +185,8 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
     letter-spacing: -0.02em;
     font-weight: 600;
   }
+  /* The lede. This used to set the name line; now that the name is the H1, it
+     sets the canonical positioning line, which is the better thing to lead on. */
   .about__origin p:first-child {
     font-size: 20px;
     line-height: 1.5;
@@ -261,5 +311,18 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
   .contact__btn:focus-visible {
     outline: 2px solid var(--color-ink);
     outline-offset: 2px;
+  }
+
+  /* Stack the portrait above the name on a phone. It shrinks with the column:
+     a 150px circle beside a clamped-down H1 at 375px leaves the name no room. */
+  @media (max-width: 600px) {
+    .about__id {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.125rem;
+    }
+    .about__portrait {
+      width: 112px;
+      height: 112px;
+    }
   }
 </style>

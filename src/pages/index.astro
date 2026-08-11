@@ -20,6 +20,7 @@ import SectionLabel from '../components/SectionLabel.astro';
 import FeedItem from '../components/FeedItem.astro';
 import FeedCard from '../components/FeedCard.astro';
 import ProductCard from '../components/ProductCard.astro';
+import avatar from '../assets/avatar-2024-mb.jpeg';
 import { getHomepageData, recordLabel } from '../lib/content';
 
 const { hero, recent, featuredProducts, clientWork, throwbacks } = await getHomepageData();
@@ -235,17 +236,40 @@ astro  v5.18.2  ready in 415 ms
     )
   }
 
-  {/* Band 8 — Who runs this. */}
+  {/* Band 8 — Who runs this. The band was answering its own label with text
+      alone; the portrait is the answer. It runs at 104px rather than the 28px
+      of the record byline because this is the person band, not a byline — at
+      byline scale next to an 18px paragraph it reads as a mark, not a face.
+      The paragraph itself is the canonical positioning line (§5.1) and is
+      untouched: only the layout around it changed.
+      The button used to read "See the work →" and point at /log. By the time a
+      reader reaches band 06 they have scrolled past five bands of work, so it
+      pointed at the one thing they had already done, and it changed the subject
+      away from the person the band had just introduced. /about continues this
+      exact paragraph and then delivers the beat this band withholds (the dead
+      link). Still ONE button — the 2026-08-05 decision against a second CTA
+      here holds; this is the same button with an honest destination. */}
   <section class="band band--who">
     <SectionLabel num={bandNum('who')} label="Who runs this" />
     <div class="who">
-      <p class="who__text">
-        Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run
-        themselves: post-production teams, pipeline automation, data and dashboards, AI workflows,
-        and the occasional website.
-      </p>
-      <div class="who__actions">
-        <a class="btn" href="/log">See the work →</a>
+      <Image
+        class="who__portrait"
+        src={avatar}
+        alt="Marcelo Brouard"
+        width={104}
+        height={104}
+        densities={[1, 2, 3]}
+        loading="lazy"
+      />
+      <div class="who__body">
+        <p class="who__text">
+          Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run
+          themselves: post-production teams, pipeline automation, data and dashboards, AI workflows,
+          and the occasional website.
+        </p>
+        <div class="who__actions">
+          <a class="btn" href="/about">About me →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -447,8 +471,11 @@ astro  v5.18.2  ready in 415 ms
     padding: 0;
     list-style: none;
   }
-  .stamplist__row {
-    border-bottom: 1px solid var(--color-ink-08);
+  /* Hairlines divide rows, so they go BETWEEN them — the last row closes on the
+     band's own rule, not on a line with nothing under it. Same idiom as
+     .card-grid above; it also holds when a band has exactly one row. */
+  .stamplist__row + .stamplist__row {
+    border-top: 1px solid var(--color-ink-08);
   }
   /* Linked rows (client work with a case-study post) fill the row and link out. */
   .stamplist__link {
@@ -570,8 +597,23 @@ astro  v5.18.2  ready in 415 ms
     }
   }
 
+  /* Portrait column + body. 720px matches .hero, and 104 + 2rem of gap leaves
+     the paragraph at 584px — within a hair of the 600px it had before, so the
+     measure the copy was set to did not move. */
   .who {
-    max-width: 600px;
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+    max-width: 720px;
+  }
+  /* Round, like the record byline: the one round thing on a site with 0–4px
+     radii, because it is a face and the exception is the point (§3). */
+  .who__portrait {
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    object-fit: cover;
   }
   .who__text {
     margin: 0 0 1.625rem;
@@ -611,5 +653,15 @@ astro  v5.18.2  ready in 415 ms
   .btn:focus-visible {
     outline: 2px solid var(--color-signal);
     outline-offset: 3px;
+  }
+
+  /* Stack the portrait above the paragraph on a phone: side by side at 375px
+     it would leave the text ~230px of measure. This block has to sit AFTER the
+     .who rules above — same specificity, so source order decides. */
+  @media (max-width: 600px) {
+    .who {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.25rem;
+    }
   }
 </style>

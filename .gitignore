@@ -10,7 +10,9 @@ dist/
 # vercel
 .vercel/
 
-# content/ committed directly for now (Obsidian pipeline comes later)
+# content/ committed directly for now (Obsidian pipeline comes later).
+# The vault's own config is not site source and never belongs to this repo.
+content/.obsidian/
 
 # environment variables
 .env
