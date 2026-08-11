@@ -34,7 +34,11 @@ if (DROP_A !== DROP_B) {
 }
 const ELBOW_X = END_X - DROP_A;
 
-const STAMP = 'SETTLED · BUILD LOG';
+// Kind only, no status token. §3 keeps the record NUMBER off a cover because a
+// raster freezes it and renumbering makes the artwork wrong. A status freezes
+// the same way: this record moves from IN PROGRESS to SETTLED the day the DNS
+// lands, and the cover would be lying in whatever social already cached it.
+const STAMP = 'BUILD LOG';
 const WORDMARK = 'hello@deadlinklabs.com';
 
 assertFits('stamp', STAMP, SIZE.eyebrow, 2, BOX.left);
