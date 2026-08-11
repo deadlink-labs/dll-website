@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="1.6"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+  <text x="64" y="110" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">HOW A MESSAGE REACHES ME</text>
+  <g class="step step--1">
+    <text x="64" y="232" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">SENDING</text>
+    <circle cx="140" cy="312" r="16" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+    <text x="140" y="384" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" fill="#ece8e1" fill-opacity="0.75">FORM</text>
+  </g>
+  <g class="step step--2">
+    <path d="M 166 312 H 316" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2.5" marker-end="url(#tip)"/>
+    <circle cx="340" cy="312" r="16" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+    <text x="340" y="384" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" fill="#ece8e1" fill-opacity="0.75">ENDPOINT</text>
+  </g>
+  <g class="step step--3">
+    <path d="M 366 312 H 516" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2.5" marker-end="url(#tip)"/>
+    <circle cx="540" cy="312" r="16" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+    <text x="540" y="384" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" fill="#ece8e1" fill-opacity="0.75">RESEND</text>
+  </g>
+  <g class="step step--4">
+    <text x="64" y="512" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">RECEIVING</text>
+    <circle cx="140" cy="572" r="16" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+    <text x="140" y="644" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" fill="#ece8e1" fill-opacity="0.75">ANYONE</text>
+  </g>
+  <g class="step step--5">
+    <path d="M 566 312 H 640 L 770 442" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2.5" marker-end="url(#tip)"/>
+    <path d="M 166 572 H 640 L 770 442" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2.5" marker-end="url(#tip)"/>
+    <circle cx="800" cy="442" r="16" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+    <text x="800" y="514" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" fill="#ece8e1" fill-opacity="0.75">HELLO@</text>
+  </g>
+  <g class="step step--6">
+    <path d="M 826 442 H 951" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2.5" marker-end="url(#tip)"/>
+    <circle cx="975" cy="442" r="16" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+    <text x="975" y="514" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" fill="#ece8e1" fill-opacity="0.75">CLOUDFLARE</text>
+  </g>
+  <g class="step step--7">
+    <path d="M 1001 442 H 1093" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="2.5" marker-end="url(#tip)"/>
+    <circle cx="1145" cy="442" r="44" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="1145" cy="442" r="18" fill="#f04a00"/>
+    <text x="1145" y="514" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" fill="#ece8e1" fill-opacity="0.95">INBOX</text>
+  </g>
+</svg>

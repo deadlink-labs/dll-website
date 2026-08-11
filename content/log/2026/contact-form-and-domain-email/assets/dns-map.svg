@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+  <text x="64" y="104" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">ONE DOMAIN, TWO SERVICES, NO COLLISION</text>
+  <text x="64" y="230" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="1.5" fill="#ece8e1" fill-opacity="0.55">CLOUDFLARE · RECEIVING</text>
+  <text x="64" y="320" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="36" fill="#ece8e1" fill-opacity="0.75">@</text>
+  <text x="64" y="364" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" fill="#ece8e1" fill-opacity="0.55">MX · TXT SPF</text>
+  <text x="680" y="230" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="1.5" fill="#ece8e1" fill-opacity="0.55">RESEND · SENDING</text>
+  <text x="680" y="320" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="36" fill="#ece8e1" fill-opacity="0.75">send</text>
+  <text x="680" y="364" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" fill="#ece8e1" fill-opacity="0.55">MX · TXT SPF</text>
+  <text x="680" y="450" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="36" fill="#ece8e1" fill-opacity="0.75">resend._domainkey</text>
+  <text x="680" y="494" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" fill="#ece8e1" fill-opacity="0.55">TXT DKIM</text>
+  <text x="64" y="470" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="1.5" fill="#ece8e1" fill-opacity="0.55">POLICY · BOTH</text>
+  <circle cx="78" cy="548" r="26" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="78" cy="548" r="11" fill="#f04a00"/>
+  <text x="130" y="560" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="36" fill="#ece8e1" fill-opacity="0.95">_dmarc</text>
+  <text x="130" y="604" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" fill="#ece8e1" fill-opacity="0.55">TXT · start at p=none</text>
+</svg>
