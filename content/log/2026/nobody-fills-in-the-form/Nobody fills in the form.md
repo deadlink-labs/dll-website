@@ -109,8 +109,8 @@ the technician is. The system says it's close to closing and asks three things a
 once, he answers in a single line from the van, and that's the whole interaction.*
 
 The two-round cap is the decision I'd defend hardest. Chasing a technician a
-third time is exactly the friction this was built to remove. A report at ninety
-percent that arrives is worth more than a perfect one that never does, and the
+third time is exactly the friction this was built to remove. ==A report at ninety
+percent that arrives is worth more than a perfect one that never does==, and the
 missing field can be filled by a person later. The technician who stops answering
 doesn't come back.
 

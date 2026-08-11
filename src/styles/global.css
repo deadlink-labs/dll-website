@@ -78,12 +78,18 @@
    and below it, so the gradient stops hard instead of filling the line box. It
    stays geometrically precise — no organic jitter, per §3. */
 mark {
+  /* Percentages are of the inline background box (~1.2em, the font's
+     ascent+descent), not the line box. 20/90 puts the top edge just above the
+     cap height and the bottom edge just below the baseline, so descenders poke
+     out of the stroke the way they do under a real marker. The first pass used
+     14/92 and the band swallowed the descenders whole, which read as a filled
+     box rather than a stroke. */
   background: linear-gradient(
     to bottom,
-    transparent 14%,
-    var(--color-highlight) 14%,
-    var(--color-highlight) 92%,
-    transparent 92%
+    transparent 20%,
+    var(--color-highlight) 20%,
+    var(--color-highlight) 90%,
+    transparent 90%
   );
   /* Without this a highlight that wraps renders as one box spanning both lines,
      with the gap between them filled in. */

@@ -111,8 +111,8 @@ software. Jira, Python, and Google Sheets did nearly all of it.
 - Break down cost per course, so the numbers arrived without anyone assembling
   them.
 
-The results were the kind you can measure. Post-production output went from about
-500 minutes a month to over 1,000. Correction turnaround dropped from weeks to
+The results were the kind you can measure. ==Post-production output went from about
+500 minutes a month to over 1,000.== Correction turnaround dropped from weeks to
 under 48 hours. The pipeline held at full uptime. Throughput, counted in courses
 out the door, rose about 80 percent. Across the three years the operation shipped
 more than 600 courses.

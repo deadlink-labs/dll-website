@@ -69,7 +69,7 @@ And the risk was sitting in exactly the wrong place. If I bought the connection
 first and then discovered the signal couldn't reach the far side of the
 property, I'd own a bill and a very tall antenna and nothing anybody wanted.
 
-So I inverted it. Build the local network first, with no internet on it at all.
+So I inverted it. ==Build the local network first, with no internet on it at all.==
 An empty network is enough to answer the only question that actually mattered:
 does the signal get where the people are. If it did, I'd go buy the connection.
 If it didn't, I'd have spent a fraction of the money finding out.
@@ -203,7 +203,7 @@ front porches of the neighbors who might want this. Every stop where the dish
 found the tower was a stop at somebody's house, and I'd knock and explain what
 we were doing and ask whether they'd be interested if it worked.
 
-By the end of the day I had two lists, and they were the same list. Where the
+==By the end of the day I had two lists, and they were the same list.== Where the
 signal reached, and who wanted it. Every confirmed link was also a confirmed
 install site, with a person attached who had already said yes.
 
@@ -292,7 +292,7 @@ and nothing had been the only option available.
 
 It ran for about three years, essentially nonstop.
 
-That's the number that counts. Not a weekend demo. Not a proof of concept
+==That's the number that counts.== Not a weekend demo. Not a proof of concept
 sitting on a bench with somebody watching it. Three years of being the thing a
 handful of households in the
 countryside relied on to reach the internet, in weather, without a support

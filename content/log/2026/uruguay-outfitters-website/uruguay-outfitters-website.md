@@ -62,26 +62,26 @@ The stack is easier to pick once the job is clear.
 
 ## What it runs on, and why each piece
 
-**Next.js and React** build the pages. Most of the site is generated ahead of
+Next.js and React build the pages. Most of the site is generated ahead of
 time as static files, so it loads fast and costs almost nothing to serve. The
 parts that change, like the journal, refresh on their own on a timer without a
 full rebuild. Plain version: the pages are pre-baked, and the few that go stale
 re-bake themselves.
 
-**Tailwind** handles styling. The rules live right in the markup with one shared
+Tailwind handles styling. The rules live right in the markup with one shared
 scale for type, color, and spacing, so the look stays consistent and there's no
 separate stylesheet drifting out of sync.
 
-**Vercel** hosts and deploys it. I push the code, Vercel builds it and puts it
+Vercel hosts and deploys it. I push the code, Vercel builds it and puts it
 online across a global network, close to whoever is loading it. Every change gets
 its own preview link before it goes live.
 
-**Resend** sends the enquiry email. The form hands the message to it, and it lands
+Resend sends the enquiry email. The form hands the message to it, and it lands
 in the lodge's own inbox, where they reply as themselves.
 
 ## Who gets to change things without calling me
 
-**Sanity** holds everything the team needs to edit: photo galleries, the journal,
+Sanity holds everything the team needs to edit: photo galleries, the journal,
 seasonal details. They change it in a simple studio and the site reads it at build
 time. No deploy to swap a photo.
 
@@ -89,7 +89,7 @@ That one is worth pulling out of the list, because it isn't really a technology
 decision. As I said on my own build, a CMS is a decision about who is allowed to
 change what, without asking anyone. Pick wrong and you've made yourself a
 permanent dependency for a business that just wants to post this season's photos.
-I'd rather ship something they own.
+==I'd rather ship something they own.==
 
 TAKEAWAY: every tool you choose for a client either hands them control or quietly
 keeps it. Know which one you're doing, and do it on purpose.

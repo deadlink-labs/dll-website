@@ -21,8 +21,8 @@ you can't render it, and you can't prove it ever happened.
 
 Hazefield is a generative engine for long-form drone and ambient music on macOS.
 You set it up, press play, and it builds a soundscape that moves slowly and never
-quite repeats. Then it renders the whole thing to a file that is identical to what
-you heard. Not close to it. Identical.
+quite repeats. Then ==it renders the whole thing to a file that is identical to what
+you heard==. Not close to it. Identical.
 
 Fair warning before you read further: it's designed, not built. Full status at the
 bottom, and the waitlist is honest about it.

@@ -105,7 +105,7 @@ finished. Every one of them would have been a bug in the build, and some were th
 kind you only find after you've built the wrong thing around them. Finding them
 cost a careful read. Fixing them cost a few edits.
 
-TAKEAWAY: the cheapest place to fix a bug is in a sentence. The next cheapest is a
+TAKEAWAY: ==the cheapest place to fix a bug is in a sentence.== The next cheapest is a
 mockup. Code is the most expensive place of all, so I spend the thinking there
 first and the typing there last.
 

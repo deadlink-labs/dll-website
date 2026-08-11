@@ -122,16 +122,16 @@ location: /about/#contact-error
 A handler with only a `try/catch` around that call sees no error, falls through
 to the success branch, and redirects the visitor to a thank-you page. The
 message is gone and nothing anywhere says so. The fix is four lines, checking
-`error` on the result as well as catching. Worth writing down because the failure
-mode is silent and looks exactly like success.
+`error` on the result as well as catching. Worth writing down because ==the failure
+mode is silent and looks exactly like success==.
 
 ## The form was missing the reply
 
 Reading the existing markup before wiring it up: the form collected a name, a
 company, and "What's eating your time?" It did not collect an email address.
 
-Every submission would have arrived with a problem to solve and no way to answer
-it. The field is in now, required, and the endpoint sets it as the message's
+==Every submission would have arrived with a problem to solve and no way to answer
+it.== The field is in now, required, and the endpoint sets it as the message's
 `Reply-To`, so hitting Reply in Gmail answers the person who wrote in rather than
 the mailbox the form sends from.
 

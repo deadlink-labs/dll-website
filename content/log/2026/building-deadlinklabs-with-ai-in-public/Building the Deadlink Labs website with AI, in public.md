@@ -28,7 +28,7 @@ The reason for this project goes back more than 20 years. I built things and had
 
 This website is the fix, and this post is the first entry in it. 
 
-Deadlink Labs is a lab notebook I build in public. The first experiment is the notebook itself. It's live now, which is the short answer: yes, you can design and ship your own site with AI, in public. 
+Deadlink Labs is a lab notebook I build in public. The first experiment is the notebook itself. It's live now, which is the short answer: ==yes, you can design and ship your own site with AI, in public==. 
 
 What follows is the decisions and the reasons.
 
@@ -38,15 +38,15 @@ The easy mistake is to open an AI coding tool and ask it for a website.
 
 **I did the opposite, and spent the expensive part, the thinking, up front.**
 
-The plan branched into three documents, all growing from one idea: the **premise**, the reason the site exists at all.
+The plan branched into three documents, all growing from one idea: the premise, the reason the site exists at all.
 
-- The **blueprint** is the why: the manifesto the lab is built on.
-- The **design** is how it looks and feels.
-- The **structure** is how it works: the pages, the content model, the rules.
+- The blueprint is the why: the manifesto the lab is built on.
+- The design is how it looks and feels.
+- The structure is how it works: the pages, the content model, the rules.
 
 I drafted each one myself first, in an Obsidian canvas, then argued it out with AI to sharpen the edges. Never the other way around. 
 
-**Bring your own idea first, then pressure-test it against the machine. Do it backwards and you end up with cookie-cutter slop that could belong to anyone.**
+==Bring your own idea first, then pressure-test it against the machine.== Do it backwards and you end up with cookie-cutter slop that could belong to anyone.
 
 A design lesson landed here too. I iterated the whole look inside a design tool before a single line of the site existed. A layout change there costs one prompt. That same change after the site is built can cost an afternoon. 
 
@@ -54,7 +54,7 @@ A design lesson landed here too. I iterated the whole look inside a design tool 
 
 ## One brief beats a hundred corrections
 
-I reconciled all three into one file, `CLAUDE.md`, the brief for the entire project. Blueprint, design decisions, structure, voice rules, even how I number my commits, in a single source of truth. When the AI has a question, that file answers it. The quality of what you build comes straight from the quality of that file. One clear brief beats a hundred small corrections later.
+I reconciled all three into one file, `CLAUDE.md`, the brief for the entire project. Blueprint, design decisions, structure, voice rules, even how I number my commits, in a single source of truth. When the AI has a question, that file answers it. ==The quality of what you build comes straight from the quality of that file.== One clear brief beats a hundred small corrections later.
 
 ![A diagram drawn in pale hairlines on a dark ground. One node at the left, labelled PREMISE, opens outward into three parallel rails: BLUEPRINT, the why; DESIGN, look and feel; STRUCTURE, how it works. The three rails close again on the right onto a single glowing orange node labelled CLAUDE.md, so the whole shape opens and then narrows to one point.](./assets/the-brief.svg)
 
@@ -62,9 +62,9 @@ I reconciled all three into one file, `CLAUDE.md`, the brief for the entire proj
 
 This is a content archive, not an app, so the stack is not the main character.
 
-**Astro** builds the site and ships zero JavaScript by default. The pages are plain, fast HTML. Nothing loads to perform at the reader. The work is the point, not the interface, and Astro lets the interface get out of the way.
+Astro builds the site and ships zero JavaScript by default. The pages are plain, fast HTML. Nothing loads to perform at the reader. The work is the point, not the interface, and Astro lets the interface get out of the way.
 
-**TypeScript** catches type mistakes before they become bugs. **Tailwind** keeps styling in the markup, so there's no separate stylesheet to hunt through. Motion is CSS-first, no animation library riding along, which keeps the promise of shipping almost no JavaScript honest.
+TypeScript catches type mistakes before they become bugs. Tailwind keeps styling in the markup, so there's no separate stylesheet to hunt through. Motion is CSS-first, no animation library riding along, which keeps the promise of shipping almost no JavaScript honest.
 
 ![Three pale nodes stacked in a column on the left, labelled MARKDOWN NOTES, ASTRO COMPONENTS and DESIGN TOKENS, joined by a vertical spine that runs down into a fourth node glowing orange, labelled STATIC HTML. Filling the right half of the frame, in large letters: nothing loads to perform at the reader.](./assets/what-astro-ships.svg)
 
@@ -74,16 +74,16 @@ This is a content archive, not an app, so the stack is not the main character.
 
 Git on my machine, then three services, each doing one job.
 
-**Git** is the version control itself, and it runs on my machine: it saves a snapshot of the whole project every time I commit. 
+Git is the version control itself, and it runs on my machine: it saves a snapshot of the whole project every time I commit. 
 
-**GitHub** stores those snapshots in the cloud, so the backup lives somewhere other than my desk. Both were running before the first real line of code, so nothing built from that point
+GitHub stores those snapshots in the cloud, so the backup lives somewhere other than my desk. Both were running before the first real line of code, so nothing built from that point
 on can be lost. The commit history doubles as the changelog: every message starts
 with a version number, so anyone can read the log and watch the site grow one
 version at a time.
 
-**Vercel** builds and hosts. It connects straight to the GitHub repo, detects that it's an Astro project, and deploys it. No servers, no build settings to configure. 
+Vercel builds and hosts. It connects straight to the GitHub repo, detects that it's an Astro project, and deploys it. No servers, no build settings to configure. 
 
-**Cloudflare** runs the DNS and points the real domain at Vercel.
+Cloudflare runs the DNS and points the real domain at Vercel.
 
 That version numbering has one rule I like. A leading zero means "still in development." A leading one means "live and confirmed online." The moment deadlinklabs.com resolved in a clean browser tab, that zero became a one.
 

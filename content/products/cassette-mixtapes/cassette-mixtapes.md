@@ -37,8 +37,8 @@ Most tools that hand you a LUFS figure fold your stereo master down to mono
 before they measure it.
 
 BS.1770, the standard every platform uses, *sums* the energy of the left and
-right channels. Fold them together first and you halve that sum. On an ordinary
-center-heavy mix that reads exactly 3.01 LU too quiet. On a wide one, up to 6.
+right channels. Fold them together first and you halve that sum. ==On an ordinary
+center-heavy mix that reads exactly 3.01 LU too quiet.== On a wide one, up to 6.
 
 Six. That's the entire width of the window you were aiming for.
 
@@ -67,7 +67,7 @@ masters stay on your laptop.
 Once the meter was fixed I re-measured my back catalog. Two tracks I had on
 record at -17.29 and -17.80 LUFS were actually sitting at -13.65 and -14.23.
 
-They had been on the Spotify target the whole time. If I'd trusted the old
+==They had been on the Spotify target the whole time.== If I'd trusted the old
 reading and normalized them, I'd have shipped them 3.5 dB past the target, and
 paid for it in limiting I never needed.
 
@@ -185,7 +185,7 @@ and you're not duplicating four minutes of audio on disk for nothing.
 ## It can't eat your work
 
 Exactly one code path in this app writes audio bytes, and it only ever writes new
-copies into an export folder you picked. No path deletes an audio file, ever.
+copies into an export folder you picked. ==No path deletes an audio file, ever.==
 Remove the last reference to a track and it lands in a Trash card you can drag it
 back out of.
 
