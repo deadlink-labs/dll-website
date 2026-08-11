@@ -16,6 +16,7 @@
   --color-ink-15: rgba(25, 23, 20, 0.15); /* Hairline rules, borders, sheet edge */
   --color-ink-08: rgba(25, 23, 20, 0.08); /* Faint row rules inside feeds/lists */
   --color-signal: #f04a00; /* Live node, status dots, link hover, focus rings */
+  --color-highlight: rgba(255, 240, 0, 0.5); /* Highlighter marker, over paper -> #fdf57c */
   --color-panel: #23201b; /* Warm graphite — the one dark surface: terminals, product screens */
   --color-panel-deep: #17140f; /* Recessed display inside a graphite panel (product screen) */
   --color-on-panel: #ece8e1; /* Text/marks on graphite */
@@ -61,6 +62,37 @@
   [id] {
     scroll-margin-top: 5rem;
   }
+}
+
+/* --- Highlight (shared) ----------------------------------------------------
+   The top rung of the emphasis ladder: ==text== in markdown (remark-mark.mjs),
+   which is Obsidian's own syntax, so the vault and the site agree. Defined here
+   rather than in a page so log posts and product pages share one source.
+
+   Two accents now, and they mean different things: orange is LIVE (the live
+   node, a status dot, a working URL), yellow is READ THIS. They must not blur,
+   which is why the highlight is a different hue and why remark-mark caps it at
+   one per section.
+
+   A band, not a box. Real marker ink covers the x-height and leaves paper above
+   and below it, so the gradient stops hard instead of filling the line box. It
+   stays geometrically precise — no organic jitter, per §3. */
+mark {
+  background: linear-gradient(
+    to bottom,
+    transparent 14%,
+    var(--color-highlight) 14%,
+    var(--color-highlight) 92%,
+    transparent 92%
+  );
+  /* Without this a highlight that wraps renders as one box spanning both lines,
+     with the gap between them filled in. */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  /* Tier 1 is highlight AND bold, so the author types one mark instead of two. */
+  font-weight: 600;
+  color: inherit;
+  padding-inline: 0.08em;
 }
 
 /* --- Terminal specimen (shared) -------------------------------------------
