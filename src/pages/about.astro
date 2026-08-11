@@ -4,7 +4,10 @@
 // off-nav "Work with me" section (the ONE commercial ask). The one ask should
 // arrive fast, so there is no Now section (the Log feed IS the now) and no
 // résumé section. JSON-LD Person schema lives here and on Home (§2).
-// Contact form is UI only in v1 — Resend wiring lands with LOG 003.
+// The contact form posts to /api/contact (LOG 002) — a native form POST to the
+// site's one on-demand route, which hands the message to Resend. No JavaScript:
+// success redirects to /thank-you/, failure to #contact-error below, which a
+// :target rule reveals. This page stays fully prerendered either way.
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import avatar from '../assets/avatar-2024-mb.jpeg';
@@ -105,14 +108,33 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
         <a href="/#clients">Client work →</a>
       </p>
 
-      <form class="contact" method="post" action="#" data-placeholder="not wired to Resend yet">
+      {/* Failure state. Revealed by :target when /api/contact redirects here,
+          which needs no JavaScript at all. It carries the direct address as
+          well, so a visitor whose message did not send still leaves with a way
+          to reach me — an error that only apologises is a second dead end. */}
+      <div class="contact-error" id="contact-error" role="alert">
+        <p class="contact-error__title">That did not send.</p>
+        <p>
+          Something broke on my end, not yours. Email me directly at
+          <a href="mailto:hello@deadlinklabs.com">hello@deadlinklabs.com</a> and I will
+          pick it up from there.
+        </p>
+      </div>
+
+      <form class="contact" method="post" action="/api/contact">
         <div class="contact__field">
           <label class="contact__label" for="c-name">Name</label>
-          <input class="contact__input" id="c-name" name="name" type="text" required />
+          <input class="contact__input" id="c-name" name="name" type="text" required autocomplete="name" />
+        </div>
+        {/* Without this the form collected a name and a problem and no way to
+            reply. It is also what the endpoint sets as Reply-To. */}
+        <div class="contact__field">
+          <label class="contact__label" for="c-email">Email</label>
+          <input class="contact__input" id="c-email" name="email" type="email" required autocomplete="email" />
         </div>
         <div class="contact__field">
           <label class="contact__label" for="c-company">Company</label>
-          <input class="contact__input" id="c-company" name="company" type="text" />
+          <input class="contact__input" id="c-company" name="company" type="text" autocomplete="organization" />
         </div>
         <div class="contact__field">
           <label class="contact__label" for="c-problem">What's eating your time?</label>
@@ -255,6 +277,40 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
   }
   .proof a:hover {
     color: var(--color-signal);
+  }
+
+  /* Hidden until /api/contact redirects to /about/#contact-error. Zero JS: the
+     browser's own :target does the work, which is why the About page can stay
+     fully prerendered while still reporting a server-side failure. */
+  .contact-error {
+    display: none;
+    max-width: 520px;
+    margin-bottom: 1.25rem;
+    padding: 1.1rem 1.25rem;
+    border: 1px solid var(--color-signal);
+    border-radius: 4px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .contact-error:target {
+    display: block;
+  }
+  .contact-error p {
+    margin: 0;
+  }
+  .contact-error__title {
+    margin-bottom: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-signal);
+  }
+  .contact-error a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--color-signal);
+    text-underline-offset: 3px;
   }
 
   .contact {

@@ -41,6 +41,10 @@ interface Props {
   ogType?: 'website' | 'article';
   /** Alt text for the share image. Records pass their web-thumb-alt. */
   ogImageAlt?: string;
+  /** Keep THIS page out of search regardless of the site-wide switch below.
+      For pages that should never be indexed even after the site opens up —
+      /thank-you/ is only meaningful to someone who just sent the form. */
+  noindex?: boolean;
 }
 
 const {
@@ -51,6 +55,7 @@ const {
   ogImage,
   ogType = 'website',
   ogImageAlt,
+  noindex = false,
 } = Astro.props;
 
 // --- SHARE CARDS ---
@@ -99,8 +104,10 @@ const ALLOW_INDEXING = false;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Marcelo Brouard" />
-    {/* Keep the whole site out of search until the real content is ready — flip ALLOW_INDEXING above. */}
-    {!ALLOW_INDEXING && <meta name="robots" content="noindex, nofollow" />}
+    {/* Two independent reasons to stay out of search: the site-wide switch above
+        (temporary, flips at LOG 004) and a per-page opt-out (permanent, for pages
+        that should never be indexed at all). Either one is enough. */}
+    {(!ALLOW_INDEXING || noindex) && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
     {/* Share cards. Without these a pasted URL unfurls into nothing. */}
     <meta property="og:site_name" content="Deadlink Labs" />
