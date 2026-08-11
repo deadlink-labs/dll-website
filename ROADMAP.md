@@ -172,19 +172,22 @@ single function. (The earlier note here said "switch output mode off pure-static
 - [ ] `ME` Resend account, verify the **root** domain, generate an API key
 - [ ] `ME` Add `RESEND_API_KEY` to Vercel env vars — Production *and* Preview.
       Key on the laptop but not on Vercel means the form works locally and 500s live
-- [ ] `AI` Install `@astrojs/vercel`; `output` stays `'static'`, one route opts out
-- [ ] `AI` Server endpoint `src/pages/api/contact.ts`, reading the key via `astro:env`
-- [ ] `AI` Wire the About contact form — was `action="#"` ([about.astro:108](src/pages/about.astro#L108))
-- [ ] `AI` **Add the missing email field** — the form collected a name and a problem and no way to reply
-- [ ] `AI` Success / error states, honest failure copy that hands over the mailto fallback
-- [ ] `AI` Remove the `data-placeholder="not wired to Resend yet"` marker
+- [x] `AI` Install `@astrojs/vercel`; `output` stays `'static'`, one route opts out `2026-08-11`
+- [x] `AI` Server endpoint `src/pages/api/contact.ts`, reading the key via `astro:env` `2026-08-11`
+- [x] `AI` Wire the About contact form — was `action="#"` ([about.astro:108](src/pages/about.astro#L108)) `2026-08-11`
+- [x] `AI` **Add the missing email field** — the form collected a name and a problem and no way to reply `2026-08-11`
+- [x] `AI` Success / error states, honest failure copy that hands over the mailto fallback `2026-08-11`
+- [x] `AI` Remove the `data-placeholder="not wired to Resend yet"` marker `2026-08-11`
 - [ ] `ME` Gmail **Send-As** over Resend SMTP, so replies leave *from* `hello@`
       (free consumer Gmail; no Workspace needed)
 
 **The record**
-- [ ] `AI` Two-pipes flow chart, DNS-records tile, cover
-- [ ] `AI` The post — `web-number: 2`
-- [ ] `AI` Revise [the script](my_assets/video-scripts/log002-contact-form-and-email.md)
+- [x] `AI` Two-pipes flow chart, DNS-records tile, cover `2026-08-11`
+- [x] `AI` The post — `web-number: 2` `2026-08-11` — **written as a draft on purpose.**
+      No DNS record exists yet, so no message has travelled the whole pipe. Flip
+      `web-status` to `published` and `web-stage` to `SETTLED` once the `ME` boxes
+      above are green and the live test passes
+- [x] `AI` Revise [the script](my_assets/video-scripts/log002-contact-form-and-email.md) `2026-08-11`
 - [ ] `AI` Commit the episode (CLAUDE.md §9)
 
 > **Deferred on purpose, not forgotten** (2026-08-11). This note used to read
@@ -323,6 +326,17 @@ Not assigned to an episode yet. Pull one up when it earns a slot.
 - [x] Crehana case study — real post (LOG 010, six specimen tiles, `npm run tiles`)
 - [x] Portrait photo on About — 150px round beside a `Marcelo Brouard` H1, and 104px on Home band 06 (`avatar-2024-mb.jpeg`, the same asset the record byline uses)
 - [ ] `[~]` Cover mark identity work — **uncommitted WIP** on branch `identity-dropout-cover`: modified `src/components/Cover.astro`, untracked `src/components/DropoutMark.astro`
+- [ ] **Astro major upgrade (5 → 7).** Surfaced 2026-08-11 while adding the Vercel
+      adapter. Astro 5.18.2 is the newest 5.x, and **every open advisory against
+      `astro` has a fix range in 6.x or 7.x only** — there is no patched Astro 5.
+      Same for the adapter: the `x-astro-path` unauthenticated path override is
+      fixed in `@astrojs/vercel` ≥ 10.0.2, which requires Astro 6, so every
+      adapter version compatible with Astro 5 carries it. Real exposure here is
+      low (the XSS advisories cover `define:vars`, slot names, spread props and
+      view transitions, none of which this site uses; it ships zero JS and the
+      content is ours; the path override has no private route to reach), but it
+      does not go away on its own. Its own episode: the remark plugins, content
+      collections and image pipeline all need re-verifying
 - [ ] Products: purchasable checkout + payment provider (explicitly **not v1** — CLAUDE.md §5.3)
 - [ ] "Connections" — render preserved wikilinks as real backlinks (v1 keeps them as plain text)
 - [ ] Decision Register on a real experiment record
@@ -356,3 +370,13 @@ Short entries only. The reasoning lives in CLAUDE.md; this records *when* and
 | 2026-08-10 | **Home band 06 gets a face**, 104px and round, beside the positioning line. The band is labelled "Who runs this" and was answering with text alone. Byline scale (28px) was considered and rejected: next to an 18px paragraph it reads as a mark, not a person. The paragraph itself is untouched — it is the canonical line in four places, and only the layout around it moved. |
 | 2026-08-10 | **Band 06's button says `About me →` and points at `/about`**, not `See the work →` at `/log`. A reader who reaches band 06 has scrolled past five bands of work, so the old button pointed at the thing they had just done and changed the subject away from the person the band had introduced. Still one button: the 2026-08-05 decision against a second CTA here holds, and this is ink chrome landing on the top of About, not the `#work-with-me` anchor the footer owns. |
 | 2026-08-10 | **About opens as a person's page.** `About` drops to the eyebrow, `Marcelo Brouard` becomes the H1 with a 150px portrait beside it and the city as a mono dateline. §5.4's locked beat is intact — its first line moved from the prose into the header — and the origin section now ledes on the positioning line. Bonus: the name is an H1 on the page carrying the `Person` schema, which is what §2's search goal wants. The `Deadlink Labs` eyebrow went because the nav wordmark sits directly above it. |
+| 2026-08-11 | **LOG 002 and LOG 003 swapped.** The contact-form episode overtook the Obsidian pipeline: its work was unblocked and the pipeline's remaining beats are all gated behind a live recording. Safe because neither had published a post, so no number was cited outside the repo. Both video scripts renamed with them; LOG 004 and 005 untouched. Three retired scaffold stubs gave up `web-number` 2, 3 and 4, which they were squatting while numbering nothing that exists. |
+| 2026-08-11 | **`output` stays unset (`'static'`); one route opts out.** The Vercel adapter does not require switching to server rendering, and the earlier roadmap note saying "switch output mode off pure-static" was wrong for Astro 5. Build proves it: 13 static HTML pages, one function, routed only for `/api/contact`. `@astrojs/vercel` pinned to `^9.0.5`, the last major peering with Astro 5. |
+| 2026-08-11 | **Secrets read via `astro:env/server`, not `import.meta.env`.** Non-`PUBLIC_` vars are statically replaced at build time, compiling the key into the function bundle instead of reading it at runtime. `astro:env` also validates, so a missing key fails loudly. |
+| 2026-08-11 | **The contact endpoint sends to `hello@`, not to a personal inbox.** The destination lives in a Cloudflare forwarding rule rather than in code, so it changes without a deploy, and the personal address never appears in public source. Both pipes therefore converge on one address, which is what the post's diagram is about. |
+| 2026-08-11 | **Resend reports a rejected send in the payload, not by throwing.** Found by testing with a deliberately invalid key. A handler with only `try/catch` falls through to success and loses the message silently. The handler checks `error` as well as catching. Recorded because the failure looks exactly like success. |
+| 2026-08-11 | **Contact-form failure is reported with CSS `:target`, zero JavaScript**, so the About page stays prerendered. Redirects are `303` so a refresh cannot resubmit. The error copy hands over the direct mailto, because an error that only apologises is a second dead end. |
+| 2026-08-11 | **Spam protection and the product waitlists are deferred to their own episodes**, at Marcelo's call, for smaller and better-explained chunks. This retires the old "two forms, not one, do not wire one and call the episode done" note. The honeypot is a hard gate before `ALLOW_INDEXING` flips at LOG 004: `noindex` is currently the only thing keeping scrapers off a public unguarded endpoint. |
+| 2026-08-11 | **Analytics will be Cloudflare Web Analytics, not Vercel and not GA4.** Free with no cap, 6-month retention against Vercel Hobby's 1 month, Core Web Vitals included rather than a separate product. Custom events are unavailable on both free tiers, so Vercel's only possible edge is off the table, and form conversions are already counted in Resend. CLAUDE.md §4 said GA4 and has been corrected. Pick one, not both. |
+| 2026-08-11 | **DMARC `rua` must be an address on the domain**, not a Gmail. Cross-domain reporting requires an authorization record published by the receiving domain, which `gmail.com` has not published and will not, so most reporters silently refuse. Alignment stays relaxed: Resend signs from `send.`, and strict alignment would bounce the site's own form mail. |
+| 2026-08-11 | **CLAUDE.md §3's specimen-animation paragraph described a mechanism that was never built** (a `class` driven by CSS in `[slug].astro`, a `@keyframes specimen-flow`). What ships is self-contained: each animated `.svg` carries its own keyframes and reduced-motion guard, so it animates identically opened anywhere. Corrected in place. Marching dashes are ambient and may ship in a post; a step reveal is a performance and belongs in a video. |
