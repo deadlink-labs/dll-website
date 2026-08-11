@@ -103,7 +103,62 @@ should read as prose.
 
 ---
 
-## 4. Signature moves
+## 4. The emphasis ladder
+
+A reader who skims should be able to read only the marked lines and still get the
+argument. That only works if a mark means one thing, so there are exactly three
+levels and each has one job.
+
+| Tier | Write | Renders as | Job |
+|---|---|---|---|
+| 1 | `==text==` | Yellow highlight, bold | **The finding.** The line a skimmer must not miss |
+| 2 | `**text**` | Bold | **Structural emphasis.** A thesis sentence, or a bullet lead-in that labels its item |
+| 3 | plain | plain | Everything else, including product and tool names |
+
+**The budget is one highlight per H2 section, three per post, and the build
+enforces it.** `remark-mark.mjs` fails with the file and the section named. This
+is not politeness. A mark that appears four times on a page marks nothing, which
+is the same reason a specimen tile gets exactly one orange live node.
+
+**`==text==` is Obsidian's own syntax**, so a note previews as a highlight in the
+vault and ships as one on the site. Obsidian will not show it bold; the site adds
+that, so you type one mark instead of `==**two**==`.
+
+**Never bold a term on first mention.** `Astro`, `Vercel`, `premise` are labels,
+not emphasis. This was the single biggest source of noise in the archive: eleven
+of LOG 001's fourteen bold marks were term mentions, which made the post look
+emphasized while emphasizing nothing. If a term genuinely needs defining, define
+it in a sentence (§5 "plain teaching"), do not embolden it.
+
+**Highlight and TAKEAWAY are different tools and both stay.** `TAKEAWAY:` is a
+labelled element that closes a beat. A highlight is inline and marks the line
+itself. A takeaway may also be highlighted, but that spends the section's one
+highlight, so it should be the best line in the section.
+
+**Two accents, two meanings.** Orange is *live* (a status dot, the live node, a
+working URL). Yellow is *read this*. They must not blur, which is why the
+highlight is a different hue and why it is capped.
+
+Never highlight inside a code block, a `terminal` fence, or a specimen tile. The
+plugin will not let you.
+
+### Before and after
+
+**Term mention → plain.**
+- BAD: "**Astro** builds the site and ships zero JavaScript by default."
+- GOOD: "Astro builds the site and ships zero JavaScript by default."
+
+**Everything bold → one thing highlighted.**
+- BAD: "**Post-production output doubled.** **Correction turnaround dropped from weeks to under 48 hours.** **The pipeline held at full uptime.**"
+- GOOD: "==Post-production output went from about 500 minutes a month to over 1,000.== Correction turnaround dropped from weeks to under 48 hours. The pipeline held at full uptime."
+
+**Highlighting the label instead of the fact.**
+- BAD: "==The results were the kind you can measure.=="
+- GOOD: "==They had been on the Spotify target the whole time.==" (a fact, not an announcement that a fact is coming)
+
+---
+
+## 5. Signature moves
 
 - **The question-title, for experiments only.** Frame an open question the
   experiment answers: *"Can a house quietly run its own systems without anyone
@@ -129,7 +184,7 @@ should read as prose.
 
 ---
 
-## 5. Lexicon
+## 6. Lexicon
 
 **Reach for:** build, ship, document, decision, decide, the fix, the work, run,
 wire, plain, tracked, snapshot, the record, on the bench, resolve.
@@ -141,7 +196,7 @@ excited to", "thrilled", "delighted", "world-class", "best-in-class",
 
 ---
 
-## 6. Before and after
+## 7. Before and after
 
 **Self-description → artifacts.**
 - BAD: "I'm a passionate, detail-oriented builder with a proven track record of
@@ -221,7 +276,7 @@ excited to", "thrilled", "delighted", "world-class", "best-in-class",
 
 ---
 
-## 7. Self-check
+## 8. Self-check
 
 Run this before publishing. The `/log-post` skill runs it too.
 
@@ -230,7 +285,11 @@ Run this before publishing. The `/log-post` skill runs it too.
 - [ ] Every claim is carried by a number, a decision, or a shipped artifact.
 - [ ] No enthusiasm doing the job of evidence.
 - [ ] No em dashes. No exclamation marks.
-- [ ] No word from the startup or avoid lists (§1, §5).
+- [ ] No word from the startup or avoid lists (§1, §6).
+- [ ] **At least one highlight, and no more than three.** A post with none gives a
+      skimmer nothing; rural-point ran 3,540 words with no emphasis at all.
+- [ ] **No bold on a term first-mention.** Product and tool names are plain.
+- [ ] Each highlight is a fact, not an announcement that a fact is coming.
 - [ ] **Contractions are present and natural.** If a grep for `'s`, `n't` and
       `'re` finds only possessives, the post is too stiff. This is the check that
       failed silently for nine posts.
@@ -245,7 +304,7 @@ Run this before publishing. The `/log-post` skill runs it too.
 
 ---
 
-## 8. Structure
+## 9. Structure
 
 Voice is this file's job; structure is the template's. Start every post from
 [my_assets/templates/log-post-template.md](my_assets/templates/log-post-template.md)

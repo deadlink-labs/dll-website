@@ -47,6 +47,11 @@ Pick the mode from what the user asked for.
    signature moves (question-title for experiments only, a takeaway, an honest
    aside where true, plain teaching for any jargon). Keep only the sections that
    earn their place.
+2b. **Apply the emphasis ladder** (VOICE-POSTS.md §4). `==text==` for the finding,
+   `**bold**` for structural emphasis, plain for everything else including product
+   and tool names. **One highlight per H2 section, three per post** — the build
+   fails otherwise. A post with zero highlights gives a skimmer nothing, and a
+   bolded tool name is the noise this ladder was written to remove.
 3. Fill the `web-*` frontmatter. `web-status: draft` unless the user says publish.
    `web-video` is optional (leave commented if none). **Every post should carry a
    `web-thumb`** — it opens the post as a 16:9 header image and is the homepage

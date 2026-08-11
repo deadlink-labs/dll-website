@@ -51,6 +51,10 @@ web-tags: [TAG-ONE, TAG-TWO]  # thread tags shown on the stamp
   NOT published — the site whitelists only the web-* fields, never the body's
   comments-as-frontmatter):
   - Write plain prose. No opening "# H1" — web-title is the heading.
+  - EMPHASIS LADDER (VOICE-POSTS.md §4): ==text== is a yellow highlight for THE
+    finding (Obsidian shows it too); **bold** is structural emphasis; plain text
+    for everything else, including product and tool names — do NOT bold those.
+    One highlight per ## section, three per post. The build fails past that.
   - Images: standard relative markdown, ![alt](./assets/name.webp). Not ![[embeds]].
   - Keep the voice: first person, short sentences, numbers over adjectives,
     no em dashes, no exclamation marks (CLAUDE.md §6).
