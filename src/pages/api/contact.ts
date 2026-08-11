@@ -74,12 +74,12 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       // This is what makes hitting Reply in Gmail answer the person who wrote
       // in, rather than the no-one behind `forms@`.
       replyTo: email,
-      // No em dash. This is a subject line a person reads, so VOICE.md applies.
+      // No em dash. A subject line is copy a person reads (VOICE-POSTS.md §1).
       subject: `Work with me: ${name}${company ? ` (${company})` : ''}`,
       text: [
         `Name:    ${name}`,
         `Email:   ${email}`,
-        `Company: ${company || '—'}`,
+        `Company: ${company || 'not given'}`,
         '',
         "What's eating your time?",
         problem,

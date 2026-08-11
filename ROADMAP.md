@@ -31,7 +31,7 @@ in the repo by an agent · `BOTH` = paired.
 - [x] Content collection + `web-*` schema + build-time validation
 - [x] Log feed, record template, Products index, About
 - [x] RSS feed (`/rss.xml`)
-- [x] `VOICE.md` + the `/log-post` skill
+- [x] `VOICE.md` + the `/log-post` skill (`VOICE.md` split into `VOICE-POSTS.md` + `VOICE-SCRIPTS.md` on 2026-08-11)
 - [x] Terminal specimen as a fenced-block component (`remark-terminal.mjs`)
 - [x] `site.config.json` curation: hero posts, recent slice, products, client work
 
@@ -90,7 +90,7 @@ The first record of pre-lab work, and the format that will carry the rest of it.
 - [x] VOICE.md §3: a fourth register row, plus a before/after pair retiring the
       one-line-paragraph tic
 
-**The voice finding behind this episode.** VOICE.md was corrected on 2026-08-07 to
+**The voice finding behind this episode.** VOICE.md (now VOICE-POSTS.md) was corrected on 2026-08-07 to
 allow natural contractions in log posts. A grep of all nine posts then in `content/`
 returned **zero** — every apostrophe on the site was a possessive. The correction
 had been made in the doc and never applied to prose, which is exactly what "too
@@ -380,3 +380,4 @@ Short entries only. The reasoning lives in CLAUDE.md; this records *when* and
 | 2026-08-11 | **Analytics will be Cloudflare Web Analytics, not Vercel and not GA4.** Free with no cap, 6-month retention against Vercel Hobby's 1 month, Core Web Vitals included rather than a separate product. Custom events are unavailable on both free tiers, so Vercel's only possible edge is off the table, and form conversions are already counted in Resend. CLAUDE.md §4 said GA4 and has been corrected. Pick one, not both. |
 | 2026-08-11 | **DMARC `rua` must be an address on the domain**, not a Gmail. Cross-domain reporting requires an authorization record published by the receiving domain, which `gmail.com` has not published and will not, so most reporters silently refuse. Alignment stays relaxed: Resend signs from `send.`, and strict alignment would bounce the site's own form mail. |
 | 2026-08-11 | **CLAUDE.md §3's specimen-animation paragraph described a mechanism that was never built** (a `class` driven by CSS in `[slug].astro`, a `@keyframes specimen-flow`). What ships is self-contained: each animated `.svg` carries its own keyframes and reduced-motion guard, so it animates identically opened anywhere. Corrected in place. Marching dashes are ambient and may ship in a post; a step reveal is a performance and belongs in a video. |
+| 2026-08-11 | **`VOICE.md` split into `VOICE-POSTS.md` and `VOICE-SCRIPTS.md`.** One file served both surfaces through a "register dial" and the dial was read wrong in both directions: posts inherited the teleprompter no-contractions constraint and read like terms and conditions (zero contractions across nine published posts), while scripts drifted casual because the post rules were the ones people read (LOG 002 at 78 contractions against LOG 001's 12). **Posts use contractions freely; scripts avoid them.** §1 of both files is byte-identical and must be changed in both or neither. The `/log-post` skill now routes by surface. |

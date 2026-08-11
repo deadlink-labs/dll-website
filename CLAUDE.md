@@ -484,7 +484,7 @@ First entry ever: **LOG 001** — *Designing and building deadlinklabs.com with 
 - **What qualifies:** a real project, built and used, that predates the lab, and for which some evidence survives — photographs, files, hardware, anything. No evidence, no throwback. The photographs are the reason the format works.
 - **It is not a schedule.** Explicitly not Throwback Thursday and explicitly not weekly. A throwback gets written when Marcelo remembers a project and finds the material for it. Cadence pressure is what turns an archive into content.
 - **The number is permanent** and independent of `web-number`. LOG 013 is THROWBACK / 001, and neither number is derived from the other.
-- **Register:** the throwback row of VOICE.md §3, which is the site's loosest narrative setting. A scene is allowed to be a scene. Layer 1 still holds, and the post still ends in a decision register — a throwback is a good story wrapped around a decision table, not a good story instead of one.
+- **Register:** the throwback flavor of VOICE-POSTS.md §3, which is the site's loosest narrative setting. A scene is allowed to be a scene. Layer 1 still holds, and the post still ends in a decision register — a throwback is a good story wrapped around a decision table, not a good story instead of one.
 - **The homepage band is curated, not automatic**: a throwback appears there only if its slug is listed in `site.config.json` → `homepage.throwbacks` (§4). Writing one does not put it on the homepage.
 
 ### 5.3 Products `/products`
@@ -494,7 +494,7 @@ Header: "Deadlink Labs / Products". Mature artifacts — may be commercial, free
 
 > Tools and artifacts that made it to the shelf. For sale, free, open source, or private beta. Each one has a page; the log entries tell how it got built.
 
-The shelf/bench pair is system vocabulary: the Log is the bench (`● Currently on the bench` on Home, "on the bench" in the VOICE.md lexicon), and Products is what left it. Keep both metaphors pointing the same way. "Tools and artifacts" is deliberately wider than "tools" so a future pack, font, sample library, or track still fits the page without a rewrite.
+The shelf/bench pair is system vocabulary: the Log is the bench (`● Currently on the bench` on Home, "on the bench" in the VOICE-POSTS.md lexicon), and Products is what left it. Keep both metaphors pointing the same way. "Tools and artifacts" is deliberately wider than "tools" so a future pack, font, sample library, or track still fits the page without a rewrite.
 
 **Rejected for this lede: "went public"** (and any public/private framing). Every log entry is public too, so the axis does not separate Products from Log, and it contradicts `private beta` in the very next sentence. The dead-link motif it reaches for belongs in a log entry where something genuinely crosses from private to public.
 - **Cassette Mixtapes** · COMING SOON — A preparation studio for digital mixtapes: playlists, metadata, streaming-spec validation, loudness analysis. Waitlist form.
@@ -535,14 +535,32 @@ Then **tools he actually uses** (Obsidian, Claude, VS Code, GitHub, Suno, Google
 
 ## 6. Voice & writing rules
 
-The rules below are the summary. The full, example-driven voice guide is
-**`VOICE.md`** at the repo root (moves, lexicon, before/after pairs, self-check);
-read it before drafting or editing any post. The `/log-post` skill applies it.
+The rules below are the summary. The full, example-driven guides live at the repo
+root, and **there are two of them** (split 2026-08-11):
 
-**The voice is two layers** (settled 2026-08-07, VOICE.md §1). Layer 1 is the
-discipline and never moves. Layer 2 is a register dial set per surface.
+| Writing this | Read |
+|---|---|
+| Log post, throwback, product page, About copy | **[VOICE-POSTS.md](VOICE-POSTS.md)** |
+| Video narration, anything in `my_assets/video-scripts/` | **[VOICE-SCRIPTS.md](VOICE-SCRIPTS.md)** |
 
-**Layer 1, everywhere:**
+Read the matching one before drafting or editing. The `/log-post` skill routes to
+the right one and applies it.
+
+**Why two files.** There used to be one `VOICE.md` with a "register dial" set per
+surface, and the dial was read wrong in both directions. Posts inherited a
+teleprompter constraint and came out reading like terms and conditions: a grep of
+all nine published posts on 2026-08-07 found **zero** contractions, every
+apostrophe a possessive. Meanwhile the scripts drifted casual, because the post
+rules were the ones people actually read, and the LOG 002 script reached 78
+contractions against LOG 001's 12. One document could not hold both. Two can.
+
+**The one real difference is contractions.** Posts use them freely. Scripts avoid
+them, because full words have fewer elisions to trip on when reading aloud from a
+prompter, which is a production constraint for a person holding a camera and not
+a writing rule. Everything else is shared, and §1 of both files is byte-identical
+on purpose: change it in both or in neither.
+
+**The shared discipline, everywhere:**
 - First person, plain US English, short sentences. Specific beats clever.
 - Numbers and artifacts, never self-describing adjectives.
 - Warmth is never evidence. No "I'm excited about this", no enthusiasm standing in
@@ -551,17 +569,23 @@ discipline and never moves. Layer 2 is a register dial set per surface.
 - UI copy: active voice, controls say what they do ("Join the waitlist", not "Submit").
 - No exclamation marks. No em dashes. No startup vocabulary (leverage, journey, empower, unlock).
 
-**Layer 2, per surface** (the full table is VOICE.md §3): a **video script** is
-written for a teleprompter, a **log post** reads as a notebook, a **product page**
-(and the About Work-with-me section) is human and direct, second person,
-contractions on. A product page is read by someone deciding whether to give you
-money or time, so it gets a warmer front door. Layer 1 still holds, which means
-there is no hype available: only the pain, stated plainly, and the numbers.
+**Within posts** (VOICE-POSTS.md §3) there are three flavors of the same voice: a
+**log post** reads as a notebook, a **throwback** is told rather than reported and
+may let a scene be a scene, and a **product page** (with the About Work-with-me
+section) is human and direct, second person, faster. A product page is read by
+someone deciding whether to give you money or time, so it gets a warmer front
+door. The shared discipline still holds, which means there is no hype available:
+only the pain, stated plainly, and the numbers.
 
-*Contraction rule, corrected.* "Prefer full words" used to apply site-wide. It is a
-teleprompter production constraint (fewer elisions to trip on while reading aloud),
-not a writing rule, and it made written posts read like a manual. It now lives only
-in the script row. Do not reapply it to posts.
+**Within scripts** (VOICE-SCRIPTS.md §2) the trap to know is that full words are
+not permission to be choppy. The LOG 001 wrap was flagged as stiff and the
+contraction rule got blamed, but the actual cause was strings of short fragments.
+Write long, connected, breathing lines and just spell the words out.
+
+*Do not reapply the no-contractions rule to posts.* It is a teleprompter
+production constraint and it belongs only to scripts. Applying it site-wide is
+what made every written post read like a manual, and it is the reason the voice
+guide is now two files.
 
 ## 7. Build order
 
