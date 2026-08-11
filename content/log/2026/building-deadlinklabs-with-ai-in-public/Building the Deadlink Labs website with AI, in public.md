@@ -1,26 +1,26 @@
 ---
-# --- Obsidian-internal (site ignores all of these) ---
 type: work journal
 created: 2026-07-14
 project: "[[DLL Web]]"
 people: []
 aliases:
-  - "LOG 001"   # the filename already gives me the title + graph in Obsidian; this just lets me jump by number
-
-# --- web-* namespace (the ONLY fields the site reads) ---
+  - LOG 001
 web-status: published
-web-title: "Building the Deadlink Labs website with AI, in public"
+web-title: Building the Deadlink Labs website with AI, in public
 web-pub-date: 2026-07-14
-web-snippet: "AI can build a website. What decides the result is everything you settle before it starts. The brief, the stack, the hosting, and why each call was made."
+web-snippet: Yes, AI can build a website. The interesting part happens before the first line of code. Start prompting too soon, and you get a website that could belong to anyone. Think first. Plan it. Then prompt.
 web-type: log
 web-number: 1
 web-stage: IN PROGRESS
-web-tags: [ASTRO, DESIGN, AI-ASSISTED, WORKFLOW]
-# web-video: "https://youtu.be/XXXXXXXXXXX"   # YouTube share link or bare ID -> renders the video facade at the top. Omit and no embed shows.
-web-thumb: "./assets/the-wiring.webp"   # the wiring chain, rasterized from assets/the-wiring.svg via `npm run tiles -- <path>`. Was the network-mark tile (assets/thumb.svg/.webp, still on disk): that cover restated the wordmark already in the nav and the manifesto already in the footer, and spent the whole first screen saying nothing about the work. This one shows the stack above the fold, and makes a better share card.
+web-tags:
+  - ASTRO
+  - DESIGN
+  - AI-ASSISTED
+  - WORKFLOW
+web-thumb: ./assets/the-wiring.webp
 web-thumb-alt: "A horizontal chain of five stations on a dark ground: VS Code and Git, then GitHub, Vercel, Cloudflare, and the domain, which is a glowing orange node with deadlinklabs.com written beneath it. Above the chain, a dashed node labelled Obsidian Vault, next, joined to the Vercel station by a dashed diagonal line to show that link is not built yet."
 ---
-The interesting thing about building a website with AI isn't that AI can build a website. Of course it can. It's what happens when you bring an actual idea to the machine, think everything through first, and only then let AI do the building.
+The interesting thing about building a website with AI isn't that AI can build a website. Of course it can. It's what happens when you bring an actual idea, think everything through first, and only then let the LLM do the building.
 
 So I ran the experiment in public: I started with a long walk by the riverside, with an LLM capturing the outline as I talked. Back at home, I went from an empty folder to designing and building the site with Claude, while documenting every decision and shipping the result.
 
@@ -94,7 +94,7 @@ There's no CMS, on purpose. I already write everything in Obsidian: notes, daily
 ![Two lanes compared on a dark ground. The upper lane, THE USUAL WAY, runs EDITOR to CMS DATABASE to SITE and ends in the numeral 2 over the words COPIES OF THE CONTENT. The lower lane, THIS SITE, runs from a glowing orange node labelled VAULT NOTE straight to SITE, and ends in a much larger numeral 1 over the words COPY OF THE CONTENT.](./assets/no-second-copy.svg)
 
 How that actually works is a big enough topic to be its own thing: a note in a vault,
-turning into a live page, with no step in between. That's LOG 002.
+turning into a live page, with no step in between. That's LOG 003.
 
 ## The decisions, on the record
 

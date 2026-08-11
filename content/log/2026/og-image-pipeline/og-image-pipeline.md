@@ -9,7 +9,8 @@ web-title: "One template, every share card: generating OG images at build time"
 web-pub-date: 2026-03-09
 web-snippet: "A single paper-and-stamp template that renders a share image for every page during the build."
 web-type: log
-web-number: 4
+# web-number intentionally absent: this stub takes a fresh unique number when it
+# is rewritten, rather than squatting a low number it no longer earns.
 web-stage: SETTLED
 web-tags: [ASTRO, OG-IMAGE, BUILD]
 ---

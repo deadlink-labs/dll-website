@@ -9,7 +9,8 @@ web-title: "Can a house quietly run its own systems without anyone tending them?
 web-pub-date: 2026-06-02
 web-snippet: "Running a local language model against Home Assistant, so automation decisions never leave the house."
 web-type: log
-web-number: 2
+# web-number intentionally absent: 2 was released to LOG 002 (contact form +
+# real domain email). This stub takes a fresh unique number when it is rewritten.
 web-stage: TESTING
 web-tags: [LOCAL-LLM, HOME-ASSISTANT, PYTHON]
 ---

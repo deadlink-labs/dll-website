@@ -147,7 +147,7 @@ The test: *would this image still be true if the reader knew exactly where it ca
 
 Where photographs do not exist, the fallback is unchanged: an **on-brand graphite specimen tile** (see Specimen tiles, below). Captions carry provenance — original, redrawn, or reconstructed — per "Redraw in English" below.
 
-**Every record carries a header image.** Each post opens with contained header media (record width, 16:9, rounded — never a full-bleed hero): the video facade when `web-video` is set, otherwise the `web-thumb`. When a post has no photograph to earn the slot, generate an **on-brand graphite specimen tile** in the house style (mono labels, a scarce orange live node — see LOG 001's network-mark tile and LOG 003's pipeline tile) rather than reaching for stock or AI imagery. The same `web-thumb` is reused on the homepage feed card and the Shipped-for-clients band.
+**Every record carries a header image.** Each post opens with contained header media (record width, 16:9, rounded — never a full-bleed hero): the video facade when `web-video` is set, otherwise the `web-thumb`. When a post has no photograph to earn the slot, generate an **on-brand graphite specimen tile** in the house style (mono labels, a scarce orange live node — see LOG 001's network-mark tile and LOG 012's pipeline tile) rather than reaching for stock or AI imagery. The same `web-thumb` is reused on the homepage feed card and the Shipped-for-clients band.
 
 **A cover never carries its record number** (settled 2026-08-06). The feed row, the clients band and the record stamp all print `LOG 0NN` right beside the image, so putting it in the image says it twice and, worse, freezes it: renumber the record and the artwork is wrong, in a raster, in the OG card, in whatever social already cached it. The stamp line on a cover carries status and kind only (`SHIPPED · CASE STUDY`), never the number. This applies to `npm run cover --stamp` too.
 
@@ -280,7 +280,7 @@ Rules:
     the dates run out of order instead. As of 2026-08-10 they do disagree, and
     that is expected: the archive is being seeded quickly so the site has real
     work to show, and the dates are placeholders. They get set by hand when the
-    Obsidian pipeline lands (ROADMAP LOG 002) — a small, known tradeoff, not a
+    Obsidian pipeline lands (ROADMAP LOG 003) — a small, known tradeoff, not a
     defect to design around. From then on, **assign `web-number` in publish
     order** and the two agree by themselves: LOG 001 oldest, at the bottom.
   - `web-number` is optional, so numberless posts have nothing to sort by: they

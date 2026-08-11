@@ -127,22 +127,93 @@ so the heading spine alone shows the thinking to someone who only skims.
 - [x] D-Link vs MikroTik settled: MikroTik routing at the base of the tower,
       D-Link access points at the subscriber houses
 - [ ] `AI` THROWBACK / 002 (Game Boy screen retrofit) and / 003 (home thermostat)
-- [ ] The four placeholder stubs (LOG 002/003/004/005) were deliberately skipped
-      in the voice pass. They are 86 to 130 words each and slated for replacement,
-      so polishing them is work that gets thrown away
+- [ ] The four placeholder stubs were deliberately skipped in the voice pass. They
+      are 86 to 130 words each and slated for replacement, so polishing them is
+      work that gets thrown away. Three of them (`local-llm-home-assistant`,
+      `hexcast-visualizer`, `og-image-pipeline`) **gave up their `web-number` on
+      2026-08-11** — they were squatting 2, 3 and 4 while numbering nothing that
+      exists. Each takes a fresh unique number when it is actually written.
+      `obsidian-pipeline-notes` keeps 5: it is the visibility-gate fixture, not a
+      stub, and must never publish
 
 ---
 
-## LOG 002 · Obsidian publishing pipeline `[~] IN PROGRESS`
+## LOG 002 · Contact form + real domain email `[~] IN PROGRESS`
+
+**Working title:** *My Website Can Now Email Me* · **Target: 2026-08-11**
+
+Two separate pipes, easy to conflate: **sending** (form → Resend → inbox) and
+**receiving** (`hello@deadlinklabs.com` → Cloudflare routing → Gmail).
+
+**Why this one leads.** [Footer.astro:20](src/components/Footer.astro#L20) has
+advertised `hello@deadlinklabs.com` on a live site since launch, and as of
+2026-08-11 the domain carried **no MX, SPF, DKIM or DMARC at all** — the address
+went nowhere. A site whose About page ends on "Nothing 404s anymore" was shipping
+a dead email address in its own footer.
+
+**Shape of the work.** The project had **no Vercel adapter** and built pure
+static. A form that sends mail needs a server endpoint. In Astro 5 that does
+*not* mean changing output mode: `output` stays `'static'` and one endpoint opts
+out with `export const prerender = false`. The whole site stays static except a
+single function. (The earlier note here said "switch output mode off pure-static"
+— wrong for Astro 5, and corrected 2026-08-11.)
+
+**Receiving**
+- [ ] `ME` Cloudflare Email Routing → `hello@` and `dmarc@` forward to Gmail
+- [ ] `ME` SPF, DKIM, DMARC on Cloudflare DNS — every mail record **DNS-only (grey cloud)**
+- [ ] `ME` DMARC starts at `p=none`, `rua=mailto:dmarc@deadlinklabs.com`. **Not** a
+      Gmail address: cross-domain reporting needs an authorization record at the
+      receiving domain, which for `gmail.com` cannot exist, so most reporters
+      silently refuse. No `adkim=s` / `aspf=s` either — Resend signs from the
+      `send.` subdomain and strict alignment would bounce the site's own form mail
+- [ ] `BOTH` Verify the address actually receives, before any code is trusted
+
+**Sending**
+- [ ] `ME` Resend account, verify the **root** domain, generate an API key
+- [ ] `ME` Add `RESEND_API_KEY` to Vercel env vars — Production *and* Preview.
+      Key on the laptop but not on Vercel means the form works locally and 500s live
+- [ ] `AI` Install `@astrojs/vercel`; `output` stays `'static'`, one route opts out
+- [ ] `AI` Server endpoint `src/pages/api/contact.ts`, reading the key via `astro:env`
+- [ ] `AI` Wire the About contact form — was `action="#"` ([about.astro:108](src/pages/about.astro#L108))
+- [ ] `AI` **Add the missing email field** — the form collected a name and a problem and no way to reply
+- [ ] `AI` Success / error states, honest failure copy that hands over the mailto fallback
+- [ ] `AI` Remove the `data-placeholder="not wired to Resend yet"` marker
+- [ ] `ME` Gmail **Send-As** over Resend SMTP, so replies leave *from* `hello@`
+      (free consumer Gmail; no Workspace needed)
+
+**The record**
+- [ ] `AI` Two-pipes flow chart, DNS-records tile, cover
+- [ ] `AI` The post — `web-number: 2`
+- [ ] `AI` Revise [the script](my_assets/video-scripts/log002-contact-form-and-email.md)
+- [ ] `AI` Commit the episode (CLAUDE.md §9)
+
+> **Deferred on purpose, not forgotten** (2026-08-11). This note used to read
+> *"Two forms, not one — do not wire one and call the episode done."* That is no
+> longer the plan. The **product waitlist**
+> ([WaitlistForm.astro:20](src/components/WaitlistForm.astro#L20)) goes to a
+> different Resend surface (Audiences, not the send API) and gets its own
+> episode, as does **spam handling**. Splitting them is deliberate: smaller
+> chunks, more to document. **The honeypot is a hard prerequisite of LOG 004: it
+> lands before `ALLOW_INDEXING` flips, never after.** Deferring it past this
+> episode is only acceptable while that ordering holds.
+
+---
+
+## LOG 003 · Obsidian publishing pipeline `[~] IN PROGRESS`
 
 **Working title:** *I Push a Note in Obsidian. Site Rebuilds Itself.* ·
 **Target: TBD**
+
+> **Renumbered 2026-08-11.** This was LOG 002. The contact-form episode overtook
+> it — that work was unblocked and this one is not — so the two swapped, and the
+> video scripts swapped filenames with them. LOG 004 and 005 are unaffected.
+> `web-number: 3` is reserved for this record.
 
 Goal: the site repo contains **zero posts**. Writing a note in Obsidian and
 pushing it is the entire act of publishing.
 
 **The vault**
-- [x] `ME` Obsidian installed, vault exists — `~/Documents/Obsidian Vaults/zzzzMB`
+- [x] `ME` Obsidian installed, vault exists — written `<vault>` throughout this file; the real path stays local
 - [x] `ME` Templates core plugin enabled, folder set to `DATA/Templates`
 - [x] `AI` Create `dll-website-content/` inside the vault — the one folder that becomes the site `2026-08-05`
 - [x] `AI` Copy `content/` (19 files: posts, assets, `site.config.json`) into it `2026-08-05` — **copied, not moved**; the site-repo original is deleted later at the untrack step, so there are two copies until the content repo push succeeds
@@ -186,48 +257,12 @@ pushing it is the entire act of publishing.
 > ([content.config.ts](src/content.config.ts)), where `.superRefine` deliberately
 > lets half-finished drafts through. `image()` bypasses it.
 >
-> Once the pipeline is live this is a publishing outage: push a half-written note
-> and Vercel cannot build, so the last deploy stays frozen and nothing new goes
-> out. Mitigated for now by commenting `web-thumb` out in the template — write
-> the post, add the image, *then* uncomment.
+> It matters most once the pipeline is live, when a half-written note reaches the
+> build directly. Mitigated for now by commenting `web-thumb` out in the template
+> — write the post, add the image, *then* uncomment.
 >
 > - [ ] `AI` Consider a real fix so a draft can never break the build (validate
 >   thumbs only for published posts, or resolve the path outside the schema)
-
----
-
-## LOG 003 · Contact form + real domain email `[ ] NEXT`
-
-**Working title:** *My Website Can Now Email Me* ·
-**Target: 2026-08-06** (email config planned for this session or the next)
-
-Two separate pipes, easy to conflate: **sending** (form → Resend → inbox) and
-**receiving** (`hello@deadlinklabs.com` → Cloudflare routing → Gmail).
-
-**Blocker to know up front:** the project has **no Vercel adapter** and builds
-pure static. A form that sends mail needs a server endpoint, so the first move
-is `@astrojs/vercel` plus an output-mode change. That is the real shape of this
-episode, not the form markup.
-
-**Receiving**
-- [ ] `ME` Cloudflare Email Routing → `hello@deadlinklabs.com` forwards to Gmail
-- [ ] `ME` SPF, DKIM, DMARC records on Cloudflare DNS
-- [ ] `BOTH` Verify the address actually receives — it is already linked in the footer on a live site
-
-**Sending**
-- [ ] `ME` Resend account, verify the domain, generate an API key
-- [ ] `ME` Add `RESEND_API_KEY` to Vercel env vars
-- [ ] `AI` Install `@astrojs/vercel`, switch output mode off pure-static
-- [ ] `AI` Server endpoint (e.g. `src/pages/api/contact.ts`)
-- [ ] `AI` Wire the About contact form — currently `action="#"` ([about.astro:81](src/pages/about.astro#L81))
-- [ ] `AI` Wire the **product waitlist** form — same placeholder, different destination: Resend **Audiences** ([products/[slug].astro:39](src/pages/products/[slug].astro#L39))
-- [ ] `AI` Success / error states, honest failure copy
-- [ ] `AI` Spam handling (honeypot or similar — no third-party captcha, it would break the no-tracking rule)
-- [ ] `AI` Remove the `data-placeholder="not wired to Resend yet"` markers
-- [ ] `AI` Commit the episode (CLAUDE.md §9)
-
-> **Two forms, not one.** The contact form and the waitlist go to different
-> Resend surfaces (API vs. Audiences). Do not wire one and call the episode done.
 
 ---
 
@@ -238,11 +273,21 @@ episode, not the form markup.
 Prerequisite: enough **real** posts that opening to search is not embarrassing.
 Do not flip the switch over a wall of placeholders.
 
+- [ ] `AI` **Spam-guard the contact form before anything else here** — honeypot +
+      timing check, deferred out of LOG 002 on purpose. No third-party captcha; it
+      would break the no-tracking rule. This is a hard gate, and it leads this list
+      on purpose: the guard ships before `ALLOW_INDEXING` flips, never after
 - [ ] `AI` `@astrojs/sitemap`
 - [ ] `AI` `robots.txt` pointing at the sitemap
-- [ ] `AI` **Flip `ALLOW_INDEXING` to `true`** ([BaseLayout.astro:47](src/layouts/BaseLayout.astro#L47)) — the single switch, site-wide
+- [ ] `AI` **Flip `ALLOW_INDEXING` to `true`** ([BaseLayout.astro:90](src/layouts/BaseLayout.astro#L90)) — the single switch, site-wide
+- [ ] `AI` Confirm `/thank-you/` stays out of the index on its own `noindex` prop
 - [ ] `ME` Google Search Console: verify the property, submit the sitemap
-- [ ] `ME` Cloudflare Web Analytics (cookieless — no banner, no consent tooling)
+- [ ] `ME` **Cloudflare** Web Analytics (cookieless — no banner, no consent tooling).
+      Settled 2026-08-11 over Vercel: free with no cap, 6-month retention against
+      Vercel Hobby's 1 month, Core Web Vitals included rather than a separate
+      product, and custom events are unavailable on both free tiers so Vercel's one
+      possible edge is not on the table. Form conversions are already counted in
+      the Resend dashboard. **Pick one, not both**
 - [ ] `AI` Commit the episode (CLAUDE.md §9)
 
 ---
@@ -264,6 +309,15 @@ Do not flip the switch over a wall of placeholders.
 
 Not assigned to an episode yet. Pull one up when it earns a slot.
 
+- [ ] **Product waitlists → Resend Audiences** — split out of LOG 002 on 2026-08-11.
+      [WaitlistForm.astro:20](src/components/WaitlistForm.astro#L20) is still
+      `action="#"` on both product pages. Different Resend surface (Audiences, not
+      the send API), so it is its own episode rather than a footnote to the contact
+      form. Ships with the dead `web-waitlist` field cleanup below
+- [ ] Dead schema field: `web-waitlist` is defined and mapped
+      ([content.config.ts:63](src/content.config.ts#L63), :114) but nothing reads
+      `data.waitlist` — `products/[slug].astro` derives visibility from `web-stage`
+      instead, and no content file sets it. Remove it or wire it
 - [ ] Replace the remaining placeholder posts with real write-ups
 - [ ] Uruguay Outfitters case study — real post (currently a placeholder the Home band links to)
 - [x] Crehana case study — real post (LOG 010, six specimen tiles, `npm run tiles`)
@@ -297,7 +351,7 @@ Short entries only. The reasoning lives in CLAUDE.md; this records *when* and
 | 2026-08-10 | **Section numbers are derived, never hand-written.** Bands are conditional (Products and Throwback need non-empty arrays), so literal `num` props drift silently — the rail shipped starting at `03` with no `01` on the page. `index.astro` now builds the list of rendering bands and indexes into it. |
 | 2026-08-10 | **Three numbering systems, kept apart.** CLAUDE.md §5.1's band index counts the masthead and footer; the rail's `01`…`06` counts only labelled bands; a record number (`LOG 001`) says which post this is. The hero gutter was printing an oversized record number right above the section numbers, so the rail read as two systems in one column. The record number moved into the eyebrow stamp (`FEATURED ON THE BENCH · LOG 001`) and the rail now carries section numbers only. |
 | 2026-08-10 | **The hero is the Featured band, at rail 01.** The separate Featured-cards band was merged into it: it carried the same label, so a second `heroPost` would have produced two bands both called "Featured" with two numbers. Extra `heroPosts` now render as cards inside the hero's band. Its rail number is the one sanctioned `size="lead"` exception to uniform rail sizing. |
-| 2026-08-10 | **Log feeds sort by `web-number` descending**, not `web-pub-date` (§4). The date-sorted feed read 013, 012, 006, 010, 011 — correct, and visibly broken to anyone scanning the numbers. The record number is the spine the reader follows, so the feed agrees with it. Applies everywhere the log is listed: homepage Recent, `/log`, RSS, prev/next. Products keep date order. The cost: dates run out of order where `web-number` and `web-pub-date` disagree, which they currently do — the archive is being seeded fast to have real work on the page, and the dates are placeholders until the Obsidian pipeline lands (LOG 002). Accepted tradeoff, not a defect. |
+| 2026-08-10 | **Log feeds sort by `web-number` descending**, not `web-pub-date` (§4). The date-sorted feed read 013, 012, 006, 010, 011 — correct, and visibly broken to anyone scanning the numbers. The record number is the spine the reader follows, so the feed agrees with it. Applies everywhere the log is listed: homepage Recent, `/log`, RSS, prev/next. Products keep date order. The cost: dates run out of order where `web-number` and `web-pub-date` disagree, which they currently do — the archive is being seeded fast to have real work on the page, and the dates are placeholders until the Obsidian pipeline lands (LOG 003, renumbered from 002 on 2026-08-11). Accepted tradeoff, not a defect. |
 | 2026-08-10 | Band renamed **"Client work"**, not "Shipped for clients". It now carries a `PROPOSAL · 2026` row, so a heading claiming "shipped" is contradicted by the row under it. The `#clients` id and `/#clients` anchor are unchanged. |
 | 2026-08-10 | **Home band 06 gets a face**, 104px and round, beside the positioning line. The band is labelled "Who runs this" and was answering with text alone. Byline scale (28px) was considered and rejected: next to an 18px paragraph it reads as a mark, not a person. The paragraph itself is untouched — it is the canonical line in four places, and only the layout around it moved. |
 | 2026-08-10 | **Band 06's button says `About me →` and points at `/about`**, not `See the work →` at `/log`. A reader who reaches band 06 has scrolled past five bands of work, so the old button pointed at the thing they had just done and changed the subject away from the person the band had introduced. Still one button: the 2026-08-05 decision against a second CTA here holds, and this is ink chrome landing on the top of About, not the `#work-with-me` anchor the footer owns. |

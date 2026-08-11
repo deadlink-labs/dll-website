@@ -36,7 +36,7 @@ web-tags: [TAG-ONE, TAG-TWO]  # thread tags shown on the stamp
 #   -> Opens the post as a header image (or the video poster when web-video is
 #      set) AND is the homepage feed-card / Shipped-for-clients thumbnail. Save it
 #      in this post's assets/. With no photograph to use, prefer an on-brand
-#      graphite specimen tile over stock/AI imagery (see LOG 001 / LOG 003).
+#      graphite specimen tile over stock/AI imagery (see LOG 001 / LOG 012).
 #
 #   !! COMMENTED OUT ON PURPOSE. Uncomment it only AFTER the image file exists.
 #      web-thumb runs through Astro's image pipeline, which resolves the path at

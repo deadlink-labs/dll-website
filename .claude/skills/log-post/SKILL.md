@@ -54,7 +54,7 @@ Pick the mode from what the user asked for.
    `web-thumb`** — it opens the post as a 16:9 header image and is the homepage
    thumbnail. If there is no photograph to use, generate an on-brand graphite
    specimen tile (mono labels, a scarce orange live node; see LOG 001's
-   network-mark tile and LOG 003's pipeline tile) rather than stock/AI imagery.
+   network-mark tile and LOG 012's pipeline tile) rather than stock/AI imagery.
    Confirm what the tile should depict before generating it.
 4. Place the file per CLAUDE.md §4: `content/log/<year>/<slug>/<title>.md` (log) or
    `content/products/<slug>/<title>.md` (products). The folder name is the slug
