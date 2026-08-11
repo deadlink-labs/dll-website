@@ -187,21 +187,44 @@ someone read an error message and work it out is the actual teaching.
 
 ## 7. Current compliance, honestly
 
-Measured 2026-08-11, contractions per script:
+Measured 2026-08-11, contractions in narration per script:
 
-| Script | Contractions | Words | State |
+| Script | Before | After | State |
 |---|---|---|---|
-| `log001-compiled-process.md` | 12 | 4657 | The model |
-| `log001-dll-web-video-script.md` | 29 | 4154 | Close |
-| `log004-going-public-analytics.md` | 36 | 2659 | Drifted |
-| `log005-presentation-layer.md` | 31 | 2717 | Drifted |
-| `log003-obsidian-publishing-pipeline.md` | 59 | 4133 | Drifted |
-| `log002-contact-form-and-email.md` | 78 | 4845 | Drifted furthest |
+| `log002-contact-form-and-email.md` | 78 | **0** | Converted 2026-08-11 |
+| `log001-compiled-process.md` | 12 | 12 | The original model |
+| `log001-dll-web-video-script.md` | 29 | 29 | Close |
+| `log004-going-public-analytics.md` | 36 | 36 | Not converted |
+| `log005-presentation-layer.md` | 31 | 31 | Not converted |
+| `log003-obsidian-publishing-pipeline.md` | 59 | 59 | Not converted |
 
 The LOG 001 scripts were written under this rule and hold up. Everything after
 drifted casual, because the register dial in the old single `VOICE.md` was read
 as "posts are informal", and the scripts followed the posts. That is the drift
 this split exists to stop.
 
-**None of these are rewritten yet.** Converting them is a pass of its own, and
-`log002` is the one that matters first because it is the next to be filmed.
+**LOG 002 is converted** because it is the next one to be filmed. The other three
+are not, and converting them is a pass of its own.
+
+### What the conversion taught
+
+Two things worth knowing before converting another one.
+
+**Find-and-replace is not enough, and it introduces bugs.** `I'd` is ambiguous:
+it expands to "I would" or "I had" depending on the sentence, and a blind pass
+turned *"if I'd only wrapped that in a try/catch"* into *"if I would only
+wrapped"*, which is not English. Check every expansion of `'d` and `'s` by hand.
+Possessives (`the visitor's email`, `Gmail's dropdown`) are not contractions and
+must survive untouched, as must any real UI copy being quoted, like the form
+label `What's eating your time?`.
+
+**`let's` has no good expansion.** "Let us build each piece" is not something
+anybody says. Rewrite the sentence instead of expanding the word:
+
+- "Now let's build each piece." → "That is the whole architecture, so now we build each piece."
+- "Let's do it." → "So that is what we are doing next."
+- "Let's go." → "Here we go."
+
+And after any conversion pass, **check for choppiness**, because that is the
+failure this register is actually prone to. A run of three or more short
+sentences in a row is the signal (§2.2).
