@@ -83,8 +83,11 @@ Pick the mode from what the user asked for.
    script.
 5. Scripts live in the Obsidian vault, `DLL-CONTENT/dll video scripts/` — **outside
    this repo**, beside the content repo and never inside it. They are named
-   `log-NNN-(video-script)-Title.md` for a teleprompter script and
-   `log-NNN-(compiled-process)-Title.md` for a reference cut; match the pattern.
+   `log-NNN-(video-script)-Title.md`, one per episode; match the pattern. Their
+   H1s may read "Compiled Process Reference", which describes the *cut* (cleaned
+   of countdown padding and `// DONE` tags), **not a different kind of document**.
+   They are scripts. Only LOG 001 has two cuts, and its reference cut is the
+   specimen VOICE-SCRIPTS.md points at.
    ROADMAP.md outranks them when they disagree.
 
 ### CHECK — an existing draft → flagged + rewritten
