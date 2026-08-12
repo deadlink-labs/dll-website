@@ -20,7 +20,7 @@ web-tags:
 web-thumb: ./assets/the-wiring.webp
 web-thumb-alt: "A horizontal chain of five stations on a dark ground: VS Code and Git, then GitHub, Vercel, Cloudflare, and the domain, which is a glowing orange node with deadlinklabs.com written beneath it. Above the chain, a dashed node labelled Obsidian Vault, next, joined to the Vercel station by a dashed diagonal line to show that link is not built yet."
 ---
-The interesting thing about building a website with AI isn't that AI can build a website. Of course it can. It's what happens when you bring an actual idea, **think everything through first, and only then let the LLM do the building**.
+The interesting thing about building a website with AI isn't that AI can build a website. Of course it can. It's what happens when you bring an actual idea, ==**think everything through first, and only then let the LLM do the building**==.
 
 So I ran the experiment in public: I started with a long walk by the riverside, with an LLM capturing the outline as I talked. Back at home, I went from an empty folder to designing and building the site with Claude, while documenting every decision and shipping the result.
 

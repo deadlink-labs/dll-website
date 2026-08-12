@@ -11,10 +11,21 @@
 //   **text**   structural emphasis: a thesis sentence, or a bullet lead-in.
 //   plain      everything else, including product and tool names.
 //
-// SCARCITY IS THE WHOLE POINT, so it is enforced here rather than remembered.
-// A highlight that appears four times a page marks nothing. The limits below
-// fail the build naming the file and the section, the same way assertFits does
-// in src/lib/tile-system.mjs and the web-number uniqueness check does at build.
+// SCARCITY IS THE POINT, so the counts are REPORTED here rather than remembered.
+// A highlight that appears four times a page marks nothing — but that is a
+// judgement about prose, and the author makes it. The limits below print a
+// warning naming the file and the section; they do NOT fail the build.
+//
+// They used to (changed 2026-08-12, at Marcelo's call). Encoding an editorial
+// guideline as a thrown error meant the writer could not overrule his own style
+// guide without editing a plugin, and it halted a deploy over a fourth
+// highlight. That is the wrong tool: `assertFits` and the web-number uniqueness
+// check throw because their failures produce a BROKEN PAGE, and a fourth
+// highlight produces a page someone might merely disagree with. `npm run
+// emphasis` remains the fuller report (positions, distribution, bold devices).
+//
+// Still fatal, because these do break the page: an unclosed `==`, which would
+// render as a literal `==` nobody notices, and an empty `====`.
 //
 // ORDERING MATTERS: register this BEFORE remarkSvgSpecimen in astro.config.mjs.
 // That plugin replaces image nodes with raw HTML containing an inlined SVG, and
@@ -25,13 +36,9 @@
 /** Node types whose contents are never markdown prose. */
 const SKIP = new Set(['code', 'inlineCode', 'html', 'yaml', 'toml', 'math', 'inlineMath']);
 
-/** One highlight per H2 section, three per post. */
+/** Guidance, reported as a warning: one highlight per H2 section, three per post. */
 const MAX_PER_SECTION = 1;
 const MAX_PER_POST = 3;
-
-/** Non-greedy so `==a== and ==b==` is two marks, not one spanning both.
-    Dotall because a markdown soft wrap keeps a phrase in one text node. */
-const MARK_RE = /==(.+?)==/gs;
 
 /** Plain text of a heading, for error messages. */
 function headingText(node) {
@@ -49,50 +56,106 @@ function fail(fileName, message) {
 }
 
 /**
- * Split one text node on `==...==`.
- * Returns null when there is nothing to do, so the caller can leave the node
- * alone rather than replacing it with an identical copy.
+ * The `<mark>` node. `emphasis` with an overridden tag name, so the result stays
+ * a real mdast node that later plugins can walk, with no raw HTML.
  */
-function splitMarks(value, ctx) {
-  MARK_RE.lastIndex = 0;
-  if (!MARK_RE.test(value)) return null;
-  MARK_RE.lastIndex = 0;
+const markNode = (children) => ({ type: 'emphasis', data: { hName: 'mark' }, children });
 
-  const parts = [];
-  let last = 0;
-  let match;
-  while ((match = MARK_RE.exec(value)) !== null) {
-    if (match.index > last) parts.push({ type: 'text', value: value.slice(last, match.index) });
-    const inner = match[1];
-    if (!inner.trim()) fail(ctx.fileName, 'an empty highlight (`====`). Remove it or fill it in.');
-    parts.push({
-      type: 'emphasis',
-      // Overrides the output tag without emitting raw HTML, so the node stays a
-      // real mdast node that later plugins can still walk.
-      data: { hName: 'mark' },
-      children: [{ type: 'text', value: inner }],
-    });
-    ctx.made += 1;
-    last = match.index + match[0].length;
+/**
+ * Locate the next `==` at ONE level of the inline tree, from {i, off} onward.
+ *
+ * SKIP nodes are not searched — their contents are not prose — but they are not
+ * barriers either: a marker may open before one and close after it, and the node
+ * gets carried inside the mark. That is how ``==the `--force` flag matters==``
+ * works.
+ */
+function findMarker(kids, fromI, fromOff) {
+  for (let i = fromI; i < kids.length; i++) {
+    const k = kids[i];
+    if (k.type !== 'text' || SKIP.has(k.type)) continue;
+    const off = k.value.indexOf('==', i === fromI ? fromOff : 0);
+    if (off !== -1) return { i, off };
   }
-  if (last < value.length) parts.push({ type: 'text', value: value.slice(last) });
-  return parts;
+  return null;
 }
 
-/** Recurse into anything that holds inline children, skipping code and raw HTML. */
-function processParent(parent, ctx) {
+/** Concatenated prose of a node list, for the empty-highlight check. */
+function flatten(nodes) {
+  let out = '';
+  const walk = (n) => {
+    if (typeof n.value === 'string') out += n.value;
+    if (n.children) n.children.forEach(walk);
+  };
+  nodes.forEach(walk);
+  return out;
+}
+
+/**
+ * Wrap `==…==` runs, INCLUDING those that span sibling inline nodes.
+ *
+ * The first version only ever split a single text node, so a highlight that
+ * wrapped any formatting silently failed: `==**bold**==` parses to
+ * [text("=="), strong(…), text("==")], the two markers land in different nodes,
+ * the regex never sees a pair, and the build died on "2 stray ==". That syntax
+ * is valid Obsidian and renders there, so the vault and the site disagreed —
+ * which is the one thing the ==…== convention exists to prevent (§4).
+ *
+ * So pairing happens across the children array rather than inside one string:
+ * find an opening marker, find the next one at the same level, and wrap
+ * everything between — partial text at each end, whole nodes in the middle.
+ */
+function applyMarks(parent, ctx) {
   const kids = parent.children;
   if (!Array.isArray(kids)) return;
-  // Backwards: each splice grows the array underneath us.
-  for (let i = kids.length - 1; i >= 0; i--) {
-    const child = kids[i];
-    if (SKIP.has(child.type)) continue;
-    if (child.type === 'text') {
-      const parts = splitMarks(child.value, ctx);
-      if (parts) kids.splice(i, 1, ...parts);
+
+  // Depth first, so a mark living entirely inside a link or bold resolves in its
+  // own container and its markers are gone before this level pairs anything.
+  for (const child of kids) {
+    if (child.type !== 'text' && !SKIP.has(child.type)) applyMarks(child, ctx);
+  }
+
+  let i = 0;
+  let off = 0;
+  for (;;) {
+    const open = findMarker(kids, i, off);
+    if (!open) return;
+    const close = findMarker(kids, open.i, open.off + 2);
+    // Unclosed. Leave it: countStrays reports it against the real section name.
+    if (!close) return;
+
+    const openNode = kids[open.i];
+    const closeNode = kids[close.i];
+    const before = openNode.value.slice(0, open.off);
+    const after = closeNode.value.slice(close.off + 2);
+
+    let inner;
+    if (open.i === close.i) {
+      inner = [{ type: 'text', value: openNode.value.slice(open.off + 2, close.off) }];
     } else {
-      processParent(child, ctx);
+      const head = openNode.value.slice(open.off + 2);
+      const tail = closeNode.value.slice(0, close.off);
+      inner = [
+        ...(head ? [{ type: 'text', value: head }] : []),
+        ...kids.slice(open.i + 1, close.i),
+        ...(tail ? [{ type: 'text', value: tail }] : []),
+      ];
     }
+
+    if (!flatten(inner).trim()) {
+      fail(ctx.fileName, 'an empty highlight (`====`). Remove it or fill it in.');
+    }
+
+    const repl = [
+      ...(before ? [{ type: 'text', value: before }] : []),
+      markNode(inner),
+      ...(after ? [{ type: 'text', value: after }] : []),
+    ];
+    kids.splice(open.i, close.i - open.i + 1, ...repl);
+    ctx.made += 1;
+
+    // Resume just past the mark, at the start of whatever trails it.
+    i = (before ? open.i + 1 : open.i) + 1;
+    off = 0;
   }
 }
 
@@ -122,47 +185,49 @@ export default function remarkMark() {
     const fileName = file?.history?.[0] ?? file?.path ?? '(unknown file)';
 
     let section = '(before the first heading)';
-    let inSection = 0;
+    const counts = new Map([[section, 0]]);
     let total = 0;
 
     for (const node of tree.children) {
       if (node.type === 'heading' && node.depth === 2) {
         section = headingText(node) || '(untitled section)';
-        inSection = 0;
+        if (!counts.has(section)) counts.set(section, 0);
         continue;
       }
 
       const ctx = { fileName, made: 0 };
-      processParent(node, ctx);
+      applyMarks(node, ctx);
 
+      // Still fatal: an unclosed marker renders as a literal `==` on the page,
+      // which nobody notices. A marker that merely wraps formatting is now
+      // paired correctly above, so reaching here means it was never closed.
       const strays = countStrays(node);
       if (strays) {
         fail(
           fileName,
           `${strays} stray "==" left under "${section}".\n` +
-            `  Either a highlight was never closed, or it straddles inline code or a link.\n` +
-            `  A highlight has to wrap plain text, so move the formatting outside it.`,
+            `  A highlight was opened and never closed.`,
         );
       }
 
-      inSection += ctx.made;
+      counts.set(section, counts.get(section) + ctx.made);
       total += ctx.made;
+    }
 
-      if (inSection > MAX_PER_SECTION) {
-        fail(
-          fileName,
-          `${inSection} highlights under "${section}", and the limit is ${MAX_PER_SECTION}.\n` +
-            `  A section gets one finding. If two lines both feel essential, one of them\n` +
-            `  is structural emphasis and wants ** ** instead.`,
-        );
-      }
+    // Guidance, not a gate (see the header). Collected and printed once, so a
+    // post over the count reports every section in one block instead of dying
+    // on the first one.
+    const over = [...counts].filter(([, n]) => n > MAX_PER_SECTION);
+    if (total > MAX_PER_POST || over.length) {
+      const lines = [`[remark-mark] ${fileName}`];
       if (total > MAX_PER_POST) {
-        fail(
-          fileName,
-          `${total} highlights in this post, and the limit is ${MAX_PER_POST}.\n` +
-            `  Scarcity is the point: a mark that appears four times marks nothing.`,
-        );
+        lines.push(`  ${total} highlights in this post; guidance is ${MAX_PER_POST}.`);
       }
+      for (const [name, n] of over) {
+        lines.push(`  ${n} highlights under "${name}"; guidance is ${MAX_PER_SECTION}.`);
+      }
+      lines.push(`  Scarcity is the point, but the call is yours. \`npm run emphasis\` has the full report.`);
+      console.warn(lines.join('\n'));
     }
   };
 }
