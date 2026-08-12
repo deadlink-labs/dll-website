@@ -28,8 +28,8 @@ last chorus is clipping on their phone. It's live. You can't fix it.
 Or: you spend an afternoon generating tracks and wake up to fifty files called
 `track_047.wav`, with no memory of which three were any good.
 
-I've lived both of those more times than I want to admit. So I built the tool I
-wanted.
+I've lived both of those more times than I want to admit. **So I built the tool I
+wanted.**
 
 ## Your loudness meter might be lying to you. Mine was.
 
@@ -45,7 +45,7 @@ Six. That's the entire width of the window you were aiming for.
 You'd never catch it either, because the number that comes back looks completely
 reasonable. It's just wrong.
 
-I know because this app got it wrong too. For its entire life the feature labeled
+**I know because this app got it wrong too.** For its entire life the feature labeled
 "true peak" was reporting ordinary sample peak. The code asked its audio library
 for a high-quality resampler that needs a package this project has never shipped.
 The request failed. An error handler swallowed the failure without a word, and
@@ -88,7 +88,7 @@ which is the reference nobody argues with.
 | I2 - catchy epic synthwave power bass | -13.33 | -13.3 |
 | K1 | -14.23 | -14.2 |
 
-Agreement within 0.05 LU on every single file. Not close. The same number.
+**Agreement within 0.05 LU on every single file. Not close. The same number.**
 
 Third opinion: a full 14-track release measured in DaVinci Resolve agreed within
 0.1 LU, and true peak within 0.01 dB.
@@ -104,7 +104,7 @@ land on their own number.
 
 So if you mastered hot to compete, here's what you actually bought: the platform
 turns you down anyway, and you're left holding a smaller, more fatiguing master
-and none of the loudness. You paid the price and got none of the benefit.
+and none of the loudness. **You paid the price and got none of the benefit.**
 
 Too quiet has its own tax. The platform turns you up, which lifts your noise
 floor and flattens whatever dynamics you had left.
@@ -145,7 +145,7 @@ of shipping them looking fine.
 That behavior exists because of a bug report. Someone exported an album with the
 Bandcamp Loud preset and measured the renders in Resolve: -9.5 to -11.2 LUFS.
 Nothing hit the target. Worse, every track's manifest claimed a gain of 1.9 dB
-and true-peak limiting it had never applied. The delivery record was fiction.
+and true-peak limiting it had never applied. **The delivery record was fiction.**
 
 For a tool whose entire job is telling you a release is ready, reporting work it
 did not do is the worst failure available to it. So the loop closes on the actual
@@ -170,8 +170,8 @@ only its matching tracks with a `3 of 12` badge in the header. You see all six
 takes of Run at once, side by side with their BPM and their LUFS, and you drag
 the good one straight into the mixtape you're building.
 
-That's the difference between a search that answers "where is it" and one that
-answers "which one do I want". You're comparing candidates, not looking up a
+**That's the difference between a search that answers "where is it" and one that
+answers "which one do I want".** You're comparing candidates, not looking up a
 fact.
 
 It filters by more than a name: `bpm:120-130`, `key:f#`, `lufs:>-10`, `flag:red`,
@@ -195,7 +195,7 @@ that's about two hours of walkback instead of fifty minutes.
 That number is specific because it was earned. There was a version where a
 session file the app couldn't parse, for any reason at all, a half-copied cloud
 sync or a disk hiccup, got a polite warning and then, thirty seconds later, an
-empty board written cleanly over it. A week of work destroyed by the autosave.
+empty board written cleanly over it. **A week of work destroyed by the autosave.**
 Now a session it can't read is quarantined under a new name and never
 overwritten, and you're offered the most recent backup on the spot.
 
@@ -204,7 +204,7 @@ you could open it in a text editor and read out every playlist you ever built.
 
 ## What it won't do
 
-It measures. It doesn't fix. This is release prep, not mastering, and it will not
+**It measures. It doesn't fix.** This is release prep, not mastering, and it will not
 rescue a bad mix. It puts your master at the right level and keeps its peaks
 legal, and that's the whole job.
 
@@ -216,7 +216,7 @@ sanding.
 
 ## The deal
 
-Free while it's in beta, and a steep discount when it goes paid. What I want back
+**Free while it's in beta, and a steep discount when it goes paid.** What I want back
 is bug reports and an honest description of how you actually work, because the
 whole thing grew out of one person's workflow and one workflow isn't enough.
 

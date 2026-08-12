@@ -38,15 +38,15 @@ $
 
 Nameservers, fine. Mail records, none. Not a misconfiguration, an absence: no MX
 means no server anywhere has been told what to do with mail for this domain, so
-anything sent to that address bounces. The site whose whole argument is that the
-work now has a URL was shipping a dead email address in its own footer.
+anything sent to that address bounces. ==The site whose whole argument is that the
+work now has a URL was shipping a dead email address in its own footer.==
 
 So this record is about closing that, and about a second thing that turns out to
 be the same shape: making the contact form on the About page actually send.
 
 ## Two pipes that people conflate
 
-Sending and receiving are separate systems. They use different services, they
+**Sending and receiving are separate systems.** They use different services, they
 break for different reasons, and mixing them up is why "set up email on my
 domain" feels harder than it is.
 
@@ -84,18 +84,18 @@ $ find .vercel/output/static -name index.html | wc -l
 ```
 
 Thirteen pages of prerendered HTML, one function, and the routing table sends
-only `/api/contact` to it. The archive is still an archive. There is a single
-door in the wall of it.
+only `/api/contact` to it. **The archive is still an archive. There is a single
+door in the wall of it.**
 
 One pin worth recording. `@astrojs/vercel` is at version 11, which requires
 Astro 7. Version 10 requires Astro 6. The newest major that works with the Astro
-5 this site runs is **9.0.5**, and `npm install @astrojs/vercel` without a
+5 this site runs is 9.0.5, and `npm install @astrojs/vercel` without a
 version fails on the peer dependency rather than picking the right one.
 
 ## Reading a secret without baking it into the bundle
 
 The obvious way to read an API key in Astro is `import.meta.env.RESEND_API_KEY`.
-It works, and it is the wrong tool. Environment variables that are not prefixed
+**It works, and it is the wrong tool.** Environment variables that are not prefixed
 `PUBLIC_` still get statically replaced at build time, which means the key stops
 being a runtime lookup and becomes a string compiled into the function bundle.
 
@@ -122,16 +122,16 @@ location: /about/#contact-error
 A handler with only a `try/catch` around that call sees no error, falls through
 to the success branch, and redirects the visitor to a thank-you page. The
 message is gone and nothing anywhere says so. The fix is four lines, checking
-`error` on the result as well as catching. Worth writing down because ==the failure
-mode is silent and looks exactly like success==.
+`error` on the result as well as catching. ==The failure mode is silent and looks
+exactly like success.==
 
 ## The form was missing the reply
 
 Reading the existing markup before wiring it up: the form collected a name, a
 company, and "What's eating your time?" It did not collect an email address.
 
-==Every submission would have arrived with a problem to solve and no way to answer
-it.== The field is in now, required, and the endpoint sets it as the message's
+**Every submission would have arrived with a problem to solve and no way to answer
+it.** The field is in now, required, and the endpoint sets it as the message's
 `Reply-To`, so hitting Reply in Gmail answers the person who wrote in rather than
 the mailbox the form sends from.
 
@@ -143,8 +143,8 @@ usually wants some. This one does not. On failure the endpoint redirects to
 hidden. The browser does the work.
 
 What that block says matters more than how it appears. It names whose fault it
-is, and it hands over the direct address, because an error message that only
-apologises is a second dead end for someone who was trying to reach me.
+is, and it hands over the direct address. ==An error message that only apologises
+is a second dead end for someone who was trying to reach me.==
 
 Both redirects are `303`, not `302`, so the browser follows with GET and a
 refresh on the thank-you page cannot resubmit the form.
@@ -155,7 +155,7 @@ Here is the part that sounds like it should not work. A domain has one set of MX
 records and one SPF record per name. Cloudflare wants MX for receiving. Resend
 wants MX and SPF for sending. That reads like a collision.
 
-It is not, because they claim different names.
+**It is not, because they claim different names.**
 
 ![Three groups of DNS records. Cloudflare, for receiving, owns the apex: MX and TXT SPF. Resend, for sending, owns send with MX and TXT SPF, and resend._domainkey with TXT DKIM. A third group, policy, applies to both: an orange-marked _dmarc TXT record to start at p equals none.](./assets/dns-map.svg)
 
@@ -189,7 +189,7 @@ to work before this step rather than after.
 
 ## Honest note
 
-The code is in and the failure paths are tested. The DNS is not done yet. No
+**The code is in and the failure paths are tested. The DNS is not done yet.** No
 records exist as of this writing, no Resend domain is verified, and no message
 has travelled the whole pipe. That half happens on camera, and the `dig` output
 at the top of this post is the "before" shot.
@@ -205,7 +205,7 @@ mail arrives is the next thing to find out, in public.
 | DEC 002 | `@astrojs/vercel` pinned to `^9.0.5`, the newest major that peers with Astro 5 | SETTLED |
 | DEC 003 | Secret read through `astro:env/server`, not `import.meta.env`, so it is not compiled into the bundle | SETTLED |
 | DEC 004 | The endpoint delivers to `hello@`, not to a personal inbox, so the destination lives in a dashboard and not in the repo | SETTLED |
-| DEC 005 | Resend verifies the **root** domain; its records land on `send.` and do not touch the apex Cloudflare needs | SETTLED |
+| DEC 005 | Resend verifies the root domain; its records land on `send.` and do not touch the apex Cloudflare needs | SETTLED |
 | DEC 006 | DMARC `rua` points at an address on this domain, and starts at `p=none` | TESTING |
 | DEC 007 | Error state is a `:target` block, so the About page stays prerendered and ships no JavaScript | SETTLED |
 | DEC 008 | Spam handling deferred to its own episode. It must land before the site opens to search | TESTING |

@@ -42,17 +42,17 @@ That's the actual problem, and everything else follows from it.
 
 A lodge is not a product you can try. The guest is booking a trip to another
 country on the strength of some photographs and a feeling about whether these
-people seem competent. So the photographs are not decoration on this site. They
-are the inventory. Anything that makes them slow, or small, or badly cropped is
+people seem competent. ==The photographs are not decoration on this site. They
+are the inventory.== Anything that makes them slow, or small, or badly cropped is
 taking money off the table.
 
 The second constraint is the team. It's small, and none of them are developers.
-A site that requires a developer for every seasonal update is a site that goes
-stale by March, and a stale site on a seasonal business reads as a closed one.
+**A site that requires a developer for every seasonal update is a site that goes
+stale by March, and a stale site on a seasonal business reads as a closed one.**
 
 ## One job, kept narrow
 
-The site has one job that matters: turn an interested visitor into an enquiry. So
+**The site has one job that matters: turn an interested visitor into an enquiry.** So
 it stays narrow. One clear path to a contact form, no popups, nothing else
 competing for the click. Everything on the page is there to support that step or
 to get out of its way.
@@ -86,8 +86,8 @@ seasonal details. They change it in a simple studio and the site reads it at bui
 time. No deploy to swap a photo.
 
 That one is worth pulling out of the list, because it isn't really a technology
-decision. As I said on my own build, a CMS is a decision about who is allowed to
-change what, without asking anyone. Pick wrong and you've made yourself a
+decision. As I said on my own build, **a CMS is a decision about who is allowed to
+change what, without asking anyone.** Pick wrong and you've made yourself a
 permanent dependency for a business that just wants to post this season's photos.
 ==I'd rather ship something they own.==
 
@@ -104,8 +104,8 @@ a picture sized for a desktop screen. So every image is resized and converted to
 modern format on demand, at the exact width the device asked for, then cached.
 The visitor sees nothing different. They just see it sooner.
 
-**Delivery.** A contact form is worthless if the enquiry lands in spam, or if the
-reply does. Getting mail to pass a domain's strict anti-spoofing checks, so a
+**Delivery.** ==A contact form is worthless if the enquiry lands in spam, or if the
+reply does.== Getting mail to pass a domain's strict anti-spoofing checks, so a
 reply reaches the guest's own inbox, was more work than the form itself.
 
 **Reading.** The audience skews older. That set hard floors on text size and color
@@ -136,4 +136,4 @@ And most of your real work will land in the parts nobody notices: the picture th
 loads in time, the mail that arrives, the photo the owner swapped without calling
 you.
 
-Everything the visitor praises sits on top of the work they never see.
+**Everything the visitor praises sits on top of the work they never see.**

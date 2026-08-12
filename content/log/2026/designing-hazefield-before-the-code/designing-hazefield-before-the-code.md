@@ -24,12 +24,12 @@ Hazefield is a generative engine for long-form drone and ambient music. Eight
 layers of sound, each evolving on its own, rendered out to files that can run for
 hours.
 
-This entry isn't about the sound. It's about the eleven bugs I found in it before
-a single line of code existed, and what that cost me: one careful read.
+This entry isn't about the sound. ==It's about the eleven bugs I found in it before
+a single line of code existed, and what that cost me: one careful read.==
 
-I haven't written any code for Hazefield yet, and that's on purpose. The whole
+I haven't written any code for Hazefield yet, and that's on purpose. **The whole
 design exists first, as a document, the same way a film is storyboarded before a
-camera rolls. Call it pre-production for software.
+camera rolls.** Call it pre-production for software.
 
 ## Write the blueprint first
 
@@ -47,8 +47,8 @@ screen. You find the awkward parts by touching them.
 
 ## Then audit it like it belongs to someone else
 
-A finished-looking document isn't a correct one, and the person least able to see
-that is the person who wrote it. So I read the blueprint back against itself, on
+==A finished-looking document isn't a correct one, and the person least able to see
+that is the person who wrote it.== So I read the blueprint back against itself, on
 purpose looking for trouble: anything that contradicted, anything that wouldn't
 build, anything the prose was selling that the spec never actually defined.
 
@@ -56,8 +56,8 @@ That pass found nine real problems. A second pass found two more the first one
 missed. Eleven, all sitting in a document, none of them in code.
 
 The two-pass part matters. If the first read finds nine and the second still finds
-two, the honest conclusion isn't "eleven." It's that I don't know how many are
-left, and one careful read is not enough on anything that matters.
+two, the honest conclusion isn't "eleven." **It's that I don't know how many are
+left, and one careful read is not enough on anything that matters.**
 
 ## Three of the eleven, in plain terms
 
@@ -75,9 +75,9 @@ prose kept selling, an LFO "shape," was never in the actual design at all.
 
 **One trap was structural.** Opening an external plugin's own window could freeze
 the entire app, because the plugin's interface and Hazefield's interface would
-fight over the same thread. The fix is to run plugins in a separate process. That's
-a large decision, and it's far cheaper to make now, in a document, than after the
-audio engine has been built around the wrong shape.
+fight over the same thread. The fix is to run plugins in a separate process. ==That
+is a large decision, and far cheaper to make in a document than after the audio
+engine has been built around the wrong shape.==
 
 ## The decisions, on the record
 
@@ -102,10 +102,10 @@ zero lines of code. From the outside that can look like avoiding the work.
 
 It's the opposite. The audit found eleven real problems in a document I thought was
 finished. Every one of them would have been a bug in the build, and some were the
-kind you only find after you've built the wrong thing around them. Finding them
-cost a careful read. Fixing them cost a few edits.
+kind you only find after you've built the wrong thing around them. **Finding them
+cost a careful read. Fixing them cost a few edits.**
 
-TAKEAWAY: ==the cheapest place to fix a bug is in a sentence.== The next cheapest is a
+TAKEAWAY: the cheapest place to fix a bug is in a sentence. The next cheapest is a
 mockup. Code is the most expensive place of all, so I spend the thinking there
 first and the typing there last.
 

@@ -49,8 +49,8 @@ six months.
 
 Both of those ran on people. Long hours, tight coordination, and somebody always
 holding the whole picture in their head. That's the part worth being honest about.
-It worked, and it didn't scale. You can't hire your way out of a process problem
-forever.
+==It worked, and it didn't scale. You can't hire your way out of a process problem
+forever.==
 
 ![Three years at Crehana: 2021 building the dubbing division from outside via BueHub, 2022 launching Brazil from inside, then 2022 to 2024 building the system across Latam.](./assets/arc.svg)
 
@@ -66,8 +66,8 @@ minutes were in production, where courses were stuck, how long corrections took,
 how the budget tracked against the plan. Before that, the answer to most questions
 was a guess delivered in a confident voice.
 
-Once the numbers were on a screen instead of in a rumor, the bottlenecks named
-themselves. Nobody had to be talked into believing that corrections were the
+**Once the numbers were on a screen instead of in a rumor, the bottlenecks named
+themselves.** Nobody had to be talked into believing that corrections were the
 problem. You could see that corrections were the problem.
 
 ![Dashboard: post-production minutes per month roughly doubling, corrections under 48 hours, full pipeline uptime.](./assets/dashboard.svg)
@@ -117,8 +117,8 @@ under 48 hours. The pipeline held at full uptime. Throughput, counted in courses
 out the door, rose about 80 percent. Across the three years the operation shipped
 more than 600 courses.
 
-One honest note. That automation meant a role we had been staffing stopped being
-necessary. That's the part of this work nobody puts on a slide, and it's worth
+One honest note. **That automation meant a role we had been staffing stopped being
+necessary.** That's the part of this work nobody puts on a slide, and it's worth
 saying out loud.
 
 ```terminal
@@ -130,7 +130,7 @@ launch feed   · published from the board
 
 ## Cut what's left over
 
-Some of the largest wins were subtractions.
+**Some of the largest wins were subtractions.**
 
 I audited the tool stack and cancelled what overlapped or went unused. Frame came
 off the bill at $3,240 a year. Trint was replaced by Whisper, which did the same
@@ -139,8 +139,8 @@ another $840. That's $16,420 a year in tools nobody missed.
 
 Replacing a manual translation process with an AI-assisted one saved another
 $10,000 and cut the turnaround at the same time. Add the efficiency savings in
-review time and production minutes, and the number I handed over when I left was
-more than $22,000 a year.
+review time and production minutes. ==The number I handed over when I left was
+more than $22,000 a year.==
 
 ![Ledger of cancelled subscriptions: Frame at $3,240 a year, Trint replaced by Whisper at $12,340, Dropbox at $840, totaling $16,420 a year, plus more than $10,000 from AI-assisted translation.](./assets/ledger.svg)
 
@@ -196,4 +196,4 @@ tools. See it, centralize it, automate it, then cut what's left over. Run that
 backwards and you automate a process nobody understands, on a stack nobody agreed
 to.
 
-The tools are replaceable. Every one of them. The sequence is not.
+**The tools are replaceable. Every one of them. The sequence is not.**

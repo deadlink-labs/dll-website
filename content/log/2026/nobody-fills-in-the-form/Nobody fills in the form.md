@@ -32,8 +32,8 @@ it. The client is a manufacturer of heat exchangers, electrovalves, pumps and
 process equipment, sold and maintained inside food, dairy and pharmaceutical
 plants. They're not named here, and neither is anyone who works there.
 
-What I proposed is one sentence long: the technician talks for two minutes on
-WhatsApp, and the system writes the report.
+What I proposed is one sentence long: **the technician talks for two minutes on
+WhatsApp, and the system writes the report.**
 
 ```terminal
 $ docker compose ps
@@ -48,8 +48,8 @@ gotenberg   running   html in, pdf out
 The report isn't an internal formality. In a pharmaceutical or a dairy plant,
 quality receives it and files it as a controlled document. When an audit comes,
 that paper is what gets shown. So an unfinished report isn't a form filled in
-badly. It's a finding, in somebody else's plant, with the manufacturer's name on
-it.
+badly. **It's a finding, in somebody else's plant, with the manufacturer's name on
+it.**
 
 Then there's the side nobody is looking at. Without structured data there's no
 failure history per machine and per customer. Every service starts from zero.
@@ -59,16 +59,16 @@ Spares and warranties get estimated by feel, because there's nothing to count.
 
 The constraint that decides everything came out of watching how the report
 actually gets filled in, not from the form itself. The technician is dirty, in a
-hurry, in a plant that isn't his, finishing at six in the evening. Anything that
+hurry, in a plant that isn't his, finishing at six in the evening. ==Anything that
 adds a step won't get used. That's not a training problem, and it won't be fixed
-by a better form.
+by a better form.==
 
 TAKEAWAY: when a process fails at the same point every time, look at the
 conditions at that point, not at the artifact. The form was never the problem.
 
 ## From audio to report
 
-Six steps. The technician is in exactly one of them.
+**Six steps. The technician is in exactly one of them.**
 
 ![Six titled steps from audio to report, with animated connectors: sends an audio, instant reply, transcribed locally, the AI sorts it, asks for what is missing, report and history. Only step 01 is green, because only step 01 involves a person, and only step 06 is orange, because only the report reaches a customer.](./assets/flow.svg)
 
@@ -121,8 +121,8 @@ heading.
 
 I counted the steps in the flow and asked which ones need judgement. Receiving
 the webhook: no. Checking the message isn't a duplicate: no. Checking the number
-is authorized: no. Downloading the audio: no. Transcribing it: no. **Reading the
-technician's story and pulling the facts out of it: yes.** Saving to the database:
+is authorized: no. Downloading the audio: no. Transcribing it: no. Reading the
+technician's story and pulling the facts out of it: yes. Saving to the database:
 no. Deciding whether something is missing: no, that's a length check. Generating
 the PDF: no. Sending it: no.
 
@@ -179,8 +179,8 @@ else. A data pipeline has to be boring in the middle.
 
 ## The subproduct is worth more than the report
 
-The report fixes the problem they have today. The thing it leaves behind is worth
-more, and it's the reason I'd have wanted this project.
+==The report fixes the problem they have today. The thing it leaves behind is worth
+more, and it's the reason I'd have wanted this project.==
 
 At the volume the costing assumes, six months in they have a few hundred
 structured service records: which machine, at which customer, failed how, and what
@@ -257,8 +257,8 @@ maintain.
 
 DEC 011 stays open on purpose. Running the structuring on their own hardware
 would make the system fully on-premise at zero running cost, and I didn't propose
-it, because a smaller model's failure mode is to fill in a number nobody said, and
-that number would land in a document that audits a pharmaceutical plant. So the
+it, because **a smaller model's failure mode is to fill in a number nobody said, and
+that number would land in a document that audits a pharmaceutical plant.** So the
 raw transcript and the model name are stored on every record from day one. When
 they want that conversation, it can be run on their own reports, and settled with
 data instead of opinion.
@@ -268,7 +268,7 @@ data instead of opinion.
 I sent it on 2026-07-29. Weeks have passed and there has been no reply, and at
 this point I don't expect one.
 
-That's the honest ending, and it doesn't change what the work is. The proposal
+**That's the honest ending, and it doesn't change what the work is.** The proposal
 shipped. The thinking is on the record, the architecture holds, and the four-edge
 pattern and the local-transcription argument have both gone straight into how I
 scope the next one.
@@ -290,4 +290,4 @@ code for everything between. That single rule is what makes a system somebody
 else's engineer is willing to trust.
 
 And build the thing they asked for in a way that leaves behind the thing they
-didn't know to ask for. The report was the deliverable. The history is the asset.
+didn't know to ask for. **The report was the deliverable. The history is the asset.**

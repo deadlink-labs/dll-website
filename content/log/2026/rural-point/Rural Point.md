@@ -40,7 +40,7 @@ needs a filename.
 One honest note before anything else. This was twenty years ago and I'm working
 from memory and a handful of photographs. The distances, the gain figures and
 the dates are as accurate as I can make them, and where I'm not sure I say so.
-Nothing here is reconstructed to sound better than it was.
+**Nothing here is reconstructed to sound better than it was.**
 
 ## Nobody was going to sell us this
 
@@ -55,8 +55,8 @@ going to do it out of kindness. Mobile data existed in the way that a rumor
 exists.
 
 So the question stopped being "when does service get here" and became "what
-would it actually take to build it." Those are very different questions. The
-first one you wait on. The second one has a parts list.
+would it actually take to build it." Those are very different questions. **The
+first one you wait on. The second one has a parts list.**
 
 ## The expensive part was the connection, so I tested the cheap part first
 
@@ -65,7 +65,7 @@ piece: a monthly bill, a contract, radio hardware at both ends of a 15-kilometer
 link, and a commitment I'd be stuck with. The local distribution around the
 property was comparatively cheap.
 
-And the risk was sitting in exactly the wrong place. If I bought the connection
+**And the risk was sitting in exactly the wrong place.** If I bought the connection
 first and then discovered the signal couldn't reach the far side of the
 property, I'd own a bill and a very tall antenna and nothing anybody wanted.
 
@@ -184,8 +184,8 @@ March came blasting out of those terrible little laptop speakers, four
 kilometers from the machine that was playing it.
 
 That was the moment it stopped being an experiment. A ping tells you a packet
-survived. Darth Vader coming out of a laptop speaker in a parked car tells you
-the link will carry whatever you decide to put on it.
+survived. **Darth Vader coming out of a laptop speaker in a parked car tells you
+the link will carry whatever you decide to put on it.**
 
 There was also something perfectly appropriate about the soundtrack. Every
 square kilometer around that tower had just quietly become my little empire, and
@@ -215,7 +215,7 @@ directional antenna, the access point, the mount, the cable, plus my
 installation fee. The monthly ISP bill got split across whoever was subscribed
 at the time.
 
-Which means I de-risked the money exactly the way I'd de-risked the radio. Prove
+**Which means I de-risked the money exactly the way I'd de-risked the radio.** Prove
 the cheap thing first, spend on the expensive thing second, and don't buy eight
 households' worth of hardware for eight households that haven't agreed to
 anything yet.
@@ -254,8 +254,8 @@ box at ground level where I could reach it without a harness, a MikroTik router
 did the actual routing between the two.
 
 That split was deliberate. Anything that might need a firmware update, a reboot,
-or a configuration change lived at the bottom of the tower. Only the antennas
-and the radios that had to be high were high.
+or a configuration change lived at the bottom of the tower. **Only the antennas
+and the radios that had to be high were high.**
 
 ![Cross-section of the tower and one subscriber roof: at the base, a MikroTik router and the Pentium II in a ground-level box. Up 35 meters, the 8 dBi omni with its access point and the backhaul dish aimed at the relay. On the right, a subscriber roof with a 24 dBi grid dish feeding a D-Link access point in a weatherproof box, and cable running indoors.](./assets/rural-point-equipment-stack.svg)
 
@@ -290,9 +290,9 @@ and nothing had been the only option available.
 
 ## Three years, then a Sudestada
 
-It ran for about three years, essentially nonstop.
+==It ran for about three years, essentially nonstop.==
 
-==That's the number that counts.== Not a weekend demo. Not a proof of concept
+That's the number that counts. Not a weekend demo. Not a proof of concept
 sitting on a bench with somebody watching it. Three years of being the thing a
 handful of households in the
 countryside relied on to reach the internet, in weather, without a support
@@ -304,9 +304,9 @@ wireless network can get.
 And here's the design flaw, stated plainly, because it's the most useful thing
 in this entire post. Every house had its own antenna and its own access point.
 The distribution was properly distributed. But all of it pointed at one
-structure. There was no second tower, no fallback path, and no plan for one. The
+structure. There was no second tower, no fallback path, and no plan for one. **The
 whole network had exactly one single point of failure, I knew it the entire
-time, and after three years the weather went and found it.
+time, and after three years the weather went and found it.**
 
 ## The decisions, on the record
 
@@ -326,9 +326,9 @@ time, and after three years the weather went and found it.
 DEC 010 is the one I got wrong, and I got it wrong knowingly. A second relay
 point would have cost real money to serve a failure that hadn't happened yet, so
 I didn't build one. Three years later the entire network ended in an afternoon.
-I still think the call was defensible on the economics. I no longer think it was
+I still think the call was defensible on the economics. **I no longer think it was
 defensible to make it silently, without ever telling the people paying me that
-their service hung on one guyed tower.
+their service hung on one guyed tower.**
 
 ## What carries over
 
@@ -349,8 +349,8 @@ workflows, with better tools and much worse stories. The acronyms change every
 few years. The sequence doesn't.
 
 The thing I would do differently is DEC 010, and it generalizes further than radio.
-If everything you've built points at one component, you haven't built a system.
-You've built a very good demonstration that happens to still be running.
+**If everything you've built points at one component, you haven't built a system.
+You've built a very good demonstration that happens to still be running.**
 
 This is the first of these. I have twenty years of projects that were never
 written down anywhere, and I'm going to work through the ones I can still find

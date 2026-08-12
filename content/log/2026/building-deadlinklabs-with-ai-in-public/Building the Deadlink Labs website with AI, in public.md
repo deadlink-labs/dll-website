@@ -54,7 +54,7 @@ TAKEAWAY: Iterate where iteration is cheap.
 
 ## One brief beats a hundred corrections
 
-I reconciled all three into one file, `CLAUDE.md`, the brief for the entire project. Blueprint, design decisions, structure, voice rules, even how I number my commits, in a single source of truth. When the AI has a question, that file answers it. ==The quality of what you build comes straight from the quality of that file.== One clear brief beats a hundred small corrections later.
+I reconciled all three into one file, `CLAUDE.md`, the brief for the entire project. Blueprint, design decisions, structure, voice rules, even how I number my commits, in a single source of truth. When the AI has a question, that file answers it. The quality of what you build comes straight from the quality of that file. ==One clear brief beats a hundred small corrections later.==
 
 ![A diagram drawn in pale hairlines on a dark ground. One node at the left, labelled PREMISE, opens outward into three parallel rails: BLUEPRINT, the why; DESIGN, look and feel; STRUCTURE, how it works. The three rails close again on the right onto a single glowing orange node labelled CLAUDE.md, so the whole shape opens and then narrows to one point.](./assets/the-brief.svg)
 
@@ -89,7 +89,7 @@ That version numbering has one rule I like. A leading zero means "still in devel
 
 ## No CMS, because Obsidian is already my source of truth
 
-There's no CMS, on purpose. I already write everything in Obsidian: notes, daily logs, research, all of it. So the vault is the source. ==A plain note becomes a published page by saving it and pushing==, with nothing in between and no second copy of the content living anywhere else.
+There's no CMS, on purpose. I already write everything in Obsidian: notes, daily logs, research, all of it. So the vault is the source. ==A plain note becomes a published page by saving it and pushing, with nothing in between and no second copy of the content living anywhere else.==
 
 ![Two lanes compared on a dark ground. The upper lane, THE USUAL WAY, runs EDITOR to CMS DATABASE to SITE and ends in the numeral 2 over the words COPIES OF THE CONTENT. The lower lane, THIS SITE, runs from a glowing orange node labelled VAULT NOTE straight to SITE, and ends in a much larger numeral 1 over the words COPY OF THE CONTENT.](./assets/no-second-copy.svg)
 
