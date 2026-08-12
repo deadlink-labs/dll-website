@@ -16,8 +16,15 @@ one is the single most common failure, so do this before anything else.
 
 | What you are writing | Read |
 |---|---|
-| Log post, throwback, product page, About copy, anything read off a screen | **[VOICE-POSTS.md](VOICE-POSTS.md)** |
-| Narration for a video, anything in `my_assets/video-scripts/` | **[VOICE-SCRIPTS.md](VOICE-SCRIPTS.md)** |
+| Log post, throwback, product page, About copy, anything read off a screen | **`.local/voice/VOICE-POSTS.md`** |
+| Narration for a video (see step 5 of SCRIPT mode for where those live) | **`.local/voice/VOICE-SCRIPTS.md`** |
+
+Paths are relative to the repo root. **Both documents are gitignored, local only**
+(moved there 2026-08-12), so a clone of the repo does not have them. If the one you
+need is not on disk, **stop and say so** — do not reconstruct the voice from
+CLAUDE.md §6, which is a summary, and do not write from memory of a previous run.
+Producing plausible-sounding copy without the guide is the failure this skill
+exists to prevent.
 
 **The one difference that matters: contractions.** Posts use them freely, because
 a page with none reads like terms and conditions. Scripts avoid them, because
@@ -74,7 +81,10 @@ Pick the mode from what the user asked for.
 4. Check every technical step still matches CLAUDE.md (stack, folder names,
    versioning, build order). A script that teaches a stale step is worse than no
    script.
-5. Scripts live in `my_assets/video-scripts/` and are **gitignored**, local only.
+5. Scripts live in the Obsidian vault, `DLL-CONTENT/dll video scripts/` — **outside
+   this repo**, beside the content repo and never inside it. They are named
+   `log-NNN-(video-script)-Title.md` for a teleprompter script and
+   `log-NNN-(compiled-process)-Title.md` for a reference cut; match the pattern.
    ROADMAP.md outranks them when they disagree.
 
 ### CHECK — an existing draft → flagged + rewritten
@@ -135,7 +145,7 @@ Two checks worth running as an actual grep rather than by eye:
 
 ## Guardrails
 
-- Voice rules live in `VOICE-POSTS.md` and `VOICE-SCRIPTS.md`, not here. If asked
+- Voice rules live in `.local/voice/VOICE-POSTS.md` and `.local/voice/VOICE-SCRIPTS.md`, not here. If asked
   to change the voice, edit those, not this skill.
 - Their §1 blocks are **byte-identical on purpose**. Change that section in both
   files or in neither.

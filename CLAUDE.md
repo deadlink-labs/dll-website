@@ -7,7 +7,19 @@ Two companion documents in `my_assets/` are the authorities this brief is reconc
 - **`Deadlink Labs Design Brief-handoff.zip`** — the final visual handoff (Claude Design). The settled direction is **design 8A ("Bridge Truss")**; §3 below is derived from it.
 - **`DLL Web - Structure v2.md`** — the authoritative information-architecture and build spec. §2, §4, §5 below are derived from it.
 
-`my_assets/video-scripts/` holds scripts for videos documenting the build process (e.g. the LOG 001 video). These are reference material only — never site content (see §8). When editing a script, check that every technical step it describes still matches this brief (stack, folder names, versioning, build order).
+**"Script" means two different things in this repo. Say which one.** The word is
+overloaded and the two folders have nothing to do with each other:
+
+| Say this | Path | What it is | Tracked? |
+|---|---|---|---|
+| **video script** | Obsidian vault, `DLL-CONTENT/dll video scripts/` | Episode narration, read off a teleprompter | **outside this repo** |
+| **build script** | `scripts/` | Node tooling run via `npm run` (`cover`, `tiles`, `emphasis`, `favicon`) | tracked |
+
+Never write "the script" unqualified in a doc, a commit message, or a roadmap
+box. "Update the script" has meant both, and the ambiguity has already cost a
+round trip.
+
+The narration for videos documenting the build process (e.g. the LOG 001 video) lives in the Obsidian vault, at `DLL-CONTENT/dll video scripts/` — **outside this repo entirely** (moved 2026-08-12, so Marcelo can read along in Obsidian while recording). It sits *beside* `dll-website-content/`, never inside it, which is what keeps it out of the content clone and out of the build. These are reference material only — never site content (see §8), and they are written to `.local/voice/VOICE-SCRIPTS.md`, not `.local/voice/VOICE-POSTS.md` (§6). When editing a video script, check that every technical step it describes still matches this brief (stack, folder names, versioning, build order); [ROADMAP.md](ROADMAP.md) outranks it when they disagree.
 
 ---
 
@@ -112,7 +124,7 @@ Orange is scarce by design: the live node, status dots, link hover/underline acc
   - **The marked lines are written for a CEO or recruiter who will not read the post** (settled 2026-08-11). They scroll, the yellow catches, they read four lines and decide whether this person thinks well — so the marks carry the **decisions and the reasoning**: what was chosen, what was rejected, and why. This is §1 goal #2 in one device, and the 90-second test applied to a single page. **Mark judgment, not mechanics:** "Vercel builds and hosts" is true, necessary, and worth nothing to a skimmer. A marked line that would read the same in anyone else's post is the wrong line.
   - **Read the whole post before marking anything, and rank candidates across the post rather than accepting them in reading order.** Marking while reading is what spends the budget on the first three sections and leaves the back half bare; the first pass over the archive did exactly that and was redone the same week. Two further rules came out of that redo: a highlight is a **complete self-contained sentence**, never a clipped phrase (LOG 001's best runs 28 words because the payload is the last clause), and where a paragraph explains an idea and then lands it, **mark the landing** — echoing the section heading is a feature, not a redundancy.
   - **Distribution is a rule, and the build cannot see it.** No two marks within ~10% of each other, none past ~85% of the post, and **at most one bold per H2 section**. Both archive extremes failed the last one: LOG 013 ran 3,300 words and nine sections with zero bold, LOG 012 ran thirteen bolds in nine sections. `npm run emphasis` ([`scripts/emphasis-report.mjs`](scripts/emphasis-report.mjs)) reports positions and flags all of it; `remark-mark.mjs` only ever sees the caps.
-  - Authoring rules live in [VOICE-POSTS.md](VOICE-POSTS.md) §4, and the `/log-post` skill's EMPHASIS mode runs them. Never highlight inside a dark panel; the plugin will not allow it.
+  - Authoring rules live in `.local/voice/VOICE-POSTS.md` §4, and the `/log-post` skill's EMPHASIS mode runs them. Never highlight inside a dark panel; the plugin will not allow it.
 - **One size per role** (settled 2026-08-10). The ladder is not a menu to pick from per component. Every list/card **title** on a surface is the same size, every **snippet** is the same size, every **paragraph** is the same size — so a reader learns the hierarchy once. The homepage drifted to eight sans sizes (56 / 22 / 20 / 19 / 18 / 17 / 15 / 14.5) by each component choosing its own, and read as noise: `.stamplist__title`, `.card__title` and `.product__title` are now all **20**; `.stamplist__snippet`, `.card__snippet` and `.product__snippet` are all **15**; `.band-lede`, `.hero__overview` and `.who__text` are all **18**. `.feed-item__title` stays **17** — the Recent feed is a compact index row (number, status, title, date on one line), lighter than a thumbnail row by design, not by drift. **Adding a size to make one thing louder is the wrong lever** — use position, a rule, or air.
   - *Known drift, deliberately not reconciled:* body ships at **18px** (`global.css`) where this ladder says 17, and the mono chrome runs 11 / 11.5 / 12 / 12.5. Both are their own decision, not something to fix incidentally mid-task.
   - *The feed rows do not ladder, and a screenshot will say they do* (settled 2026-08-10). Every row in the Recent band is one size — `.feed-item__title` at 17px, set once in [`FeedItem.astro`](src/components/FeedItem.astro), no `nth-child`, no index-driven scale, no override at either call site. What reads as a descending ramp is the titles **tapering in length**: the slice on the page ran 62 / 66 / 54 / 50 / 43 characters, the top two wrapped and the bottom three did not, and double the ink reads as bigger type. Check the component before believing the picture.
@@ -146,7 +158,7 @@ Banned: scroll-triggered reveals on prose, parallax, hero choreography, anything
 
 **The animation lives inside the `.svg`, self-contained.** Each animated tile carries its own `<style>` block holding its keyframes and its own `prefers-reduced-motion` guard, and applies the animation through an inline `style` attribute on the elements that move. Nothing on the page is involved, which is the point: the file animates identically when opened in a browser, a design tool, or a pull request. Real examples, both in LOG 012 (`content/log/2026/nobody-fills-in-the-form/assets/`): `flow.svg` uses `@keyframes flowdash`, `pipeline.svg` uses `@keyframes n8nflow`, and both guard with `[style*="<name>"] { animation: none !important; }`. Keep the static form in the file too (a `stroke-dasharray`, say) so it still reads as a finished diagram when nothing is moving.
 
-**Marching dashes are ambient; a step reveal is a performance.** A connector whose dashes drift is texture, and it may ship in a post. A diagram that builds itself one step at a time demands attention and belongs in a video, not under prose someone is reading (§3 Motion). LOG 002's `two-pipes.svg` does both jobs from one file: it ships static, and it carries inert `class="step step--N"` groups that only a gitignored local harness (`my_assets/video-scripts/two-pipes-reveal.html`, written by the same generator) ever styles. `remark-svg-specimen.mjs` strips only `width` and `height` from the root plus one narrow `font-family`, so classes survive inlining and cost nothing when unused.
+**Marching dashes are ambient; a step reveal is a performance.** A connector whose dashes drift is texture, and it may ship in a post. A diagram that builds itself one step at a time demands attention and belongs in a video, not under prose someone is reading (§3 Motion). LOG 002's `two-pipes.svg` does both jobs from one file: it ships static, and it carries inert `class="step step--N"` groups that only a gitignored local harness (`.local/two-pipes-reveal.html`, written by the same generator) ever styles. `remark-svg-specimen.mjs` strips only `width` and `height` from the root plus one narrow `font-family`, so classes survive inlining and cost nothing when unused.
 
 Cover tiles get no animation: they are rasterized to `.webp`.
 
@@ -343,7 +355,9 @@ their tools.)
 
 Per Structure v2 §3.5 / §8. This is a **content archive, not an app**.
 
-- **Astro** (content collections) + **TypeScript** + **Tailwind CSS**. Ships zero JavaScript by default; hydrates only components explicitly marked interactive (islands). Astro's built-in schema validation and image optimization are load-bearing (see below).
+- **Astro** (content collections) + **TypeScript** + **Tailwind CSS**. Astro's built-in schema validation and image optimization are load-bearing (see below).
+  - **"Zero JavaScript by default" means zero *framework* JavaScript** (clarified 2026-08-12). No UI framework is installed, no component is hydrated, and there is not one `client:*` directive in `src/`. It has never meant zero `<script>` tags, and reading it that way caused a real defect: LOG 002's draft claimed "the site ships no client JavaScript" while `about/index.html` shipped Nav's scroll listener and the homepage shipped [NetworkMark.astro](src/components/NetworkMark.astro)'s `requestAnimationFrame` loop. The constraint then got enforced on the *contact form* alone, the one place it cost a conversion.
+  - **A hand-written inline `<script>` is in-idiom; a hydrated island is the thing to justify.** Four exist and each is small and self-contained: [Nav.astro](src/components/Nav.astro) (scroll hairline), [VideoEmbed.astro](src/components/VideoEmbed.astro) (the YouTube facade), `NetworkMark.astro` (the cover mark), and the About contact form. Adding a fifth needs a reason; adding a framework needs a much better one (§3 Motion says the same about Framer Motion).
 - **Vercel** deploy (official Astro adapter), **Cloudflare** DNS.
   - **`output` is not set, and must stay unset** (settled 2026-08-11, LOG 002). Astro's default is `'static'`, and `@astrojs/vercel` does not change that: the adapter only unlocks per-route opt-out. `src/pages/api/contact.ts` is the one file carrying `export const prerender = false`, and the build produces 13 static HTML pages plus one function. Switching to `output: 'server'` would make every page on-demand and throw away the point of a static archive. An earlier roadmap note said "switch output mode off pure-static"; that is wrong for Astro 5 and has been corrected.
   - **`@astrojs/vercel` is pinned to `^9.0.5`** — the newest major that peers with Astro 5. Version 10 requires Astro 6, version 11 requires Astro 7, and a bare `npm install @astrojs/vercel` fails on the peer range rather than resolving to the right one. Do not reach for `--force` or `--legacy-peer-deps`; that installs an adapter built for a different Astro.
@@ -354,8 +368,10 @@ Per Structure v2 §3.5 / §8. This is a **content archive, not an app**.
 - Analytics: NONE at launch (deliberate — the site ships clean). Do not add tracking scripts, cookie banners, or consent tooling in v1.
   - **When it lands, it is Cloudflare Web Analytics** (settled 2026-08-11, ships with LOG 004). This supersedes the earlier "GA4 gets added later", which contradicted both ROADMAP.md and the LOG 004 script and would have dragged a cookie banner back in against §8. Cloudflare is free with no traffic cap, keeps 6 months against Vercel Hobby's 1, and includes Core Web Vitals rather than billing them as a separate product. Custom events are unavailable on *both* free tiers, so Vercel's only possible edge is not on the table, and form conversions are already counted in the Resend dashboard. **Pick one, not both.** Vercel Web Analytics was considered and rejected; do not re-propose it without a new reason.
 - Forms: contact + waitlists via Resend (server action / endpoint → Resend API; waitlist signups to Resend Audiences). SPF/DKIM records on Cloudflare DNS.
-  - **Contact form shipped in LOG 002.** `POST /api/contact` → Resend → `hello@deadlinklabs.com`. It sends to the public alias rather than a personal inbox, so the destination lives in a Cloudflare forwarding rule instead of in the repo, and the personal address never appears in public source. `replyTo` carries the visitor's address. **Resend reports a rejected send in the response payload rather than by throwing**, so the handler checks `error` as well as catching; without that check a failed send is indistinguishable from a successful one and the message is silently lost.
-  - **Failure is reported with `:target`, not JavaScript.** The endpoint redirects to `/about/#contact-error` and a CSS `:target` rule reveals the block, so the About page stays prerendered. Both redirects are `303` so a refresh cannot resubmit. The error copy hands over the direct mailto: an error that only apologises is a second dead end.
+  - **Contact form shipped in LOG 002, as an Astro Action** (`src/actions/index.ts` → Resend → `hello@deadlinklabs.com`). This follows [Resend's own Astro guide](https://resend.com/docs/send-with-astro), which uses `defineAction({ accept: 'form' })` rather than a hand-written API route: validation is a declared zod `input` schema instead of hand-rolled trimming and a regex, and the call returns `{ data, error }` with no fetch, JSON parsing or status mapping to write. It sends to the public alias rather than a personal inbox, so the destination lives in a Cloudflare forwarding rule instead of in the repo, and the personal address never appears in public source. `replyTo` carries the visitor's address. **Resend reports a rejected send in the response payload rather than by throwing**, so the handler checks `error` as well as catching; without that check a failed send is indistinguishable from a successful one and the message is silently lost. Resend's own example checks it for the same reason.
+    - **Two deliberate departures from that guide.** The key is read via `astro:env/server`, not `import.meta.env` (which would compile it into the bundle — see the secrets bullet above). The mail body is `text:`, not `html:`, so a stranger's input is never interpolated into markup.
+  - **The form calls the action from a script, which is what keeps `/about` prerendered.** Astro requires the *page* to be on-demand rendered when a form uses `action={actions.x}`; using that form would force `prerender = false` on About and turn the archive's most important page into a function. Client-side RPC does not, because only the action endpoint runs server-side.
+  - **A failed send never destroys what the visitor typed.** The first version redirected every failure to `/about/#contact-error` and revealed a block with a CSS `:target` rule, which meant the visitor landed on an *empty* form reading "something broke on my end" even when the real problem was a typo in their own address. On the one page that asks for anything (§1), that is the whole funnel. Errors now render in place with the fields intact, and field-level messages come back from the same schema that validates them. The error copy still hands over the direct mailto: an error that only apologises is a second dead end. `/thank-you/` and the `:target` block went away with the redirect.
   - **Waitlist forms are still unwired** (`WaitlistForm.astro`), and **the contact form has no spam protection yet**. Both are deliberately deferred to their own episodes; the honeypot is a hard gate before `ALLOW_INDEXING` flips (ROADMAP LOG 004).
 - YouTube embeds: use a lightweight facade (e.g. lite-youtube-embed pattern) — no third-party scripts load until the visitor clicks play.
 
@@ -678,16 +694,27 @@ Then **tools he actually uses** (Obsidian, Claude, VS Code, GitHub, Suno, Google
 
 ## 6. Voice & writing rules
 
-The rules below are the summary. The full, example-driven guides live at the repo
-root, and **there are two of them** (split 2026-08-11):
+The rules below are the summary. The full, example-driven guides live in
+`.local/voice/`, and **there are two of them** (split 2026-08-11):
 
 | Writing this | Read |
 |---|---|
-| Log post, throwback, product page, About copy | **[VOICE-POSTS.md](VOICE-POSTS.md)** |
-| Video narration, anything in `my_assets/video-scripts/` | **[VOICE-SCRIPTS.md](VOICE-SCRIPTS.md)** |
+| Log post, throwback, product page, About copy | **`.local/voice/VOICE-POSTS.md`** |
+| Video narration (see §Script, above) | **`.local/voice/VOICE-SCRIPTS.md`** |
 
 Read the matching one before drafting or editing. The `/log-post` skill routes to
 the right one and applies it.
+
+**Both are gitignored, local only** (moved out of the repo root 2026-08-12). They
+are Marcelo's own voice, worked out against real published posts, and that is not
+something anyone building from this repo should inherit — write in yours. `.local/`
+is the convention for that here: never committed, not part of the deliverable, one
+rule in `.gitignore`.
+
+**What stays public is this section.** The shared discipline below is what an agent
+needs in order to build the site, and it is a summary rather than an ear, so
+publishing it costs nothing. If neither guide is on disk, **say so and stop** —
+do not reconstruct the voice from this summary, and do not write from memory.
 
 **Why two files.** There used to be one `VOICE.md` with a "register dial" set per
 surface, and the dial was read wrong in both directions. Posts inherited a
@@ -743,7 +770,8 @@ Check it before starting work, and tick the boxes as you go.
 - No `.mdx`, no raw inline JSX in content, no frontmatter passthrough to output — plain `.md`, `web-*` fields only, fenced-block components. **The `![[embed]]` ban is retired** (2026-08-12): it existed because Astro's image pipeline cannot resolve a wikilink, and [`remark-obsidian.mjs`](src/plugins/remark-obsidian.mjs) now resolves one to a real relative path before the pipeline ever sees it. Both forms work; write whichever previews correctly in the vault. See §4 "Obsidian syntax parity".
 - Don't render unpublished content: `web-status: published` is the only pass.
 - Don't put the year in a URL; don't derive type from anything but the folder.
-- `my_assets/video-scripts/` is never published, never pulled into the build, and never a content collection entry.
+- Video scripts are never published, never pulled into the build, and never a content collection entry. They now live in the Obsidian vault at `DLL-CONTENT/dll video scripts/`, a **sibling** of `dll-website-content/` and never inside it — the build clones only the content repo, so the separation is structural rather than a rule to remember.
+- `.local/` is never committed and never read by the build. Nothing in it may become load-bearing for a deploy.
 
 ## 9. Versioning
 

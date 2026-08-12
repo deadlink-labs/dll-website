@@ -1,21 +1,23 @@
 # deadlinklabs.com
 
 Source for **Deadlink Labs**, the working laboratory and proof-of-work archive of
-Marcelo Brouard. The site is built in public: the brief, the plan and the voice
-guides are all in this repo, and the build itself is documented on the site as
-numbered log entries.
+Marcelo Brouard. The site is built in public: the brief and the plan are both in
+this repo, and the build itself is documented on the site as numbered log entries.
+
+One thing is deliberately held back: the two guides that define how Marcelo writes
+and speaks are local only, not in this repo. [CLAUDE.md](CLAUDE.md) §6 keeps the
+summary an agent needs and explains the gap. If you are building from this, write
+in your own voice.
 
 ## The documents
 
-This project is written down before it is coded. Four files carry the rules and
+This project is written down before it is coded. Two files carry the rules and
 outrank anything inferred from the source.
 
 | File | Holds |
 |---|---|
 | [CLAUDE.md](CLAUDE.md) | The brief. Design system, content model, page specs, versioning. **The rules.** |
 | [ROADMAP.md](ROADMAP.md) | The sequence. Episodes, checkboxes, decisions log. **What is next.** |
-| [VOICE-POSTS.md](VOICE-POSTS.md) | How posts, product pages and site copy are written. |
-| [VOICE-SCRIPTS.md](VOICE-SCRIPTS.md) | How video narration is written. Different rules, on purpose. |
 
 Where the code and CLAUDE.md disagree, CLAUDE.md is the bug report.
 

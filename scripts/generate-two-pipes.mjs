@@ -25,10 +25,12 @@ import { CANVAS, BOX, COLOR, SIZE, OP, text, node, liveNode, chassis, open, asse
 
 const OUT = 'content/log/2026/contact-form-and-domain-email/assets/two-pipes.svg';
 
-// The video harness. Written into my_assets/video-scripts/, which .gitignore
-// excludes, so it never ships and never reaches the build. It is generated from
-// the same run that writes the tile, which is the only way the two cannot drift.
-const HARNESS = 'my_assets/video-scripts/two-pipes-reveal.html';
+// The video harness. Written into .local/, which .gitignore excludes, so it never
+// ships and never reaches the build. It is generated from the same run that writes
+// the tile, which is the only way the two cannot drift. It stays in the repo rather
+// than moving to the vault with the narration: it is generated output, and a
+// tracked script cannot hard-code an absolute path to someone's vault.
+const HARNESS = '.local/two-pipes-reveal.html';
 
 // --- geometry -------------------------------------------------------------
 // Three angle families only: horizontal, vertical, 45° (CLAUDE.md §3).

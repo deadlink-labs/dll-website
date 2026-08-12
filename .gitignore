@@ -25,4 +25,8 @@ content/.obsidian/
 # logs
 npm-debug.log*
 
-my_assets/video-scripts
+# local-only working material, never committed and not part of the deliverable.
+# Currently .local/voice/ — the two guides defining how Marcelo writes and speaks.
+# That is his own voice, not shared tooling; CLAUDE.md §6 keeps the public summary
+# and says so. Anything else machine-local belongs here too.
+.local/

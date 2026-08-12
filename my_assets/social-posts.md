@@ -10,11 +10,11 @@ url:
 ---
 # DEADLINK LABS — Social posts
 
-> Reference material, not site content. Like `video-scripts/`, this file is never
+> Reference material, not site content. Like the video scripts, this file is never
 > published, never pulled into the build, never a content collection entry. It is
 > a working stash of copy for the Deadlink Labs social accounts (X first).
 >
-> **Voice rules apply** (see `VOICE-POSTS.md`): first person, plain, short sentences.
+> **Voice rules apply** (see `.local/voice/VOICE-POSTS.md`): first person, plain, short sentences.
 > Numbers and artifacts, never self-praising adjectives. No exclamation marks, no
 > em dashes, no startup vocabulary. Where the brand punctuates, it uses `·`.
 

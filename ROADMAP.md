@@ -14,9 +14,10 @@ the work belongs to.
 **Owner:** `ME` = Marcelo, by hand (browser, GUI, account signup) · `AI` = doable
 in the repo by an agent · `BOTH` = paired.
 
-> Episode narration scripts live in `my_assets/video-scripts/` — **gitignored,
-> local only**. This file is the tracked version of the plan and outranks them
-> when they disagree.
+> Episode narration scripts live in the Obsidian vault, `DLL-CONTENT/dll video
+> scripts/` — **outside this repo** (moved 2026-08-12), beside the content repo
+> and never inside it. This file is the tracked version of the plan and outranks
+> them when they disagree.
 
 ---
 
@@ -153,10 +154,32 @@ a dead email address in its own footer.
 
 **Shape of the work.** The project had **no Vercel adapter** and built pure
 static. A form that sends mail needs a server endpoint. In Astro 5 that does
-*not* mean changing output mode: `output` stays `'static'` and one endpoint opts
-out with `export const prerender = false`. The whole site stays static except a
-single function. (The earlier note here said "switch output mode off pure-static"
-— wrong for Astro 5, and corrected 2026-08-11.)
+*not* mean changing output mode: `output` stays `'static'` and only the action
+endpoint is on-demand. The whole site stays static except a single function.
+(The earlier note here said "switch output mode off pure-static" — wrong for
+Astro 5, and corrected 2026-08-11.)
+
+**Build it the way Resend documents it** (2026-08-12). Resend's Astro guide
+(<https://resend.com/docs/send-with-astro>) does not use a hand-written API
+route. It uses an **Astro Action**: `src/actions/index.ts`,
+`defineAction({ accept: 'form' })`, a zod `input` schema, and a `{ data, error }`
+return. That replaces the hand-rolled endpoint, its `clean()`/`MAX`/`EMAIL`
+validation, and all the client-side fetch/JSON/status plumbing. It is also the
+version a viewer can replicate straight from the official docs.
+
+**Call the action from a script, not from `<form action={actions.contact}>`.**
+Astro's docs are explicit that a form action requires the *page* to be
+on-demand rendered. Using it would force `prerender = false` on `/about` and turn
+the archive's most important page into a function. Client-side RPC keeps About
+prerendered, because only the action endpoint runs server-side.
+
+**A failed send must keep what the visitor typed.** The v1 endpoint redirected
+every failure to `/about/#contact-error`, so the visitor landed on an empty form
+reading "Something broke on my end" even when the real problem was a typo in
+their address. On the one page that asks for anything, that is the whole funnel.
+Errors now render in place with the fields intact, and field-level messages come
+back from the same schema that validates them. `/thank-you/` and the `:target`
+block both go away with the redirect.
 
 **Receiving**
 - [ ] `ME` Cloudflare Email Routing → `hello@` and `dmarc@` forward to Gmail
@@ -172,22 +195,44 @@ single function. (The earlier note here said "switch output mode off pure-static
 - [ ] `ME` Resend account, verify the **root** domain, generate an API key
 - [ ] `ME` Add `RESEND_API_KEY` to Vercel env vars — Production *and* Preview.
       Key on the laptop but not on Vercel means the form works locally and 500s live
-- [x] `AI` Install `@astrojs/vercel`; `output` stays `'static'`, one route opts out `2026-08-11`
-- [x] `AI` Server endpoint `src/pages/api/contact.ts`, reading the key via `astro:env` `2026-08-11`
-- [x] `AI` Wire the About contact form — was `action="#"` ([about.astro:108](src/pages/about.astro#L108)) `2026-08-11`
+- [x] `AI` Install `@astrojs/vercel`; `output` stays `'static'` `2026-08-11`
 - [x] `AI` **Add the missing email field** — the form collected a name and a problem and no way to reply `2026-08-11`
-- [x] `AI` Success / error states, honest failure copy that hands over the mailto fallback `2026-08-11`
 - [x] `AI` Remove the `data-placeholder="not wired to Resend yet"` marker `2026-08-11`
 - [ ] `ME` Gmail **Send-As** over Resend SMTP, so replies leave *from* `hello@`
       (free consumer Gmail; no Workspace needed)
 
+**On camera — the build itself.** Everything below is filmed, not pre-run. A v1
+hand-rolled endpoint exists in the repo and gets replaced live; do not do this
+work ahead of the shoot.
+
+- [ ] `BOTH` `src/actions/index.ts` — `contact` action, zod `input` schema, key
+      via `astro:env/server` (**not** `import.meta.env`, which compiles the key
+      into the bundle), plain `text:` body (**not** `html:`, no interpolation
+      surface), and the `if (error)` check on the Resend result
+- [ ] `BOTH` Delete `src/pages/api/contact.ts` — the action endpoint replaces it
+- [ ] `BOTH` Delete `src/pages/thank-you.astro` — reachable only from the redirect
+      being removed
+- [ ] `BOTH` About form: `maxlength` mirroring the schema, per-field error spans
+      with `aria-describedby`, one `role="alert"` block, a success panel reusing
+      the `.contact` card treatment, a `<noscript>` mailto. Drop the
+      `.contact-error:target` CSS
+- [ ] `BOTH` The submit script (~25 lines, Nav.astro idiom): `reportValidity()`,
+      disabled + `Sending…` button, `actions.contact(new FormData(form))`,
+      `isInputError` → per-field messages, otherwise `error.message` inline.
+      **No auto-resubmit on a network throw** (the send may already have landed)
+- [ ] `BOTH` Verify: `/about` still builds to static HTML, one `.func` in the
+      output, and a forced failure leaves all four fields filled
+
 **The record**
 - [x] `AI` Two-pipes flow chart, DNS-records tile, cover `2026-08-11`
-- [x] `AI` The post — `web-number: 2` `2026-08-11` — **written as a draft on purpose.**
-      No DNS record exists yet, so no message has travelled the whole pipe. Flip
-      `web-status` to `published` and `web-stage` to `SETTLED` once the `ME` boxes
-      above are green and the live test passes
-- [x] `AI` Revise [the script](my_assets/video-scripts/log002-contact-form-and-email.md) `2026-08-11`
+- [x] `AI` The post — `web-number: 2` — **written as a draft on purpose**, then
+      rewritten `2026-08-12` around the Actions build: 11 H2s down to 10,
+      decisions-forward, no correction arc. Emphasis redistributed to 20/44/69%
+      (was clumped). Flip `web-status` to `published` and `web-stage` to
+      `SETTLED` once the `ME` boxes are green and the live test passes
+- [ ] `AI` Post: past-tense the Honest note, fill the build-output terminal block
+      with real numbers (both marked with `%%…%%` in the draft)
+- [x] `AI` Revise the video script (vault, `log-002-(compiled-process)-…`) `2026-08-11`
 - [ ] `AI` Commit the episode (CLAUDE.md §9)
 
 > **Deferred on purpose, not forgotten** (2026-08-11). This note used to read
@@ -287,7 +332,8 @@ Do not flip the switch over a wall of placeholders.
 - [ ] `AI` `@astrojs/sitemap`
 - [ ] `AI` `robots.txt` pointing at the sitemap
 - [ ] `AI` **Flip `ALLOW_INDEXING` to `true`** ([BaseLayout.astro:90](src/layouts/BaseLayout.astro#L90)) — the single switch, site-wide
-- [ ] `AI` Confirm `/thank-you/` stays out of the index on its own `noindex` prop
+      *(The old `/thank-you/` indexing box is gone: LOG 002 replaced the redirect
+      with an in-place confirmation, so the page no longer exists.)*
 - [ ] `ME` Google Search Console: verify the property, submit the sitemap
 - [ ] `ME` **Cloudflare** Web Analytics (cookieless — no banner, no consent tooling).
       Settled 2026-08-11 over Vercel: free with no cap, 6-month retention against
@@ -389,7 +435,7 @@ Short entries only. The reasoning lives in CLAUDE.md; this records *when* and
 | 2026-08-11 | **Highlight budget: one per H2 section, three per post, enforced at build** by `remark-mark.mjs`, which fails naming the file and the section. Same argument as "exactly one orange live node" on a tile. The syntax is Obsidian's own `==text==`, so the vault preview and the site agree with no export step; the site additionally renders it bold, which is the one accepted delta. |
 | 2026-08-11 | **Yellow joins the palette as `--color-highlight`, and the accent budget now covers two colours.** Orange means LIVE (status dot, live node, working URL), yellow means READ THIS. Different hues so the systems cannot blur; never reach for signal orange as a highlight. Ink on the composited yellow measures 15.8:1, against 17.1 on bare paper, so contrast was never the constraint — scarcity is. Alpha 0.5 is a tunable dial, not a fixed value. |
 | 2026-08-11 | **The highlight is a band, not a box.** Gradient hard-stops at 20/90 of the inline box, so the stroke sits on the x-height and descenders break its bottom edge the way they do under a real marker. The first pass used 14/92, swallowed the descenders, and read as a filled rectangle. `box-decoration-break: clone` so a wrapped highlight renders as separate bands per line. Verified in a headless render including a three-line wrap. |
-| 2026-08-12 | **`CLAUDE.md` stays public in the public repo, deliberately.** Audited on the question of gitignoring it. It is already the subject of a published post — LOG 001 carries `DEC 005 · One brief, CLAUDE.md, as the single source of truth`, and the post's own tile resolves onto a `CLAUDE.md` node — so hiding it would build a dead link into the site named after resolving them. It also leaks nothing new: tokens are in `global.css`, the `web-*` contract in `content.config.ts`, voice in the VOICE files, versions in `git log`, and the client is anonymized identically in the brief, `site.config.json` and the post. No credentials are or ever were tracked. The stated cost is that §1 names the consulting funnel the site never names; the fix for that is rewording §1, not hiding the file. **Do not re-propose gitignoring it.** |
+| 2026-08-12 | **`CLAUDE.md` stays public in the public repo, deliberately.** Audited on the question of gitignoring it. It is already the subject of a published post — LOG 001 carries `DEC 005 · One brief, CLAUDE.md, as the single source of truth`, and the post's own tile resolves onto a `CLAUDE.md` node — so hiding it would build a dead link into the site named after resolving them. It also leaks nothing new: tokens are in `global.css`, the `web-*` contract in `content.config.ts`, versions in `git log`, and the client is anonymized identically in the brief, `site.config.json` and the post. (This clause originally cited the VOICE files as another public location; they went local-only later the same day, which changes nothing here — §6 keeps the summary, and the summary was always the public part.) No credentials are or ever were tracked. The stated cost is that §1 names the consulting funnel the site never names; the fix for that is rewording §1, not hiding the file. **Do not re-propose gitignoring it.** |
 | 2026-08-12 | **Operational holes are not documented in prose; the ordering gate is.** Three separate places had written down that the contact endpoint is unguarded and that `noindex` was the only thing keeping scrapers off it — the LOG 002 note, the LOG 004 checkbox, and the decisions log, the last one rewritten fresh after the first two were fixed. All now state the gate (honeypot ships before `ALLOW_INDEXING` flips, never the reverse) without naming the last line of defense. `CLAUDE.md` §4's "no spam protection yet" stays: it is load-bearing, and it stops the next agent assuming a honeypot exists. The real control is the ordering, not the wording — the public source discloses the missing honeypot regardless. |
 | 2026-08-12 | **Obsidian canvases render on the site, as is** ([`remark-canvas.mjs`](src/plugins/remark-canvas.mjs)). Implements **JSON Canvas 1.0** (<https://jsoncanvas.org/spec/1.0/>) — the *format* is MIT and was open-sourced by Obsidian in 2024, the *app* is not, so this is written to the published spec rather than copied from a reference renderer. All node types recognized, all edge attributes honoured including the `fromEnd: none` / `toEnd: arrow` defaults, both `canvasColor` forms. `file` nodes and group `background` images fail the build by name: those paths are vault-absolute and the build only clones `content/`. |
 | 2026-08-12 | **`![[Name.canvas]]` is the one sanctioned wikilink embed**, narrowing CLAUDE.md §8's ban to images. The ban exists because Astro's image pipeline cannot resolve a wikilink; a canvas never touches that pipeline. A ```` ```canvas ```` fence was specified first and rejected: it shows a code block in Obsidian, and **WYSIWYG in the vault is the requirement**, not a preference. Alt rides the pipe; the caption is the italic paragraph below, reusing the photograph convention rather than inventing a device. |
@@ -403,3 +449,5 @@ Short entries only. The reasoning lives in CLAUDE.md; this records *when* and
 | 2026-08-12 | **`%%comments%%` were a content leak, not a formatting gap.** Obsidian hides them; the site printed them verbatim, so `%%TODO: verify this number%%` left in a draft would have published to the live site. Stripped first, before every other plugin, because a comment may legally hold an unclosed `==` or a stray bracket that would otherwise fail the build or be counted against the emphasis budget. Verified on a comment containing both. |
 | 2026-08-12 | **The `![[embed]]` ban is retired; `[[wikilinks]]` render as display text.** The ban existed only because Astro's image pipeline cannot resolve a wikilink — `remark-obsidian.mjs` now rewrites one to a real relative path before the pipeline sees it, so both forms work and the author writes whichever previews in the vault. A wikilink renders as its alias or note name, deliberately NOT as a link: the target may not be a published page, and a link to a 404 is the one thing this site cannot ship. |
 | 2026-08-12 | **Callouts and math are the two remaining parity gaps, deferred as decisions rather than bugs.** `> [!NOTE]` renders as a plain blockquote with a literal `[!NOTE]`; thirteen callout types each with an icon and colour is a design-system question, not a transform. `$…$` needs `remark-math` plus a KaTeX stylesheet. Recorded in CLAUDE.md §4 with an instruction not to use either in a post until built. |
+| 2026-08-12 | **The voice guides go local-only, into a gitignored `.local/voice/`.** They encode how Marcelo writes and speaks, which is a personal instrument rather than shared tooling: anyone cloning this repo should write in their own voice. Moving them alone would have achieved nothing, because `my_assets/` is itself **tracked** — only `video-scripts` was ignored, so "my assets" never actually meant private. Hence a move plus a `git rm --cached`. **`.local/` is now the convention** for anything local-only: hidden, one `.gitignore` rule, nothing added to the visible root. Two earlier layouts were built and rejected — pointer stubs at the repo root (clutter) and `my_assets/voice/` with a tracked README (same tracked/private confusion, one level down). CLAUDE.md §6 keeps the summary and carries the explanation, so no new file exists to hold a note. **History is left intact:** the guides were public until today, no credential was ever involved, and a `filter-repo` force-push would rewrite every hash from `v0.04.001` on to hide something that was never secret. The cost is that they now have no version control. |
+| 2026-08-12 | **Video scripts leave the repo entirely, for the Obsidian vault** (`DLL-CONTENT/dll video scripts/`), so Marcelo can read along in Obsidian while recording. They land **beside** `dll-website-content/` and never inside it, which keeps them out of the content clone structurally rather than by a rule someone has to remember (CLAUDE.md §8). Renamed on the way to `log-NNN-(type)-Title.md`, with **two type tokens, not one**: only one of the seven is a teleprompter script, the rest are compiled process references, and CLAUDE.md §Script already warns that "script" unqualified has cost a round trip. Two stale things surfaced and were fixed in passing: the LOG 003 reference was still titled "LOG 002" from before the 2026-08-11 episode swap, and an early LOG 001 draft written against a **Next.js** stack was marked `SUPERSEDED` rather than deleted. **`two-pipes-reveal.html` did not go with them** — it is generated output, and [generate-two-pipes.mjs](scripts/generate-two-pipes.mjs) hard-codes its path, so a tracked build script would have had to name an absolute path inside someone's vault. It writes to `.local/` instead. |
