@@ -1,0 +1,17 @@
+{
+	"nodes":[
+		{"id":"fe8b0e357edbb255","type":"text","text":"**DEADLINK LABS**\n\n**WEBSITE PREMISE**","x":-400,"y":-190,"width":169,"height":170,"color":"4"},
+		{"id":"caed15c5a9f03dab","type":"text","text":"**BLUEPRINT** \n\n_**WHY**_ the website exists","x":-139,"y":-320,"width":279,"height":120,"color":"#0400ff"},
+		{"id":"7cec80431734bb48","type":"text","text":"**DESIGN**\n\n***HOW*** it looks and feels","x":-139,"y":-157,"width":279,"height":118,"color":"2"},
+		{"id":"66f518828e6e6a6f","type":"text","text":"**STRUCTURE**\n\n***HOW*** it works\n(How knowledge is structured)","x":-139,"y":0,"width":279,"height":135,"color":"6"},
+		{"id":"45bb7cdcf29ecbc0","type":"text","text":"**READY TO BUILD**\nwith Claude Code!\n\nOnly now do we start writing code.\n\nThis progression is an intentional product design process instead of:\n\n\"I opened Claude Code and started prompting\"","x":260,"y":-276,"width":260,"height":356,"color":"5"}
+	],
+	"edges":[
+		{"id":"b314a90b7986733a","fromNode":"fe8b0e357edbb255","fromSide":"right","toNode":"caed15c5a9f03dab","toSide":"left"},
+		{"id":"8b8222b123b9c32d","fromNode":"fe8b0e357edbb255","fromSide":"right","toNode":"7cec80431734bb48","toSide":"left"},
+		{"id":"8e87249ea457e355","fromNode":"fe8b0e357edbb255","fromSide":"right","toNode":"66f518828e6e6a6f","toSide":"left"},
+		{"id":"f6bded437427ee93","fromNode":"caed15c5a9f03dab","fromSide":"right","toNode":"45bb7cdcf29ecbc0","toSide":"left"},
+		{"id":"8f56050295764a99","fromNode":"7cec80431734bb48","fromSide":"right","toNode":"45bb7cdcf29ecbc0","toSide":"left"},
+		{"id":"aa6069e900c1ca02","fromNode":"66f518828e6e6a6f","fromSide":"right","toNode":"45bb7cdcf29ecbc0","toSide":"left"}
+	]
+}
