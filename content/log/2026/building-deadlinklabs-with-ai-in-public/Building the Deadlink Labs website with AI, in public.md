@@ -8,7 +8,7 @@ aliases:
 web-status: published
 web-title: Building the Deadlink Labs website with AI, in public
 web-pub-date: 2026-07-14
-web-snippet: Yes, AI can build a website. The interesting part happens before the first line of code. Start prompting too soon, and you get a website that could belong to anyone. Think first. Plan it. Then prompt.
+web-snippet: Yes, AI can build a website. But the interesting part happens way before the first line of code. Start prompting too soon, and you get a website that could belong to anyone. Think first. Plan it. Then prompt.
 web-type: log
 web-number: 1
 web-stage: IN PROGRESS
@@ -34,7 +34,7 @@ What follows is the decisions and the reasons.
 
 ## Think first, then prompt
 
-The easy mistake is to open an AI coding tool and ask it for a website.
+**The easy mistake is to open an AI coding tool and ask it for a website.**
 
 **I did the opposite, and spent the expensive part, the thinking, up front.**
 
