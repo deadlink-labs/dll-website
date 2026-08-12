@@ -2,6 +2,7 @@
 import { defineConfig, envField } from 'astro/config';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
+import remarkObsidian from './src/plugins/remark-obsidian.mjs';
 import remarkMark from './src/plugins/remark-mark.mjs';
 import remarkTerminal from './src/plugins/remark-terminal.mjs';
 import remarkSvgSpecimen from './src/plugins/remark-svg-specimen.mjs';
@@ -47,7 +48,11 @@ export default defineConfig({
   // remarkCanvas renders an Obsidian ![[…canvas]] embed as inline SVG.
   markdown: {
     // ORDER IS LOAD-BEARING.
-    // remarkMark runs FIRST, while the tree is still pure markdown. It turns
+    // remarkObsidian runs before everything: it strips %%comments%%, whose
+    // contents are private and may legally hold an unclosed == or a stray
+    // bracket that would trip the plugins after it. It also resolves [[links]]
+    // and ![[image]] embeds, leaving .canvas embeds for remarkCanvas.
+    // remarkMark runs next, while the tree is still pure markdown. It turns
     // ==text== into <mark>, and every specimen tile in content/ opens with a
     // `<!-- ==========` comment banner — so if it ran after remarkSvgSpecimen
     // inlined those tiles as raw HTML, it would chew through the banners.
@@ -58,7 +63,14 @@ export default defineConfig({
     // caption) in a <figure>, resolving a portrait photo's real width at build
     // so its caption lines up with it. It skips .svg, which remarkSvgSpecimen
     // has already turned into its own figure.
-    remarkPlugins: [remarkMark, remarkTerminal, remarkSvgSpecimen, remarkCanvas, remarkPhotoFigure],
+    remarkPlugins: [
+      remarkObsidian,
+      remarkMark,
+      remarkTerminal,
+      remarkSvgSpecimen,
+      remarkCanvas,
+      remarkPhotoFigure,
+    ],
   },
 
   // Prose-first output. No experimental client hydration by default.

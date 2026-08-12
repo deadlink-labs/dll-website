@@ -382,7 +382,7 @@ Rules:
 - **Log nests by year** (`log/<year>/…`); **products stay flat**. The year folder is filesystem organization — it never appears in the URL.
 - **Each post is its own folder; the folder name is the slug.** URLs: `/log/<slug>` and `/products/<slug>`.
 - **Files are plain `.md`** (not `.mdx`) so Obsidian treats them as native notes. **The folder name is the slug; the `.md` inside is named for the post's TITLE** (e.g. `building-deadlinklabs-with-ai-in-public/Building the Deadlink Labs website with AI, in public.md`), not the folder and not `index.md` — so the note reads with its real title everywhere in Obsidian (quick-switcher, graph, backlinks). The filename is free-form and never reaches the URL; the folder does. Vault navigation: find a post by its title (the filename) or by its number/nickname via `aliases` (an Obsidian-internal field the site ignores — see §4 frontmatter), and browse the ordered index with an Obsidian **Base** over the `log` folder sorted by `web-number`. Do NOT number folders to fake an order — order lives in `web-pub-date`/`web-number`, never in the folder name. Interactive components use the fenced-block convention (below), never raw inline JSX.
-- **Assets are co-located** in a sibling `assets/`, referenced with standard relative markdown: `![alt](./assets/hero.webp)`. Astro's image pipeline optimizes them at build — no per-image setup. (Obsidian `![[embed]]` syntax is NOT used **for images**; `.canvas` files are the one exception — see §3 "Obsidian canvases".)
+- **Assets are co-located** in a sibling `assets/`, referenced either as standard relative markdown `![alt](./assets/hero.webp)` or as an Obsidian embed `![[hero.webp]]`, which [`remark-obsidian.mjs`](src/plugins/remark-obsidian.mjs) resolves to the former. Astro's image pipeline optimizes both at build — no per-image setup. Prefer the relative form when you want real alt text, since an embed can only derive alt from the filename.
 - **Obsidian canvases live in `assets/` too**, and embed with `![[Name.canvas]]` (§3). Two properties follow from the format and are worth knowing before planning around it: a `.canvas` is pure JSON with exactly two top-level keys, so it **carries no frontmatter** — no `web-*` fields, no tags, no aliases — and it can therefore **never appear in an Obsidian Base**, which queries markdown only. Every canvas needs a companion note to hold its metadata; here that note is the post, which supplies the alt text and caption. Wikilinks typed *inside* canvas text nodes are still real outgoing links, so backlinks and the graph keep working.
 - **Log feeds sort by `web-number`, highest first** (settled 2026-08-10). This
   supersedes the earlier "sorting always uses `web-pub-date`" rule, which shipped
@@ -406,6 +406,47 @@ Rules:
     primary key never ties for a numbered post.
 - **Products still sort by `web-pub-date`** (newest "entered the lab" first, then
   slug). They carry no record number — the `LOG NNN` spine is a log thing.
+
+### Obsidian syntax parity (the pipeline's actual promise)
+
+**A note must look the same in the vault and on the site.** That is not a nicety;
+it is the premise the whole vault-to-web pipeline rests on (§8). Every construct
+Obsidian renders and the site prints raw is a crack in it, so the standard is
+parity, and a gap is a bug — not a house rule the author has to work around.
+
+Astro ships **GFM** by default, which already matches Obsidian on bold, italic,
+bold-italic, `~~strikethrough~~`, inline code, code fences, blockquotes, tables,
+task lists, footnotes, nested lists, autolinks, escapes, headings, rules and
+inline HTML. The rest is ours:
+
+| Syntax | Handled by | Renders as |
+|---|---|---|
+| `==highlight==`, incl. wrapping bold/links/code | [`remark-mark.mjs`](src/plugins/remark-mark.mjs) | `<mark>`, also bold |
+| `%%comment%%` (inline and block) | [`remark-obsidian.mjs`](src/plugins/remark-obsidian.mjs) | **removed**, as Obsidian hides it |
+| `[[Note]]` / `[[Note\|alias]]` | `remark-obsidian.mjs` | the display text |
+| `![[image.png]]` | `remark-obsidian.mjs` | a real image, through Astro's pipeline |
+| `![[Name.canvas]]` | [`remark-canvas.mjs`](src/plugins/remark-canvas.mjs) | the canvas, inline SVG (§3) |
+| ```` ```terminal ```` | [`remark-terminal.mjs`](src/plugins/remark-terminal.mjs) | the dark specimen panel |
+
+- **`%%comments%%` were a content leak, not a formatting gap** (found 2026-08-12).
+  Obsidian hides them; the site printed them verbatim, so a `%%TODO: check this
+  number%%` left in a draft would have published. They are stripped **first**,
+  before every other plugin, because a comment may legally contain an unclosed
+  `==` or a stray bracket that would otherwise fail the build or be counted.
+- **A wikilink renders as its display text, not as a link.** The target may not
+  be a published page, and a link to a 404 is the one thing this site cannot
+  ship. The prose is preserved so the future "Connections" work can still find it.
+- **Still not at parity, both needing a decision rather than a parser:**
+  **callouts** (`> [!NOTE]`) render as a plain blockquote with a literal
+  `[!NOTE]` — thirteen types each with an icon and a colour is a design-system
+  question (§3), not a transform; and **math** (`$…$`, `$$…$$`) renders
+  literally, needing `remark-math` plus a KaTeX stylesheet. Do not use either in
+  a post until it is built.
+- **When adding a construct, test it through Astro's own processor**
+  (`createMarkdownProcessor` from `@astrojs/markdown-remark`) with the real
+  plugin chain, not a hand-rolled `unified()` pipeline. Astro's defaults (GFM,
+  smartypants) are part of the answer, and a bare pipeline will tell you
+  something false.
 
 ### Frontmatter — the `web-*` namespace (Structure v2 §3.3)
 Posts are authored from an Obsidian template that mixes vault-internal fields with a `web-*` namespace. **The build reads ONLY the `web-*` fields.** Every unprefixed field (`type`, `created`, `project`, `people`, `source`, `url`, …) is invisible to the site.
@@ -514,7 +555,7 @@ Interactivity is embedded with a **custom code-fence**, never raw inline JSX. A 
 - **In Obsidian:** renders as an ordinary labeled code block — readable, never broken.
 - **On the built site:** replaced with the live component.
 
-Reserve one label per component (`visualizer`, `aspect-toggle`, `pack-card`, …); an unrecognized label renders as a normal code block. **Implemented so far:** `terminal` — a ```terminal fence becomes the dark specimen panel on the site (dim `$`/`#` lines, orange URLs) and stays a plain code block in Obsidian (`src/plugins/remark-terminal.mjs`). Prefer placing interactivity at the **layout level** (driven by type/frontmatter/position) so note bodies stay pure prose; use fenced blocks only when a live element must sit mid-prose. **Wikilinks** `[[…]]` are allowed and preserved (v1 renders them as plain text; the relationship is kept for the future "Connections" work).
+Reserve one label per component (`visualizer`, `aspect-toggle`, `pack-card`, …); an unrecognized label renders as a normal code block. **Implemented so far:** `terminal` — a ```terminal fence becomes the dark specimen panel on the site (dim `$`/`#` lines, orange URLs) and stays a plain code block in Obsidian (`src/plugins/remark-terminal.mjs`). Prefer placing interactivity at the **layout level** (driven by type/frontmatter/position) so note bodies stay pure prose; use fenced blocks only when a live element must sit mid-prose. **Wikilinks** `[[…]]` are allowed and render as their display text — the alias when there is one, otherwise the note name (`remark-obsidian.mjs`, §4 "Obsidian syntax parity"). Not linked: the target may not be a published page. The prose is preserved for the future "Connections" work.
 
 ### Publishing pipeline (Structure v2 §8)
 Committing from Obsidian is the only action required to publish. No export, no transform, no duplicate copy on disk.
@@ -699,7 +740,7 @@ Check it before starting work, and tick the boxes as you go.
 
 - No dark theme (dark panels for code/video/specimens only). No gradients. No stock photos. No AI-generated imagery. No scroll animations. No popups or floating CTAs. No cookie banner (don't add tracking that needs one). No adjectives about Marcelo. No prices on unreleased products. No second commercial page (Work-with-me is the one ask, off-nav).
 - No CMS in v1 — the Obsidian-vault content pipeline is the backend (§4).
-- No `.mdx`, no raw inline JSX in content, no frontmatter passthrough to output, no Obsidian `![[embed]]` **image** syntax — plain `.md`, `web-*` fields only, relative-markdown images, fenced-block components. **The one exception is `![[….canvas]]`** (added 2026-08-12): the ban exists because Astro's image pipeline cannot resolve a wikilink, and a canvas never touches that pipeline — `remark-canvas.mjs` reads the JSON directly. It is allowed because it is the only form that previews live in Obsidian. See §3 "Obsidian canvases"; do not generalize it back to images.
+- No `.mdx`, no raw inline JSX in content, no frontmatter passthrough to output — plain `.md`, `web-*` fields only, fenced-block components. **The `![[embed]]` ban is retired** (2026-08-12): it existed because Astro's image pipeline cannot resolve a wikilink, and [`remark-obsidian.mjs`](src/plugins/remark-obsidian.mjs) now resolves one to a real relative path before the pipeline ever sees it. Both forms work; write whichever previews correctly in the vault. See §4 "Obsidian syntax parity".
 - Don't render unpublished content: `web-status: published` is the only pass.
 - Don't put the year in a URL; don't derive type from anything but the folder.
 - `my_assets/video-scripts/` is never published, never pulled into the build, and never a content collection entry.
