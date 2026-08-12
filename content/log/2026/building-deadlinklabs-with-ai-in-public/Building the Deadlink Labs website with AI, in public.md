@@ -24,11 +24,11 @@ The interesting thing about building a website with AI isn't that AI can build a
 
 So I ran the experiment in public: I started with a long walk by the riverside, with an LLM capturing the outline as I talked. Back at home, I went from an empty folder to designing and building the site with Claude, while documenting every decision and shipping the result.
 
-The reason for this project goes back more than 20 years. I built things and had no link to send when someone asked to see the work. From post-production pipelines to rural ISPs, home automation, dashboards, music tools, and the occasional website. The work was real. The URL did not exist. I was the dead link.
+The reason for this project goes back more than 20 years. I built things and had no link to send when someone asked to see the work. From post-production pipelines to rural ISPs, home automation, dashboards, music tools, and the occasional website. The work was real. The URL did not exist. **I was the dead link.**
 
 This website is the fix, and this post is the first entry in it. 
 
-Deadlink Labs is a lab notebook I build in public. The first experiment is the notebook itself. It's live now, which is the short answer: ==yes, you can design and ship your own site with AI, in public==. 
+Deadlink Labs is a lab notebook I build in public. The first experiment is the notebook itself. It's live now, which is the short answer: yes, you can design and ship your own site with AI, in public. 
 
 What follows is the decisions and the reasons.
 
@@ -50,7 +50,7 @@ I drafted each one myself first, in an Obsidian canvas, then argued it out with 
 
 A design lesson landed here too. I iterated the whole look inside a design tool before a single line of the site existed. A layout change there costs one prompt. That same change after the site is built can cost an afternoon. 
 
-**Takeaway**: Iterate where iteration is cheap.
+TAKEAWAY: Iterate where iteration is cheap.
 
 ## One brief beats a hundred corrections
 
@@ -60,7 +60,7 @@ I reconciled all three into one file, `CLAUDE.md`, the brief for the entire proj
 
 ## A stack chosen for invisibility and speed
 
-This is a content archive, not an app, so the stack is not the main character.
+**This is a content archive, not an app, so the stack is not the main character.**
 
 Astro builds the site and ships zero JavaScript by default. The pages are plain, fast HTML. Nothing loads to perform at the reader. The work is the point, not the interface, and Astro lets the interface get out of the way.
 
@@ -72,7 +72,7 @@ TypeScript catches type mistakes before they become bugs. Tailwind keeps styling
 
 ## Version control before the first real line of code
 
-Git on my machine, then three services, each doing one job.
+**Git on my machine, then three services, each doing one job.**
 
 Git is the version control itself, and it runs on my machine: it saves a snapshot of the whole project every time I commit. 
 
@@ -89,7 +89,7 @@ That version numbering has one rule I like. A leading zero means "still in devel
 
 ## No CMS, because Obsidian is already my source of truth
 
-There's no CMS, on purpose. I already write everything in Obsidian: notes, daily logs, research, all of it. So the vault is the source. A plain note becomes a published page by saving it and pushing, with nothing in between and no second copy of the content living anywhere else.
+There's no CMS, on purpose. I already write everything in Obsidian: notes, daily logs, research, all of it. So the vault is the source. ==A plain note becomes a published page by saving it and pushing==, with nothing in between and no second copy of the content living anywhere else.
 
 ![Two lanes compared on a dark ground. The upper lane, THE USUAL WAY, runs EDITOR to CMS DATABASE to SITE and ends in the numeral 2 over the words COPIES OF THE CONTENT. The lower lane, THIS SITE, runs from a glowing orange node labelled VAULT NOTE straight to SITE, and ends in a much larger numeral 1 over the words COPY OF THE CONTENT.](./assets/no-second-copy.svg)
 
