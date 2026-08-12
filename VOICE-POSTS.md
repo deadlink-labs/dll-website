@@ -120,6 +120,57 @@ enforces it.** `remark-mark.mjs` fails with the file and the section named. This
 is not politeness. A mark that appears four times on a page marks nothing, which
 is the same reason a specimen tile gets exactly one orange live node.
 
+### Who the marked lines are for
+
+**A CEO or a recruiter who will not read the post.** They scroll, the yellow
+catches, they read four lines and decide whether this person thinks well. So the
+marks carry the **decisions and the reasoning**: what was chosen, what was
+rejected, and why. This is CLAUDE.md §1 goal #2 in one device, and the 90-second
+test applied to a single page.
+
+**Mark judgment, not mechanics.** "Vercel builds and hosts" is mechanics — true,
+necessary, and worth nothing to a skimmer. "Iterate where iteration is cheap" is
+judgment. If a marked line would read the same in anyone else's post, it is the
+wrong line.
+
+### The procedure. Do not mark while reading.
+
+Marking as you read produces marks in reading order, which is how the budget gets
+spent on the first three sections and the back half of a post ends up bare. That
+is not a hypothetical: it is what happened to the whole archive on 2026-08-11 and
+had to be redone.
+
+1. **Read the whole post, start to finish, marking nothing.**
+2. Write the post's argument in one line, and each section's contribution in one
+   line. A section with no contribution gets no mark.
+3. Pick **one candidate per section** — the line you would put on a slide.
+4. Rank the candidates *across the whole post* and give the best three the
+   highlight. Other sections keep a bold, or nothing.
+5. **Run the skim test:** read only the marked lines, in order. If they do not
+   tell the argument, or two of them say the same thing, go back to step 4.
+
+**A highlight is a complete, self-contained sentence.** Not a clipped phrase. If
+it needs the sentence before it to make sense, mark that one instead. There is no
+maximum length: LOG 001's best highlight runs 28 words because the payload is in
+the final clause, and clipping it to a tidier 11 threw the payload away.
+
+**Prefer the punchline to the explanation.** Where a paragraph explains an idea
+and then lands it, mark the landing. Echoing the section heading is a feature, not
+a redundancy — heading and highlight reinforcing each other is how a skimmer gets
+the point twice in one glance.
+
+**Spend the budget across the post, not in reading order.** Two marks within ~10%
+of each other read as one clump, and a mark past ~85% sits behind where a skimmer
+stops. LOG 001 lands at 24 / 34 / 73%. `npm run emphasis` prints these positions
+and flags all three faults; the build cannot, because the caps are all it sees.
+
+**Bold has a cap too: at most one per H2 section.** A thesis sentence or a list
+lead-in. A bulleted list whose every item carries a lead-in label is one device
+and counts once. A section with nothing structural to say gets none. Both extremes
+in the archive failed this — rural-point ran 3,300 words and nine sections with
+zero bold, nobody-fills-in-the-form ran thirteen in nine — and in both the mark
+stopped meaning anything.
+
 **`==text==` is Obsidian's own syntax**, so a note previews as a highlight in the
 vault and ships as one on the site. Obsidian will not show it bold; the site adds
 that, so you type one mark instead of `==**two**==`.
@@ -155,6 +206,16 @@ plugin will not let you.
 **Highlighting the label instead of the fact.**
 - BAD: "==The results were the kind you can measure.=="
 - GOOD: "==They had been on the Spotify target the whole time.==" (a fact, not an announcement that a fact is coming)
+
+**The explanation → the punchline.** Both lines are in the same paragraph of
+LOG 001; the second is the one you would quote.
+- BAD: "==The quality of what you build comes straight from the quality of that file.=="
+- GOOD: "==One clear brief beats a hundred small corrections later.=="
+
+**A clipped phrase → the complete thought.** The clip is tidier and drops the
+entire payload, which is "no second copy".
+- BAD: "==A plain note becomes a published page by saving it and pushing==, with nothing in between and no second copy of the content living anywhere else."
+- GOOD: "==A plain note becomes a published page by saving it and pushing, with nothing in between and no second copy of the content living anywhere else.=="
 
 ---
 

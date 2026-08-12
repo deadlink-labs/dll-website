@@ -47,11 +47,9 @@ Pick the mode from what the user asked for.
    signature moves (question-title for experiments only, a takeaway, an honest
    aside where true, plain teaching for any jargon). Keep only the sections that
    earn their place.
-2b. **Apply the emphasis ladder** (VOICE-POSTS.md §4). `==text==` for the finding,
-   `**bold**` for structural emphasis, plain for everything else including product
-   and tool names. **One highlight per H2 section, three per post** — the build
-   fails otherwise. A post with zero highlights gives a skimmer nothing, and a
-   bolded tool name is the noise this ladder was written to remove.
+2b. **Apply the emphasis ladder** (VOICE-POSTS.md §4) — but only after the draft
+   is finished, using the procedure in EMPHASIS mode below. Marking as you write
+   produces marks in reading order, which is the failure that mode exists for.
 3. Fill the `web-*` frontmatter. `web-status: draft` unless the user says publish.
    `web-video` is optional (leave commented if none). **Every post should carry a
    `web-thumb`** — it opens the post as a 16:9 header image and is the homepage
@@ -86,6 +84,36 @@ Pick the mode from what the user asked for.
 3. Offer a clean rewritten version that keeps the author's meaning and any real
    numbers/artifacts. Never soften an honest aside into spin. Never add adjectives
    about Marcelo to "improve" it.
+
+### EMPHASIS — an existing post → re-marked
+
+Highlights and bold, on a post whose prose is already written. Read
+**VOICE-POSTS.md §4 in full** before touching anything; the rules are there, not
+here.
+
+1. **Read the whole post, start to finish, marking nothing.** No exceptions, no
+   marking the good line as you pass it.
+2. **State the post's argument in one line, and each section's contribution in one
+   line, before naming a single mark.** Hand this to the user as part of the
+   report. It is the only reliable proof that step 1 actually happened, which is
+   why it is a deliverable and not a private step.
+3. Pick one candidate per section, rank them across the whole post, and give the
+   best three the highlight (§4's procedure). Remember who the marks are for: a
+   CEO or recruiter who will not read the post, looking for decisions and
+   reasoning. Mark judgment, not mechanics.
+4. Marks wrap existing text. If a section's point is buried mid-sentence or split
+   across clauses, a light recast is allowed — but **flag every one explicitly**
+   in the report, and never introduce a claim the post did not already make.
+5. Verify: `npm run emphasis -- <file>` for counts and distribution, then
+   `npm run build` for the hard caps. Then run the skim test by hand — read only
+   the marked lines, in order. No script can do that one.
+6. Report as a table: line, section, tier, the text, and **why that line**. Call
+   out anything you deliberately left unmarked and why.
+
+The user will tweak the result in Obsidian. Treat those tweaks as rule changes,
+not corrections to swallow: two of them on 2026-08-11 became §4's "prefer the
+punchline" and "a highlight is a complete sentence". Fold them back into
+VOICE-POSTS.md.
 
 ### TRANSCRIPT — raw captions → clean transcript block
 A transcript is going into a **post**, so clean it to VOICE-POSTS.md: punctuate,
