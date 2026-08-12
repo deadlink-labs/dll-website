@@ -34,7 +34,7 @@ What follows is the decisions and the reasons.
 
 ## Think first, then prompt
 
-**The easy mistake is to open an AI coding tool and ask it for a website.**
+**==The easy mistake is to open an AI coding tool and ask it for a website.==**
 
 **I did the opposite, and spent the expensive part, the thinking, up front.**
 
@@ -50,11 +50,11 @@ I drafted each one myself first, in an Obsidian canvas, then argued it out with 
 
 *The canvas itself, exactly as it sits in the vault. Nothing here was redrawn for the site.*
 
-==Bring your own idea first, then pressure-test it against the machine.== Do it backwards and you end up with cookie-cutter slop that could belong to anyone.
+==**Bring your own idea first, then pressure-test it against the machine.**== **Do it backwards and you end up with cookie-cutter slop that could belong to anyone.**
 
 A design lesson landed here too. I iterated the whole look inside a design tool before a single line of the site existed. A layout change there costs one prompt. That same change after the site is built can cost an afternoon. 
 
-TAKEAWAY: Iterate where iteration is cheap.
+**TAKEAWAY: Iterate where iteration is cheap.**
 
 ## One brief beats a hundred corrections
 
@@ -80,16 +80,14 @@ TypeScript catches type mistakes before they become bugs. Tailwind keeps styling
 
 Git is the version control itself, and it runs on my machine: it saves a snapshot of the whole project every time I commit. 
 
-GitHub stores those snapshots in the cloud, so the backup lives somewhere other than my desk. Both were running before the first real line of code, so nothing built from that point
+**GitHub** stores those snapshots in the cloud, so the backup lives somewhere other than my desk. Both were running before the first real line of code, so nothing built from that point
 on can be lost. The commit history doubles as the changelog: every message starts
 with a version number, so anyone can read the log and watch the site grow one
 version at a time.
 
-Vercel builds and hosts. It connects straight to the GitHub repo, detects that it's an Astro project, and deploys it. No servers, no build settings to configure. 
+**Vercel** builds and hosts. It connects straight to the GitHub repo, detects that it's an Astro project, and deploys it. No servers, no build settings to configure. 
 
-Cloudflare runs the DNS and points the real domain at Vercel.
-
-That version numbering has one rule I like. A leading zero means "still in development." A leading one means "live and confirmed online." The moment deadlinklabs.com resolved in a clean browser tab, that zero became a one.
+**Cloudflare** runs the DNS and points the real domain at Vercel.
 
 ## No CMS, because Obsidian is already my source of truth
 
@@ -115,7 +113,7 @@ Every record in this lab keeps a decision register: the calls that were made, an
 | DEC 007 | Think first, prompt second: premise and design before code | SETTLED |
 | DEC 008 | Build in public and document every decision | SETTLED |
 
-## Watch the build (soon)
+## Watch the build (video coming soon)
 
 The full walk-through is the video, in two parts. Part one is the thinking: the premise, the design, and the structure coming together. Part two is the build: wiring the stack, standing up the site, and putting it online at its real address. Everything I used is linked in the video description.
 
