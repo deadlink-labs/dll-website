@@ -20,7 +20,7 @@ web-tags:
 web-thumb: ./assets/the-wiring.webp
 web-thumb-alt: "A horizontal chain of five stations on a dark ground: VS Code and Git, then GitHub, Vercel, Cloudflare, and the domain, which is a glowing orange node with deadlinklabs.com written beneath it. Above the chain, a dashed node labelled Obsidian Vault, next, joined to the Vercel station by a dashed diagonal line to show that link is not built yet."
 ---
-The interesting thing about building a website with AI isn't that AI can build a website. Of course it can. It's what happens when you bring an actual idea, think everything through first, and only then let the LLM do the building.
+The interesting thing about building a website with AI isn't that AI can build a website. Of course it can. It's what happens when you bring an actual idea, ==**think everything through first, and only then let the LLM do the building**==.
 
 So I ran the experiment in public: I started with a long walk by the riverside, with an LLM capturing the outline as I talked. Back at home, I went from an empty folder to designing and building the site with Claude, while documenting every decision and shipping the result.
 
@@ -45,6 +45,10 @@ The plan branched into three documents, all growing from one idea: the premise, 
 - The structure is how it works: the pages, the content model, the rules.
 
 I drafted each one myself first, in an Obsidian canvas, then argued it out with AI to sharpen the edges. Never the other way around. 
+
+![[DLL Web Premise Canvas.canvas|One card at the left, DEADLINK LABS WEBSITE PREMISE, with arrows out to three stacked cards: BLUEPRINT, the why the website exists; DESIGN, how it looks and feels; STRUCTURE, how it works and how knowledge is structured. All three point right, into a final card reading READY TO BUILD with Claude Code, only now do we start writing code.]]
+
+*The canvas itself, exactly as it sits in the vault. Nothing here was redrawn for the site.*
 
 ==Bring your own idea first, then pressure-test it against the machine.== Do it backwards and you end up with cookie-cutter slop that could belong to anyone.
 

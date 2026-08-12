@@ -230,11 +230,103 @@ Shipped-for-clients band and OG cards, and social platforms will not accept SVG.
 > from `node_modules/.astro/data-store.json` (which survives `rm -rf .astro`) and the
 > change silently does not ship. `npm run build` and `npm run dev` therefore pass
 > `--force`. Do not remove it.
+>
+> **Its sibling: editing a remark plugin needs a dev-server RESTART, and `--force`
+> does not cover it.** Astro restarts on `astro.config.mjs` changes, but the
+> plugins are modules *imported by* that config — editing
+> `src/plugins/*.mjs` does not invalidate Node's module cache, so a running
+> `npm run dev` keeps transforming content with the old code indefinitely. It
+> looks exactly like a fix that did not work: `npm run build` is correct, the file
+> on disk is correct, and localhost is stale. This cost a round trip on the canvas
+> renderer. **After touching a plugin, restart `npm run dev` before judging the
+> output** — or check `dist/` (the build always reloads).
 
 **Excalidraw** is sanctioned for *loose* diagrams — architecture sketches, rough
 flows — kept in the vault, in a deliberately different register from these tiles.
 Do not use it for specimen tiles: its hand-drawn styling fights the system, its SVG
 export is machine output rather than hand-editable, and dragging cannot hold the rail.
+
+### Obsidian canvases (added 2026-08-12, LOG 001)
+
+An Obsidian canvas embeds into a post and renders **as is** — the real planning
+artifact on the page, not a redraw of it. It is the third kind of imagery here,
+after photographs and specimen tiles, and the one that costs nothing to make
+because the work already happened in the vault.
+
+**Syntax is Obsidian's own embed**, and it is the single exception to §8's
+`![[…]]` ban:
+
+```markdown
+![[DLL Web Premise Canvas.canvas|alt text describing the diagram]]
+
+*Caption. Say plainly that this is the original artifact.*
+```
+
+- **WYSIWYG is the whole point.** In the vault this previews as a live, pannable
+  canvas; on the site it is an inlined SVG. A ```canvas fence was specified first
+  and rejected on sight: it shows a *code block* while you write, which defeats
+  vault-first authoring. The text after `|` is the alt; absent, the figure is
+  decorative. The caption is the italic paragraph below, styled by the rule the
+  photographs already use — same convention, no new device.
+- **The ban it breaks is narrower than it looked.** §8 forbids `![[embed]]`
+  because Astro's image pipeline cannot resolve a wikilink.
+  [`remark-canvas.mjs`](src/plugins/remark-canvas.mjs) reads the JSON off disk
+  and emits vector markup, so it never touches that pipeline. The rule stands
+  for images; a canvas is not one.
+- **Conformance: JSON Canvas 1.0** — <https://jsoncanvas.org/spec/1.0/>. The
+  **format** is open source (MIT), released by Obsidian in 2024; the **app is
+  not**, so there is no reference renderer and this is written to the published
+  spec. All node types are recognized and all edge attributes honoured, including
+  the spec defaults `fromEnd: none` / `toEnd: arrow`, and both `canvasColor`
+  forms (hex, or presets `1`–`6` = red, orange, yellow, green, cyan, purple).
+- **`text`, `link` and `group` render. `file` nodes and group `background`
+  images fail the build, named.** Not a spec gap: those paths are
+  vault-absolute, and the build only has `content/`. Failing beats shipping a
+  canvas with a hole in it.
+- **A canvas is quoted, so it keeps its own colours** — the LOG 011 exemption,
+  one level on. It may therefore show more than one orange, which the one-live-
+  node rule forbids on hand-authored tiles. It keeps Obsidian's dot grid and 8px
+  card radius for the same reason. **This exemption is for imported canvases
+  only**; nothing here loosens the rules for house artwork.
+- **Card text lives in `<foreignObject>`** so the browser lays it out with the
+  real proportional font and real wrapping — which is what makes the page match
+  the vault. The first pass set it in `<text>` with Plex Mono and wrapped it by
+  hand against mono's 0.6em advance; that needed a markdown parser, a line
+  breaker and a shrink-to-fit search, and it still could not look like Obsidian,
+  which sets canvas cards in its sans UI font. Every bug in it came from doing
+  by hand what the layout engine does for free. **Cost, worth knowing:**
+  `foreignObject` does not rasterize under sharp/resvg, so a local `npm`-side
+  preview of one of these SVGs shows empty cards — screenshot the real page.
+- **Overflow spills, it does not clip.** Obsidian scrolls an overfull card and a
+  static page cannot, so the choice was spill or clip. Clipping silently deleted
+  the last line of four cards in the first pass. A spill is loud and means the
+  card wants resizing in Obsidian — fix it at the source.
+- **Inside a `foreignObject`, only `<div>` and `<span>` may be emitted, styled
+  inline.** Its contents are real HTML sitting inside `.prose`, so *every* prose
+  rule cascades in. This is not theoretical: `<p><em>WHY</em> the website
+  exists</p>` was caught by the caption rule
+  `.prose p:has(> em:only-child) { font-size: 13px; color: ink-60 }`, because
+  `:only-child` counts element siblings only and the trailing text node does not
+  count — ink at 62% on a dark panel, so the line simply vanished. The sibling
+  card survived by luck: `***HOW***` emits `<strong><em>`, whose only element
+  child is the `<strong>`. Adding a `<p>`, `<ul>`, `<li>`, `<strong>` or `<em>`
+  back into that markup re-opens the hole.
+- **Verify a canvas on the real page, never in an isolated harness.** The bug
+  above shipped through a screenshot harness that reproduced the figure without a
+  `.prose` ancestor, which is precisely the context that caused it. Same lesson
+  as the tile cache: the convenient check was checking the wrong thing.
+- **A canvas is co-located** in the post's `assets/`, like every other asset. The
+  build resolves `assets/<name>` then `<name>` beside the note and fails naming
+  both; Obsidian's vault-wide resolution is not available, because the build only
+  clones `content/`.
+- **Known limit: a wide canvas gets small on a phone.** Measured on LOG 001's:
+  11.0px card text at a 1440 viewport, 6.0px at 500. That is the decorative tier
+  by this file's own yardstick. Acceptable while the caption and surrounding
+  prose carry the meaning — but a canvas is not the place to put a load-bearing
+  fact, and a *tall* canvas suffers far less than a wide one.
+
+The `--force` build caveat above applies verbatim: a `.canvas` is an untracked
+build input exactly like a `.svg`.
 
 ### Accessibility floor
 Semantic HTML, visible keyboard focus (signal orange ring), contrast AA minimum everywhere (check orange on paper for text — use it for accents, not body text), alt text on all images.
@@ -290,7 +382,8 @@ Rules:
 - **Log nests by year** (`log/<year>/…`); **products stay flat**. The year folder is filesystem organization — it never appears in the URL.
 - **Each post is its own folder; the folder name is the slug.** URLs: `/log/<slug>` and `/products/<slug>`.
 - **Files are plain `.md`** (not `.mdx`) so Obsidian treats them as native notes. **The folder name is the slug; the `.md` inside is named for the post's TITLE** (e.g. `building-deadlinklabs-with-ai-in-public/Building the Deadlink Labs website with AI, in public.md`), not the folder and not `index.md` — so the note reads with its real title everywhere in Obsidian (quick-switcher, graph, backlinks). The filename is free-form and never reaches the URL; the folder does. Vault navigation: find a post by its title (the filename) or by its number/nickname via `aliases` (an Obsidian-internal field the site ignores — see §4 frontmatter), and browse the ordered index with an Obsidian **Base** over the `log` folder sorted by `web-number`. Do NOT number folders to fake an order — order lives in `web-pub-date`/`web-number`, never in the folder name. Interactive components use the fenced-block convention (below), never raw inline JSX.
-- **Assets are co-located** in a sibling `assets/`, referenced with standard relative markdown: `![alt](./assets/hero.webp)`. Astro's image pipeline optimizes them at build — no per-image setup. (Obsidian `![[embed]]` syntax is NOT used.)
+- **Assets are co-located** in a sibling `assets/`, referenced with standard relative markdown: `![alt](./assets/hero.webp)`. Astro's image pipeline optimizes them at build — no per-image setup. (Obsidian `![[embed]]` syntax is NOT used **for images**; `.canvas` files are the one exception — see §3 "Obsidian canvases".)
+- **Obsidian canvases live in `assets/` too**, and embed with `![[Name.canvas]]` (§3). Two properties follow from the format and are worth knowing before planning around it: a `.canvas` is pure JSON with exactly two top-level keys, so it **carries no frontmatter** — no `web-*` fields, no tags, no aliases — and it can therefore **never appear in an Obsidian Base**, which queries markdown only. Every canvas needs a companion note to hold its metadata; here that note is the post, which supplies the alt text and caption. Wikilinks typed *inside* canvas text nodes are still real outgoing links, so backlinks and the graph keep working.
 - **Log feeds sort by `web-number`, highest first** (settled 2026-08-10). This
   supersedes the earlier "sorting always uses `web-pub-date`" rule, which shipped
   a feed reading 013, 012, 006, 010, 011 — correct by date and visibly broken to
@@ -606,7 +699,7 @@ Check it before starting work, and tick the boxes as you go.
 
 - No dark theme (dark panels for code/video/specimens only). No gradients. No stock photos. No AI-generated imagery. No scroll animations. No popups or floating CTAs. No cookie banner (don't add tracking that needs one). No adjectives about Marcelo. No prices on unreleased products. No second commercial page (Work-with-me is the one ask, off-nav).
 - No CMS in v1 — the Obsidian-vault content pipeline is the backend (§4).
-- No `.mdx`, no raw inline JSX in content, no frontmatter passthrough to output, no Obsidian `![[embed]]` image syntax — plain `.md`, `web-*` fields only, relative-markdown images, fenced-block components.
+- No `.mdx`, no raw inline JSX in content, no frontmatter passthrough to output, no Obsidian `![[embed]]` **image** syntax — plain `.md`, `web-*` fields only, relative-markdown images, fenced-block components. **The one exception is `![[….canvas]]`** (added 2026-08-12): the ban exists because Astro's image pipeline cannot resolve a wikilink, and a canvas never touches that pipeline — `remark-canvas.mjs` reads the JSON directly. It is allowed because it is the only form that previews live in Obsidian. See §3 "Obsidian canvases"; do not generalize it back to images.
 - Don't render unpublished content: `web-status: published` is the only pass.
 - Don't put the year in a URL; don't derive type from anything but the folder.
 - `my_assets/video-scripts/` is never published, never pulled into the build, and never a content collection entry.

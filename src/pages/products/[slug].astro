@@ -176,6 +176,24 @@ const leadParagraphs =
   .prose :global(strong) {
     font-weight: 600;
   }
+  /* Inlined specimens — .svg tiles (remark-svg-specimen) and Obsidian canvases
+     (remark-canvas). Mirrors the record page; a product is authored from the
+     same vault and may carry either. Without this a specimen rendered here at
+     its intrinsic size instead of the column width. */
+  .prose :global(.specimen-fig) {
+    margin: 1.75rem 0 0.6rem;
+  }
+  .prose :global(.specimen-fig svg) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  /* Graphite tiles arrive with no font-family and inherit the page webfont; an
+     artifact lifted from elsewhere keeps its own type, so :not() lets it pass. */
+  .prose :global(.specimen-fig svg text:not([font-family])) {
+    font-family: var(--font-mono);
+  }
   .prose :global(ul),
   .prose :global(ol) {
     margin: 0 0 1.4rem;
