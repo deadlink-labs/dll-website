@@ -18,7 +18,7 @@ web-type: log
 web-number: 2
 web-stage: IN PROGRESS
 web-tags: [ASTRO, RESEND, CLOUDFLARE, EMAIL, DNS]
-web-thumb: "./assets/thumb.webp"
+web-thumb: "./assets/thumb.webp"   # the post's own artwork, not a generated tile; source at assets/thumb.svg
 web-thumb-alt: "Cover artwork: the address hello@deadlinklabs.com set large in mono, with two hairlines entering from the left and converging at 45 degrees into a single orange node. Two paths, one inbox."
 ---
 
@@ -38,8 +38,8 @@ $
 
 Nameservers, fine. Mail records, none. Not a misconfiguration, an absence: no MX
 means no server anywhere has been told what to do with mail for this domain, so
-anything sent to that address bounces. ==The site whose whole argument is that the
-work now has a URL was shipping a dead email address in its own footer.==
+anything sent to that address bounces. The site whose whole argument is that the
+work now has a URL was shipping a dead email address in its own footer.
 
 So this record is about closing that, and about a second thing that turns out to
 be the same shape: making the contact form on the About page actually send.
@@ -64,98 +64,92 @@ costs nothing and buys two things: the personal address never appears in a
 public repo, and the destination inbox can change in a dashboard instead of in
 a deploy.
 
-## A static site with one server route
+## One server route on a site with no server
 
-The blocker was structural. This site is a content archive, and it builds to
-plain HTML with no server at all. A form that sends mail needs somewhere for the
-request to land.
+This site is a content archive. It builds to plain HTML and there's nothing
+running behind it, which is the whole point. A form that sends mail needs
+somewhere for the request to land.
 
-The roadmap had this written down as "install the Vercel adapter and switch
-output mode off pure-static," and that turned out to be wrong for Astro 5.
-`output` stays `'static'`. The adapter goes in, and exactly one file opts out:
+==I went looking for how Resend says to do this in Astro before writing anything,
+and the answer is that you don't write an endpoint at all.== You write an Astro
+Action: a function in `src/actions/index.ts` that declares what input it accepts
+and what it does with it. The framework generates the route, the client call, and
+the types. Resend's own guide is about fifteen lines of code.
 
-```terminal
-$ grep prerender src/pages/api/contact.ts
-export const prerender = false;
-$ ls .vercel/output/functions/
-_render.func
-$ find .vercel/output/static -name index.html | wc -l
-      13
-```
+That matters more than the line count. An action validates its input from a
+schema you declare once, so there's no hand-rolled trimming and no regex I have
+to keep in sync between the browser and the server. It hands back a plain
+`{ data, error }`. No fetch to write, no JSON to parse, no status codes to map.
 
-Thirteen pages of prerendered HTML, one function, and the routing table sends
-only `/api/contact` to it. **The archive is still an archive. There is a single
-door in the wall of it.**
+`output` stays `'static'`. The adapter goes in, the action endpoint becomes the
+one function in the build, and every page stays prerendered HTML.
+
+%% TO CAPTURE ON CAMERA: the build output block goes here (page count + the single
+   .func). Do not write the numbers until the build has actually run. %%
 
 One pin worth recording. `@astrojs/vercel` is at version 11, which requires
 Astro 7. Version 10 requires Astro 6. The newest major that works with the Astro
-5 this site runs is 9.0.5, and `npm install @astrojs/vercel` without a
-version fails on the peer dependency rather than picking the right one.
+5 this site runs is 9.0.5, and `npm install @astrojs/vercel` without a version
+fails on the peer dependency rather than picking the right one.
 
 ## Reading a secret without baking it into the bundle
 
-The obvious way to read an API key in Astro is `import.meta.env.RESEND_API_KEY`.
-**It works, and it is the wrong tool.** Environment variables that are not prefixed
-`PUBLIC_` still get statically replaced at build time, which means the key stops
-being a runtime lookup and becomes a string compiled into the function bundle.
+The obvious way to read an API key in Astro is `import.meta.env.RESEND_API_KEY`,
+which is what most examples show. **It works, and it's the wrong tool.**
+Environment variables that aren't prefixed `PUBLIC_` still get statically
+replaced at build time, which means the key stops being a runtime lookup and
+becomes a string compiled into the bundle.
 
 `astro:env` exists for this. The key is declared in the config as a server
 secret, imported as a normal binding, and read at runtime with validation
 attached, so a missing key fails loudly instead of sending mail as `undefined`.
 
-## The finding that would have eaten messages
+## The failure that looks like success
 
 I tested the handler with a deliberately invalid API key, expecting an exception
-to catch. Resend does not throw on a rejected send. It resolves, and puts the
-failure in the response payload:
-
-```terminal
-$ curl -s -i -X POST localhost:4399/api/contact \
-    --data "name=Test&email=test@example.com&problem=Everything"
-HTTP/1.1 303 See Other
-location: /about/#contact-error
-
-[contact] Resend rejected the send: {
-  name: 'validation_error',
-```
+to catch. Resend doesn't throw on a rejected send. It resolves, and puts the
+failure in the response payload.
 
 A handler with only a `try/catch` around that call sees no error, falls through
-to the success branch, and redirects the visitor to a thank-you page. The
+to the success branch, and tells the visitor their message is on its way. The
 message is gone and nothing anywhere says so. The fix is four lines, checking
-`error` on the result as well as catching. ==The failure mode is silent and looks
-exactly like success.==
+`error` on the result as well as catching, and it's what Resend's own example
+does for exactly this reason.
 
-## The form was missing the reply
+==A failure that resolves quietly is worse than one that throws, because every
+test you write will pass.==
+
+## What the visitor sees when it breaks
 
 Reading the existing markup before wiring it up: the form collected a name, a
 company, and "What's eating your time?" It did not collect an email address.
-
-**Every submission would have arrived with a problem to solve and no way to answer
-it.** The field is in now, required, and the endpoint sets it as the message's
+Every submission would have arrived with a problem to solve and no way to answer
+it. The field is in now, required, and the action sets it as the message's
 `Reply-To`, so hitting Reply in Gmail answers the person who wrote in rather than
 the mailbox the form sends from.
 
-## Failing without JavaScript
+The harder question is what happens when the send fails. The first version
+redirected to an error anchor on the About page, which meant the visitor landed
+back on an empty form. Someone who'd just written three paragraphs about their
+business would have to type them again.
 
-The site ships no client JavaScript, and a form that reports its own errors
-usually wants some. This one does not. On failure the endpoint redirects to
-`/about/#contact-error`, and a `:target` rule reveals a block that is otherwise
-hidden. The browser does the work.
+**This is the one page on the site that asks for anything, so a failure here has
+to keep what the person wrote.** The form submits from a small script, the action
+hands back an error, and that error gets written above the button with every
+field still filled in. Fix the address, press the button again. Field-level
+problems come back from the same schema that validates them, so a bad email says
+so under the email box instead of blaming the server.
 
-What that block says matters more than how it appears. It names whose fault it
-is, and it hands over the direct address. ==An error message that only apologises
-is a second dead end for someone who was trying to reach me.==
-
-Both redirects are `303`, not `302`, so the browser follows with GET and a
-refresh on the thank-you page cannot resubmit the form.
+The error copy hands over the direct address too. An error message that only
+apologises is a second dead end for someone who was trying to reach me.
 
 ## Two mail services, one domain
 
-Here is the part that sounds like it should not work. A domain has one set of MX
+Here's the part that sounds like it shouldn't work. A domain has one set of MX
 records and one SPF record per name. Cloudflare wants MX for receiving. Resend
 wants MX and SPF for sending. That reads like a collision.
 
-**It is not, because they claim different names.**
+**It's not, because they claim different names.**
 
 ![Three groups of DNS records. Cloudflare, for receiving, owns the apex: MX and TXT SPF. Resend, for sending, owns send with MX and TXT SPF, and resend._domainkey with TXT DKIM. A third group, policy, applies to both: an orange-marked _dmarc TXT record to start at p equals none.](./assets/dns-map.svg)
 
@@ -168,8 +162,9 @@ The orange record is the one you add by hand, and it carries a trap. DMARC
 reports go to whatever address you put in `rua`. Point that at a Gmail address
 and most reporters will refuse to send, because reporting across domains
 requires an authorization record published by the receiving domain, and
-`gmail.com` has not published one for mine. The address has to be on the domain
-itself. Mine is `dmarc@deadlinklabs.com`, forwarded like everything else.
+`gmail.com` hasn't published one for mine. ==The address in `rua` has to be on
+the domain the report is about, which is the opposite of where you'd want to
+read it.== Mine is `dmarc@deadlinklabs.com`, forwarded like everything else.
 
 One more: leave DMARC alignment relaxed. Resend signs from the `send.`
 subdomain, and turning on strict alignment would start bouncing the site's own
@@ -177,7 +172,7 @@ form mail.
 
 ## Replying from an address that has no mailbox
 
-Cloudflare Email Routing forwards. It does not give you a mailbox, so by default
+Cloudflare Email Routing forwards. It doesn't give you a mailbox, so by default
 you read mail at `hello@` and reply from your personal Gmail, which shows the
 personal address to every client who writes in.
 
@@ -189,26 +184,34 @@ to work before this step rather than after.
 
 ## Honest note
 
-**The code is in and the failure paths are tested. The DNS is not done yet.** No
-records exist as of this writing, no Resend domain is verified, and no message
-has travelled the whole pipe. That half happens on camera, and the `dig` output
-at the top of this post is the "before" shot.
+**This is the plan, written before the build.** No DNS records exist as of this
+writing, no Resend domain is verified, and no message has travelled the whole
+pipe. The decisions above are settled and the reading is done. The wiring happens
+on camera, and the `dig` output at the top of this post is the "before" shot.
 
-So: the form posts, validates, and handles a rejected send correctly. Whether
-mail arrives is the next thing to find out, in public.
+Whether mail arrives is the next thing to find out, in public.
+
+%% BEFORE PUBLISHING: update this section to past tense once the episode is shot,
+   fill the build-output block above with real numbers, and flip web-status to
+   published + web-stage to SETTLED (ROADMAP LOG 002). %%
 
 ## Decision Register
 
 | DEC | Decision | Status |
 |---|---|---|
-| DEC 001 | `output` stays `'static'`; one route opts out with `prerender = false` rather than switching the site to server rendering | SETTLED |
-| DEC 002 | `@astrojs/vercel` pinned to `^9.0.5`, the newest major that peers with Astro 5 | SETTLED |
-| DEC 003 | Secret read through `astro:env/server`, not `import.meta.env`, so it is not compiled into the bundle | SETTLED |
-| DEC 004 | The endpoint delivers to `hello@`, not to a personal inbox, so the destination lives in a dashboard and not in the repo | SETTLED |
-| DEC 005 | Resend verifies the root domain; its records land on `send.` and do not touch the apex Cloudflare needs | SETTLED |
-| DEC 006 | DMARC `rua` points at an address on this domain, and starts at `p=none` | TESTING |
-| DEC 007 | Error state is a `:target` block, so the About page stays prerendered and ships no JavaScript | SETTLED |
-| DEC 008 | Spam handling deferred to its own episode. It must land before the site opens to search | TESTING |
+| DEC 001 | Astro Actions for the form, following Resend's own Astro guide, rather than a hand-written API route | SETTLED |
+| DEC 002 | `output` stays `'static'`; the action endpoint is the only function, and every page stays prerendered | SETTLED |
+| DEC 003 | The form calls the action from a script, so the About page keeps its prerendered HTML | SETTLED |
+| DEC 004 | Input validated from one declared schema, so the browser and the server cannot disagree | SETTLED |
+| DEC 005 | A failed send keeps everything the visitor typed, and the error names the field | SETTLED |
+| DEC 006 | Secret read through `astro:env/server`, not `import.meta.env`, so it is not compiled into the bundle | SETTLED |
+| DEC 007 | Mail body sent as plain text, not HTML, so a stranger's input is never interpolated into markup | SETTLED |
+| DEC 008 | The endpoint delivers to `hello@`, not to a personal inbox, so the destination lives in a dashboard and not in the repo | SETTLED |
+| DEC 009 | `@astrojs/vercel` pinned to `^9.0.5`, the newest major that peers with Astro 5 | SETTLED |
+| DEC 010 | Resend verifies the root domain; its records land on `send.` and do not touch the apex Cloudflare needs | SETTLED |
+| DEC 011 | DMARC `rua` points at an address on this domain, and starts at `p=none` | TESTING |
+| DEC 012 | No analytics or tracking on the form. Sends are already counted in the Resend dashboard | SETTLED |
+| DEC 013 | Spam handling deferred to its own episode. It must land before the site opens to search | TESTING |
 
 ## Log timeline
 

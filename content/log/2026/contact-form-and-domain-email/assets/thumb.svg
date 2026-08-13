@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
   <rect width="1280" height="720" fill="#23201b"/>
   <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
-  <text x="64" y="100" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">SETTLED · BUILD LOG</text>
+  <text x="64" y="100" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">BUILD LOG</text>
   <text x="64" y="252" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="64" fill="#ece8e1" fill-opacity="0.95">hello@deadlinklabs.com</text>
   <path d="M 64 396 H 784 L 908 520" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="4"/>
   <path d="M 64 644 H 784 L 908 520" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="4"/>
