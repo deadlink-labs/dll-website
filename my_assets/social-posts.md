@@ -116,3 +116,7 @@ Deadlink Labs is the fix.
   ```
 - Keep the one-ask rule from the site: do not turn the feed into a pitch. Show the
   work, link the lab. The consulting funnel stays where it lives on the site.
+
+
+Joke when using Opus 5 and you are low on tokens (claude Opus five tends to be unnecesarily hyper verbose)
+"Dont ramble, just do what I requested. Ask clarifying questions only if needed."
