@@ -25,6 +25,13 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
+// Vercel Web Analytics. Cookieless and first-party (the script is served from
+// /_vercel/insights on our own domain), so it needs no consent banner and adds
+// no third-party request — the site still ships clean (CLAUDE.md §4, §8). It
+// reports only from a Vercel deployment; a local dev run logs a debug line and
+// sends nothing.
+import Analytics from '@vercel/analytics/astro';
+
 interface Props {
   /** Page title. Composed as "{title} · Deadlink Labs"; omit on the homepage. */
   title?: string;
@@ -142,6 +149,7 @@ const ALLOW_INDEXING = false;
         <Footer />
       </div>
     </div>
+    <Analytics />
   </body>
 </html>
 
