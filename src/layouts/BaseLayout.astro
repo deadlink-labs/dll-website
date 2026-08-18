@@ -24,6 +24,7 @@ import type { ImageMetadata } from 'astro';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   /** Page title. Composed as "{title} · Deadlink Labs"; omit on the homepage. */
@@ -142,6 +143,7 @@ const ALLOW_INDEXING = false;
         <Footer />
       </div>
     </div>
+    <Analytics />
   </body>
 </html>
 
