@@ -24,6 +24,7 @@ import type { ImageMetadata } from 'astro';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   /** Page title. Composed as "{title} · Deadlink Labs"; omit on the homepage. */
@@ -100,6 +101,7 @@ const ALLOW_INDEXING = false;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <Analytics />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Marcelo Brouard" />
