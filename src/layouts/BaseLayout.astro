@@ -24,6 +24,7 @@ import type { ImageMetadata } from 'astro';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   /** Page title. Composed as "{title} · Deadlink Labs"; omit on the homepage. */
@@ -131,6 +132,7 @@ const ALLOW_INDEXING = false;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     {/* Per-page head extras — e.g. JSON-LD Person schema on Home + About (§2). */}
     <slot name="head" />
+    <Analytics />
   </head>
   <body>
     <Nav width={width} />
