@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1520" viewBox="0 0 1000 1520">
+  <rect width="1000" height="1520" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="999" height="1519" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <text x="40" y="48" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="14" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">ONE RECORD, THE WHOLE HISTORY</text>
+
+  <!-- ================= main flow shapes ================= -->
+  <g font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="19" font-weight="600" text-anchor="middle">
+
+    <!-- RESEARCH -->
+    <rect x="150" y="90" width="260" height="60" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
+    <text x="280" y="128" fill="#ece8e1" fill-opacity="0.95">RESEARCH</text>
+
+    <!-- SIGNAL -->
+    <rect x="150" y="210" width="260" height="60" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
+    <text x="280" y="248" fill="#ece8e1" fill-opacity="0.95">SIGNAL FOUND</text>
+
+    <!-- QUEUED -->
+    <rect x="150" y="330" width="260" height="60" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
+    <text x="280" y="368" fill="#ece8e1" fill-opacity="0.95">QUEUED</text>
+
+    <!-- EMAIL SENT -->
+    <rect x="150" y="450" width="260" height="60" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
+    <text x="280" y="488" fill="#ece8e1" fill-opacity="0.95">EMAIL SENT</text>
+
+    <!-- STATUS READ -->
+    <rect x="150" y="760" width="260" height="60" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
+    <text x="280" y="798" font-size="17" fill="#ece8e1" fill-opacity="0.95">THREAD READ</text>
+
+    <!-- KIT SENT -->
+    <rect x="150" y="1065" width="260" height="60" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
+    <text x="280" y="1103" fill="#ece8e1" fill-opacity="0.95">KIT SENT</text>
+
+    <!-- PARTNER (final, orange live node) -->
+    <rect x="130" y="1370" width="300" height="90" rx="4" fill="none" stroke="#f04a00" stroke-opacity="0.7"/>
+    <circle cx="280" cy="1415" r="42" fill="#f04a00" fill-opacity="0.10"/>
+    <text x="280" y="1424" font-size="24" fill="#f04a00">PARTNER</text>
+  </g>
+
+  <!-- Captions sit BESIDE the connector, never on it: the line runs down x=280,
+       so every caption is left-anchored at 296 and centered in its own gap. -->
+  <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" fill="#ece8e1" fill-opacity="0.5">
+    <text x="296" y="184">org note created</text>
+    <text x="296" y="304">time-stamped, decays</text>
+    <text x="296" y="424">tier set by signal age</text>
+    <text x="296" y="544">by a person, every time</text>
+    <text x="296" y="854">status detected from the reply</text>
+    <text x="296" y="1159">next step: wait for booking</text>
+  </g>
+  <!-- PARTNER has no connector below it, so its caption stays centered. -->
+  <text x="280" y="1490" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" text-anchor="middle" fill="#ece8e1" fill-opacity="0.5">referral code active</text>
+
+  <!-- ================= decision diamonds ================= -->
+  <g font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" font-weight="600" text-anchor="middle">
+    <!-- REPLIED? -->
+    <polygon points="280,575 430,650 280,725 130,650" fill="none" stroke="#ece8e1" stroke-opacity="0.35"/>
+    <text x="280" y="644" fill="#ece8e1" fill-opacity="0.95">REPLIED?</text>
+    <text x="280" y="666" font-size="12" font-weight="400" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#ece8e1" fill-opacity="0.5">(waits, checks daily)</text>
+
+    <!-- INTERESTED? -->
+    <polygon points="280,880 430,955 280,1030 130,955" fill="none" stroke="#ece8e1" stroke-opacity="0.35"/>
+    <text x="280" y="949" fill="#ece8e1" fill-opacity="0.95">INTERESTED?</text>
+    <text x="280" y="971" font-size="12" font-weight="400" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#ece8e1" fill-opacity="0.5">(from the reply text)</text>
+
+    <!-- REFERRAL LOGGED? (future, dashed) -->
+    <polygon points="280,1185 430,1260 280,1335 130,1260" fill="none" stroke="#ece8e1" stroke-opacity="0.3" stroke-dasharray="5 4"/>
+    <text x="280" y="1254" fill="#ece8e1" fill-opacity="0.6">REFERRAL LOGGED?</text>
+    <text x="280" y="1276" font-size="12" font-weight="400" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#ece8e1" fill-opacity="0.45">(next piece, not yet built)</text>
+  </g>
+
+  <!-- REJECTED terminal, off to the side -->
+  <g>
+    <rect x="650" y="910" width="280" height="90" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.25"/>
+    <text x="790" y="948" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" text-anchor="middle" fill="#ece8e1" fill-opacity="0.7">REJECTED</text>
+    <text x="790" y="970" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12" text-anchor="middle" fill="#ece8e1" fill-opacity="0.45">filed, categorized, kept</text>
+  </g>
+
+  <!-- ================= arrows: straight vertical chain ================= -->
+  <g stroke="#ece8e1" stroke-opacity="0.35" stroke-width="1.5" fill="none">
+    <line x1="280" y1="150" x2="280" y2="204"/>
+    <line x1="280" y1="270" x2="280" y2="324"/>
+    <line x1="280" y1="390" x2="280" y2="444"/>
+    <line x1="280" y1="510" x2="280" y2="569"/>
+    <line x1="280" y1="725" x2="280" y2="754"/>
+    <line x1="280" y1="820" x2="280" y2="874"/>
+    <line x1="280" y1="1030" x2="280" y2="1059"/>
+    <line x1="280" y1="1125" x2="280" y2="1179"/>
+    <line x1="280" y1="1335" x2="280" y2="1364" stroke-dasharray="5 4"/>
+  </g>
+  <g fill="#ece8e1" fill-opacity="0.35">
+    <path d="M 280 204 L 274 194 L 286 194 Z"/>
+    <path d="M 280 324 L 274 314 L 286 314 Z"/>
+    <path d="M 280 444 L 274 434 L 286 434 Z"/>
+    <path d="M 280 569 L 274 559 L 286 559 Z"/>
+    <path d="M 280 754 L 274 744 L 286 744 Z"/>
+    <path d="M 280 874 L 274 864 L 286 864 Z"/>
+    <path d="M 280 1059 L 274 1049 L 286 1049 Z"/>
+    <path d="M 280 1179 L 274 1169 L 286 1169 Z"/>
+    <path d="M 280 1364 L 274 1354 L 286 1354 Z"/>
+  </g>
+  <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12" letter-spacing="1" fill="#ece8e1" fill-opacity="0.55">
+    <text x="296" y="745">YES</text>
+    <text x="296" y="1050">YES</text>
+    <text x="296" y="1355">YES, EVENTUALLY</text>
+  </g>
+
+  <!-- NO / loop-back: REPLIED? -> back up to QUEUED -->
+  <path d="M 130 650 L 60 650 L 60 360 L 144 360" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="1.5" fill="none"/>
+  <path d="M 144 360 L 132 355 L 132 365 Z" fill="#ece8e1" fill-opacity="0.35"/>
+  <text x="46" y="500" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12" letter-spacing="1" fill="#ece8e1" fill-opacity="0.55" transform="rotate(-90 46 500)" text-anchor="middle">NO → WAITS, SIGNAL AGES, LOOPS BACK</text>
+
+  <!-- NO / branch: INTERESTED? -> REJECTED -->
+  <path d="M 430 955 L 644 955" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="1.5" fill="none"/>
+  <path d="M 644 955 L 634 950 L 634 960 Z" fill="#ece8e1" fill-opacity="0.35"/>
+  <text x="540" y="940" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12" letter-spacing="1" text-anchor="middle" fill="#ece8e1" fill-opacity="0.55">NOT INTERESTED / NO FIT</text>
+
+  <!-- ================= org.md snapshot cards ================= -->
+  <g>
+    <rect x="580" y="90" width="380" height="190" rx="4" fill="#1a1712" stroke="#ece8e1" stroke-opacity="0.2"/>
+    <text x="604" y="122" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">ORG.MD · AFTER RESEARCH</text>
+    <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="14" fill="#ece8e1" fill-opacity="0.85">
+      <text x="604" y="154">ORG:      Northgate Travel Co.</text>
+      <text x="604" y="180">AREA:     Coast region</text>
+      <text x="604" y="206">PROGRAMS: Day trips, Combo</text>
+      <text x="604" y="232">WHY:      hosted a regional trip,</text>
+      <text x="622" y="254">          2 seasons running</text>
+    </g>
+  </g>
+
+  <path d="M 770 280 L 770 330" stroke="#ece8e1" stroke-opacity="0.3" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="784" y="309" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12" fill="#ece8e1" fill-opacity="0.4">same file, appends</text>
+
+  <g>
+    <rect x="580" y="330" width="380" height="210" rx="4" fill="#1a1712" stroke="#ece8e1" stroke-opacity="0.2"/>
+    <text x="604" y="362" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">ORG.MD · AFTER THE FIRST EMAIL</text>
+    <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="14" fill="#ece8e1" fill-opacity="0.85">
+      <text x="604" y="394">STATUS:     written to</text>
+      <text x="604" y="420">SIGNAL:     hot · 12d</text>
+      <text x="604" y="446">LAST TOUCH: 2026-08-14</text>
+      <text x="604" y="472">THREAD:     #A184</text>
+      <text x="604" y="498">NEXT STEP:  follow up in 7 days</text>
+    </g>
+  </g>
+
+  <path d="M 410 480 L 574 435" stroke="#ece8e1" stroke-opacity="0.3" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <!-- Label sits clear ABOVE the dashed run, not on top of it. -->
+  <text x="430" y="438" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12" fill="#ece8e1" fill-opacity="0.4">writes to</text>
+</svg>

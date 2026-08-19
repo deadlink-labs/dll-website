@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <!-- House specimen tile: three colours only (panel, on-panel, signal), one
+       orange live node, no separator hairlines. Bars are chart elements, so they
+       may sit below the 0.45 text contrast floor. The hero is a fact, not a
+       label: at a 310px feed card (0.242) it lands at ~31px and still reads,
+       while every micro-tier label is deliberately decorative at that size. -->
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <!-- stamp: status and kind only, never the record number -->
+  <text x="64" y="100" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">SHIPPED · CLIENT WORK</text>
+
+  <!-- hero -->
+  <text x="64" y="258" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="130" font-weight="600" fill="#ece8e1" fill-opacity="0.95">9</text>
+  <text x="64" y="300" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">TO WRITE THIS WEEK</text>
+
+  <!-- the funnel, scaled so 84 = 1000px -->
+  <g fill="#ece8e1" fill-opacity="0.28">
+    <rect x="64" y="360" width="1000" height="26" rx="2"/>
+    <rect x="64" y="396" width="440" height="26" rx="2"/>
+    <rect x="64" y="432" width="226" height="26" rx="2"/>
+    <rect x="64" y="468" width="131" height="26" rx="2"/>
+    <rect x="64" y="504" width="71" height="26" rx="2"/>
+    <rect x="64" y="540" width="36" height="26" rx="2"/>
+  </g>
+
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" fill="#ece8e1" fill-opacity="0.55">
+    <text x="1084" y="381">84</text>
+    <text x="1084" y="417">37</text>
+    <text x="1084" y="453">19</text>
+    <text x="1084" y="489">11</text>
+    <text x="1084" y="525">6</text>
+    <text x="1084" y="561">3</text>
+  </g>
+
+  <!-- the one live node: the working end of the funnel -->
+  <circle cx="100" cy="553" r="30" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="100" cy="553" r="11" fill="#f04a00"/>
+
+  <text x="64" y="650" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">RESEARCHED · WRITTEN TO · REPLIED · INTERESTED · KIT SENT · PRODUCING</text>
+</svg>
