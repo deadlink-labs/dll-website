@@ -200,6 +200,7 @@ export interface HomepageData {
     title?: string;
     snippet?: string;
     record?: string; // "LOG 002" — the linked case study's stamp number (§3)
+    tags?: string[]; // domain keywords, band-name tag stripped (see CLIENT_WORK_TAGS)
   }[];
   // §5.1 band 7. Same stamped-list shape as clientWork, but every row links to a
   // real post, and the label comes from the post's own web-series frontmatter.
@@ -260,6 +261,7 @@ export async function getHomepageData(): Promise<HomepageData> {
         // Stamp the row with the case study's record number, like every other
         // record surface (§3). Omitted if the entry carries no web-number.
         record: entry.data.number != null ? recordLabel(entry) : undefined,
+        tags: clientWorkTags(entry.data.tags),
       };
     }
     return { name: c.name, status: c.status };
@@ -298,6 +300,21 @@ export async function getHomepageData(): Promise<HomepageData> {
 export function recordLabel(entry: LogEntry, prefix = 'LOG'): string {
   const n = entry.data.number;
   return n === undefined ? prefix : `${prefix} ${String(n).padStart(3, '0')}`;
+}
+
+// Tags that name the band they would be printed in. Every client-work post
+// carries one, so printing it on the row says "Client work" twice, and on the
+// Crehana row it collided with its own CASE STUDY status label.
+const CLIENT_WORK_TAGS = new Set(['CLIENT-WORK', 'CASE-STUDY']);
+/** Max tags on a homepage row. LOG 012 carries five, which wrapped to three lines. */
+const CLIENT_WORK_TAG_LIMIT = 3;
+
+// Domain keywords for a client-work row: the post's own web-tags, minus the
+// band-name tag, capped so the meta line stays one or two lines. The full,
+// unfiltered set still renders on the record itself via Stamp.astro.
+function clientWorkTags(tags: string[] = []): string[] | undefined {
+  const kept = tags.filter((t) => !CLIENT_WORK_TAGS.has(t.toUpperCase())).slice(0, CLIENT_WORK_TAG_LIMIT);
+  return kept.length > 0 ? kept : undefined;
 }
 
 // Series label for the stamp: "THROWBACK / 001". Independent of recordLabel — a

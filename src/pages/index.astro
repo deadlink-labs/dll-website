@@ -142,6 +142,7 @@ astro  v5.18.2  ready in 415 ms
                       <span class="stamplist__name">{c.name}</span>
                       {c.record && <span class="stamplist__record">{c.record}</span>}
                       <span class="stamplist__note">{c.status}</span>
+                      {c.tags && <span class="stamplist__tags">{c.tags.join(' / ')}</span>}
                     </div>
                     {c.title && <span class="stamplist__title">{c.title}</span>}
                     {c.snippet && <p class="stamplist__snippet">{c.snippet}</p>}
@@ -515,7 +516,8 @@ astro  v5.18.2  ready in 415 ms
   /* Middot separators between eyebrow fields, matching the lab-record stamp
      (§3: "LOG 012 · IN PROGRESS · …") and the dot already inside the status. */
   .stamplist__record::before,
-  .stamplist__note::before {
+  .stamplist__note::before,
+  .stamplist__tags::before {
     content: "·";
     margin: 0 0.5em;
     color: var(--color-ink-60);
@@ -544,6 +546,14 @@ astro  v5.18.2  ready in 415 ms
     letter-spacing: 0.1em;
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
+  }
+  /* Thread tags, same treatment as the record stamp's (Stamp.astro). Allowed to
+     wrap as a unit, since a three-tag run is the longest thing on the line. */
+  .stamplist__tags {
+    font-size: 11px;
+    color: var(--color-ink-60);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
   /* Descriptive case-study title — sentence-case sans, consistent with the feed.
      20px is THE row/card title size across the homepage (see also .card__title
