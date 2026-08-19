@@ -17,7 +17,7 @@ web-snippet: "Field technicians never finished their service reports, and in a r
 web-type: log
 web-number: 12
 web-stage: SHIPPED
-web-tags: [CLIENT-WORK, AI, N8N, WHATSAPP, WHISPER]
+web-tags: [CLIENT-WORK, AI, WHATSAPP, N8N, WHISPER]
 web-thumb: "./assets/thumb.webp"   # the post's own artwork, not a generated tile; source at assets/thumb.svg
 web-thumb-alt: "Cover artwork: on the left a phone showing the WhatsApp exchange, the system asking for a serial number, spares and finish time, the technician answering in one line, and the report closing in one round. On the right the six-box flow behind it: voice note in, Whisper on their server, Claude structuring, a completeness check, PostgreSQL, report out, with Claude outlined in orange as the only call that leaves the network."
 ---

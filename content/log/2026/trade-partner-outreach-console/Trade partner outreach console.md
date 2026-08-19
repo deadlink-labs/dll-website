@@ -15,7 +15,7 @@ web-snippet: "Dozens of prospects researched, then scattered across notes, bookm
 web-type: log
 web-number: 14
 web-stage: SHIPPED
-web-tags: [CLIENT-WORK, AI, AUTOMATION]
+web-tags: [CLIENT-WORK, AI, AUTOMATION, DASHBOARDS]
 web-thumb: "./assets/thumb.webp"   # built from the post's own coverage grid; source at assets/thumb.svg
 web-thumb-alt: "Cover reading TRADE OUTREACH, coverage not geography, above the console's schematic grid of state tiles shaded from pale to dark green by how many organizations are tracked in each, with dashed outlines on the states targeted but not yet worked through."
 ---
@@ -64,11 +64,12 @@ that matters, and it's the part nobody gets to skip.
 Tuesday and Wednesday I built it. ==The record format, the queue and the
 console went in inside two days, which is the whole argument: once the code
 stops being the expensive part, the expensive part becomes understanding what's
-actually eating someone's time.== Thursday he sits down in front of it and
-tells me what I got wrong.
+actually eating someone's time.== Thursday he sat down in front of it and told
+me what I got wrong. By the following Monday it was running on his side and he
+was working out of it.
 
 That's the shape of it. Not a scoping call, a proposal, and a quarter of
-waiting. A conversation on Monday, something to click by Thursday.
+waiting. A conversation on Monday, working software the Monday after.
 
 Here, the thing that was genuinely annoying was the not-knowing. So that's
 what I built for.
@@ -194,16 +195,16 @@ Zoomed in on one organization, the whole logic looks like this:
 *Mock data throughout. The shape of the logic and the record's fields are
 real; the organization, the numbers and the thread ID are placeholders.*
 
-## It runs. Thursday he tells me what's wrong with it.
+## It shipped. Then he told me what was wrong with it.
 
-The research that used to live in four places lives in one now. The question
-that used to start with twenty minutes of remembering takes about as long as
-reading a list. That part is done.
+It runs on his side now. The research that used to live in four places lives in
+one, and the question that used to start with twenty minutes of remembering
+takes about as long as reading a list.
 
-What happens next is the part I care about more. He sits down with it, uses it
-against his own prospects, and tells me where it's wrong, and then we do
-another round once there's real usage to look at. Software nobody has argued
-with yet isn't finished. It's just untested.
+The part I care about more came after. He used it against his own prospects and
+came back with the things I had gotten wrong, which is the round that actually
+makes it his. Software nobody has argued with yet isn't finished. It's just
+untested.
 
 Today the console and their existing booking system agree on exactly one
 thing: a referral code. That was deliberate. A prospecting tool that also tries
