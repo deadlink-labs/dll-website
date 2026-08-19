@@ -206,7 +206,11 @@ astro  v5.18.2  ready in 415 ms
     throwbacks.length > 0 && (
       <section class="band" id="throwback">
         <SectionLabel num={bandNum('throwback')} label="Throwback" />
-        <ul class="stamplist">
+        <div>
+          <p class="band-lede">
+            Twenty years of building happened before this lab had a URL. This is what I can still prove.
+          </p>
+          <ul class="stamplist">
           {throwbacks.map((t) => (
             <li class="stamplist__row">
               <a class="stamplist__link" href={t.href}>
@@ -235,7 +239,8 @@ astro  v5.18.2  ready in 415 ms
               </a>
             </li>
           ))}
-        </ul>
+          </ul>
+        </div>
       </section>
     )
   }
