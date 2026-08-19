@@ -13,7 +13,7 @@ aliases:
 web-status: published
 web-title: "Nobody fills in the form. I automated it away with n8n and Claude."
 web-pub-date: 2026-07-29
-web-snippet: "Field technicians never finished their service reports. A two-minute WhatsApp voice note in, a finished report out: Whisper transcribing on their own server, Claude structuring, n8n running the whole flow."
+web-snippet: "Field technicians never finished their service reports, and in a regulated plant an unfinished report is an audit finding. A two-minute voice note goes in, a finished report comes out."
 web-type: log
 web-number: 12
 web-stage: SHIPPED

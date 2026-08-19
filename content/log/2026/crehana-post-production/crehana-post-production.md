@@ -12,7 +12,7 @@ aliases:
 web-status: published
 web-title: "Crehana: automating an e-learning content operation"
 web-pub-date: 2026-07-18
-web-snippet: "Three years turning a content operation that ran on memory into one that ran on a system. Dashboards first, then one board, then automation, then the parts of the bill nobody was reading."
+web-snippet: "Nobody could say how many courses were in production without asking several people and piecing it together. Three years later a dashboard answered it, and more than $22,000 a year in tools and manual work was gone."
 web-type: log
 web-number: 10
 web-stage: SHIPPED

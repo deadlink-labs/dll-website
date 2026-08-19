@@ -9,7 +9,7 @@ people: []
 web-status: published
 web-title: "Uruguay Outfitters: a hunting and fishing lodge website"
 web-pub-date: 2026-07-16
-web-snippet: "The complete web presence for Uruguay Outfitters, a hunting and fishing lodge: a fast, photo-heavy site for an international market, run by a small team."
+web-snippet: "They sell a week away to people who have never seen the place, so the photographs have to do the selling. A fast, photo-heavy site the team can update without calling me."
 web-type: log
 web-number: 11
 web-stage: SHIPPED

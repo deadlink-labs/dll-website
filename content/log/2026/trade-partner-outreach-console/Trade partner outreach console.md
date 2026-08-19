@@ -11,13 +11,13 @@ aliases:
 web-status: published
 web-title: "They'd already done the research. They just couldn't tell who was worth writing to."
 web-pub-date: 2026-08-19
-web-snippet: "A small tourism operator had researched dozens of potential referral partners. The research was good, and it was scattered across notes, bookmarks and an inbox, so nobody could say who was worth an email this week. A conversation on Monday, two days of building with Claude Code, and a console that answers it."
+web-snippet: "Dozens of prospects researched, then scattered across notes, bookmarks and an inbox. Two days of building with Claude Code turned it into a console that says who's worth an email this week."
 web-type: log
 web-number: 14
 web-stage: SHIPPED
 web-tags: [CLIENT-WORK, AI, AUTOMATION]
-web-thumb: "./assets/thumb.webp"   # graphite specimen tile; source at assets/thumb.svg
-web-thumb-alt: "Graphite specimen tile reading 9 to write this week, above a six-stage funnel narrowing from 84 researched down to 3 producing, with a single orange node marking the live end of the funnel."
+web-thumb: "./assets/thumb.webp"   # built from the post's own coverage grid; source at assets/thumb.svg
+web-thumb-alt: "Cover reading TRADE OUTREACH, coverage not geography, above the console's schematic grid of state tiles shaded from pale to dark green by how many organizations are tracked in each, with dashed outlines on the states targeted but not yet worked through."
 ---
 
 They had already done the research. That was the part that surprised me.

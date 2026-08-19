@@ -1,41 +1,96 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
-  <!-- House specimen tile: three colours only (panel, on-panel, signal), one
-       orange live node, no separator hairlines. Bars are chart elements, so they
-       may sit below the 0.45 text contrast floor. The hero is a fact, not a
-       label: at a 310px feed card (0.242) it lands at ~31px and still reads,
-       while every micro-tier label is deliberately decorative at that size. -->
-  <rect width="1280" height="720" fill="#23201b"/>
-  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+  <!-- Cover built from the post's own artwork (the coverage grid), per CLAUDE.md:
+       when a post ships with something worth looking at, build the cover out of
+       that. Four zones: stamp 100 / wordmark 222 / subtitle 272 / graphic
+       320-590 / legend 660. The grid is the element that survives a 310px feed
+       card, because it reads as pattern rather than as text. -->
+  <rect width="1280" height="720" fill="#f7f6f3"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#e4e0d9"/>
 
-  <!-- stamp: status and kind only, never the record number -->
-  <text x="64" y="100" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">SHIPPED · CLIENT WORK</text>
+  <text x="64" y="100" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#9b968d">SHIPPED · CLIENT WORK</text>
 
-  <!-- hero -->
-  <text x="64" y="258" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="130" font-weight="600" fill="#ece8e1" fill-opacity="0.95">9</text>
-  <text x="64" y="300" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">TO WRITE THIS WEEK</text>
+  <text x="64" y="222" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="46" letter-spacing="2" font-weight="600" fill="#191817">TRADE OUTREACH</text>
+  <text x="64" y="272" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="3" fill="#6b6862">COVERAGE, NOT GEOGRAPHY</text>
 
-  <!-- the funnel, scaled so 84 = 1000px -->
-  <g fill="#ece8e1" fill-opacity="0.28">
-    <rect x="64" y="360" width="1000" height="26" rx="2"/>
-    <rect x="64" y="396" width="440" height="26" rx="2"/>
-    <rect x="64" y="432" width="226" height="26" rx="2"/>
-    <rect x="64" y="468" width="131" height="26" rx="2"/>
-    <rect x="64" y="504" width="71" height="26" rx="2"/>
-    <rect x="64" y="540" width="36" height="26" rx="2"/>
+  <!-- the grid: 11 columns, tile 95x46, pitch 105 x 56 -->
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="16" font-weight="600" text-anchor="middle">
+
+    <!-- row 1 -->
+    <rect x="64"   y="320" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="111"  y="349" fill="#1d5b48">AL</text>
+    <rect x="169"  y="320" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="216"  y="349" fill="#1d5b48">AK</text>
+    <rect x="274"  y="320" width="95" height="46" rx="3" fill="#8fbfa8"/><text x="321"  y="349" fill="#ffffff">AZ</text>
+    <rect x="379"  y="320" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="426"  y="349" fill="#1d5b48">AR</text>
+    <rect x="484"  y="320" width="95" height="46" rx="3" fill="#1d5b48"/><text x="531"  y="349" fill="#ffffff">CA</text>
+    <rect x="589"  y="320" width="95" height="46" rx="3" fill="#1d5b48"/><text x="636"  y="349" fill="#ffffff">CO</text>
+    <rect x="694"  y="320" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="741"  y="349" fill="#1d5b48">CT</text>
+    <rect x="799"  y="320" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="846"  y="349" fill="#1d5b48">DE</text>
+    <rect x="904"  y="320" width="95" height="46" rx="3" fill="#1d5b48"/><text x="951"  y="349" fill="#ffffff">FL</text>
+    <rect x="1009" y="320" width="95" height="46" rx="3" fill="#8fbfa8"/><text x="1056" y="349" fill="#ffffff">GA</text>
+    <rect x="1114" y="320" width="95" height="46" rx="3" fill="#f0ece5"/><text x="1161" y="349" fill="#9b968d">HI</text>
+
+    <!-- row 2 -->
+    <rect x="64"   y="376" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="111"  y="405" fill="#1d5b48">ID</text>
+    <rect x="169"  y="376" width="95" height="46" rx="3" fill="#8fbfa8"/><text x="216"  y="405" fill="#ffffff">IL</text>
+    <rect x="274"  y="376" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="321"  y="405" fill="#1d5b48">IN</text>
+    <rect x="379"  y="376" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="426"  y="405" fill="#1d5b48">IA</text>
+    <rect x="484"  y="376" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="531"  y="405" fill="#1d5b48">KS</text>
+    <rect x="589"  y="376" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="636"  y="405" fill="#1d5b48">KY</text>
+    <rect x="694"  y="376" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="741"  y="405" fill="#1d5b48">LA</text>
+    <rect x="799"  y="376" width="95" height="46" rx="3" fill="#f0ece5" stroke="#9b968d" stroke-width="1.5" stroke-dasharray="4 3"/><text x="846" y="405" fill="#9b968d">ME</text>
+    <rect x="904"  y="376" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="951"  y="405" fill="#1d5b48">MD</text>
+    <rect x="1009" y="376" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="1056" y="405" fill="#1d5b48">MA</text>
+    <rect x="1114" y="376" width="95" height="46" rx="3" fill="#8fbfa8"/><text x="1161" y="405" fill="#ffffff">MI</text>
+
+    <!-- row 3 -->
+    <rect x="64"   y="432" width="95" height="46" rx="3" fill="#8fbfa8"/><text x="111"  y="461" fill="#ffffff">MN</text>
+    <rect x="169"  y="432" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="216"  y="461" fill="#1d5b48">MS</text>
+    <rect x="274"  y="432" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="321"  y="461" fill="#1d5b48">MO</text>
+    <rect x="379"  y="432" width="95" height="46" rx="3" fill="#f0ece5" stroke="#9b968d" stroke-width="1.5" stroke-dasharray="4 3"/><text x="426" y="461" fill="#9b968d">MT</text>
+    <rect x="484"  y="432" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="531"  y="461" fill="#1d5b48">NE</text>
+    <rect x="589"  y="432" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="636"  y="461" fill="#1d5b48">NV</text>
+    <rect x="694"  y="432" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="741"  y="461" fill="#1d5b48">NH</text>
+    <rect x="799"  y="432" width="95" height="46" rx="3" fill="#d7ebe3"/><text x="846"  y="461" fill="#1d5b48">NJ</text>
+    <rect x="904"  y="432" width="95" height="46" rx="3" fill="#f0ece5"/><text x="951"  y="461" fill="#9b968d">NM</text>
+    <rect x="1009" y="432" width="95" height="46" rx="3" fill="#1d5b48"/><text x="1056" y="461" fill="#ffffff">NY</text>
+    <rect x="1114" y="432" width="95" height="46" rx="3" fill="#8fbfa8"/><text x="1161" y="461" fill="#ffffff">NC</text>
+
+    <!-- row 4 -->
+    <rect x="64"   y="488" width="95" height="46" rx="3" fill="#f0ece5" stroke="#9b968d" stroke-width="1.5" stroke-dasharray="4 3"/><text x="111" y="517" fill="#9b968d">ND</text>
+    <rect x="169"  y="488" width="95" height="46" rx="3" fill="#8fbfa8"/><text x="216"  y="517" fill="#ffffff">OH</text>
+    <rect x="274"  y="488" width="95" height="46" rx="3" fill="#f0ece5"/><text x="321"  y="517" fill="#9b968d">OK</text>
+    <rect x="379"  y="488" width="95" height="46" rx="3" fill="#f0ece5"/><text x="426"  y="517" fill="#9b968d">OR</text>
+    <rect x="484"  y="488" width="95" height="46" rx="3" fill="#8fbfa8"/><text x="531"  y="517" fill="#ffffff">PA</text>
+    <rect x="589"  y="488" width="95" height="46" rx="3" fill="#f0ece5"/><text x="636"  y="517" fill="#9b968d">RI</text>
+    <rect x="694"  y="488" width="95" height="46" rx="3" fill="#f0ece5"/><text x="741"  y="517" fill="#9b968d">SC</text>
+    <rect x="799"  y="488" width="95" height="46" rx="3" fill="#f0ece5" stroke="#9b968d" stroke-width="1.5" stroke-dasharray="4 3"/><text x="846" y="517" fill="#9b968d">SD</text>
+    <rect x="904"  y="488" width="95" height="46" rx="3" fill="#8fbfa8"/><text x="951"  y="517" fill="#ffffff">TN</text>
+    <rect x="1009" y="488" width="95" height="46" rx="3" fill="#1d5b48"/><text x="1056" y="517" fill="#ffffff">TX</text>
+    <rect x="1114" y="488" width="95" height="46" rx="3" fill="#f0ece5"/><text x="1161" y="517" fill="#9b968d">UT</text>
+
+    <!-- row 5 -->
+    <rect x="64"   y="544" width="95" height="46" rx="3" fill="#f0ece5"/><text x="111"  y="573" fill="#9b968d">VT</text>
+    <rect x="169"  y="544" width="95" height="46" rx="3" fill="#f0ece5"/><text x="216"  y="573" fill="#9b968d">VA</text>
+    <rect x="274"  y="544" width="95" height="46" rx="3" fill="#8fbfa8"/><text x="321"  y="573" fill="#ffffff">WA</text>
+    <rect x="379"  y="544" width="95" height="46" rx="3" fill="#f0ece5"/><text x="426"  y="573" fill="#9b968d">WV</text>
+    <rect x="484"  y="544" width="95" height="46" rx="3" fill="#f0ece5"/><text x="531"  y="573" fill="#9b968d">WI</text>
+    <rect x="589"  y="544" width="95" height="46" rx="3" fill="#f0ece5" stroke="#9b968d" stroke-width="1.5" stroke-dasharray="4 3"/><text x="636" y="573" fill="#9b968d">WY</text>
   </g>
 
-  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" fill="#ece8e1" fill-opacity="0.55">
-    <text x="1084" y="381">84</text>
-    <text x="1084" y="417">37</text>
-    <text x="1084" y="453">19</text>
-    <text x="1084" y="489">11</text>
-    <text x="1084" y="525">6</text>
-    <text x="1084" y="561">3</text>
+  <!-- legend -->
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="18" letter-spacing="1" fill="#6b6862">
+    <rect x="64" y="646" width="20" height="20" rx="3" fill="#f0ece5"/>
+    <text x="94" y="662">NONE</text>
+
+    <rect x="184" y="646" width="20" height="20" rx="3" fill="#f0ece5" stroke="#9b968d" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <text x="214" y="662">TARGETED</text>
+
+    <rect x="384" y="646" width="20" height="20" rx="3" fill="#d7ebe3"/>
+    <text x="414" y="662">1-2</text>
+
+    <rect x="494" y="646" width="20" height="20" rx="3" fill="#8fbfa8"/>
+    <text x="524" y="662">3-5</text>
+
+    <rect x="604" y="646" width="20" height="20" rx="3" fill="#1d5b48"/>
+    <text x="634" y="662">6+</text>
   </g>
-
-  <!-- the one live node: the working end of the funnel -->
-  <circle cx="100" cy="553" r="30" fill="#f04a00" fill-opacity="0.12"/>
-  <circle cx="100" cy="553" r="11" fill="#f04a00"/>
-
-  <text x="64" y="650" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">RESEARCHED · WRITTEN TO · REPLIED · INTERESTED · KIT SENT · PRODUCING</text>
 </svg>
