@@ -141,6 +141,7 @@ astro  v5.18.2  ready in 415 ms
                     <div class="stamplist__meta">
                       <span class="stamplist__name">{c.name}</span>
                       {c.record && <span class="stamplist__record">{c.record}</span>}
+                      <span class="stamplist__break"></span>
                       <span class="stamplist__note">{c.status}</span>
                       {c.tags && <span class="stamplist__tags">{c.tags.join(' / ')}</span>}
                     </div>
@@ -510,8 +511,22 @@ astro  v5.18.2  ready in 415 ms
     align-items: baseline;
     flex-wrap: wrap;
     gap: 0;
+    row-gap: 0.2rem; /* only ever shows on a row that splits (see __break) */
     margin-bottom: 0.5rem;
     font-family: var(--font-mono);
+  }
+  /* Client work rows carry name, record, status, year AND thread tags, which is
+     more than one line holds. Left to wrap on its own the run broke at whatever
+     the viewport allowed and orphaned a leading "·" at the start of line two.
+     This zero-height full-width flex item puts the break where it belongs:
+     identity above, the stamp (state + domain) below. */
+  .stamplist__break {
+    flex-basis: 100%;
+    height: 0;
+  }
+  .stamplist__break + .stamplist__note::before {
+    content: none;
+    margin: 0;
   }
   /* Middot separators between eyebrow fields, matching the lab-record stamp
      (§3: "LOG 012 · IN PROGRESS · …") and the dot already inside the status. */
