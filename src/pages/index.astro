@@ -224,7 +224,9 @@ astro  v5.18.2  ready in 415 ms
                   <div class="stamplist__meta">
                     <span class="stamplist__name">{t.label}</span>
                     {t.record && <span class="stamplist__record">{t.record}</span>}
+                    <span class="stamplist__break"></span>
                     <span class="stamplist__note">{t.status}</span>
+                    {t.tags && <span class="stamplist__tags">{t.tags.join(' / ')}</span>}
                   </div>
                   <span class="stamplist__title">{t.title}</span>
                   {t.snippet && <p class="stamplist__snippet">{t.snippet}</p>}
@@ -515,11 +517,11 @@ astro  v5.18.2  ready in 415 ms
     margin-bottom: 0.5rem;
     font-family: var(--font-mono);
   }
-  /* Client work rows carry name, record, status, year AND thread tags, which is
+  /* A stamped-list row carries name, record, status AND thread tags, which is
      more than one line holds. Left to wrap on its own the run broke at whatever
      the viewport allowed and orphaned a leading "·" at the start of line two.
      This zero-height full-width flex item puts the break where it belongs:
-     identity above, the stamp (state + domain) below. */
+     identity above, the stamp (state + domain) below. Used by both bands. */
   .stamplist__break {
     flex-basis: 100%;
     height: 0;

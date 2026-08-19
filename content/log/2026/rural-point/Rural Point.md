@@ -14,7 +14,7 @@ aliases:
 web-status: published
 web-title: "Rural Point: a wireless ISP in the Argentine countryside, 2006"
 web-pub-date: 2026-08-09
-web-snippet: "No 3G, no service, and the nearest connection 15 kilometers away. I climbed a 35-meter tower, proved the coverage from the front porches of the people who would pay for it, and ran a shared link for six families for three years. Then a storm took the tower down."
+web-snippet: "No 3G, no service, and the nearest internet 15 kilometers away. So I climbed a 35-meter tower and got six families online, and it ran for three years until a storm took the whole thing down."
 web-type: log
 web-number: 13
 web-stage: SHIPPED

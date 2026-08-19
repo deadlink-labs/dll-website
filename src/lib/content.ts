@@ -212,6 +212,7 @@ export interface HomepageData {
     title: string;
     snippet?: string;
     record?: string; // "LOG 013"
+    tags?: string[]; // domain keywords, band-name tag stripped (see rowTags)
   }[];
 }
 
@@ -261,7 +262,7 @@ export async function getHomepageData(): Promise<HomepageData> {
         // Stamp the row with the case study's record number, like every other
         // record surface (§3). Omitted if the entry carries no web-number.
         record: entry.data.number != null ? recordLabel(entry) : undefined,
-        tags: clientWorkTags(entry.data.tags),
+        tags: rowTags(entry.data.tags),
       };
     }
     return { name: c.name, status: c.status };
@@ -289,6 +290,7 @@ export async function getHomepageData(): Promise<HomepageData> {
       title: entry.data.title,
       snippet: entry.data.snippet,
       record: entry.data.number != null ? recordLabel(entry) : undefined,
+      tags: rowTags(entry.data.tags),
     };
   });
 
@@ -304,16 +306,19 @@ export function recordLabel(entry: LogEntry, prefix = 'LOG'): string {
 
 // Tags that name the band they would be printed in. Every client-work post
 // carries one, so printing it on the row says "Client work" twice, and on the
-// Crehana row it collided with its own CASE STUDY status label.
-const CLIENT_WORK_TAGS = new Set(['CLIENT-WORK', 'CASE-STUDY']);
+// Crehana row it collided with its own CASE STUDY status label. THROWBACK is
+// here for the same reason: the row already stamps THROWBACK / 001.
+const BAND_NAME_TAGS = new Set(['CLIENT-WORK', 'CASE-STUDY', 'THROWBACK']);
 /** Max tags on a homepage row. LOG 012 carries five, which wrapped to three lines. */
-const CLIENT_WORK_TAG_LIMIT = 3;
+const ROW_TAG_LIMIT = 3;
 
-// Domain keywords for a client-work row: the post's own web-tags, minus the
-// band-name tag, capped so the meta line stays one or two lines. The full,
-// unfiltered set still renders on the record itself via Stamp.astro.
-function clientWorkTags(tags: string[] = []): string[] | undefined {
-  const kept = tags.filter((t) => !CLIENT_WORK_TAGS.has(t.toUpperCase())).slice(0, CLIENT_WORK_TAG_LIMIT);
+// Domain keywords for a stamped-list row: the post's own web-tags, minus the
+// band-name tag, capped so the meta line stays two lines. Shared by clientWork
+// and throwbacks, which are deliberately the same row component (§5.1). The
+// full, unfiltered set still renders on the record itself via Stamp.astro, so
+// authoring order in web-tags is what decides which three surface here.
+function rowTags(tags: string[] = []): string[] | undefined {
+  const kept = tags.filter((t) => !BAND_NAME_TAGS.has(t.toUpperCase())).slice(0, ROW_TAG_LIMIT);
   return kept.length > 0 ? kept : undefined;
 }
 
