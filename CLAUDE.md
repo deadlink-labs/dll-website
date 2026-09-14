@@ -520,7 +520,7 @@ Lives at the content-repo root. Homepage placement only:
 {
   "homepage": {
     "heroPosts": ["building-deadlinklabs-with-ai-in-public", "hazefield-devlog-01"],
-    "recentPostsCount": 8,
+    "recentPostsCount": 5,
     "featuredProducts": ["cassette-mixtapes", "hexcast"],
     "clientWork": [
       { "name": "Uruguay Outfitters", "status": "SHIPPED · 2026", "slug": "uruguay-outfitters-website" },
@@ -613,7 +613,7 @@ Structure v2 §4.1 / §6. The page is generated from `site.config.json` + publis
    *What was rejected: making the rail label bold, or bold and orange.* All the band labels come from one `SectionLabel` rule; an 11px letter-spaced mono word in the gutter is not what a scanning reader reads, orange there would break §3's scarcity budget and compete with the status dots that carry real meaning, and once one label is orange every band wants one. Enlarging the section number was rejected for the same class of reason: it is a meaningless index, and blowing it up creates a second focal point against the hero. **Enlarge the content, not the chrome.**
 
    *The label is "Client work", not "Shipped for clients" (settled 2026-08-10).* The band now carries proposals as well as shipped work, and a heading claiming "shipped" over a `PROPOSAL · 2026` row is a small lie the row itself contradicts. It also fits the 150px rail on one line. The `#clients` id and the `/#clients` anchor are unchanged.
-5. **Recent log entries** — rail `03`. A chronological slice of the published log, excluding `heroPosts` (which are already shown in band 3). The living archive.
+5. **Recent log entries** — rail `03`. A chronological slice of the published log, excluding `heroPosts` (which are already shown in band 3). The living archive. Opens with a `.band-lede` ("Latest log entries from the lab.") so the band says in words what it is, like Client work and Throwback; the slice is five (`recentPostsCount`, cut from eight on 2026-09-14 so the band reads as a digest, not a second `/log`).
 6. **Featured products** (from `featuredProducts`, optional) — rail `04`.
 
    *The band sits on the paper, like every other band* (settled 2026-09-14). It was the page's one graphite plate from launch, with the section label and the card captions flipped light to match, on the argument that screens showcase best on a dark surface. Lifted so the sheet reads as one continuous paper with the dark confined to the screens themselves — the same look `/products` already had. **Tried first and rejected the same day: lifting the plate but keeping the tiles graphite.** The track stretches every card to the tallest caption; on the graphite band that dead space was invisible, as tiles it showed as three tall slabs, two-thirds empty on the shortest snippet, and the band read no lighter, only chopped up. The captions went ink-on-paper instead, which makes the stretch invisible again, and the chevrons followed (a graphite square on a paper card was the last piece of the old band). The band keeps its extra air (`padding-block: 3rem`) and gets the standard top hairline back, since the tonal shift that used to divide it is gone.

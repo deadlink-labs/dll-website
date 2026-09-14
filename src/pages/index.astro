@@ -171,6 +171,9 @@ astro  v5.18.2  ready in 415 ms
       <section class="band">
         <SectionLabel num={bandNum('recent')} label="Recent" />
         <div>
+          <p class="band-lede">
+            Latest log entries from the lab.
+          </p>
           <div class="feed">
             {recent.map((entry) => (
               <FeedItem entry={entry} />
@@ -422,7 +425,7 @@ astro  v5.18.2  ready in 415 ms
   /* The one band that says in words what it is. Sized at 18px — the same
      paragraph size as .hero__overview and .who__text, so it adds no new step to
      the ladder and never outranks the hero it sits under. Named for the pattern,
-     not the band: Throwback is the obvious second caller. */
+     not the band: Throwback and Recent are the other callers. */
   .band-lede {
     margin: 0 0 1.75rem;
     font-size: 18px;
