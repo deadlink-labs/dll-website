@@ -127,7 +127,7 @@ so the heading spine alone shows the thinking to someone who only skims.
       outlet, the Pentium II, a real client install) if they turn up
 - [x] D-Link vs MikroTik settled: MikroTik routing at the base of the tower,
       D-Link access points at the subscriber houses
-- [ ] `AI` THROWBACK / 002 (Game Boy screen retrofit) and / 003 (home thermostat)
+- [x] `AI` THROWBACK / 002 shipped as LOG 015 (see below). / 003 (home thermostat) still open
 - [ ] The four placeholder stubs were deliberately skipped in the voice pass. They
       are 86 to 130 words each and slated for replacement, so polishing them is
       work that gets thrown away. Three of them (`local-llm-home-assistant`,
@@ -136,6 +136,41 @@ so the heading spine alone shows the thinking to someone who only skims.
       exists. Each takes a fresh unique number when it is actually written.
       `obsidian-pipeline-notes` keeps 5: it is the visibility-gate fixture, not a
       stub, and must never publish
+
+### LOG 015 · The DMG chiptune machine, and THROWBACK / 002
+`v1.02.082` · **written 2026-08-23**
+
+A 2017 Game Boy DMG rebuilt into an LSDj instrument: retrobrite, button pads,
+backlight, bivert, pro sound. The second throwback, and the first record on the
+site that is evidence of the *creative* half of the lab rather than client work.
+
+- [x] LOG 015 written, `web-number: 15`, THROWBACK / 002, homepage band row added
+- [x] Twelve photographs placed, all with EXIF-verified dates
+- [x] Cover built from the post's own artwork (the retrobrite before/after), not
+      `npm run cover` — CLAUDE.md §3, "when the post has artwork, use the artwork"
+
+**The archive corrected the memory, in eight places.** The draft was written from
+recollection and then checked against EXIF `DateTimeOriginal` on every photograph,
+cross-referenced with the Hand Held Legend shipping mail. Retrobrite was
+remembered as happening *while waiting for parts*; it happened five months after
+they arrived. Shipping was remembered as "a couple of months"; it was four. The
+pro sound mod was remembered as undocumented; two photographs show it. The
+closing scene was remembered as the next day; it is nine months later, and that
+is the better fact, because it proves the machine got used.
+
+- [x] `DMG-03` corrected to `DMG-CPU-03`. Every original Game Boy is model
+      DMG-01; the revision is the board. Confirmed on the silkscreen through the
+      battery window, and it is the revision the chiptune scene tells you to skip
+      for LSDj (wave-channel sample playback), which the post states plainly
+- [x] One beat left deliberately open rather than guessed: whether Marcelo knew
+      the CPU-03 advice at purchase. Written as an honest gap, with the note to
+      himself in a `%%…%%` Obsidian comment that `remark-obsidian.mjs` strips
+- [x] Two spines drafted. The shipped one runs on reversibility (do every
+      undoable step before the one with no undo); the chronological alternative
+      is parked at `_drafts/` inside the post folder, four levels deep so the
+      loader's `*/*/*.md` glob cannot see it or collide on the slug
+- [ ] `ME` Pick a spine and delete the loser. `_drafts/` must not survive to a
+      commit that ships
 
 ---
 
@@ -223,6 +258,29 @@ work ahead of the shoot.
 - [ ] `BOTH` Verify: `/about` still builds to static HTML, one `.func` in the
       output, and a forced failure leaves all four fields filled
 
+**One action, two forms** (added 2026-08-14, script §14). The action is written
+generic from the start — the field is `message`, not `problem`, plus a required
+`source` naming the originating form — so the Cassette Mixtapes beta form reuses
+it with no second endpoint. `source` builds the subject line, which is the only
+thing keeping the two apart in one inbox. **Do not build this before §9 exists on
+camera**; the whole beat is that the second form costs nothing.
+
+- [ ] `BOTH` `WaitlistForm.astro`, `isPrivateBeta` branch only: add the missing
+      Name field, `about` → `message`, hidden `source`, drop `action="#"` and the
+      `data-placeholder` marker. **The COMING SOON branch stays untouched**
+- [ ] `BOTH` `web-form-prompt` (optional string) in the products schema beside
+      `web-lead`, mapped in the transform, passed from `products/[slug].astro` as
+      the label prop. Already set on the Mixtapes note, tolerated by
+      `.passthrough()` until the schema lands. A new product then sets its own
+      question in Obsidian with no code change
+- [ ] `BOTH` Extract the submit script into one shared module both pages import —
+      two copies of that logic is the thing this beat exists to avoid
+- [ ] `BOTH` `message` required when `source` is `contact`, optional for a beta
+      request (`superRefine` on `source`, not optional for both — a required
+      essay costs more beta requests than the answer is worth)
+- [ ] `BOTH` Verify: still one `.func`; both forms land at `hello@` with
+      distinguishable subjects; `/products/hazefield` still an inert placeholder
+
 **The record**
 - [x] `AI` Two-pipes flow chart, DNS-records tile, cover `2026-08-11`
 - [x] `AI` The post — `web-number: 2` — **written as a draft on purpose**, then
@@ -235,15 +293,23 @@ work ahead of the shoot.
 - [x] `AI` Revise the video script (vault, `log-002-(video-script)-…`) `2026-08-11`
 - [ ] `AI` Commit the episode (CLAUDE.md §9)
 
-> **Deferred on purpose, not forgotten** (2026-08-11). This note used to read
-> *"Two forms, not one — do not wire one and call the episode done."* That is no
-> longer the plan. The **product waitlist**
-> ([WaitlistForm.astro:20](src/components/WaitlistForm.astro#L20)) goes to a
-> different Resend surface (Audiences, not the send API) and gets its own
-> episode, as does **spam handling**. Splitting them is deliberate: smaller
-> chunks, more to document. **The honeypot is a hard prerequisite of LOG 004: it
-> lands before `ALLOW_INDEXING` flips, never after.** Deferring it past this
-> episode is only acceptable while that ordering holds.
+> **Deferred on purpose, not forgotten** (2026-08-11, **narrowed 2026-08-14**).
+> This note used to read *"Two forms, not one — do not wire one and call the
+> episode done"*, then *"the product waitlist gets its own episode"*. Both were
+> too broad: they treated the two product forms as one thing, and they are not.
+>
+> **The split is message vs mailing list, not contact vs product.** Cassette
+> Mixtapes is `PRIVATE BETA` — with a name and a "what do you make" answer it is
+> shaped exactly like a consulting inquiry, so it ships **here**, through the
+> same action (see "One action, two forms" above). Hazefield is `COMING SOON`,
+> email only, no message: that is a list signup, it wants Resend **Audiences**
+> rather than the send API, and forcing it through this episode would mean an
+> email per signup and no actual list to mail when the product opens. It keeps
+> its own episode, as does **spam handling**.
+>
+> **The honeypot is a hard prerequisite of LOG 004: it lands before
+> `ALLOW_INDEXING` flips, never after.** That ordering is unchanged, and now
+> covers **both** wired forms.
 
 ---
 

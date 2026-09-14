@@ -17,6 +17,11 @@ web-lead: |
 web-type: products
 web-number: 1
 web-stage: PRIVATE BETA
+# The beta form's visible question. The field underneath is the generic `message`
+# the contact action reads; only this label is per-product. Asking what someone
+# makes tells me whether they are actually shipping music, which "why do you want
+# to try this" would not.
+web-form-prompt: "What do you make, and where do you upload it?"
 web-tags: [LOUDNESS, TRUE-PEAK, RELEASE-PREP]
 web-image: "./assets/screen.png"
 ---

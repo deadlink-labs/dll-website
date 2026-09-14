@@ -2,7 +2,7 @@
   "homepage": {
     "heroPosts": ["building-deadlinklabs-with-ai-in-public"],
     "recentPostsCount": 8,
-    "featuredProducts": ["cassette-mixtapes", "hazefield"],
+    "featuredProducts": ["yerba", "cassette-mixtapes", "hazefield"],
     "clientWork": [
       { "name": "Hospitality Sector", "status": "SHIPPED · 2026", "slug": "trade-partner-outreach-console" },
       { "name": "Heat Exchanger Manufacturer", "status": "PROPOSAL · 2026", "slug": "nobody-fills-in-the-form" },
@@ -10,6 +10,7 @@
       { "name": "Crehana", "status": "CASE STUDY", "slug": "crehana-post-production" }
     ],
     "throwbacks": [
+      { "status": "2017", "slug": "dmg-chiptune-machine" },
       { "status": "2006", "slug": "rural-point" }
     ]
   }

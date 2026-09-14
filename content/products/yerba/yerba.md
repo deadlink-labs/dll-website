@@ -4,7 +4,7 @@ created: 2026-09-13
 project: "[[Yerba]]"
 people: []
 
-web-status: draft
+web-status: published
 web-title: "Yerba"
 web-pub-date: 2026-09-13
 web-snippet: "A weekly trend indicator for TradingView that tells you which side of the trend you're on, where it flips, and whether the daily agrees. Calibrated per asset, verified to the cent."

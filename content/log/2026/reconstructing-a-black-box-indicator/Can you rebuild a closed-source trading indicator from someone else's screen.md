@@ -5,7 +5,7 @@ project: "[[Yerba]]"
 people: []
 aliases:
   - LOG 016
-web-status: draft
+web-status: published
 web-title: "Can you rebuild a closed-source trading indicator from someone else's screen?"
 web-pub-date: 2026-09-13
 web-snippet: "An invite-only trend indicator, no source, no API. Fourteen days, a daily loop of screenshots and mined video frames, and a Pine Script that lands on 36 of 37 historical readings to the cent. The interesting part is how the numbers lied along the way."
