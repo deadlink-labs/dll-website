@@ -46,6 +46,18 @@ const webSchema = (image: ImageFunction) =>
       // instead of the default Content -> form order. Paragraphs separated by a
       // blank line, plain text (not parsed as markdown).
       'web-lead': z.string().optional(),
+      // Products only: a display price ("USD 97"). When present the page renders
+      // a buy block in place of the waitlist. The button is a placeholder until a
+      // payment provider is chosen (CLAUDE.md §5.3: no checkout in v1), and the
+      // rule "no prices until purchasable" means this stays unset on a published
+      // product until the thing can actually be bought.
+      'web-price': z.string().optional(),
+      // Products only, with web-price: where the button goes (a Whop / checkout
+      // URL). Absent -> the button is a labelled placeholder. And the one-
+      // paragraph fulfilment note under the button (plain text), because how a
+      // buyer gets access differs per product and per provider.
+      'web-buy-url': z.string().url().optional(),
+      'web-buy-note': z.string().optional(),
       // Authoring-only; validated against the folder in src/lib/content.ts.
       'web-type': z.enum(['log', 'products']).optional(),
       // --- stamp inputs (flagged decision, see header) ---
@@ -105,6 +117,9 @@ const webSchema = (image: ImageFunction) =>
       pubDate: data['web-pub-date'] ?? new Date(0),
       snippet: data['web-snippet'],
       lead: data['web-lead'],
+      price: data['web-price'],
+      buyUrl: data['web-buy-url'],
+      buyNote: data['web-buy-note'],
       declaredType: data['web-type'],
       number: data['web-number'],
       stage: data['web-stage'],

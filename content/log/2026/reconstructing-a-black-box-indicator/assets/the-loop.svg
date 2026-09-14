@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+  <!-- THE DAILY LOOP. Six stations on one rail, and a return path from the
+       last one back to CALIBRATE, because a reading feeds the next sweep. Only
+       PINE needs a human (the paste into TradingView); the live node is the
+       reading, which is what closes the loop. Horizontal and vertical only. -->
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">THE DAILY LOOP</text>
+  <g stroke="#ece8e1" stroke-opacity="0.25" stroke-width="2" fill="none">
+    <line x1="170" y1="360" x2="1110" y2="360"/>
+    <!-- return: read → calibrate -->
+    <line x1="1110" y1="360" x2="1110" y2="470"/>
+    <line x1="1110" y1="470" x2="640" y2="470"/>
+    <line x1="640" y1="470" x2="640" y2="360"/>
+  </g>
+  <g fill="#23201b" stroke="#ece8e1" stroke-opacity="0.6" stroke-width="2">
+    <circle cx="170" cy="360" r="13"/>
+    <circle cx="405" cy="360" r="11"/>
+    <circle cx="640" cy="360" r="11"/>
+    <circle cx="875" cy="360" r="11"/>
+  </g>
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55" text-anchor="middle">
+    <text x="170" y="322">CAPTURE</text>
+    <text x="405" y="322">INGEST</text>
+    <text x="640" y="322">CALIBRATE</text>
+    <text x="875" y="322">PINE</text>
+    <text x="1110" y="322" fill-opacity="0.75">READ CHART</text>
+  </g>
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45" text-anchor="middle">
+    <text x="170" y="412">from the stream</text>
+    <text x="405" y="412">claims · rows</text>
+    <text x="875" y="412">the one human step</text>
+  </g>
+  <text x="875" y="512" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45" text-anchor="middle">every reading re-scores the sweep</text>
+  <circle cx="1110" cy="360" r="44" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="1110" cy="360" r="17" fill="#f04a00"/>
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">ONE VIDEO: KNOWLEDGE FOR THE SYSTEM, LABELLED DATA FOR THE PORT.</text>
+</svg>

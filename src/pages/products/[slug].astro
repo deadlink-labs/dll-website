@@ -9,6 +9,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import StatusDot from '../../components/StatusDot.astro';
 import WaitlistForm from '../../components/WaitlistForm.astro';
+import BuyBlock from '../../components/BuyBlock.astro';
 import { getPublishedProducts } from '../../lib/content';
 
 export const getStaticPaths = (async () => {
@@ -20,7 +21,9 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 const comingSoon = entry.data.stage === 'COMING SOON';
 const isPrivateBeta = entry.data.stage === 'PRIVATE BETA';
-const showWaitlist = comingSoon || isPrivateBeta;
+// A priced product gets the buy block instead of a waitlist, whatever its stage.
+const price = entry.data.price;
+const showWaitlist = !price && (comingSoon || isPrivateBeta);
 // Products only: web-lead, when present, splits the page lead -> form -> full
 // Content (below the form) instead of the default Content -> form order. Plain
 // text, paragraphs separated by a blank line (see content.config.ts).
@@ -78,6 +81,7 @@ const leadParagraphs =
               <p>{p}</p>
             ))}
           </div>
+          {price && <BuyBlock title={entry.data.title} price={price} url={entry.data.buyUrl} note={entry.data.buyNote} />}
           {showWaitlist && <WaitlistForm isPrivateBeta={isPrivateBeta} />}
           <div class="prose">
             <Content />
@@ -89,6 +93,7 @@ const leadParagraphs =
           <div class="prose">
             <Content />
           </div>
+          {price && <BuyBlock title={entry.data.title} price={price} url={entry.data.buyUrl} note={entry.data.buyNote} />}
           {showWaitlist && <WaitlistForm isPrivateBeta={isPrivateBeta} />}
         </>
       )

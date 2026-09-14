@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+  <!-- THE CHAIN. Four implementations that had to agree before any calibration
+       number meant anything. The live node is TradingView's own SuperTrend, the
+       reference implementation the Python engine had never been checked
+       against. Hero is the difference between the ends of the chain. -->
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">THE CHAIN, CLOSED 2026-09-12</text>
+  <line x1="170" y1="400" x2="1110" y2="400" stroke="#ece8e1" stroke-opacity="0.25" stroke-width="2"/>
+  <g fill="#23201b" stroke="#ece8e1" stroke-opacity="0.6" stroke-width="2">
+    <circle cx="170" cy="400" r="13"/>
+    <circle cx="483" cy="400" r="11"/>
+    <circle cx="796" cy="400" r="11"/>
+  </g>
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55" text-anchor="middle">
+    <text x="170" y="362">trend.py</text>
+    <text x="483" y="362">yerba.pine</text>
+    <text x="796" y="362">yerba_lab.pine</text>
+    <text x="1110" y="362" fill-opacity="0.75">ta.supertrend</text>
+  </g>
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45" text-anchor="middle">
+    <text x="170" y="452">python, calibration</text>
+    <text x="483" y="452">the port</text>
+    <text x="796" y="452">the bench</text>
+    <text x="1110" y="452">TradingView's own</text>
+  </g>
+  <circle cx="1110" cy="400" r="44" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="1110" cy="400" r="17" fill="#f04a00"/>
+  <text x="64" y="270" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="120" fill="#ece8e1" fill-opacity="0.95">0%</text>
+  <text x="300" y="234" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">DIFFERENCE, END TO END</text>
+  <text x="300" y="270" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45">263 warm-up bars · 0.0343% at 21, an artefact</text>
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">UNTIL THIS READ, THE TWO ENGINES COULD HAVE BEEN WRONG TOGETHER.</text>
+</svg>

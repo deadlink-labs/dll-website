@@ -32,7 +32,7 @@ Register (from Structure v2): a working lab, not a startup site or portfolio. Vi
 **Primary goals, in order:**
 1. Attract consulting clients (small businesses, ops leads, founders) — surfaced *through* the lab (a "Work with me" destination, reachable off the main nav; see §5).
 2. Give recruiters and collaborators a fast, undeniable picture of how Marcelo thinks and what he ships.
-3. Host Deadlink Labs products (Cassette Mixtapes, Hazefield) with waitlists until purchasable.
+3. Host Deadlink Labs products (Cassette Mixtapes, Hazefield, Yerba) with waitlists until purchasable.
 
 **The 90-second test:** a recruiter landing cold must, within 90 seconds, learn who Marcelo is, the arc from sound post to AI-assisted building, 2–3 concrete shipped things, and how to contact him.
 
@@ -507,6 +507,7 @@ web-thumb-caption: "..."          # optional; caption under the header image
 - `web-thumb` → optional self-hosted poster in the post's `assets/`, run through Astro's image pipeline. Used as the homepage feed-card thumbnail and the video-facade poster. Absent → no image.
 - `web-thumb-alt` / `web-thumb-caption` → optional, and separate on purpose. **Alt DESCRIBES** the image for someone who cannot see it; the **caption ADDS** something for everyone (provenance, what you are looking at). A generated tile that restates the post title wants alt and no caption. A photograph that is evidence wants both. Absent alt leaves the header image decorative, which is right for a tile and wrong for a photograph, so any post whose `web-thumb` is a real photograph must set it (§3 accessibility floor).
 - Products also accept `web-waitlist: true` (§5.3).
+- Products also accept **`web-price`** (a display string, `"USD 97"`), **`web-buy-url`** and **`web-buy-note`** (added 2026-09-13, Yerba). A priced product renders `BuyBlock` in place of the waitlist: heading, a one-line generic intro, the button, and the fulfilment note. Without `web-buy-url` the button is a labelled placeholder (`href="#"`, `data-placeholder`), exactly like the unwired waitlist form; with it, the button is the checkout link and nothing else changes. `web-buy-note` is per product because how a buyer gets the thing depends on the provider (a file download reads differently from a username grant). §5.3's rule still holds: **`web-price` stays unset on a published product until it can actually be bought.** A priced draft is fine; it is how the page gets reviewed locally.
 - **No frontmatter passthrough.** The build whitelist-extracts the `web-*` fields into a typed object; raw frontmatter is never serialized into output (not the body, not `<meta>`, not structured data). Internal fields cannot leak into page source.
 - **Deliberately absent:** no `web-slug` (folder name is the slug), no `homepage`/`featured`/`order` (curation lives in `site.config.json`).
 
@@ -658,9 +659,10 @@ The shelf/bench pair is system vocabulary: the Log is the bench (`● Currently 
 **Rejected for this lede: "went public"** (and any public/private framing). Every log entry is public too, so the axis does not separate Products from Log, and it contradicts `private beta` in the very next sentence. The dead-link motif it reaches for belongs in a log entry where something genuinely crosses from private to public.
 - **Cassette Mixtapes** · COMING SOON — A preparation studio for digital mixtapes: playlists, metadata, streaming-spec validation, loudness analysis. Waitlist form.
 - **Hazefield** · COMING SOON — A generative drone/ambient music engine for long-form evolving soundscapes. Waitlist form.
+- **Yerba** · TESTING (draft until it ships) — a weekly trend indicator for TradingView, reconstructed from a closed-source reference and calibrated per asset (LOG 016 tells the story). Sold as the `.pine` **file** (decided 2026-09-13): invite-only scripts need a TradingView Premium plan and the chart runs on a free one, so the buyer pastes the file into their own Pine editor and it works on any plan. Checkout provider: a download store (Gumroad first candidate; their prohibited list mentions "crypto products" loosely enough to email support before listing). The full plan, including the later invite-only + Whop path, is `yerba-indicator/yerba-kb/plans/10-selling-yerba.md`. **The reference indicator is never named anywhere on this site**, same rule as that repo.
 - **HEXCAST** — a music visualizer product; surface here when it reaches product maturity, otherwise it stays a log/research thread.
 
-No prices until purchasable. When live: buy button (payment provider TBD — do not build checkout in v1). Client case studies (Uruguay Outfitters, Crehana) may surface here as well as on Home, per the off-nav consulting decision.
+No prices until purchasable. When live: the buy button is `BuyBlock` (§4 `web-price` / `web-buy-url` / `web-buy-note`), which links out to the provider's checkout — the site never hosts a checkout of its own. Until `web-buy-url` is set the button is a labelled placeholder, so a priced product can be drafted and reviewed without pretending to sell. Client case studies (Uruguay Outfitters, Crehana) may surface here as well as on Home, per the off-nav consulting decision.
 
 ### 5.4 About `/about`
 Replaces the former "The Lab" page. Context, not marketing: what Deadlink Labs is, a concise "Build to Understand" manifesto (short version, not the full Blueprint), a brief intro to the person, working principles, and a colophon (stack, design system, workflow, credits). JSON-LD `Person` schema lives here and on Home.

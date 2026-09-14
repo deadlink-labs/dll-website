@@ -1,0 +1,107 @@
+---
+// BuyBlock — the purchase surface of a priced product (web-price set).
+// Without web-buy-url the button is a labelled placeholder, exactly like
+// WaitlistForm's unwired form; with it, the button is the checkout link and
+// nothing else on the page changes. The fulfilment note (web-buy-note) is
+// per product because how a buyer gets access depends on the provider.
+// Styling mirrors the waitlist so the two read as one system.
+interface Props {
+  title: string;
+  price: string;
+  url?: string;
+  note?: string;
+}
+const { title, price, url, note } = Astro.props;
+const fulfilment = note ?? "You'll get an email with access instructions once the order is confirmed.";
+---
+
+<section class="buy" aria-labelledby="buy-heading">
+  <h2 id="buy-heading" class="buy__heading">Buy {title}</h2>
+  <p class="buy__note">
+    {/* Product-page flavor (VOICE-POSTS.md §3): second person, plain. */}
+    One-time purchase, every update included.
+  </p>
+  <div class="buy__row">
+    {
+      url ? (
+        <a class="buy__btn" href={url} rel="noopener">Buy {title} · {price}</a>
+      ) : (
+        <a class="buy__btn" href="#" data-placeholder="checkout not wired yet" aria-disabled="true">Buy {title} · {price}</a>
+      )
+    }
+    <span class="buy__meta">Invite-only TradingView script · not financial advice</span>
+  </div>
+  <p class="buy__fulfilment">
+    {/* Say how access arrives BEFORE the sale, not in a support email after it. */}
+    {fulfilment} Questions before you buy? <a href="/about#work-with-me">Leave me a message</a>.
+  </p>
+</section>
+
+<style>
+  .buy {
+    margin-block: 3rem 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-ink-15);
+    border-radius: 4px;
+    background: var(--color-paper-raised);
+  }
+  .buy__heading {
+    margin: 0 0 0.6rem;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .buy__note {
+    margin: 0 0 1.2rem;
+    color: var(--color-ink-60);
+    max-width: 60ch;
+  }
+  .buy__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+  .buy__btn {
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #fff;
+    background: var(--color-signal);
+    border: 1px solid var(--color-signal);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .buy__btn:hover {
+    background: #d64300;
+  }
+  .buy__btn:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+  .buy__fulfilment {
+    margin: 1.2rem 0 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-ink-60);
+    max-width: 60ch;
+  }
+  .buy__fulfilment a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .buy__fulfilment a:hover {
+    color: var(--color-signal);
+  }
+  .buy__meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink-60);
+  }
+</style>

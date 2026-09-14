@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+  <!-- ENDPOINT VS PATH. The same ratchet drawn twice. Above: the on-chart table
+       only ever reports the newest bar, so one capture is one point at the end.
+       Below: a frame where the cursor rests on an old bar reports THAT bar's
+       level, so the same stream yields the whole staircase. The live node is
+       one hovered bar, the thing the method is built to find. -->
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">ENDPOINT VS PATH</text>
+  <!-- the staircase, once -->
+  <g stroke="#ece8e1" stroke-opacity="0.35" stroke-width="2" fill="none">
+    <path d="M120,200 H220 V222 H320 V250 H420 V262 H520 V292 H620 V300 H720 V330"/>
+    <path d="M120,440 H220 V462 H320 V490 H420 V502 H520 V532 H620 V540 H720 V570"/>
+  </g>
+  <!-- above: one reading, at the end -->
+  <circle cx="720" cy="330" r="10" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.7" stroke-width="2"/>
+  <text x="800" y="290" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.75">ENDPOINT</text>
+  <text x="800" y="326" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45">where the stop is now</text>
+  <text x="800" y="356" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45">one capture, one point</text>
+  <!-- below: every step, and one of them hovered -->
+  <g fill="#23201b" stroke="#ece8e1" stroke-opacity="0.7" stroke-width="2">
+    <circle cx="220" cy="440" r="8"/>
+    <circle cx="320" cy="462" r="8"/>
+    <circle cx="520" cy="502" r="8"/>
+    <circle cx="620" cy="532" r="8"/>
+    <circle cx="720" cy="570" r="8"/>
+  </g>
+  <circle cx="420" cy="490" r="36" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="420" cy="490" r="14" fill="#f04a00"/>
+  <text x="800" y="500" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.75">PATH</text>
+  <text x="800" y="536" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45">where the stop was, bar by bar</text>
+  <text x="800" y="566" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45">read off frames where the cursor</text>
+  <text x="800" y="596" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45">happened to rest on history</text>
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">TWELVE POINTS OF SOMEONE ELSE'S PATH IS NOT CURVE-FITTING.</text>
+</svg>

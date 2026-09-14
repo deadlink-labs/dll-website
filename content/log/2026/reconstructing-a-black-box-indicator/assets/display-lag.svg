@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+  <!-- THE DISPLAY LAG. Four weekly bars and the trailing stop under them. The
+       stop bar k displays is the one committed by the close of k-1: a stop
+       cannot know the bar it is drawn on until that bar closes. The live node
+       is the displayed value, on bar k, sitting at the k-1 level. Numbers are
+       SOL on 2026-09-12: Level 78.86 shown, Raw 79.59 computed. -->
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">THE DISPLAY LAG</text>
+  <!-- bars -->
+  <g fill="#ece8e1" fill-opacity="0.22">
+    <rect x="200" y="300" width="56" height="90"/>
+    <rect x="360" y="270" width="56" height="80"/>
+    <rect x="520" y="230" width="56" height="70"/>
+    <rect x="680" y="250" width="56" height="40" fill-opacity="0.10" stroke="#ece8e1" stroke-opacity="0.3" stroke-dasharray="4 4"/>
+  </g>
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55" text-anchor="middle">
+    <text x="228" y="196">k-2</text>
+    <text x="388" y="196">k-1</text>
+    <text x="548" y="196" fill-opacity="0.9">k</text>
+    <text x="708" y="196">k+1</text>
+  </g>
+  <!-- the stop: a staircase, each step committed at a close -->
+  <g stroke="#ece8e1" stroke-opacity="0.45" stroke-width="2" fill="none">
+    <path d="M170,470 H290 V440 H450 V405 H610 V380 H760"/>
+  </g>
+  <!-- what bar k shows: the k-1 step, not its own -->
+  <line x1="548" y1="405" x2="548" y2="300" stroke="#ece8e1" stroke-opacity="0.3" stroke-width="2" stroke-dasharray="4 4"/>
+  <circle cx="548" cy="405" r="40" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="548" cy="405" r="15" fill="#f04a00"/>
+  <text x="548" y="520" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45" text-anchor="middle">shown on bar k</text>
+  <text x="548" y="548" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45" text-anchor="middle">committed at the close of k-1</text>
+  <!-- the numbers -->
+  <text x="1216" y="300" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">SHOWN</text>
+  <text x="1216" y="380" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="96" fill="#ece8e1" fill-opacity="0.95">78.86</text>
+  <text x="1216" y="440" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">RAW, SAME BAR</text>
+  <text x="1216" y="500" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="56" fill="#ece8e1" fill-opacity="0.55">79.59</text>
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">AGAINST THE RAW LEVEL, A CORRECT PORT READ 4.3% WRONG ON ETH.</text>
+</svg>
