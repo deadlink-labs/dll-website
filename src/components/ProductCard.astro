@@ -16,8 +16,11 @@ import type { ProductEntry } from '../lib/content';
 
 interface Props {
   entry: ProductEntry;
+  /** Image `sizes` hint. The default fits the Products index grid; the
+   *  homepage track passes its own, since its cards are narrower. */
+  sizes?: string;
 }
-const { entry } = Astro.props;
+const { entry, sizes = '(max-width: 760px) 100vw, 480px' } = Astro.props;
 const { image } = entry.data;
 const screenLabel = `${entry.data.title} UI`;
 ---
@@ -33,7 +36,7 @@ const screenLabel = `${entry.data.title} UI`;
           format="webp"
           quality={100}
           widths={[320, 640, 960, 1280]}
-          sizes="(max-width: 760px) 100vw, 480px"
+          sizes={sizes}
           loading="lazy"
         />
       ) : (
