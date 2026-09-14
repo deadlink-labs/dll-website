@@ -28,6 +28,9 @@ web-thumb-alt: "A weekly candlestick chart of HYPE against USDT on KuCoin, in Tr
   came from a capture or a run and is recorded in the repo's RESULTS.md and
   pine-runs.md with the date beside it. The header image is a MOCKUP of the
   redesigned panel, and the post says so in the last section.
+  Updated 2026-09-14: the product got packaged (yerba-indicator/production/store/),
+  the post gained "From the bench to the shelf" and five decisions, and the
+  product is named Yerba Trendline. The reconstruction is still called Yerba.
 -->
 
 There's a trend indicator I wanted on my charts. It's invite-only, closed-source, and there's no way in: no API, no source, no subscription I could buy. What it does have is a screen. Its author draws it on charts in a near-daily livestream, and every frame of that stream shows what the indicator computed for that bar.
@@ -157,6 +160,18 @@ Where it went wrong, it went wrong confidently. The "structural" conclusion. The
 
 **The model runs the sweep. Deciding what the sweep is asking is still my job.**
 
+## From the bench to the shelf
+
+A product page asks questions a repo never does, and it asked three in one evening. Where does the buyer pay. What does the buyer see. What is the file called. Every answer moved a decision.
+
+The selling plan was written around invite-only publishing, the way indicators are usually sold on TradingView, and only then checked against the one line that decides it: invite-only scripts publish from a Premium account, and this chart runs on a free one. The plan was rewritten in an hour around selling the file itself. So the next morning I read the stores' rules before naming the store. The first candidate's prohibited list names "crypto products" and "signals" outright. The second onboards through a payment processor that doesn't serve Argentina. The third has nothing on trading or software in its list at all and pays each sale straight into PayPal. Reading three prohibited lists took an hour and ruled out the two I'd assumed.
+
+TAKEAWAY: the line that decides a plan on someone else's platform is one sentence in their terms, and it gets read last because it's boring. Read it first.
+
+The panel went the same way. The nine-row table copies the reference's layout because that's how a capture becomes a row of ground truth, and a tool built to measure something ends up looking like the thing it measures. So the shipped file is its own file now. Same engine as the repo's, verified by a diff that strips the comments and compares the two functions, but with a three-column card instead of the table, a header written for a buyer, and one thing the repo refuses on principle: the repo keeps length and multiplier as inputs, because encoding the split would freeze an open finding, while the product reads the chart's symbol, applies the right pair by itself, and says "default" when it doesn't know. Two audiences, two right answers, one function.
+
+The name changed shape too. The working name for the product echoed the reference's, and I didn't see it until the model flagged the shape. A grep catches a string. It doesn't catch a rhyme. It ships as Yerba Trendline.
+
 ## The decisions, on the record
 
 | DEC | Decision | Status |
@@ -166,16 +181,21 @@ Where it went wrong, it went wrong confidently. The "structural" conclusion. The
 | DEC 003 | One ingest pass serves both the trading rules and the port | SETTLED |
 | DEC 004 | Observations overrule labels. The visible `5` and `3` were rejected on the flip dates | SETTLED |
 | DEC 005 | Bars are identified by their own prices, never by the engine's nearest level | SETTLED |
-| DEC 006 | Length and multiplier stay as inputs, not a per-ticker table. Encoding the split would freeze an open finding | TESTING |
+| DEC 006 | Length and multiplier stay as inputs in the repo, because a per-ticker table would freeze an open finding. The shipped file applies the table and says "default" when it doesn't know | REVISED |
 | DEC 007 | Every chart sitting is logged with the script's version before findings go anywhere | SETTLED |
 | DEC 008 | Markdown is the source of truth. The SQLite index is generated, disposable, never hand-edited | SETTLED |
 | DEC 009 | The story is a deliverable. A session ends when what it taught is written | SETTLED |
-| DEC 010 | Redesign the on-chart panel before anything ships | TESTING |
+| DEC 010 | Redesign the on-chart panel before anything ships. Written into the shipped file, not compiled yet | TESTING |
+| DEC 011 | Sell the `.pine` file, not invite-only access. Invite-only needs a Premium plan; the chart runs on a free one | SETTLED |
+| DEC 012 | The shipped file is its own deliverable. Same engine as the repo's, proved by diff; its own header, card and parameter lookup | SETTLED |
+| DEC 013 | Choose the store by its prohibited list, read in full, before anything else about it | SETTLED |
+| DEC 014 | All sales final, with one exception: the file won't compile in a current Pine editor and can't be fixed within 14 days | SETTLED |
+| DEC 015 | The product's name must not echo the reference's shape, not only its string. It ships as Yerba Trendline | SETTLED |
 
 ## What's still open
 
 Why the parameters vary at all. Three assets fit no pair yet: MORPHO's best fit is off by 2.59% and it's neither the OCR nor the warm-up. ADA's flip date lands three weeks off every candidate. ASTER reports a flat level across five months that no ratchet produces. BNB is solved in shape and blocked on a series I can't fetch. And the single most informative line ever captured about how the indicator is built arrived as a throwaway aside in a Q&A, which is how rare that kind of evidence is.
 
-One honest note on the visuals. The nine-row table Yerba draws today copies the reference's layout row for row, because reading one off a capture is how a frame becomes a row of ground truth. That was the right call for calibration and the wrong one for anything that ships. The header image of this post is a mockup of where the panel is going: one card, the state, the two prices that matter, and the confluence strip. The chart under it is real (KuCoin's HYPE weekly bars through the same engine at HYPE's own parameters, and the 51.14 entry is the one in the ground-truth file), but the panel is drawn, not a screenshot.
+One honest note on the visuals. The nine-row table the repo's Yerba draws copies the reference's layout row for row, because reading one off a capture is how a frame becomes a row of ground truth. That was the right call for calibration and the wrong one for anything that ships, which is why the shipped file draws a card instead. The header image of this post is a mockup of that card: the state, the two prices that matter, and the confluence strip. The chart under it is real (KuCoin's HYPE weekly bars through the same engine at HYPE's own parameters, and the 51.14 entry is the one in the ground-truth file), but the panel is drawn, not a screenshot. The real one hasn't been compiled yet. A capture replaces the drawing when it has.
 
-[Yerba has a product page](/products/yerba). Follow-up backtests will be posted as I gather more data. The trading rules the source material came with, sixteen of them so far, two already measured and one already contradicted, are the next entry. None of this is investment advice; it's a reconstruction on the bench, and the bench is where it stays until the numbers say otherwise.
+[Yerba Trendline has a product page](/products/yerba), and a package waiting on one paste into a Pine editor. Follow-up backtests will be posted as I gather more data. The trading rules the source material came with, sixteen of them so far, two already measured and one already contradicted, are the next entry. None of this is investment advice; it's a reconstruction on the bench, and it leaves the bench when the shipped file has run on live charts, not before.
