@@ -9,7 +9,9 @@
 //
 // The screen is always dark (graphite/display); the caption adapts to its
 // context through --pc-* custom properties (ink on paper, light on graphite),
-// so one component works in the light Products index and the dark Home band.
+// so one component could sit on graphite. Today every caller is on paper —
+// the Home band was graphite until 2026-09-14 — so the fallbacks are what
+// render.
 import { Image } from 'astro:assets';
 import StatusDot from './StatusDot.astro';
 import type { ProductEntry } from '../lib/content';

@@ -190,8 +190,8 @@ astro  v5.18.2  ready in 415 ms
       faked control. */}
   {
     featuredProducts.length > 0 && (
-      <section class="band band--dark" id="products">
-        <SectionLabel num={bandNum('products')} label="Products" tone="dark" />
+      <section class="band band--products" id="products">
+        <SectionLabel num={bandNum('products')} label="Products" />
         <div class="product-rail">
           <div class="product-track" aria-label="Products">
             {featuredProducts.map((entry) => (
@@ -212,9 +212,9 @@ astro  v5.18.2  ready in 415 ms
   {/* Band 7 — Throwback: projects from before the lab had a URL, written up
       from the archive (§5.2). Deliberately NOT a schedule — a row appears when a
       project gets documented, not on a weekly cadence. Same stamped-list markup
-      as the clients band; the dark Products band sits between them, so the two
-      lists never read as one. The THROWBACK / NNN label comes from the post's
-      own frontmatter, never from site.config.json (§4). */}
+      as the clients band; the Products band (cards, not rows) sits between
+      them, so the two lists never read as one. The THROWBACK / NNN label comes
+      from the post's own frontmatter, never from site.config.json (§4). */}
   {
     throwbacks.length > 0 && (
       <section class="band" id="throwback">
@@ -397,18 +397,15 @@ astro  v5.18.2  ready in 415 ms
     padding-block: 2.375rem;
   }
 
-  /* The one dark showcase beat: the Products band on warm graphite. The tonal
-     shift is the divider, so no top hairline. Product tiles are recessed
-     screens; the caption text flips light via the --pc-* custom properties. */
-  .band--dark {
-    background: var(--color-panel);
-    border-top: none;
+  /* The Products band sits on the paper like every other band, with the
+     standard top hairline as its divider; the cards render exactly as they do
+     on /products (dark screen, ink caption), so no --pc-* overrides here. It
+     was the page's one graphite plate until 2026-09-14: lifting the plate but
+     keeping the tiles dark was tried first and read as three tall slabs, each
+     stretched to the tallest caption, so the dead space showed. Only the extra
+     air survives from the dark version. */
+  .band--products {
     padding-block: 3rem;
-    --pc-line: var(--color-on-panel-15);
-    --pc-line-strong: var(--color-on-panel);
-    --pc-fg: var(--color-on-panel);
-    --pc-fg-60: var(--color-on-panel-60);
-    --token-fg: var(--color-on-panel-60);
   }
 
   /* The client band is the page's proof surface (§5.1 band 4), so it opens with
@@ -590,11 +587,12 @@ astro  v5.18.2  ready in 415 ms
     flex: 0 0 calc((100% - var(--gaps) * var(--track-gap)) / var(--per-view));
   }
 
-  /* The arrows: plain chevrons, the shape every carousel uses, in a
-     panel-coloured square with the card's own hairline and radius, sat astride
-     the track's two edges and centred on the seam between the screen and the
-     caption (the card's 1px border, then a 16:10 screen as wide as the card's
-     content box). Centred on the card
+  /* The arrows: plain chevrons, the shape every carousel uses, in a paper
+     square with the card's own hairline and radius — the same surface and
+     tokens as the caption they overlap, so they read as part of the card, not
+     a control laid over it. Sat astride the track's two edges and centred on
+     the seam between the screen and the caption (the card's 1px border, then
+     a 16:10 screen as wide as the card's content box). Centred on the card
      they landed on the status line; on the seam nothing is under them: the
      caption's top padding is 18px, so a 40px button clears the status text by
      2px and stops, horizontally, where the dot begins. Hidden until the script
@@ -609,10 +607,10 @@ astro  v5.18.2  ready in 415 ms
     width: 40px;
     height: 40px;
     padding: 0;
-    border: 1px solid var(--pc-line);
+    border: 1px solid var(--color-ink-15);
     border-radius: 4px;
-    background: var(--color-panel);
-    color: var(--color-on-panel-60);
+    background: var(--color-paper);
+    color: var(--color-ink-60);
     cursor: pointer;
     transition: color 0.2s ease, border-color 0.2s ease;
   }
@@ -634,10 +632,10 @@ astro  v5.18.2  ready in 415 ms
   }
   .product-nav__btn:hover:not(:disabled) {
     color: var(--color-signal);
-    border-color: var(--pc-line-strong);
+    border-color: var(--color-ink);
   }
   .product-nav__btn:disabled {
-    color: var(--color-on-panel-30);
+    color: var(--color-ink-15);
     cursor: default;
   }
 
