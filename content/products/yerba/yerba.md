@@ -60,7 +60,7 @@ That's it. No oscillator, no cloud, no seven-color histogram.
 
 ## Why the parameters are per asset
 
-Most trend lines ship with one setting for every chart. Yerba doesn't, because the market doesn't. Two weeks of measuring showed that the right band width and lookback differ by asset: one pair fits SOL, ETH and XRP, another fits twenty-three others, and BTC wants a third. ==The per-asset table is the product; the formula underneath is textbook.== The indicator reads the chart's symbol and applies the right pair by itself, and tells you when it's falling back to the default. 28 assets are classified today, crypto and stocks, and the table grows with every update.
+Most trend lines ship with one setting for every chart. Yerba doesn't, because the market doesn't. Two weeks of measuring showed that the right band width and lookback differ by asset: one pair fits SOL, ETH and XRP, another fits twenty-three others, and BTC wants a third. ==The per-asset table is the product; the formula underneath is textbook.== You set two numbers per asset from the table that comes with it, and the card shows which pair is running. 28 assets are classified today, crypto and stocks, and the table grows with every update.
 
 ## How it was verified
 

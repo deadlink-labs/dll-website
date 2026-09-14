@@ -168,7 +168,7 @@ The selling plan was written around invite-only publishing, the way indicators a
 
 TAKEAWAY: the line that decides a plan on someone else's platform is one sentence in their terms, and it gets read last because it's boring. Read it first.
 
-The panel went the same way. The nine-row table copies the reference's layout because that's how a capture becomes a row of ground truth, and a tool built to measure something ends up looking like the thing it measures. So the shipped file is its own file now. Same engine as the repo's, verified by a diff that strips the comments and compares the two functions, but with a three-column card instead of the table, a header written for a buyer, and one thing the repo refuses on principle: the repo keeps length and multiplier as inputs, because encoding the split would freeze an open finding, while the product reads the chart's symbol, applies the right pair by itself, and says "default" when it doesn't know. Two audiences, two right answers, one function.
+The panel went the same way. The nine-row table copies the reference's layout because that's how a capture becomes a row of ground truth, and a tool built to measure something ends up looking like the thing it measures. So the shipped file is its own file now. Same engine as the repo's, verified by a diff that strips the comments and compares the two functions, but with a three-column card instead of the table and a header written for a buyer. One thing the product wanted and didn't get: the repo keeps length and multiplier as inputs, because encoding the split would freeze an open finding, and a buyer would rather the chart picked the pair. The model wrote that, it failed to compile on the first paste, and the rule I'd set beforehand was that it ships only if it needs no round trip from me. So 0.1 ships the two inputs and the table, and the auto-pick is the first line of 0.2. Two audiences, two right answers, one function.
 
 The name changed shape too. The working name for the product echoed the reference's, and I didn't see it until the model flagged the shape. A grep catches a string. It doesn't catch a rhyme. It ships as Yerba Trendline.
 
@@ -181,13 +181,13 @@ The name changed shape too. The working name for the product echoed the referenc
 | DEC 003 | One ingest pass serves both the trading rules and the port | SETTLED |
 | DEC 004 | Observations overrule labels. The visible `5` and `3` were rejected on the flip dates | SETTLED |
 | DEC 005 | Bars are identified by their own prices, never by the engine's nearest level | SETTLED |
-| DEC 006 | Length and multiplier stay as inputs in the repo, because a per-ticker table would freeze an open finding. The shipped file applies the table and says "default" when it doesn't know | REVISED |
+| DEC 006 | Length and multiplier stay as inputs, not a per-ticker table. Encoding the split would freeze an open finding. The product picks the pair by symbol in 0.2; 0.1 ships the inputs and the table | TESTING |
 | DEC 007 | Every chart sitting is logged with the script's version before findings go anywhere | SETTLED |
 | DEC 008 | Markdown is the source of truth. The SQLite index is generated, disposable, never hand-edited | SETTLED |
 | DEC 009 | The story is a deliverable. A session ends when what it taught is written | SETTLED |
 | DEC 010 | Redesign the on-chart panel before anything ships. Written into the shipped file, not compiled yet | TESTING |
 | DEC 011 | Sell the `.pine` file, not invite-only access. Invite-only needs a Premium plan; the chart runs on a free one | SETTLED |
-| DEC 012 | The shipped file is its own deliverable. Same engine as the repo's, proved by diff; its own header, card and parameter lookup | SETTLED |
+| DEC 012 | The shipped file is its own deliverable. Same engine as the repo's, proved by diff; its own header and card | SETTLED |
 | DEC 013 | Choose the store by its prohibited list, read in full, before anything else about it | SETTLED |
 | DEC 014 | All sales final, with one exception: the file won't compile in a current Pine editor and can't be fixed within 14 days | SETTLED |
 | DEC 015 | The product's name must not echo the reference's shape, not only its string. It ships as Yerba Trendline | SETTLED |
