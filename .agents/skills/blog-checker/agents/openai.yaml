@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blog Checker"
+  short_description: "Make Deadlink Labs posts sound unmistakably Marcelo"
+  default_prompt: "Use $blog-checker to audit this Deadlink Labs post and recommend surgical improvements without changing it."
