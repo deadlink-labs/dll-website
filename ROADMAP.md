@@ -72,18 +72,18 @@ duplicate of LOG 010's.
       ([NetworkMark.astro](src/components/NetworkMark.astro)) — it currently runs
       forever with no visibility check and no motion query
 
-### LOG 013 · Rural Point, and the Throwback format
+### LOG 015 · Rural Point, and the Throwback format
 `v1.02.033` – `v1.02.034` · **written 2026-08-09 → 2026-08-10**
 
 The first record of pre-lab work, and the format that will carry the rest of it.
 
-- [x] LOG 013 written: a 2006 wireless ISP, told in the new throwback register
+- [x] LOG 015 written: a 2006 wireless ISP, told in the new throwback register
 - [x] **First photographs ever shipped in a post body.** CLAUDE.md §3 *Imagery*
       rewritten: "almost none" was a defense against stock photography that had
       been mistaken for a house style
 - [x] `web-series` / `web-series-number` on the content schema — a permanent
-      identifier that numbers independently of `web-number` (LOG 013 is also
-      THROWBACK / 001), with a per-series uniqueness guard that fails the build
+      identifier that numbers independently of `web-number` (LOG 015 is also
+      THROWBACK / 002), with a per-series uniqueness guard that fails the build
 - [x] Throwback band on Home (band 7), curated from `homepage.throwbacks`
 - [x] `.clients*` CSS renamed `.stamplist*` and shared by both stamped-list bands
       rather than copied
@@ -95,7 +95,7 @@ The first record of pre-lab work, and the format that will carry the rest of it.
 allow natural contractions in log posts. A grep of all nine posts then in `content/`
 returned **zero** — every apostrophe on the site was a possessive. The correction
 had been made in the doc and never applied to prose, which is exactly what "too
-clinical, too sanitized" was describing. LOG 013 is the first post written after it.
+clinical, too sanitized" was describing. LOG 015 is the first post written after it.
 
 **`v1.02.034` then applied it to everything already published.** All six published
 log posts plus the Hazefield product page were rewritten into the current register,
@@ -127,7 +127,7 @@ so the heading spine alone shows the thinking to someone who only skims.
       outlet, the Pentium II, a real client install) if they turn up
 - [x] D-Link vs MikroTik settled: MikroTik routing at the base of the tower,
       D-Link access points at the subscriber houses
-- [x] `AI` THROWBACK / 002 shipped as LOG 015 (see below). / 003 (home thermostat) still open
+- [x] `AI` THROWBACK / 001 shipped as LOG 013 (see below). / 003 (home thermostat) still open
 - [ ] The four placeholder stubs were deliberately skipped in the voice pass. They
       are 86 to 130 words each and slated for replacement, so polishing them is
       work that gets thrown away. Three of them (`local-llm-home-assistant`,
@@ -137,14 +137,14 @@ so the heading spine alone shows the thinking to someone who only skims.
       `obsidian-pipeline-notes` keeps 5: it is the visibility-gate fixture, not a
       stub, and must never publish
 
-### LOG 015 · The DMG chiptune machine, and THROWBACK / 002
+### LOG 013 · The DMG chiptune machine, and THROWBACK / 001
 `v1.02.082` · **written 2026-08-23**
 
 A 2017 Game Boy DMG rebuilt into an LSDj instrument: retrobrite, button pads,
 backlight, bivert, pro sound. The second throwback, and the first record on the
 site that is evidence of the *creative* half of the lab rather than client work.
 
-- [x] LOG 015 written, `web-number: 15`, THROWBACK / 002, homepage band row added
+- [x] LOG 013 written, `web-number: 13`, THROWBACK / 001, homepage band row added
 - [x] Twelve photographs placed, all with EXIF-verified dates
 - [x] Cover built from the post's own artwork (the retrobrite before/after), not
       `npm run cover` — CLAUDE.md §3, "when the post has artwork, use the artwork"
@@ -497,7 +497,7 @@ Short entries only. The reasoning lives in CLAUDE.md; this records *when* and
 | 2026-08-11 | **DMARC `rua` must be an address on the domain**, not a Gmail. Cross-domain reporting requires an authorization record published by the receiving domain, which `gmail.com` has not published and will not, so most reporters silently refuse. Alignment stays relaxed: Resend signs from `send.`, and strict alignment would bounce the site's own form mail. |
 | 2026-08-11 | **CLAUDE.md §3's specimen-animation paragraph described a mechanism that was never built** (a `class` driven by CSS in `[slug].astro`, a `@keyframes specimen-flow`). What ships is self-contained: each animated `.svg` carries its own keyframes and reduced-motion guard, so it animates identically opened anywhere. Corrected in place. Marching dashes are ambient and may ship in a post; a step reveal is a performance and belongs in a video. |
 | 2026-08-11 | **`VOICE.md` split into `VOICE-POSTS.md` and `VOICE-SCRIPTS.md`.** One file served both surfaces through a "register dial" and the dial was read wrong in both directions: posts inherited the teleprompter no-contractions constraint and read like terms and conditions (zero contractions across nine published posts), while scripts drifted casual because the post rules were the ones people read (LOG 002 at 78 contractions against LOG 001's 12). **Posts use contractions freely; scripts avoid them.** §1 of both files is byte-identical and must be changed in both or neither. The `/log-post` skill now routes by surface. |
-| 2026-08-11 | **The emphasis ladder: `==highlight==`, `**bold**`, plain.** Three tiers, one job each. Prompted by wanting Ferriss-style skimmability, but the investigation found bold had no system at all: usage ran from 14 marks in LOG 001 to zero across LOG 013's 3,540 words, and where it was used it did three unrelated jobs (thesis sentence, bullet lead-in, term first-mention). Same fix as "one size per role" for type. **Term first-mentions are now plain** — eleven of LOG 001's fourteen marks were `**Astro**`-style labels, which is why that post looked emphasized while emphasizing nothing. |
+| 2026-08-11 | **The emphasis ladder: `==highlight==`, `**bold**`, plain.** Three tiers, one job each. Prompted by wanting Ferriss-style skimmability, but the investigation found bold had no system at all: usage ran from 14 marks in LOG 001 to zero across LOG 015's 3,540 words, and where it was used it did three unrelated jobs (thesis sentence, bullet lead-in, term first-mention). Same fix as "one size per role" for type. **Term first-mentions are now plain** — eleven of LOG 001's fourteen marks were `**Astro**`-style labels, which is why that post looked emphasized while emphasizing nothing. |
 | 2026-08-11 | **Highlight budget: one per H2 section, three per post, enforced at build** by `remark-mark.mjs`, which fails naming the file and the section. Same argument as "exactly one orange live node" on a tile. The syntax is Obsidian's own `==text==`, so the vault preview and the site agree with no export step; the site additionally renders it bold, which is the one accepted delta. |
 | 2026-08-11 | **Yellow joins the palette as `--color-highlight`, and the accent budget now covers two colours.** Orange means LIVE (status dot, live node, working URL), yellow means READ THIS. Different hues so the systems cannot blur; never reach for signal orange as a highlight. Ink on the composited yellow measures 15.8:1, against 17.1 on bare paper, so contrast was never the constraint — scarcity is. Alpha 0.5 is a tunable dial, not a fixed value. |
 | 2026-08-11 | **The highlight is a band, not a box.** Gradient hard-stops at 20/90 of the inline box, so the stroke sits on the x-height and descenders break its bottom edge the way they do under a real marker. The first pass used 14/92, swallowed the descenders, and read as a filled rectangle. `box-decoration-break: clone` so a wrapped highlight renders as separate bands per line. Verified in a headless render including a three-line wrap. |
@@ -518,3 +518,4 @@ Short entries only. The reasoning lives in CLAUDE.md; this records *when* and
 | 2026-08-12 | **The voice guides go local-only, into a gitignored `.local/voice/`.** They encode how Marcelo writes and speaks, which is a personal instrument rather than shared tooling: anyone cloning this repo should write in their own voice. Moving them alone would have achieved nothing, because `my_assets/` is itself **tracked** — only `video-scripts` was ignored, so "my assets" never actually meant private. Hence a move plus a `git rm --cached`. **`.local/` is now the convention** for anything local-only: hidden, one `.gitignore` rule, nothing added to the visible root. Two earlier layouts were built and rejected — pointer stubs at the repo root (clutter) and `my_assets/voice/` with a tracked README (same tracked/private confusion, one level down). CLAUDE.md §6 keeps the summary and carries the explanation, so no new file exists to hold a note. **History is left intact:** the guides were public until today, no credential was ever involved, and a `filter-repo` force-push would rewrite every hash from `v0.04.001` on to hide something that was never secret. The cost is that they now have no version control. |
 | 2026-08-12 | **Video scripts leave the repo entirely, for the Obsidian vault** (`DLL-CONTENT/dll video scripts/`), so Marcelo can read along in Obsidian while recording. They land **beside** `dll-website-content/` and never inside it, which keeps them out of the content clone structurally rather than by a rule someone has to remember (CLAUDE.md §8). Renamed on the way to `log-NNN-(video-script)-Title.md`, one per episode. **A first pass mislabelled 002 to 005 as build logs and was reverted the same day:** their H1s read "Compiled Process Reference", inherited from LOG 001's format, and that was misread as a different kind of document. They are the scripts. Each carries `*[SCREEN:]*` directions, `> **Prompt:**` blocks and `**TAKEAWAY:**` lines, and VOICE-SCRIPTS.md §4 and §7 call them scripts throughout. **Only LOG 001 has two cuts** — a working teleprompter and a reference cut with the countdown padding stripped, the latter being the specimen the voice guide points at. Two stale things surfaced and were fixed in passing: the LOG 003 script was still titled "LOG 002" from before the 2026-08-11 episode swap, and an early LOG 001 draft written against a **Next.js** stack was marked `SUPERSEDED` rather than deleted. **`two-pipes-reveal.html` did not go with them** — it is generated output, and [generate-two-pipes.mjs](scripts/generate-two-pipes.mjs) hard-codes its path, so a tracked build script would have had to name an absolute path inside someone's vault. It writes to `.local/` instead. |
 | 2026-08-12 | **All four unshot video scripts converted to the teleprompter register, and given a §3 pass.** LOG 003, 004 and 005 went from 59, 36 and 31 contractions to zero; LOG 002 was already converted and got the newbie-explanation pass it had never had. **The register was the smallest problem.** Three defects surfaced that no amount of reading for voice would have caught: LOG 004 and LOG 005 both credited the pipeline to LOG 002 and the contact form to LOG 003, the pre-2026-08-11 order, and LOG 003 still called itself LOG 002 in its own wrap while speaking a version number that VOICE-SCRIPTS §6 bans; LOG 004's on-screen note offered **Vercel Web Analytics** as a swap, which CLAUDE.md §4 had settled *against* the day before; and LOG 005 staged a Lighthouse result it has not measured ("near-100 across the board"), now rewritten to read out the real numbers and keep a low one in. **A script drifts out of date faster than it drifts out of register** — run §6 against ROADMAP.md and CLAUDE.md, not just against the voice guide. The §3 pass found the same shape every time: the undefined term is never the exotic one. DKIM, symlink and serverless function were all carefully explained, while **"API" ran unexplained through an entire episode about an API.** |
+| 2026-09-15 | **The two throwbacks swap records.** Rural Point becomes LOG 015 / THROWBACK 002 (pub 2026-08-23) and the Game Boy becomes LOG 013 / THROWBACK 001 (pub 2026-08-09), every identity field moving together so the log keeps date order. A deliberate one-time exception to CLAUDE.md §4's permanence rule; slugs and URLs unchanged. The homepage Throwback band now lists newest first. |

@@ -10,8 +10,8 @@
       { "name": "Crehana", "status": "CASE STUDY", "slug": "crehana-post-production" }
     ],
     "throwbacks": [
-      { "status": "2017", "slug": "dmg-chiptune-machine" },
-      { "status": "2006", "slug": "rural-point" }
+      { "status": "2006", "slug": "rural-point" },
+      { "status": "2017", "slug": "dmg-chiptune-machine" }
     ]
   }
 }
