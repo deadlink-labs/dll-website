@@ -118,12 +118,20 @@ separate `send.` address underneath it.
 **That's the useful part of the DNS story: the two services share the domain
 without sharing the same records.**
 
-Resend verified its side on August 14. The dashboard went from waiting for DNS
-to a green “Domain verified” in ten minutes.
+Cloudflare came first, on August 13. Email Routing on the domain was off:
+zero rules, zero destinations, no DNS records.
 
-![A cropped Resend dashboard showing deadlinklabs.com verified and ready to send email. The timeline shows the domain added at 12:20 PM, DNS verified at 12:28 PM, and the domain verified at 12:30 PM.](./assets/resend-domain-verified.png)
+![The Cloudflare Email Routing overview for deadlinklabs.com before setup. Status reads Disabled, DNS records read Not configured, and the configuration summary shows zero routing rules and zero destination addresses.](./assets/cloudflare-email-routing-before.png)
 
-*Sending was configured. The website form still had to be finished.*
+*The starting line. Nothing to forward, and nowhere to forward it.*
+
+Step one is telling Cloudflare where mail should end up. I added my Gmail as a
+destination address, and Cloudflare verified it in under a minute.
+
+![The Destination Addresses tab in Cloudflare Email Routing with one address listed as Verified, created 58 seconds ago. The address itself is blurred.](./assets/cloudflare-destination-verified.png)
+
+*One destination, verified in 58 seconds. It's the private inbox behind
+everything, so it stays blurred.*
 
 Cloudflare got two forwarding rules: one for `hello@` and one for DMARC reports.
 The private destination addresses stay private.
@@ -132,10 +140,109 @@ The private destination addresses stay private.
 
 *Two public addresses, two active routes, one private inbox behind them.*
 
+The catch-all in that table stays disabled on purpose. The moment a domain
+accepts mail, scanners start guessing `admin@`, `info@`, `sales@`. With the
+catch-all off, a wrong address bounces, and I only hear from the two addresses
+I chose.
+
+Two rules and one destination, and routing was still disabled. Rules say what
+to do with mail once it arrives. DNS is what makes it arrive, and the domain
+didn't have the records yet.
+
+![The Cloudflare Email Routing overview after the rules were created: two routing rules, one destination address, routing status still Disabled and DNS records still Not configured.](./assets/cloudflare-rules-before-dns.png)
+
+*Rules written, destination verified, still disabled. The missing piece was DNS.*
+
+Cloudflare had already worked out the five records it needed. Three MX records
+say "deliver this domain's mail here." One SPF record lists who is allowed to
+send as the domain, and it has to be exactly one: a second SPF record on the
+same name doesn't add to the first, it invalidates both. One DKIM key lets
+forwarded mail carry a valid signature. All five showed as Missing, and one
+button added them.
+
+![Cloudflare's DNS records panel for Email Routing, listing three MX records, one DKIM TXT record and one SPF TXT record for deadlinklabs.com, each with Status Missing, next to an Add missing records button.](./assets/cloudflare-email-dns-missing.png)
+
+*The five records Email Routing needs, values already filled in. Add missing
+records did the typing.*
+
+![Cloudflare's authorization page for Resend, a frame from the recording. The heading reads Authorize DNS records from Resend, and the text below says it is a one-time authorization that does not grant Resend permission to make future changes.](./assets/resend-authorize-dns.png)
+
+*Cloudflare's authorization page, from the recording. One-time, and nothing
+after it.*
+
+Resend came the next day. Receiving was one half. To send mail as
+`deadlinklabs.com` and have other mail servers trust it, I needed a service
+that signs what it sends. I added the domain in Resend and left the return
+path at `send`, which is what puts Resend's records on `send.deadlinklabs.com`
+instead of the root.
+
+![Resend's Add domain form with deadlinklabs.com as the name, North Virginia as the region, and the Custom Return-Path field set to send.](./assets/resend-add-domain.png)
+
+*Adding the domain in Resend. The return path is where the `send.` subdomain
+comes from.*
+
+Resend offers to write the DNS records itself if you let it sign in to
+Cloudflare. That's a real permission grant, worth a second of thought, and the
+page above is what it actually grants: one write, nothing after. It was my own
+account on both sides, so I let it do the typing.
+
+![Resend's Add domain flow after the domain step, showing a DNS Records step with two buttons: Auto configure and Manual setup.](./assets/resend-auto-configure.png)
+
+*Auto configure or paste the records by hand. Same records either way.*
+
+Then the wait. Resend polls the domain until the records show up.
+
+![The Resend domain page for deadlinklabs.com eight minutes after creation. Status reads Pending, Provider reads Cloudflare, and the timeline shows Domain added at 12:20 PM, DNS verified at 12:28 PM, and Verifying domain in progress.](./assets/resend-domain-pending.png)
+
+*Eight minutes in. DNS verified, domain still verifying, provider detected as
+Cloudflare.*
+
+Resend verified its side on August 14. The dashboard went from waiting for DNS
+to a green “Domain verified” in ten minutes.
+
+![A cropped Resend dashboard showing deadlinklabs.com verified and ready to send email. The timeline shows the domain added at 12:20 PM, DNS verified at 12:28 PM, and the domain verified at 12:30 PM.](./assets/resend-domain-verified.png)
+
+*Sending was configured. The website form still had to be finished.*
+
+One toggle on that page stayed off: Enable Receiving. It would add Resend's
+own MX record for incoming mail, and Cloudflare already has that job. Two
+services answering the same question is the collision the `send.` subdomain
+exists to avoid.
+
+## One record across both
+
+Auto configure didn't write the last record. Resend lists DMARC as optional
+and only suggests a template, so I added it in Cloudflare by hand: a TXT
+record named `_dmarc` with `v=DMARC1; p=none; rua=mailto:dmarc@deadlinklabs.com`.
+
+DMARC is the record that ties SPF and DKIM together and says what to do with
+mail that pretends to be from the domain. `p=none` means deliver everything
+and send me a report. Nothing gets blocked while I find out whether the setup
+is right. `rua` is where those reports go.
+
+**The report address is on my own domain, not Gmail, and that's the part I
+nearly got wrong.** A report address on a different domain needs that domain
+to publish a record saying it accepts reports for mine. Gmail never will, so
+most providers would quietly send nothing, and I'd spend a month wondering
+why. Keep it on the domain and forward it, which is why `dmarc@` got a
+routing rule in the first step.
+
+![Cloudflare's DNS records table for deadlinklabs.com showing every mail record: three MX records and an SPF TXT on the root domain, an MX and SPF TXT on the send subdomain, a DKIM TXT for Cloudflare and one for Resend, and the _dmarc TXT. The Proxy status column reads DNS only on every row.](./assets/cloudflare-dns-all-mail-records.png)
+
+*Every mail record on the domain, all DNS only. Cloudflare's proxy is for web
+traffic, and a proxied mail record breaks mail.*
+
 ## The first half is real now
 
 Cloudflare doesn't provide another mailbox. It receives the mail and forwards
 it into the Gmail inbox I already use.
+
+With the five records in, the domain answers the question from the top of this
+post. Same command, same day, three answers where there were none.
+
+![The same terminal query for the MX record of deadlinklabs.com, later on August 13, 2026. The lookup returns NOERROR and ANSWER 3, listing route1, route2 and route3 at mx.cloudflare.net.](./assets/mx-after-email-routing.png)
+
+*`ANSWER: 3`. Same question as the first screenshot, five hours later.*
 
 I sent a real test from my personal account to `hello@deadlinklabs.com` on
 August 13.
@@ -180,6 +287,9 @@ answer.**
   place for validation and errors.
 - **05 · Never clear the form after a failed send.** The visitor's writing
   belongs to them.
+- **06 · DMARC reports go to an address on the domain, never Gmail.** A report
+  address off the domain gets silently ignored by most providers. `dmarc@`
+  forwards like everything else.
 
 ## Log timeline
 
