@@ -11,7 +11,7 @@ web-pub-date: 2026-07-14
 web-snippet: Yes, AI can build a website. But the interesting part happens way before the first line of code. Start prompting too soon, and you get a website that could belong to anyone. Think first. Plan it. Then prompt.
 web-type: log
 web-number: 1
-web-stage: IN PROGRESS
+web-stage: SHIPPED
 web-tags:
   - ASTRO
   - DESIGN
