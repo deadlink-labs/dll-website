@@ -10,7 +10,6 @@ const stamp = new Intl.DateTimeFormat('en-US', { month: '2-digit', year: 'numeri
 
 // A channel without an href renders as plain text, not a link — the channel is
 // named but has nowhere to point yet. Better than a link to a bare root URL.
-// NOTE: hello@deadlinklabs.com is still unconfirmed; the rest are real.
 interface Channel {
   label: string;
   href?: string;

@@ -232,6 +232,24 @@ routing rule in the first step.
 *Every mail record on the domain, all DNS only. Cloudflare's proxy is for web
 traffic, and a proxied mail record breaks mail.*
 
+On September 15 I checked the whole receiving side from outside, with a public
+resolver instead of my own machine's cache: the MX records, the SPF, the DMARC
+record, and Resend's records on `send`. All five answers came back the way the
+map above says they should. Then `dmarc@` got its own test message, since a
+routing rule that's never carried mail proves nothing. It was in the inbox in
+under a minute, and a message to an address I never created bounced with a
+550, which is the catch-all doing its job.
+
+![A terminal running five dig queries against the public resolver 1.1.1.1 on September 15, 2026: the MX and SPF records for deadlinklabs.com, the DMARC record, and the MX and SPF records for the send subdomain. Seven answer lines follow: three Cloudflare MX hosts, the Cloudflare SPF, the DMARC policy with p=none and a rua on the domain, the Amazon SES MX for send, and the SES SPF.](./assets/dns-verified-from-outside.png)
+
+*Five lookups against a public resolver on September 15. Nothing from my own
+cache, and every record where the map says it is.*
+
+![A test email addressed to dmarc, subject TEST 002 - dmarc@ routing, received in Gmail and labeled Inbox at 7:06 PM. The body quotes the line read on camera before sending it, and the Gmail toolbar is visible at the top.](./assets/email-received-dmarc.png)
+
+*`dmarc@` works too. TEST 002, sent on September 15, was in the inbox in under
+a minute.*
+
 ## The first half is real now
 
 Cloudflare doesn't provide another mailbox. It receives the mail and forwards
