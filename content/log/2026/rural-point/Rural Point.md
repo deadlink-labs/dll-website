@@ -1,29 +1,30 @@
 ---
-# --- Obsidian-internal (site ignores all of these) ---
 type: work journal
-created: 2026-08-09
+created: 2026-08-23
 project: "[[Rural Point]]"
 people: []
 aliases:
-  - "LOG 013"
-  - "THROWBACK 001"
-  - "Rural Point"
-  - "El Aduar wireless"
-
-# --- web-* namespace (the ONLY fields the site reads) ---
+  - LOG 015
+  - THROWBACK 002
+  - Rural Point
+  - El Aduar wireless
 web-status: published
 web-title: "Rural Point: a wireless ISP in the Argentine countryside, 2006"
-web-pub-date: 2026-08-09
-web-snippet: "No 3G, no service, and the nearest internet 15 kilometers away. So I climbed a 35-meter tower and got six families online, and it ran for three years until a storm took the whole thing down."
+web-pub-date: 2026-08-23
+web-snippet: No 3G, no service, and the nearest internet 15 kilometers away. So I climbed a 35-meter tower and got six families online, and it ran for three years until a storm took the whole thing down.
 web-type: log
-web-number: 13
+web-number: 15
 web-stage: SHIPPED
-web-tags: [WIRELESS, RF, NETWORKING, INFRASTRUCTURE]
+web-tags:
+  - WIRELESS
+  - RF
+  - NETWORKING
+  - INFRASTRUCTURE
 web-series: THROWBACK
-web-series-number: 1
-web-thumb: "./assets/rural-point-2006-tower-AP-8dBi-omni-antena-its-me.webp"   # 16:9 crop of the summit photo
-web-thumb-alt: "Me at the top of the tower in 2006, grinning at the camera, next to a weatherproof enclosure with a hazard label and the white 8 dBi omnidirectional antenna on its bracket, countryside and blue sky behind."
-web-thumb-caption: "At the top, 2006. The white enclosure is the access point, the pole on the right is the 8 dBi omni that covered the property."
+web-series-number: 2
+web-thumb: ./assets/rural-point-2006-tower-AP-8dBi-omni-antena-its-me.webp
+web-thumb-alt: Me at the top of the tower in 2006, grinning at the camera, next to a weatherproof enclosure with a hazard label and the white 8 dBi omnidirectional antenna on its bracket, countryside and blue sky behind.
+web-thumb-caption: At the top, 2006. The white enclosure is the access point, the pole on the right is the 8 dBi omni that covered the property.
 ---
 
 In 2006 there was no 3G, no 4G, and no way to get online where we lived. The

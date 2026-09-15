@@ -1,29 +1,30 @@
 ---
-# --- Obsidian-internal (site ignores all of these) ---
 type: work journal
-created: 2026-08-23
+created: 2026-08-09
 project: "[[DMG chiptune machine]]"
 people: []
 aliases:
-  - "LOG 015"
-  - "THROWBACK 002"
-  - "Game Boy DMG"
-  - "LSDj machine"
-
-# --- web-* namespace (the ONLY fields the site reads) ---
+  - LOG 013
+  - THROWBACK 001
+  - Game Boy DMG
+  - LSDj machine
 web-status: published
 web-title: "The Game Boy I was allowed to break: building a chiptune machine, 2017"
-web-pub-date: 2026-08-23
-web-snippet: "Two Game Boys, and only one of them was ever a candidate. Four months of shipping, five months in a drawer, then one weekend peeling the polarizing film off a 1989 LCD to find out whether I still had a project."
+web-pub-date: 2026-08-09
+web-snippet: Two Game Boys, and only one of them was ever a candidate. Four months of shipping, five months in a drawer, then one weekend peeling the polarizing film off a 1989 LCD to find out whether I still had a project.
 web-type: log
-web-number: 15
+web-number: 13
 web-stage: SHIPPED
-web-tags: [HARDWARE, CHIPTUNE, SOLDERING, LSDJ]
+web-tags:
+  - HARDWARE
+  - CHIPTUNE
+  - SOLDERING
+  - LSDJ
 web-series: THROWBACK
-web-series-number: 2
-web-thumb: "./assets/dmg-2017-retrobrite-before-after-thumb.webp"
-web-thumb-alt: "Two original Game Boys side by side on a wooden table. The one on the left is deeply yellowed, almost mustard, with a scratched screen lens. The one on the right is pale grey and clean, its screen bezel empty because the console is still in pieces."
-web-thumb-caption: "Left, my own Game Boy, untouched since I was eleven. Right, the donor's front shell after seven hours of winter sun. Same plastic, same age, one afternoon of chemistry between them."
+web-series-number: 1
+web-thumb: ./assets/dmg-2017-retrobrite-before-after-thumb.webp
+web-thumb-alt: Two original Game Boys side by side on a wooden table. The one on the left is deeply yellowed, almost mustard, with a scratched screen lens. The one on the right is pale grey and clean, its screen bezel empty because the console is still in pieces.
+web-thumb-caption: Left, my own Game Boy, untouched since I was eleven. Right, the donor's front shell after seven hours of winter sun. Same plastic, same age, one afternoon of chemistry between them.
 ---
 
 In 2017 I turned an original Game Boy into a musical instrument. Backlight,
