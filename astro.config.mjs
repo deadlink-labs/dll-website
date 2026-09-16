@@ -1,5 +1,15 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+// `envField` is the helper that describes one environment variable for the
+// `env.schema` block below (its type, where it may be read, and whether it is
+// a secret). It ships with Astro, so it comes from the same import as
+// `defineConfig`; nothing extra to install.
+import { defineConfig, envField } from 'astro/config';
+// The Vercel adapter. An adapter is the piece that teaches Astro how to run
+// server code on a specific host. Without one, Astro can only emit static
+// HTML; with this one, a route that opts out of prerendering becomes a Vercel
+// serverless function. Pinned to ^9.0.5 in package.json: that is the newest
+// major built for Astro 5 (v10 needs Astro 6, v11 needs Astro 7). CLAUDE.md §4.
+import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import remarkObsidian from './src/plugins/remark-obsidian.mjs';
 import remarkMark from './src/plugins/remark-mark.mjs';
@@ -16,9 +26,41 @@ export default defineConfig({
   site: 'https://deadlinklabs.com',
 
   // `output` is deliberately NOT set, so it stays Astro's default: 'static'.
-  // There is no adapter and no server route: every page here is prerendered
-  // HTML. LOG 002 adds the Vercel adapter so the contact form, and only the
-  // contact form, gets a server (CLAUDE.md §4).
+  // Adding an adapter does NOT change that. Every page is still prerendered
+  // HTML at build time; the adapter only makes it POSSIBLE for a single route
+  // to opt out with `export const prerender = false` and run on the server.
+  // The contact form's action is the one thing that will do so (CLAUDE.md §4).
+  // Do not add `output: 'server'`: that would turn every page into a function
+  // and throw away the point of a static archive.
+  //
+  // `vercel()` is called with no options. The defaults are right for this
+  // site: Node serverless functions, and Vercel reads `dist/` as it always has.
+  adapter: vercel(),
+
+  // Environment variables the site depends on, declared up front so Astro can
+  // check them. Anything listed here is available in code through the
+  // `astro:env/server` import, typed, and validated when it is read: if the
+  // variable is missing on Vercel, the function fails with a clear message
+  // instead of silently sending nothing. Never read a secret through
+  // `import.meta.env`; Astro replaces those at build time, which would bake
+  // the key's VALUE into the JavaScript bundle (CLAUDE.md §4, "Secrets").
+  env: {
+    // `schema` is the list of variables. One entry per variable, keyed by the
+    // exact name it has in Vercel's dashboard and in the local `.env` file.
+    schema: {
+      // The Resend API key, used by the contact form to send email.
+      //   `string`  -> the value is plain text (Astro also offers number,
+      //                boolean and enum).
+      //   `context: 'server'` -> only server code may read it. Any attempt to
+      //                import it from a browser-side script fails the build,
+      //                which is the guarantee that keeps the key off the wire.
+      //   `access: 'secret'` -> Astro looks it up at RUNTIME on the server,
+      //                never inlines it, and never prints it in build logs.
+      // No `default` and no `optional`, so a build or a request without this
+      // variable set fails loudly rather than shipping a form that cannot send.
+      RESEND_API_KEY: envField.string({ context: 'server', access: 'secret' }),
+    },
+  },
 
   // Tailwind v4 is wired through the Vite plugin (no @astrojs/tailwind).
   // Cast: @tailwindcss/vite and Astro resolve slightly different Vite type
