@@ -37,6 +37,25 @@ export default defineConfig({
   // site: Node serverless functions, and Vercel reads `dist/` as it always has.
   adapter: vercel(),
 
+  // Which hosts Astro may trust when a request arrives through a proxy.
+  // Vercel sits in front of the serverless function, so the function does
+  // not see "www.deadlinklabs.com" directly; it sees Vercel's internal host,
+  // plus an `X-Forwarded-Host` header that carries the real one. Since
+  // Astro 5.14.2 that header is IGNORED unless the host is listed here, and
+  // the ignored header is what broke the contact form: Astro rebuilt the
+  // request URL from the internal host, the browser's `Origin` header said
+  // "https://www.deadlinklabs.com", the two did not match, and the CSRF check
+  // answered every submit with "Cross-site POST form submissions are
+  // forbidden". Listing both public hosts lets Astro use the forwarded one,
+  // so the URL and the Origin agree and the form is accepted. This does NOT
+  // turn the CSRF check off; it only tells Astro who we are.
+  security: {
+    allowedDomains: [
+      { protocol: 'https', hostname: 'www.deadlinklabs.com' },
+      { protocol: 'https', hostname: 'deadlinklabs.com' },
+    ],
+  },
+
   // Environment variables the site depends on, declared up front so Astro can
   // check them. Anything listed here is available in code through the
   // `astro:env/server` import, typed, and validated when it is read: if the
