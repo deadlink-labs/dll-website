@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+  <!-- THE ROUTE. Top rail: every hop inside the family PC, left to right, five
+       stations derived by tile-system.stations(). The recordings leave the
+       machine at the right edge, drop, and travel back across the canvas to
+       the listener, the two-pipes.svg elbow idiom turned into the-loop.svg's
+       return path. The live node is the person with the headphones, not any
+       of the hardware: the section this sits under is called "the human end
+       of the pipeline", and the story turns on who was listening. -->
+  <defs>
+    <marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="1.6"/>
+    </marker>
+  </defs>
+  <text x="64" y="96" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">THE ROUTE · CIRCA 2000</text>
+  <text x="64" y="200" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">INSIDE THE FAMILY PC</text>
+  <path d="M 179 300 H 384.7" fill="none" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="2" marker-end="url(#tip)"/>
+  <path d="M 424.7 300 H 630.4" fill="none" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="2" marker-end="url(#tip)"/>
+  <path d="M 670.4 300 H 876.1" fill="none" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="2" marker-end="url(#tip)"/>
+  <path d="M 916.1 300 H 1121.8" fill="none" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="2" marker-end="url(#tip)"/>
+  <circle cx="158" cy="300" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <text x="158" y="262" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">PHONE LINE</text>
+  <circle cx="403.7" cy="300" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <text x="403.7" y="262" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">VOICE MODEM</text>
+  <circle cx="649.4" cy="300" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <text x="649.4" y="262" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">CLEANUP</text>
+  <circle cx="895.1" cy="300" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <text x="895.1" y="262" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">SOUND BLASTER</text>
+  <circle cx="1140.8" cy="300" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <text x="1140.8" y="262" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">RECORDER</text>
+  <text x="649.4" y="352" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45">salvaged parts</text>
+  <text x="895.1" y="352" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45">line in</text>
+  <path d="M 1140.8 321 V 520 H 919" fill="none" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="2" marker-end="url(#tip)"/>
+  <text x="1120.8" y="394" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45">small wavs, copied weekly</text>
+  <text x="64" y="420" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">OUT OF THE HOUSE</text>
+  <path d="M 879 520 H 332" fill="none" stroke="#ece8e1" stroke-opacity="0.35" stroke-width="2" marker-end="url(#tip)"/>
+  <text x="590" y="506" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45">carried home</text>
+  <circle cx="900" cy="520" r="11" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.55" stroke-width="2"/>
+  <text x="900" y="482" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.55">ZIP 100 DISK</text>
+  <circle cx="280" cy="520" r="44" fill="#f04a00" fill-opacity="0.12"/>
+  <circle cx="280" cy="520" r="17" fill="#f04a00"/>
+  <text x="280" y="482" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="28" letter-spacing="2" fill="#ece8e1" fill-opacity="0.75">HEADPHONES + NOTEBOOK</text>
+  <text x="280" y="582" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45">for hours, taking notes</text>
+  <text x="900" y="582" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1" fill="#ece8e1" fill-opacity="0.45">100 MB a disk</text>
+  <text x="64" y="660" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="24" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">ONE BEIGE PC DID THE RECORDING. THE LISTENING HAPPENED IN MY ROOM.</text>
+</svg>
