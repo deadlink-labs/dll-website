@@ -6,13 +6,14 @@
   <line x1="0" y1="56" x2="1200" y2="56" stroke="#e4e0d9" stroke-width="1"/>
   <text x="40" y="34" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="14" letter-spacing="2" fill="#191817" font-weight="600">TRADE OUTREACH</text>
   <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" letter-spacing="1">
-    <text x="620" y="33" fill="#1d5b48" font-weight="600">OVERVIEW</text>
-    <text x="730" y="33" fill="#6b6862">QUEUE</text>
-    <text x="820" y="33" fill="#6b6862">ORGANIZATIONS</text>
-    <text x="980" y="33" fill="#6b6862">PARTNERS</text>
-    <text x="1090" y="33" fill="#6b6862">MAP</text>
+    <text x="694" y="33" fill="#1d5b48" font-weight="600">OVERVIEW</text>
+    <text x="795" y="33" fill="#6b6862">QUEUE</text>
+    <text x="867" y="33" fill="#6b6862">SYNC</text>
+    <text x="929" y="33" fill="#6b6862">SHOPS</text>
+    <text x="1001" y="33" fill="#6b6862">CONNECTIONS</text>
+    <text x="1131" y="33" fill="#6b6862">MAP</text>
   </g>
-  <rect x="620" y="42" width="76" height="2" fill="#1d5b48"/>
+  <rect x="694" y="42" width="77" height="2" fill="#1d5b48"/>
 
   <!-- stat tiles -->
   <g font-family="'IBM Plex Mono', ui-monospace, monospace">
@@ -33,12 +34,12 @@
 
     <!-- partners -->
     <rect x="604" y="100" width="178" height="104" rx="6" fill="#ffffff" stroke="#e4e0d9"/>
-    <text x="626" y="130" font-size="12" letter-spacing="1.5" fill="#6b6862">PARTNERS</text>
+    <text x="626" y="130" font-size="12" letter-spacing="1.5" fill="#6b6862">DEALERS</text>
     <text x="626" y="176" font-size="40" font-weight="600" fill="#191817">6</text>
 
     <!-- organizations -->
     <rect x="792" y="100" width="178" height="104" rx="6" fill="#ffffff" stroke="#e4e0d9"/>
-    <text x="814" y="130" font-size="12" letter-spacing="1.5" fill="#6b6862">ORGANIZATIONS</text>
+    <text x="814" y="130" font-size="12" letter-spacing="1.5" fill="#6b6862">SHOPS</text>
     <text x="814" y="176" font-size="40" font-weight="600" fill="#191817">84</text>
 
     <!-- areas covered -->
@@ -72,8 +73,8 @@
     <text x="40" y="342">Written to</text>
     <text x="40" y="396">Replied</text>
     <text x="40" y="450">Interested</text>
-    <text x="40" y="504">Kit sent</text>
-    <text x="40" y="558">Producing</text>
+    <text x="40" y="504">Demo kit sent</text>
+    <text x="40" y="558">Stocking</text>
 
     <text x="775" y="288" font-family="'IBM Plex Mono', ui-monospace, monospace" text-anchor="start">84</text>
     <text x="775" y="342" font-family="'IBM Plex Mono', ui-monospace, monospace" text-anchor="start">37</text>
@@ -84,7 +85,7 @@
   </g>
 
   <!-- program coverage table -->
-  <text x="40" y="628" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="14" letter-spacing="2" fill="#6b6862">PROGRAM COVERAGE</text>
+  <text x="40" y="628" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="14" letter-spacing="2" fill="#6b6862">PRODUCT LINE COVERAGE</text>
 
   <rect x="40" y="648" width="1120" height="160" rx="6" fill="#ffffff" stroke="#e4e0d9"/>
   <line x1="40" y1="688" x2="1160" y2="688" stroke="#f0ece5" stroke-width="1"/>
@@ -92,17 +93,17 @@
   <line x1="40" y1="768" x2="1160" y2="768" stroke="#f0ece5" stroke-width="1"/>
 
   <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12" letter-spacing="1" fill="#9b968d">
-    <text x="64" y="672">PROGRAM</text>
-    <text x="560" y="672">ORGANIZATIONS</text>
+    <text x="64" y="672">PRODUCT LINE</text>
+    <text x="560" y="672">SHOPS</text>
     <text x="900" y="672">STATUS</text>
   </g>
 
   <g font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="15" fill="#191817">
-    <text x="64" y="712">Day trips</text>
+    <text x="64" y="712">Road</text>
     <text x="560" y="712" font-family="'IBM Plex Mono', ui-monospace, monospace">52</text>
-    <text x="64" y="752">Multi-day packages</text>
+    <text x="64" y="752">Gravel</text>
     <text x="560" y="752" font-family="'IBM Plex Mono', ui-monospace, monospace">24</text>
-    <text x="64" y="792">Group experiences</text>
+    <text x="64" y="792">E-bike</text>
     <text x="560" y="792" font-family="'IBM Plex Mono', ui-monospace, monospace">8</text>
   </g>
 

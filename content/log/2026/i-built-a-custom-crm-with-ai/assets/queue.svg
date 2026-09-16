@@ -6,27 +6,28 @@
   <line x1="0" y1="56" x2="1200" y2="56" stroke="#e4e0d9" stroke-width="1"/>
   <text x="40" y="34" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="14" letter-spacing="2" fill="#191817" font-weight="600">TRADE OUTREACH</text>
   <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" letter-spacing="1">
-    <text x="620" y="33" fill="#6b6862">OVERVIEW</text>
-    <text x="730" y="33" fill="#1d5b48" font-weight="600">QUEUE</text>
-    <text x="800" y="33" fill="#6b6862">ORGANIZATIONS</text>
-    <text x="960" y="33" fill="#6b6862">PARTNERS</text>
-    <text x="1070" y="33" fill="#6b6862">MAP</text>
+    <text x="694" y="33" fill="#6b6862">OVERVIEW</text>
+    <text x="795" y="33" fill="#1d5b48" font-weight="600">QUEUE</text>
+    <text x="867" y="33" fill="#6b6862">SYNC</text>
+    <text x="929" y="33" fill="#6b6862">SHOPS</text>
+    <text x="1001" y="33" fill="#6b6862">CONNECTIONS</text>
+    <text x="1131" y="33" fill="#6b6862">MAP</text>
   </g>
-  <rect x="730" y="42" width="52" height="2" fill="#1d5b48"/>
+  <rect x="795" y="42" width="48" height="2" fill="#1d5b48"/>
 
   <!-- filter chips -->
   <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12" letter-spacing="0.5">
-    <rect x="40" y="86" width="128" height="30" rx="15" fill="#1d5b48"/>
-    <text x="60" y="106" fill="#ffffff">ALL PROGRAMS</text>
+    <rect x="40" y="86" width="110" height="30" rx="15" fill="#1d5b48"/>
+    <text x="60" y="106" fill="#ffffff">ALL LINES</text>
 
-    <rect x="180" y="86" width="100" height="30" rx="15" fill="none" stroke="#e4e0d9"/>
-    <text x="200" y="106" fill="#6b6862">DAY TRIPS</text>
+    <rect x="162" y="86" width="72" height="30" rx="15" fill="none" stroke="#e4e0d9"/>
+    <text x="182" y="106" fill="#6b6862">ROAD</text>
 
-    <rect x="292" y="86" width="176" height="30" rx="15" fill="none" stroke="#e4e0d9"/>
-    <text x="312" y="106" fill="#6b6862">MULTI-DAY PACKAGES</text>
+    <rect x="246" y="86" width="88" height="30" rx="15" fill="none" stroke="#e4e0d9"/>
+    <text x="266" y="106" fill="#6b6862">GRAVEL</text>
 
-    <rect x="480" y="86" width="164" height="30" rx="15" fill="none" stroke="#e4e0d9"/>
-    <text x="500" y="106" fill="#6b6862">GROUP EXPERIENCES</text>
+    <rect x="346" y="86" width="88" height="30" rx="15" fill="none" stroke="#e4e0d9"/>
+    <text x="366" y="106" fill="#6b6862">E-BIKE</text>
   </g>
 
   <!-- Tier 1 -->
@@ -37,32 +38,32 @@
 
   <!-- row helper pattern repeated manually -->
   <g font-family="'IBM Plex Sans', system-ui, sans-serif">
-    <text x="64" y="200" font-size="16" font-weight="600" fill="#191817">Northgate Travel Co.</text>
+    <text x="64" y="200" font-size="16" font-weight="600" fill="#191817">Northgate Cycles</text>
     <text x="64" y="222" font-size="12" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#9b968d">COAST REGION</text>
-    <rect x="330" y="182" width="90" height="22" rx="11" fill="#e9f2ef"/>
-    <text x="344" y="197" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">DAY TRIPS</text>
-    <rect x="428" y="182" width="66" height="22" rx="11" fill="#e9f2ef"/>
-    <text x="442" y="197" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">COMBO</text>
+    <rect x="330" y="182" width="56" height="22" rx="11" fill="#e9f2ef"/>
+    <text x="344" y="197" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">ROAD</text>
+    <rect x="394" y="182" width="68" height="22" rx="11" fill="#e9f2ef"/>
+    <text x="408" y="197" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">GRAVEL</text>
     <rect x="620" y="180" width="90" height="26" rx="13" fill="#f6e6e2"/>
     <text x="634" y="197" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#a82e19">HOT · 12D</text>
     <rect x="980" y="180" width="160" height="30" rx="4" fill="#1d5b48"/>
     <text x="1002" y="200" font-size="12" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#ffffff">DRAFT THE EMAIL</text>
 
-    <text x="64" y="274" font-size="16" font-weight="600" fill="#191817">Harbor Line Adventures</text>
+    <text x="64" y="274" font-size="16" font-weight="600" fill="#191817">Harbor Line Bikes</text>
     <text x="64" y="296" font-size="12" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#9b968d">METRO AREA</text>
-    <rect x="330" y="256" width="120" height="22" rx="11" fill="#e9f2ef"/>
-    <text x="344" y="271" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">MULTI-DAY</text>
+    <rect x="330" y="256" width="68" height="22" rx="11" fill="#e9f2ef"/>
+    <text x="344" y="271" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">E-BIKE</text>
     <rect x="620" y="254" width="90" height="26" rx="13" fill="#f6e6e2"/>
     <text x="634" y="271" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#a82e19">HOT · 34D</text>
     <rect x="980" y="254" width="160" height="30" rx="4" fill="#1d5b48"/>
     <text x="1002" y="274" font-size="12" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#ffffff">DRAFT THE EMAIL</text>
 
-    <text x="64" y="348" font-size="16" font-weight="600" fill="#191817">Cedar Ridge Agency</text>
+    <text x="64" y="348" font-size="16" font-weight="600" fill="#191817">Cedar Ridge Cyclery</text>
     <text x="64" y="370" font-size="12" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#9b968d">HIGHLAND REGION</text>
-    <rect x="330" y="330" width="90" height="22" rx="11" fill="#e9f2ef"/>
-    <text x="344" y="345" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">DAY TRIPS</text>
-    <rect x="428" y="330" width="64" height="22" rx="11" fill="#e9f2ef"/>
-    <text x="442" y="345" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">GROUP</text>
+    <rect x="330" y="330" width="56" height="22" rx="11" fill="#e9f2ef"/>
+    <text x="344" y="345" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">ROAD</text>
+    <rect x="394" y="330" width="68" height="22" rx="11" fill="#e9f2ef"/>
+    <text x="408" y="345" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">GRAVEL</text>
     <rect x="620" y="328" width="104" height="26" rx="13" fill="#f6ece0"/>
     <text x="634" y="345" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#8f5a06">WARM · 58D</text>
     <rect x="980" y="328" width="160" height="30" rx="4" fill="#1d5b48"/>
@@ -75,17 +76,17 @@
   <line x1="40" y1="518" x2="1160" y2="518" stroke="#f0ece5"/>
 
   <g font-family="'IBM Plex Sans', system-ui, sans-serif">
-    <text x="64" y="478" font-size="16" font-weight="600" fill="#191817">Union Trail Partners</text>
+    <text x="64" y="478" font-size="16" font-weight="600" fill="#191817">Union Trail Bike Co.</text>
     <text x="64" y="500" font-size="12" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#9b968d">COAST REGION</text>
-    <rect x="330" y="460" width="120" height="22" rx="11" fill="#e9f2ef"/>
-    <text x="344" y="475" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">MULTI-DAY</text>
+    <rect x="330" y="460" width="68" height="22" rx="11" fill="#e9f2ef"/>
+    <text x="344" y="475" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">E-BIKE</text>
     <rect x="620" y="458" width="100" height="26" rx="13" fill="#e7eef1"/>
     <text x="634" y="475" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#3d6274">COOL · 71D</text>
 
-    <text x="64" y="552" font-size="16" font-weight="600" fill="#191817">Lakeside Excursions</text>
+    <text x="64" y="552" font-size="16" font-weight="600" fill="#191817">Lakeside Cycle Works</text>
     <text x="64" y="574" font-size="12" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#9b968d">METRO AREA</text>
-    <rect x="330" y="534" width="90" height="22" rx="11" fill="#e9f2ef"/>
-    <text x="344" y="549" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">DAY TRIPS</text>
+    <rect x="330" y="534" width="56" height="22" rx="11" fill="#e9f2ef"/>
+    <text x="344" y="549" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#1d5b48">ROAD</text>
     <rect x="620" y="532" width="104" height="26" rx="13" fill="#f6ece0"/>
     <text x="634" y="549" font-size="11" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#8f5a06">WARM · 66D</text>
   </g>
@@ -98,12 +99,12 @@
   <line x1="40" y1="794" x2="1160" y2="794" stroke="#f0ece5"/>
 
   <g font-family="'IBM Plex Sans', system-ui, sans-serif">
-    <text x="64" y="680" font-size="16" font-weight="600" fill="#6b6862">Maple &amp; Co. Tours</text>
+    <text x="64" y="680" font-size="16" font-weight="600" fill="#6b6862">Maple &amp; Co. Bicycles</text>
     <text x="64" y="702" font-size="12" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#9b968d">HIGHLAND REGION · NO LIVE SIGNAL</text>
 
-    <text x="64" y="754" font-size="16" font-weight="600" fill="#6b6862">Fieldstone Adventures</text>
+    <text x="64" y="754" font-size="16" font-weight="600" fill="#6b6862">Fieldstone Cycles</text>
     <text x="64" y="776" font-size="12" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#9b968d">COAST REGION · NO LIVE SIGNAL</text>
 
-    <text x="64" y="822" font-size="13" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#9b968d" letter-spacing="0.5">+ 27 MORE ORGANIZATIONS IN THE BACKGROUND LIST</text>
+    <text x="64" y="822" font-size="13" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#9b968d" letter-spacing="0.5">+ 27 MORE SHOPS IN THE BACKGROUND LIST</text>
   </g>
 </svg>

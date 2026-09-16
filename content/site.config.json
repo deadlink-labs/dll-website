@@ -4,7 +4,7 @@
     "recentPostsCount": 5,
     "featuredProducts": ["yerba", "cassette-mixtapes", "hazefield"],
     "clientWork": [
-      { "name": "Hospitality Sector", "status": "SHIPPED · 2026", "slug": "trade-partner-outreach-console" },
+      { "name": "Bicycle Components Maker", "status": "SHIPPED · 2026", "slug": "i-built-a-custom-crm-with-ai" },
       { "name": "Heat Exchanger Manufacturer", "status": "PROPOSAL · 2026", "slug": "nobody-fills-in-the-form" },
       { "name": "Uruguay Outfitters", "status": "SHIPPED · 2026", "slug": "uruguay-outfitters-website" },
       { "name": "Crehana", "status": "CASE STUDY", "slug": "crehana-post-production" }

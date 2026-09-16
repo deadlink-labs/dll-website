@@ -172,6 +172,53 @@ is the better fact, because it proves the machine got used.
 - [ ] `ME` Pick a spine and delete the loser. `_drafts/` must not survive to a
       commit that ships
 
+### LOG 014 · A custom CRM built with AI, rewritten against the live repo
+`v1.02.095` · **rewritten 2026-09-15** (first written 2026-08-19)
+
+The August draft described a tool that no longer existed: a two-day build for a
+client who does not exist, with a premise ("they'd already done the research")
+that was the opposite of what happened. Rewritten from the repo as it stands
+(`v0.1.137`, four weeks, 148 commits, 16 console views, 158 tests, one
+dependency): a folder of markdown notes that is a research tool, a queue, a
+CRM, a mail archive and a wikilink graph, built with Claude Code.
+
+- [x] Rewritten in the post voice against `VOICE-POSTS.md`; twelve sections, a
+      decision table with a real `REVISED` row (the 90 → 180 day decay)
+- [x] Privacy by agreement: business and location unnamed, the niche changed
+      outright to a bicycle-component maker prospecting US bike shops (a first
+      "hospitality / group experiences" framing was rejected the same day: its
+      placeholder names, Travel Co., Excursions, still read as travel), no real
+      organization or person named, counts kept vague ("a few hundred, heading
+      into the thousands"). The post says so in its second paragraph
+- [x] **Marcelo's own edit pass folded back into the voice guide** as the fourth
+      flavor, the client post (VOICE-POSTS.md §3, §7, §8; CLAUDE.md §6; the
+      `/log-post` skill): the mechanism goes, the decision and the outcome stay,
+      the AI is named plainly, a screen opens the post rather than a terminal.
+      What he cut from the draft was the rule set, read off the diff
+- [x] The AI angle stated in two places, deliberately: the tool was **built**
+      with an AI coding agent, and the **research sweeps** run through the same
+      agent. Not stated: that emails are drafted with it. A person reads and
+      sends every one, and that is what the post says
+- [x] Cover and map rebuilt on the console's own `US_TILES` cartogram (the
+      August figures used an alphabetical grid that did not read as the US).
+      Shading is illustrative and sits in states the real research is not in
+- [x] Two new graphite specimens: `sync.svg` (the five steps of one Sync press,
+      one orange live node, ambient dashes with a reduced-motion guard) and
+      `graph.svg` (the vault as a graph and the three Connections questions;
+      the bridge person is the live node)
+- [x] The three screen figures share one six-tab nav strip again (the August
+      ones showed the five-view console of day one)
+- [x] Emphasis re-ranked after `npm run emphasis` flagged a clump at 15 / 24%:
+      now 28 / 45 / 63%, the three marks being where the model goes, when a
+      button may act, and where the record's truth comes from
+- [x] Folder and file renamed to follow the new title
+      (`i-built-a-custom-crm-with-ai/I built a custom CRM with AI.md`, was
+      `trade-partner-outreach-console/Trade partner outreach console.md`), with
+      `git mv`, the old title kept as an Obsidian alias, and the homepage row
+      repointed. Rule recorded in CLAUDE.md §4
+- [ ] `ME` Strike any number in "Four weeks in" that is too specific for the
+      agreement (first sends, bounces, replies, the two yeses)
+
 ---
 
 ## LOG 002 · Contact form + real domain email `[~] IN PROGRESS`
@@ -520,3 +567,5 @@ Short entries only. The reasoning lives in CLAUDE.md; this records *when* and
 | 2026-08-12 | **All four unshot video scripts converted to the teleprompter register, and given a §3 pass.** LOG 003, 004 and 005 went from 59, 36 and 31 contractions to zero; LOG 002 was already converted and got the newbie-explanation pass it had never had. **The register was the smallest problem.** Three defects surfaced that no amount of reading for voice would have caught: LOG 004 and LOG 005 both credited the pipeline to LOG 002 and the contact form to LOG 003, the pre-2026-08-11 order, and LOG 003 still called itself LOG 002 in its own wrap while speaking a version number that VOICE-SCRIPTS §6 bans; LOG 004's on-screen note offered **Vercel Web Analytics** as a swap, which CLAUDE.md §4 had settled *against* the day before; and LOG 005 staged a Lighthouse result it has not measured ("near-100 across the board"), now rewritten to read out the real numbers and keep a low one in. **A script drifts out of date faster than it drifts out of register** — run §6 against ROADMAP.md and CLAUDE.md, not just against the voice guide. The §3 pass found the same shape every time: the undefined term is never the exotic one. DKIM, symlink and serverless function were all carefully explained, while **"API" ran unexplained through an entire episode about an API.** |
 | 2026-09-15 | **The two throwbacks swap records.** Rural Point becomes LOG 015 / THROWBACK 002 (pub 2026-08-23) and the Game Boy becomes LOG 013 / THROWBACK 001 (pub 2026-08-09), every identity field moving together so the log keeps date order. A deliberate one-time exception to CLAUDE.md §4's permanence rule; slugs and URLs unchanged. The homepage Throwback band now lists newest first. |
 | 2026-09-15 | **The receiving pipe is verified from outside.** All five mail records (root MX and SPF, `_dmarc`, `send` MX and SPF) were read through the public resolver `1.1.1.1` with `+short`, so no local cache and no `SERVER:` line to blur, and they match the dashboard row for row, every one DNS-only. The `rua=` on `_dmarc` was already on the domain and needed no fix. Receiving is proven for both aliases, `hello@` on 2026-08-13 (TEST 001) and `dmarc@` on 2026-09-15 (TEST 002, inbox in under a minute, sent from an account other than the destination), and a message to an unrouted address bounced with `550 5.1.1`, so the disabled catch-all holds. |
+| 2026-09-15 | **LOG 014 rewritten from the live repo, not the August memory of it.** The first draft's timeline, client and premise were all wrong once the tool had four weeks of history. Rule that follows for client posts: **write from the repo's own `STATUS.md`, `CHANGELOG.md` and config, and date the post when it is written**, not when the work started. Privacy handled by naming the sector, not the business; shifting the niche; fuzzing counts; and saying so in the post. The map figure had to become the console's real tile cartogram before it read as the US: a schematic map that is not the shape of the place is a diagram of nothing. |
+| 2026-09-15 | **A post's folder and file follow its title, and a title change renames both.** Folder = the title's first sentence as a slug, file = that sentence as written, same as `nobody-fills-in-the-form/Nobody fills in the form.md`. LOG 014 was rewritten under a new title and kept its August folder and filename for a day, which is the drift that makes a post unfindable later (Marcelo's call: "fix it now"). `git mv` both, keep the old title as an Obsidian alias, repoint `site.config.json`. The URL moves with the folder: free while `noindex`, a redirect once indexed. |

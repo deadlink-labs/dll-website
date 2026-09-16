@@ -27,28 +27,28 @@
     <rect x="150" y="760" width="260" height="60" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
     <text x="280" y="798" font-size="17" fill="#ece8e1" fill-opacity="0.95">THREAD READ</text>
 
-    <!-- KIT SENT -->
+    <!-- DEMO KIT SENT -->
     <rect x="150" y="1065" width="260" height="60" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
-    <text x="280" y="1103" fill="#ece8e1" fill-opacity="0.95">KIT SENT</text>
+    <text x="280" y="1103" fill="#ece8e1" fill-opacity="0.95">DEMO KIT SENT</text>
 
     <!-- PARTNER (final, orange live node) -->
     <rect x="130" y="1370" width="300" height="90" rx="4" fill="none" stroke="#f04a00" stroke-opacity="0.7"/>
     <circle cx="280" cy="1415" r="42" fill="#f04a00" fill-opacity="0.10"/>
-    <text x="280" y="1424" font-size="24" fill="#f04a00">PARTNER</text>
+    <text x="280" y="1424" font-size="24" fill="#f04a00">DEALER</text>
   </g>
 
   <!-- Captions sit BESIDE the connector, never on it: the line runs down x=280,
        so every caption is left-anchored at 296 and centered in its own gap. -->
   <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" fill="#ece8e1" fill-opacity="0.5">
-    <text x="296" y="184">org note created</text>
+    <text x="296" y="184">shop note created</text>
     <text x="296" y="304">time-stamped, decays</text>
     <text x="296" y="424">tier set by signal age</text>
     <text x="296" y="544">by a person, every time</text>
     <text x="296" y="854">status detected from the reply</text>
-    <text x="296" y="1159">next step: wait for booking</text>
+    <text x="296" y="1159">next step: the first order</text>
   </g>
   <!-- PARTNER has no connector below it, so its caption stays centered. -->
-  <text x="280" y="1490" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" text-anchor="middle" fill="#ece8e1" fill-opacity="0.5">referral code active</text>
+  <text x="280" y="1490" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" text-anchor="middle" fill="#ece8e1" fill-opacity="0.5">dealer code active</text>
 
   <!-- ================= decision diamonds ================= -->
   <g font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" font-weight="600" text-anchor="middle">
@@ -62,9 +62,9 @@
     <text x="280" y="949" fill="#ece8e1" fill-opacity="0.95">INTERESTED?</text>
     <text x="280" y="971" font-size="12" font-weight="400" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#ece8e1" fill-opacity="0.5">(from the reply text)</text>
 
-    <!-- REFERRAL LOGGED? (future, dashed) -->
+    <!-- FIRST ORDER LOGGED? (future, dashed) -->
     <polygon points="280,1185 430,1260 280,1335 130,1260" fill="none" stroke="#ece8e1" stroke-opacity="0.3" stroke-dasharray="5 4"/>
-    <text x="280" y="1254" fill="#ece8e1" fill-opacity="0.6">REFERRAL LOGGED?</text>
+    <text x="280" y="1254" fill="#ece8e1" fill-opacity="0.6">FIRST ORDER LOGGED?</text>
     <text x="280" y="1276" font-size="12" font-weight="400" font-family="'IBM Plex Mono', ui-monospace, monospace" fill="#ece8e1" fill-opacity="0.45">(next piece, not yet built)</text>
   </g>
 
@@ -117,13 +117,13 @@
   <!-- ================= org.md snapshot cards ================= -->
   <g>
     <rect x="580" y="90" width="380" height="190" rx="4" fill="#1a1712" stroke="#ece8e1" stroke-opacity="0.2"/>
-    <text x="604" y="122" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">ORG.MD · AFTER RESEARCH</text>
+    <text x="604" y="122" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">SHOP.MD · AFTER RESEARCH</text>
     <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="14" fill="#ece8e1" fill-opacity="0.85">
-      <text x="604" y="154">ORG:      Northgate Travel Co.</text>
+      <text x="604" y="154">SHOP:     Northgate Cycles</text>
       <text x="604" y="180">AREA:     Coast region</text>
-      <text x="604" y="206">PROGRAMS: Day trips, Combo</text>
-      <text x="604" y="232">WHY:      hosted a regional trip,</text>
-      <text x="622" y="254">          2 seasons running</text>
+      <text x="604" y="206">LINES:    Road, Gravel</text>
+      <text x="604" y="232">WHY:      opened a second store,</text>
+      <text x="622" y="254">          runs a weekly group ride</text>
     </g>
   </g>
 
@@ -132,13 +132,13 @@
 
   <g>
     <rect x="580" y="330" width="380" height="210" rx="4" fill="#1a1712" stroke="#ece8e1" stroke-opacity="0.2"/>
-    <text x="604" y="362" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">ORG.MD · AFTER THE FIRST EMAIL</text>
+    <text x="604" y="362" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">SHOP.MD · AFTER THE FIRST EMAIL</text>
     <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="14" fill="#ece8e1" fill-opacity="0.85">
       <text x="604" y="394">STATUS:     written to</text>
       <text x="604" y="420">SIGNAL:     hot · 12d</text>
       <text x="604" y="446">LAST TOUCH: 2026-08-14</text>
       <text x="604" y="472">THREAD:     #A184</text>
-      <text x="604" y="498">NEXT STEP:  follow up in 7 days</text>
+      <text x="604" y="498">NEXT STEP:  follow up in 14 days</text>
     </g>
   </g>
 

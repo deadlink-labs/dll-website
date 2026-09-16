@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <!-- Redrawn for the post: the vault as a graph, and the three questions the
+       Connections page answers from it. Graphite specimen tile: three colours,
+       one orange live node (the person who bridges two shops in two
+       regions; the introduction that already exists). Every name is a
+       placeholder. -->
+  <rect width="1280" height="720" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="719" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <text x="64" y="64" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">THE RECORD AS A GRAPH · EIGHT NOTE TYPES, ONE VAULT</text>
+
+  <g>
+    <line x1="230" y1="180" x2="230" y2="330" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="230" y1="180" x2="120" y2="470" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="600" y1="180" x2="600" y2="330" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="600" y1="180" x2="740" y2="470" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="440" y1="110" x2="230" y2="330" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="440" y1="110" x2="600" y2="330" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="230" y1="330" x2="330" y2="240" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="230" y1="330" x2="100" y2="250" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="600" y1="330" x2="780" y2="260" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="230" y1="330" x2="415" y2="400" stroke="#f04a00" stroke-opacity="0.85" stroke-width="1.5"/>
+    <line x1="600" y1="330" x2="415" y2="400" stroke="#f04a00" stroke-opacity="0.85" stroke-width="1.5"/>
+    <line x1="230" y1="330" x2="400" y2="590" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="120" y1="470" x2="400" y2="590" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="740" y1="470" x2="400" y2="590" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="600" y1="330" x2="660" y2="620" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+    <line x1="740" y1="470" x2="660" y2="620" stroke="#ece8e1" stroke-opacity="0.28" stroke-width="1"/>
+  </g>
+
+  <g>
+    <circle cx="230" cy="180" r="12" fill="none" stroke="#ece8e1" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <text x="210" y="185" text-anchor="end" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">Coast region</text>
+    <text x="210" y="205" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">AREA</text>
+    <circle cx="600" cy="180" r="12" fill="none" stroke="#ece8e1" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <text x="620" y="185" text-anchor="start" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">Highland region</text>
+    <text x="620" y="205" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">AREA</text>
+    <circle cx="230" cy="330" r="10" fill="#ece8e1" fill-opacity="0.95"/>
+    <text x="210" y="335" text-anchor="end" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">Northgate Cycles</text>
+    <text x="210" y="355" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">SHOP · SENT</text>
+    <circle cx="120" cy="470" r="10" fill="#ece8e1" fill-opacity="0.95"/>
+    <text x="140" y="475" text-anchor="start" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">Harbor Line Bikes</text>
+    <text x="140" y="495" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">SHOP · PROSPECT</text>
+    <circle cx="600" cy="330" r="10" fill="#ece8e1" fill-opacity="0.95"/>
+    <text x="620" y="335" text-anchor="start" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">Cedar Ridge Cyclery</text>
+    <text x="620" y="355" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">SHOP · REPLIED</text>
+    <circle cx="740" cy="470" r="10" fill="#ece8e1" fill-opacity="0.95"/>
+    <text x="760" y="475" text-anchor="start" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">Union Trail Bike Co.</text>
+    <text x="760" y="495" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">SHOP · REJECTED, KEPT</text>
+    <circle cx="415" cy="400" r="20" fill="#f04a00" fill-opacity="0.18"/><circle cx="415" cy="400" r="7.5" fill="#f04a00"/>
+    <text x="435" y="405" text-anchor="start" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#f04a00" fill-opacity="1">R. Alvarez</text>
+    <text x="435" y="425" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#f04a00" fill-opacity="0.9">ON TWO ROSTERS</text>
+    <circle cx="330" cy="240" r="6.5" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.85" stroke-width="1.5"/>
+    <text x="350" y="245" text-anchor="start" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">M. Okafor</text>
+    <text x="350" y="265" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">PERSON</text>
+    <circle cx="780" cy="260" r="6.5" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.85" stroke-width="1.5"/>
+    <text x="800" y="265" text-anchor="start" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">J. Lindqvist</text>
+    <text x="800" y="285" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">PERSON</text>
+    <circle cx="100" cy="250" r="6.5" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.85" stroke-width="1.5"/>
+    <text x="120" y="255" text-anchor="start" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">D. Reyes</text>
+    <text x="120" y="275" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">PERSON</text>
+    <path d="M400,580 L410,590 L400,600 L390,590 Z" fill="#ece8e1" fill-opacity="0.75"/>
+    <text x="420" y="595" text-anchor="start" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">Brand A</text>
+    <text x="420" y="615" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">BRAND</text>
+    <rect x="652" y="612" width="16" height="16" fill="none" stroke="#ece8e1" stroke-opacity="0.85" stroke-width="1.5"/>
+    <text x="680" y="625" text-anchor="start" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">Competing part</text>
+    <text x="680" y="645" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">PART THEY ALREADY STOCK</text>
+    <rect x="433" y="103" width="14" height="14" transform="rotate(45 440 110)" fill="none" stroke="#ece8e1" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="2 2"/>
+    <text x="460" y="115" text-anchor="start" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">Gravel</text>
+    <text x="460" y="135" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#ece8e1" fill-opacity="0.5">PRODUCT LINE</text>
+  </g>
+
+  <g>
+    <text x="956" y="150" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="18" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">BRIDGE PEOPLE</text>
+    <text x="956" y="224" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="80" font-weight="600" fill="#ece8e1" fill-opacity="0.75">1</text>
+    <text x="1026" y="202" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">on two rosters,</text>
+    <text x="1026" y="226" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">across two regions</text>
+
+    <text x="956" y="320" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="18" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">BRAND OVERLAP</text>
+    <text x="956" y="394" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="80" font-weight="600" fill="#ece8e1" fill-opacity="0.75">3</text>
+    <text x="1026" y="372" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">shops already carry</text>
+    <text x="1026" y="396" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">the same brand</text>
+
+    <text x="956" y="490" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="18" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">DISPLACEMENT</text>
+    <text x="956" y="564" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="80" font-weight="600" fill="#ece8e1" fill-opacity="0.75">2</text>
+    <text x="1026" y="542" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">already stock a</text>
+    <text x="1026" y="566" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">competing part</text>
+  </g>
+
+  <g>
+    <circle cx="72" cy="672" r="10" fill="#ece8e1" fill-opacity="0.95"/>
+    <text x="92" y="677" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="14" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">SHOP</text>
+    <circle cx="176.4" cy="672" r="6.5" fill="#23201b" stroke="#ece8e1" stroke-opacity="0.85" stroke-width="1.5"/>
+    <text x="196.4" y="677" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="14" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">PERSON</text>
+    <circle cx="302" cy="672" r="12" fill="none" stroke="#ece8e1" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <text x="322" y="677" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="14" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">AREA</text>
+    <rect x="399.4" y="665" width="14" height="14" transform="rotate(45 406.4 672)" fill="none" stroke="#ece8e1" stroke-opacity="0.7" stroke-width="1.5" stroke-dasharray="2 2"/>
+    <text x="426.4" y="677" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="14" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">LINE</text>
+    <path d="M510.79999999999995,662 L520.8,672 L510.79999999999995,682 L500.79999999999995,672 Z" fill="#ece8e1" fill-opacity="0.75"/>
+    <text x="530.8" y="677" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="14" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">BRAND</text>
+    <rect x="617.8" y="664" width="16" height="16" fill="none" stroke="#ece8e1" stroke-opacity="0.85" stroke-width="1.5"/>
+    <text x="645.8" y="677" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="14" letter-spacing="2" fill="#ece8e1" fill-opacity="0.45">PART</text>
+  </g>
+</svg>

@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680">
+  <!-- Recreated for the post. The tile layout is the console's own US_TILES
+       (a cartogram: every state the same size, placed roughly where it sits);
+       the shading is illustrative and deliberately NOT the real coverage. -->
+  <rect width="1200" height="680" fill="#f7f6f3"/>
+  <rect x="0" y="0" width="1200" height="56" fill="#ffffff"/>
+  <line x1="0" y1="56" x2="1200" y2="56" stroke="#e4e0d9" stroke-width="1"/>
+  <text x="40" y="34" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="14" letter-spacing="2" fill="#191817" font-weight="600">TRADE OUTREACH</text>
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1">
+    <text x="694" y="33" fill="#6b6862">OVERVIEW</text>
+    <text x="795" y="33" fill="#6b6862">QUEUE</text>
+    <text x="867" y="33" fill="#6b6862">SYNC</text>
+    <text x="929" y="33" fill="#6b6862">SHOPS</text>
+    <text x="1001" y="33" fill="#6b6862">CONNECTIONS</text>
+    <text x="1131" y="33" fill="#1d5b48" font-weight="600">MAP</text>
+  </g>
+  <rect x="1131" y="42" width="29" height="2" fill="#1d5b48"/>
+
+  <text x="40" y="106" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="14" letter-spacing="2" fill="#6b6862">US COVERAGE · EVERY STATE THE SAME SIZE, SHADED BY WHAT IS ON FILE</text>
+
+  <!-- the cartogram: 11 columns x 8 rows, tile 52, pitch 60 -->
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="14" font-weight="600" text-anchor="middle">
+    <rect x="40.5" y="138.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="66" y="169.04" fill="#9b968d">AK</text>
+    <rect x="640.75" y="138.75" width="50.5" height="50.5" rx="4" fill="none" stroke="#1d5b48" stroke-width="1.5" stroke-dasharray="4 3"/><text x="666" y="162" fill="#1d5b48">ME</text><text x="666" y="177" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.75">2</text>
+    <rect x="580" y="198" width="52" height="52" rx="4" fill="#d7ebe3"/><text x="606" y="222" fill="#1d5b48">VT</text><text x="606" y="237" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.85">1</text>
+    <rect x="640" y="198" width="52" height="52" rx="4" fill="#d7ebe3"/><text x="666" y="222" fill="#1d5b48">NH</text><text x="666" y="237" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.85">2</text>
+    <rect x="40" y="258" width="52" height="52" rx="4" fill="#1d5b48"/><text x="66" y="282" fill="#ffffff">WA</text><text x="66" y="297" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.85">8</text>
+    <rect x="100" y="258" width="52" height="52" rx="4" fill="#d7ebe3"/><text x="126" y="282" fill="#1d5b48">ID</text><text x="126" y="297" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.85">1</text>
+    <rect x="160.5" y="258.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="186" y="289.04" fill="#9b968d">MT</text>
+    <rect x="220.5" y="258.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="246" y="289.04" fill="#9b968d">ND</text>
+    <rect x="280" y="258" width="52" height="52" rx="4" fill="#d7ebe3"/><text x="306" y="282" fill="#1d5b48">MN</text><text x="306" y="297" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.85">1</text>
+    <rect x="340" y="258" width="52" height="52" rx="4" fill="#d7ebe3"/><text x="366" y="282" fill="#1d5b48">WI</text><text x="366" y="297" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.85">2</text>
+    <rect x="400" y="258" width="52" height="52" rx="4" fill="#8fbfa8"/><text x="426" y="282" fill="#ffffff">MI</text><text x="426" y="297" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.85">4</text>
+    <rect x="520" y="258" width="52" height="52" rx="4" fill="#1d5b48"/><text x="546" y="282" fill="#ffffff">NY</text><text x="546" y="297" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.85">9</text>
+    <rect x="580" y="258" width="52" height="52" rx="4" fill="#8fbfa8"/><text x="606" y="282" fill="#ffffff">MA</text><text x="606" y="297" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.85">5</text>
+    <rect x="640.75" y="258.75" width="50.5" height="50.5" rx="4" fill="none" stroke="#1d5b48" stroke-width="1.5" stroke-dasharray="4 3"/><text x="666" y="282" fill="#1d5b48">RI</text><text x="666" y="297" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.75">1</text>
+    <rect x="40" y="318" width="52" height="52" rx="4" fill="#8fbfa8"/><text x="66" y="342" fill="#ffffff">OR</text><text x="66" y="357" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.85">5</text>
+    <rect x="100.75" y="318.75" width="50.5" height="50.5" rx="4" fill="none" stroke="#1d5b48" stroke-width="1.5" stroke-dasharray="4 3"/><text x="126" y="342" fill="#1d5b48">NV</text><text x="126" y="357" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.75">1</text>
+    <rect x="160.5" y="318.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="186" y="349.04" fill="#9b968d">WY</text>
+    <rect x="220.5" y="318.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="246" y="349.04" fill="#9b968d">SD</text>
+    <rect x="280.5" y="318.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="306" y="349.04" fill="#9b968d">IA</text>
+    <rect x="340" y="318" width="52" height="52" rx="4" fill="#8fbfa8"/><text x="366" y="342" fill="#ffffff">IL</text><text x="366" y="357" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.85">3</text>
+    <rect x="400" y="318" width="52" height="52" rx="4" fill="#d7ebe3"/><text x="426" y="342" fill="#1d5b48">IN</text><text x="426" y="357" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.85">1</text>
+    <rect x="460" y="318" width="52" height="52" rx="4" fill="#d7ebe3"/><text x="486" y="342" fill="#1d5b48">OH</text><text x="486" y="357" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.85">2</text>
+    <rect x="520" y="318" width="52" height="52" rx="4" fill="#1d5b48"/><text x="546" y="342" fill="#ffffff">PA</text><text x="546" y="357" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.85">6</text>
+    <rect x="580" y="318" width="52" height="52" rx="4" fill="#8fbfa8"/><text x="606" y="342" fill="#ffffff">NJ</text><text x="606" y="357" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.85">4</text>
+    <rect x="640" y="318" width="52" height="52" rx="4" fill="#d7ebe3"/><text x="666" y="342" fill="#1d5b48">CT</text><text x="666" y="357" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.85">2</text>
+    <rect x="40" y="378" width="52" height="52" rx="4" fill="#8fbfa8"/><text x="66" y="402" fill="#ffffff">CA</text><text x="66" y="417" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.85">5</text>
+    <rect x="100.5" y="378.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="126" y="409.04" fill="#9b968d">UT</text>
+    <rect x="160.5" y="378.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="186" y="409.04" fill="#9b968d">CO</text>
+    <rect x="220.5" y="378.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="246" y="409.04" fill="#9b968d">NE</text>
+    <rect x="280.5" y="378.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="306" y="409.04" fill="#9b968d">MO</text>
+    <rect x="340.75" y="378.75" width="50.5" height="50.5" rx="4" fill="none" stroke="#1d5b48" stroke-width="1.5" stroke-dasharray="4 3"/><text x="366" y="402" fill="#1d5b48">KY</text><text x="366" y="417" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.75">1</text>
+    <rect x="400.5" y="378.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="426" y="409.04" fill="#9b968d">WV</text>
+    <rect x="460" y="378" width="52" height="52" rx="4" fill="#d7ebe3"/><text x="486" y="402" fill="#1d5b48">VA</text><text x="486" y="417" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.85">2</text>
+    <rect x="520" y="378" width="52" height="52" rx="4" fill="#d7ebe3"/><text x="546" y="402" fill="#1d5b48">MD</text><text x="546" y="417" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.85">1</text>
+    <rect x="580.5" y="378.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="606" y="409.04" fill="#9b968d">DE</text>
+    <rect x="100.75" y="438.75" width="50.5" height="50.5" rx="4" fill="none" stroke="#1d5b48" stroke-width="1.5" stroke-dasharray="4 3"/><text x="126" y="462" fill="#1d5b48">AZ</text><text x="126" y="477" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.75">2</text>
+    <rect x="160.5" y="438.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="186" y="469.04" fill="#9b968d">NM</text>
+    <rect x="220.5" y="438.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="246" y="469.04" fill="#9b968d">KS</text>
+    <rect x="280.5" y="438.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="306" y="469.04" fill="#9b968d">AR</text>
+    <rect x="340.75" y="438.75" width="50.5" height="50.5" rx="4" fill="none" stroke="#1d5b48" stroke-width="1.5" stroke-dasharray="4 3"/><text x="366" y="462" fill="#1d5b48">TN</text><text x="366" y="477" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.75">3</text>
+    <rect x="400" y="438" width="52" height="52" rx="4" fill="#8fbfa8"/><text x="426" y="462" fill="#ffffff">NC</text><text x="426" y="477" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.85">4</text>
+    <rect x="460.75" y="438.75" width="50.5" height="50.5" rx="4" fill="none" stroke="#1d5b48" stroke-width="1.5" stroke-dasharray="4 3"/><text x="486" y="462" fill="#1d5b48">SC</text><text x="486" y="477" font-size="11" font-weight="600" fill="#1d5b48" fill-opacity="0.75">2</text>
+    <rect x="520.5" y="438.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="546" y="469.04" fill="#9b968d">DC</text>
+    <rect x="220.5" y="498.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="246" y="529.04" fill="#9b968d">OK</text>
+    <rect x="280.5" y="498.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="306" y="529.04" fill="#9b968d">LA</text>
+    <rect x="340.5" y="498.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="366" y="529.04" fill="#9b968d">MS</text>
+    <rect x="400.5" y="498.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="426" y="529.04" fill="#9b968d">AL</text>
+    <rect x="460" y="498" width="52" height="52" rx="4" fill="#8fbfa8"/><text x="486" y="522" fill="#ffffff">GA</text><text x="486" y="537" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.85">3</text>
+    <rect x="40.5" y="558.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="66" y="589.04" fill="#9b968d">HI</text>
+    <rect x="220.5" y="558.5" width="51" height="51" rx="4" fill="#f0ece5" stroke="#e4e0d9"/><text x="246" y="589.04" fill="#9b968d">TX</text>
+    <rect x="460" y="558" width="52" height="52" rx="4" fill="#1d5b48"/><text x="486" y="582" fill="#ffffff">FL</text><text x="486" y="597" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.85">7</text>
+  </g>
+
+  <!-- legend -->
+  <rect x="40" y="633" width="14" height="14" rx="3" fill="#f0ece5" stroke="#e4e0d9"/>
+  <text x="62" y="644" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#6b6862">NONE</text>
+  <rect x="120.24000000000001" y="633" width="14" height="14" rx="3" fill="none" stroke="#1d5b48" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <text x="142.24" y="644" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#6b6862">TARGETED</text>
+  <rect x="236.72000000000003" y="633" width="14" height="14" rx="3" fill="#d7ebe3"/>
+  <text x="258.72" y="644" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#6b6862">1–2</text>
+  <rect x="307.90000000000003" y="633" width="14" height="14" rx="3" fill="#8fbfa8"/>
+  <text x="329.90000000000003" y="644" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#6b6862">3–5</text>
+  <rect x="379.08000000000004" y="633" width="14" height="14" rx="3" fill="#1d5b48"/>
+  <text x="401.08000000000004" y="644" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="13" letter-spacing="1" fill="#6b6862">6+</text>
+
+  <!-- hover detail, as the console renders it for a swept state -->
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace">
+    <rect x="748" y="138" width="412" height="150" rx="4" fill="#ffffff" stroke="#e4e0d9"/>
+    <text x="768" y="168" font-size="12" letter-spacing="1.5" fill="#6b6862">HOVER · NY</text>
+    <text x="768" y="196" font-size="15" font-weight="600" fill="#191817">NY: 9 shops</text>
+    <text x="768" y="224" font-size="13" fill="#6b6862">Hudson Valley (4)</text>
+    <text x="768" y="246" font-size="13" fill="#6b6862">Finger Lakes (3)</text>
+    <text x="768" y="268" font-size="13" fill="#6b6862">Adirondacks (2)</text>
+  </g>
+
+  <!-- hover detail for a targeted state -->
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace">
+    <rect x="748" y="310" width="412" height="128" rx="4" fill="#ffffff" stroke="#1d5b48" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="768" y="340" font-size="12" letter-spacing="1.5" fill="#1d5b48">HOVER · TN</text>
+    <text x="768" y="368" font-size="15" font-weight="600" fill="#191817">TN: not swept yet. 3 towns targeted</text>
+    <text x="768" y="396" font-size="13" fill="#6b6862">1. Riverside · two shops run weekly group rides</text>
+    <text x="768" y="418" font-size="13" fill="#6b6862">2. Highpoint · a regional expo is held here</text>
+  </g>
+
+  <!-- not on the map -->
+  <g font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace">
+    <text x="748" y="478" font-size="12" letter-spacing="1.5" fill="#6b6862">NOT ON THE MAP</text>
+    <text x="748" y="506" font-size="15" font-weight="600" fill="#191817">12 shops have no state.</text>
+    <text x="748" y="530" font-size="13" fill="#6b6862">Online retailers sell to riders everywhere,</text>
+    <text x="748" y="550" font-size="13" fill="#6b6862">which is why they are filed as their own area</text>
+    <text x="748" y="570" font-size="13" fill="#6b6862">rather than pinned to a town.</text>
+  </g>
+</svg>

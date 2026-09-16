@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="440" viewBox="0 0 1280 440">
+  <!-- Redrawn for the post: the five steps of one Sync press, in the real
+       order. Graphite specimen tile: three colours, one orange live node (the
+       press). The connector dashes drift; that is ambient, and the file still
+       reads as a finished diagram with the animation off. -->
+  <style>
+    @keyframes syncflow { to { stroke-dashoffset: -18; } }
+    @media (prefers-reduced-motion: reduce) { [style*="syncflow"] { animation: none !important; } }
+  </style>
+  <rect width="1280" height="440" fill="#23201b"/>
+  <rect x="0.5" y="0.5" width="1279" height="439" fill="none" stroke="#ece8e1" stroke-opacity="0.10"/>
+
+  <circle cx="72" cy="76" r="16" fill="#f04a00" fill-opacity="0.18"/>
+  <circle cx="72" cy="76" r="6" fill="#f04a00"/>
+  <text x="100" y="82" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">ONE PRESS OF SYNC · FIVE STEPS, STREAMED</text>
+
+  <rect x="64" y="132" width="196" height="112" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
+    <text x="82" y="164" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">01</text>
+    <text x="82" y="208" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">npm run sync</text>
+    <text x="82" y="284" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">Pull the mailbox,</text>
+    <text x="82" y="308" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">read-only. Nothing on</text>
+    <text x="82" y="332" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">the server can change.</text>
+
+  <rect x="303" y="132" width="196" height="112" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
+    <text x="321" y="164" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">02</text>
+    <text x="321" y="208" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">npm run threads</text>
+    <text x="321" y="284" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">One file per</text>
+    <text x="321" y="308" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">conversation, matched</text>
+    <text x="321" y="332" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">to its shop.</text>
+
+  <rect x="542" y="132" width="196" height="112" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
+    <text x="560" y="164" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">03</text>
+    <text x="560" y="208" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">npm run stamp</text>
+    <text x="560" y="284" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">Write what the mail</text>
+    <text x="560" y="308" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">proves: sent, replied,</text>
+    <text x="560" y="332" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">bounced, date, address.</text>
+
+  <rect x="781" y="132" width="196" height="112" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
+    <text x="799" y="164" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">04</text>
+    <text x="799" y="208" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">npm run compare</text>
+    <text x="799" y="284" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">Draft as placed against</text>
+    <text x="799" y="308" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">the message as it left.</text>
+    <text x="799" y="332" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">Keep the as-sent copy.</text>
+
+  <rect x="1020" y="132" width="196" height="112" rx="4" fill="none" stroke="#ece8e1" stroke-opacity="0.3"/>
+    <text x="1038" y="164" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="3" fill="#ece8e1" fill-opacity="0.45">05</text>
+    <text x="1038" y="208" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="18" font-weight="600" fill="#ece8e1" fill-opacity="0.95">npm run queue</text>
+    <text x="1038" y="284" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">Rebuild who is next</text>
+    <text x="1038" y="308" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">from the notes and</text>
+    <text x="1038" y="332" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="17" fill="#ece8e1" fill-opacity="0.55">the threads.</text>
+
+  <line x1="266" y1="188" x2="295" y2="188" stroke="#ece8e1" stroke-opacity="0.5" stroke-dasharray="4 5" style="animation: syncflow 1.6s linear infinite"/>
+    <path d="M289,183 L296,188 L289,193" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="1.5"/>
+  <line x1="505" y1="188" x2="534" y2="188" stroke="#ece8e1" stroke-opacity="0.5" stroke-dasharray="4 5" style="animation: syncflow 1.6s linear infinite"/>
+    <path d="M528,183 L535,188 L528,193" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="1.5"/>
+  <line x1="744" y1="188" x2="773" y2="188" stroke="#ece8e1" stroke-opacity="0.5" stroke-dasharray="4 5" style="animation: syncflow 1.6s linear infinite"/>
+    <path d="M767,183 L774,188 L767,193" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="1.5"/>
+  <line x1="983" y1="188" x2="1012" y2="188" stroke="#ece8e1" stroke-opacity="0.5" stroke-dasharray="4 5" style="animation: syncflow 1.6s linear infinite"/>
+    <path d="M1006,183 L1013,188 L1006,193" fill="none" stroke="#ece8e1" stroke-opacity="0.5" stroke-width="1.5"/>
+
+  <text x="64" y="396" font-family="'IBM Plex Mono', ui-monospace, 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="4" fill="#ece8e1" fill-opacity="0.45">NOTHING HERE SENDS · GIT DIFF IS THE REVIEW</text>
+</svg>

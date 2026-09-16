@@ -53,7 +53,9 @@ Pick the mode from what the user asked for.
 2. Copy the template structure. Write the body per VOICE-POSTS.md. Use the
    signature moves (question-title for experiments only, a takeaway, an honest
    aside where true, plain teaching for any jargon). Keep only the sections that
-   earn their place.
+   earn their place. **A post tagged `CLIENT-WORK` is the client-post flavor**
+   (VOICE-POSTS.md §3): a pitch of the skill, not a build log. Cut the mechanism,
+   keep the decision and the outcome, name the AI plainly, open on a screen.
 2b. **Apply the emphasis ladder** (VOICE-POSTS.md §4) — but only after the draft
    is finished, using the procedure in EMPHASIS mode below. Marking as you write
    produces marks in reading order, which is the failure that mode exists for.
