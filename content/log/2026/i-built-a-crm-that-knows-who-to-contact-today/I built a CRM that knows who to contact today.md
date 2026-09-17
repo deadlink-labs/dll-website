@@ -14,7 +14,7 @@ aliases:
 web-status: published
 web-title: "I built a CRM that knows who to contact today."
 web-pub-date: 2026-09-15
-web-snippet: "A small bicycle-component maker needed dealers in the US. Four weeks with an AI coding agent produced a research console, a queue, a mail archive and a graph of everyone the business knows, all in plain text files. The AI does the research. A person presses Send."
+web-snippet: "A small business needed partners in the US. Four weeks with an AI coding agent produced a research console, a queue, a mail archive and a graph of everyone the business knows, all in plain text files. The AI does the research. A person presses Send."
 web-type: log
 web-number: 14
 web-stage: SHIPPED

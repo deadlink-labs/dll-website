@@ -12,7 +12,7 @@ aliases:
 web-status: published
 web-title: "Uruguay Outfitters: a fast, cinematic website for a luxury lodge"
 web-pub-date: 2026-07-16
-web-snippet: "They sell a week away to people who have never seen the place, so the photographs have to do the selling. A fast, photo-heavy site the team can update without calling me."
+web-snippet: "A Cast & Blast Premium Outdoors Experience in Soriano, Uruguay, selling week-long stays to guests abroad. I designed and built its site: photo-first. Claude Code + Next.js, Sanity, Vercel."
 web-type: log
 web-number: 11
 web-stage: SHIPPED
@@ -30,8 +30,10 @@ photographs have to do the selling. The site has to load before somebody on a
 hotel wifi gives up. And nobody at the lodge should have to call me to swap a
 picture.
 
-I designed and built it in 2026. This is the top-level version of what it runs on
-and why, without the client's private details.
+I designed and built it in 2026: the design first as a WordPress mockup, then
+the real site in Next.js, built with Claude Code and deployed on Vercel. This is
+the top-level version of what it runs on and why, without the client's private
+details.
 
 ```terminal
 $ git push origin main

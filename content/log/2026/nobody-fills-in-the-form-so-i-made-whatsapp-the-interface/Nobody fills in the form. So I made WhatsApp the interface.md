@@ -14,7 +14,7 @@ aliases:
 web-status: published
 web-title: "Nobody fills in the form. So I made WhatsApp the interface."
 web-pub-date: 2026-07-29
-web-snippet: "A proposal for turning a technician's voice note into a service report. The workflow, the four-week pilot I scoped, and why the project never reached implementation."
+web-snippet: "A proposal for turning a technician's voice note into a service report. The workflow (WhatsApp → Whisper → n8n → Claude) and the four-week pilot I scoped."
 web-type: log
 web-number: 12
 web-stage: PROPOSAL
