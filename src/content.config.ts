@@ -18,6 +18,7 @@
 // web-waitlist for products (§5.3). Confirm the naming before authoring real posts.
 import { defineCollection, z, type ImageFunction } from 'astro:content';
 import { glob } from 'astro/loaders';
+import type { Loader } from 'astro/loaders';
 import { STATUSES } from './lib/status';
 import { parseYouTubeId } from './lib/video';
 
@@ -151,13 +152,52 @@ const slugFromFolder = (collection: 'log' | 'products') => ({ entry }: { entry: 
   return parts[parts.length - 2]!; // the folder name = the slug
 };
 
+// Drafts never reach the build (added 2026-09-17, v1.02.103). The frontmatter
+// rule above makes a draft invisible, but Astro still reads every .md body in
+// the folder and registers an import for each `![…](./assets/x.png)` it finds —
+// at the moment the entry is written to the content store, BEFORE any page asks
+// whether the post is published. A draft that references a screenshot not taken
+// yet therefore failed the whole build (LOG 003, seven missing PNGs). This
+// wrapper runs the standard glob loader against a store whose `set` drops every
+// entry that is not exactly `published`, so a draft's images are never
+// registered. (Deleting the entry afterwards is too late: the image imports are
+// kept in a separate set with no removal API.) Entries left in the persisted
+// store from earlier builds are cleared first for the same reason. Nothing
+// visible changes: every page already reads through getPublishedLog() /
+// getPublishedProducts(), and drafts were never previewable, in dev or in build.
+// The cost: a draft's broken image link is reported only when the post is
+// flipped to published — which is when it matters.
+type StoredData = { published?: boolean; 'web-status'?: string };
+const isPublishedData = (data: unknown) => {
+  const d = (data ?? {}) as StoredData;
+  return d.published === true || d['web-status'] === 'published';
+};
+const publishedOnly = (inner: Loader): Loader => ({
+  ...inner,
+  name: `${inner.name}:published-only`,
+  load: async (ctx) => {
+    for (const [id, entry] of ctx.store.entries()) {
+      if (!isPublishedData(entry.data)) ctx.store.delete(id);
+    }
+    const store: typeof ctx.store = {
+      ...ctx.store,
+      set: (entry) => (isPublishedData(entry.data) ? ctx.store.set(entry) : true),
+    };
+    await inner.load({ ...ctx, store });
+  },
+});
+
 const log = defineCollection({
-  loader: glob({ pattern: '*/*/*.md', base: './content/log', generateId: slugFromFolder('log') }),
+  loader: publishedOnly(
+    glob({ pattern: '*/*/*.md', base: './content/log', generateId: slugFromFolder('log') }),
+  ),
   schema: ({ image }) => webSchema(image),
 });
 
 const products = defineCollection({
-  loader: glob({ pattern: '*/*.md', base: './content/products', generateId: slugFromFolder('products') }),
+  loader: publishedOnly(
+    glob({ pattern: '*/*.md', base: './content/products', generateId: slugFromFolder('products') }),
+  ),
   schema: ({ image }) => webSchema(image),
 });
 
