@@ -8,15 +8,16 @@ aliases:
   - "LOG 011"
   - "Service report proposal"
   - "Informes de servicio"
+  - "Nobody fills in the form. I automated it away with n8n and Claude."   # the title until 2026-09-17
 
 # --- web-* namespace (the ONLY fields the site reads) ---
 web-status: published
-web-title: "Nobody fills in the form. I automated it away with n8n and Claude."
+web-title: "Nobody fills in the form. So I made WhatsApp the interface."
 web-pub-date: 2026-07-29
-web-snippet: "Field technicians never finished their service reports, and in a regulated plant an unfinished report is an audit finding. A two-minute voice note goes in, a finished report comes out."
+web-snippet: "A proposal for turning a technician's voice note into a service report. The workflow, the four-week pilot I scoped, and why the project never reached implementation."
 web-type: log
 web-number: 12
-web-stage: SHIPPED
+web-stage: PROPOSAL
 web-tags: [CLIENT-WORK, AI, WHATSAPP, N8N, WHISPER]
 web-thumb: "./assets/thumb.webp"   # the post's own artwork, not a generated tile; source at assets/thumb.svg
 web-thumb-alt: "Cover artwork: on the left a phone showing the WhatsApp exchange, the system asking for a serial number, spares and finish time, the technician answering in one line, and the report closing in one round. On the right the six-box flow behind it: voice note in, Whisper on their server, Claude structuring, a completeness check, PostgreSQL, report out, with Claude outlined in orange as the only call that leaves the network."
@@ -31,6 +32,9 @@ I spent a few weeks with that problem and shipped a four-week pilot proposal for
 it. The client is a manufacturer of heat exchangers, electrovalves, pumps and
 process equipment, sold and maintained inside food, dairy and pharmaceutical
 plants. They're not named here, and neither is anyone who works there.
+
+This is the proposal, not a deployed client system. They never took up the pilot.
+The flows and examples below describe the design; there are no measured field results.
 
 What I proposed is one sentence long: **the technician talks for two minutes on
 WhatsApp, and the system writes the report.**

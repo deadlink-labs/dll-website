@@ -71,7 +71,7 @@ preview is the difference between a happy accident and a master.
 code. That's deliberate, not stalled.** An audit of the blueprint caught eleven real
 problems while they were still sentences, including one that would have broken the
 render-matches-preview promise on the very first render. [Here's that whole
-process](/log/designing-hazefield-before-the-code), including the bugs.
+process](/log/designing-hazefield-before-writing-any-code), including the bugs.
 
 So: nothing to download, nothing to buy, and no date I'm willing to promise. If
 that's fine with you, get on the list and I'll tell you when it opens.

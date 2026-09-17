@@ -398,19 +398,21 @@ Rules:
 - **Log nests by year** (`log/<year>/…`); **products stay flat**. The year folder is filesystem organization — it never appears in the URL.
 - **Each post is its own folder; the folder name is the slug.** URLs: `/log/<slug>` and `/products/<slug>`.
 - **Files are plain `.md`** (not `.mdx`) so Obsidian treats them as native notes. **The folder name is the slug; the `.md` inside is named for the post's TITLE** (e.g. `building-deadlinklabs-with-ai-in-public/Building the Deadlink Labs website with AI, in public.md`), not the folder and not `index.md` — so the note reads with its real title everywhere in Obsidian (quick-switcher, graph, backlinks). The filename is free-form and never reaches the URL; the folder does. Vault navigation: find a post by its title (the filename) or by its number/nickname via `aliases` (an Obsidian-internal field the site ignores — see §4 frontmatter), and browse the ordered index with an Obsidian **Base** over the `log` folder sorted by `web-number`. Do NOT number folders to fake an order — order lives in `web-pub-date`/`web-number`, never in the folder name. Interactive components use the fenced-block convention (below), never raw inline JSX.
-- **The folder and the file follow the title, and a title change renames both**
-  (settled 2026-09-15, LOG 014). The folder is the title's first sentence as a
-  slug (`nobody-fills-in-the-form`, `i-built-a-custom-crm-with-ai`); the `.md` is
-  that first sentence as written (`Nobody fills in the form.md`). When a rewrite
-  changes the title, `git mv` both so history follows, keep the old title as an
-  Obsidian `aliases` entry so the old name still finds the note, and repoint any
-  `site.config.json` slug. LOG 014 sat for a day as
-  `trade-partner-outreach-console/Trade partner outreach console.md` under a
-  title about a custom CRM, which is exactly the drift that makes a post
-  unfindable a year on. **The URL changes with the folder.** That is free while
-  the site is `noindex` (until LOG 004 flips `ALLOW_INDEXING`); after that a slug
-  is a permanent public identifier like `web-number`, and a title change keeps
-  the old folder or ships a redirect.
+- **Folder and file are the title** (settled 2026-09-17, replacing the
+  2026-09-15 "first sentence" rule, which let folders drift from titles).
+  Folder = the full `web-title`, slugified: lowercase ASCII, punctuation
+  dropped, spaces to hyphens. File = the full title as written, minus the
+  characters a filesystem or Obsidian rejects (`: ? " / \ < > * |`) and any
+  trailing period. So `web-title: "Nobody fills in the form. So I made WhatsApp
+  the interface."` lives at
+  `nobody-fills-in-the-form-so-i-made-whatsapp-the-interface/Nobody fills in the form. So I made WhatsApp the interface.md`.
+  A title change renames both (`git mv` so history follows), keeps the old
+  title as an Obsidian `aliases` entry, and repoints any `site.config.json`
+  slug and any `/log/...` link in content. No exceptions, no shortening. Long
+  URLs are fine; a post that can be found from any of its names is the point.
+  **The URL changes with the folder** and there are no redirects (decided
+  2026-09-17: the site is new). Settle the title before publishing; after the
+  site has inbound links, a rename is a broken link.
 - **Assets are co-located** in a sibling `assets/`, referenced either as standard relative markdown `![alt](./assets/hero.webp)` or as an Obsidian embed `![[hero.webp]]`, which [`remark-obsidian.mjs`](src/plugins/remark-obsidian.mjs) resolves to the former. Astro's image pipeline optimizes both at build — no per-image setup. Prefer the relative form when you want real alt text, since an embed can only derive alt from the filename.
 - **Obsidian canvases live in `assets/` too**, and embed with `![[Name.canvas]]` (§3). Two properties follow from the format and are worth knowing before planning around it: a `.canvas` is pure JSON with exactly two top-level keys, so it **carries no frontmatter** — no `web-*` fields, no tags, no aliases — and it can therefore **never appear in an Obsidian Base**, which queries markdown only. Every canvas needs a companion note to hold its metadata; here that note is the post, which supplies the alt text and caption. Wikilinks typed *inside* canvas text nodes are still real outgoing links, so backlinks and the graph keep working.
 - **Log feeds sort by `web-number`, highest first** (settled 2026-08-10). This

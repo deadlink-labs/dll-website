@@ -4,10 +4,13 @@ type: work journal
 created: 2026-07-19
 project: "[[UO Web]]"
 people: []
+aliases:
+  - "LOG 011"
+  - "Uruguay Outfitters: a hunting and fishing lodge website"   # the title until 2026-09-17
 
 # --- web-* namespace (the ONLY fields the site reads) ---
 web-status: published
-web-title: "Uruguay Outfitters: a hunting and fishing lodge website"
+web-title: "Uruguay Outfitters: a fast, cinematic website for a luxury lodge"
 web-pub-date: 2026-07-16
 web-snippet: "They sell a week away to people who have never seen the place, so the photographs have to do the selling. A fast, photo-heavy site the team can update without calling me."
 web-type: log

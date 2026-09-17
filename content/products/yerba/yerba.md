@@ -64,7 +64,7 @@ Most trend lines ship with one setting for every chart. Yerba doesn't, because t
 
 ## How it was verified
 
-Every number Yerba prints was checked against a closed-source reference indicator using nothing but its public screen output: 52 of 55 flip dates exact, 36 of 37 historical stop levels exact, and 0% difference against TradingView's own engine over 263 bars. The whole reconstruction, including the six ways the numbers lied on the way there, is written up in [the log](/log/reconstructing-a-black-box-indicator).
+Every number Yerba prints was checked against a closed-source reference indicator using nothing but its public screen output: 52 of 55 flip dates exact, 36 of 37 historical stop levels exact, and 0% difference against TradingView's own engine over 263 bars. The whole reconstruction, including the six ways the numbers lied on the way there, is written up in [the log](/log/can-you-rebuild-a-closed-source-trading-indicator-from-someone-elses-screen).
 
 ## Honest status
 

@@ -8,10 +8,11 @@ aliases:
   - "LOG 014"
   - "Outreach CRM"
   - "Trade partner outreach console"   # the title until 2026-09-15; kept so the old name still finds the note
+  - "I built a custom CRM with AI"   # the title until 2026-09-17; the folder was i-built-a-custom-crm-with-ai
 
 # --- web-* namespace (the ONLY fields the site reads) ---
 web-status: published
-web-title: "I built a custom CRM with AI. It's a folder of text files, and it knows who to write to today."
+web-title: "I built a CRM that knows who to contact today."
 web-pub-date: 2026-09-15
 web-snippet: "A small bicycle-component maker needed dealers in the US. Four weeks with an AI coding agent produced a research console, a queue, a mail archive and a graph of everyone the business knows, all in plain text files. The AI does the research. A person presses Send."
 web-type: log

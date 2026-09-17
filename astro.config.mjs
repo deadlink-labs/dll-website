@@ -10,6 +10,14 @@ import { defineConfig, envField } from 'astro/config';
 // serverless function. Pinned to ^9.0.5 in package.json: that is the newest
 // major built for Astro 5 (v10 needs Astro 6, v11 needs Astro 7). CLAUDE.md §4.
 import vercel from '@astrojs/vercel';
+// The sitemap integration. After every build it walks the list of pages Astro
+// just prerendered and writes them to `sitemap-index.xml` + `sitemap-0.xml`
+// in the output folder, one <url> per page, absolute URLs built from `site`
+// below. Only real pages go in: draft posts never get a page in the first
+// place (getStaticPaths reads getPublishedLog / getPublishedProducts), and
+// endpoints like /rss.xml are skipped by the integration itself. Nothing to
+// maintain by hand; a new published post is in the sitemap on the next build.
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import remarkObsidian from './src/plugins/remark-obsidian.mjs';
 import remarkMark from './src/plugins/remark-mark.mjs';
@@ -23,7 +31,21 @@ import remarkPhotoFigure from './src/plugins/remark-photo-figure.mjs';
 // components hydrate only when explicitly marked as islands.
 // See CLAUDE.md §4 for the full stack rationale.
 export default defineConfig({
+  // `site` is also what the sitemap integration prefixes every URL with, and
+  // it is the URL `public/robots.txt` points crawlers at. Keep the two in step.
   site: 'https://deadlinklabs.com',
+
+  // Integrations are the plugin slot. Only the sitemap lives here; Tailwind is
+  // wired through Vite below, and Vercel is an adapter, not an integration.
+  //
+  // The sitemap ships while the site is still `noindex` (BaseLayout.astro's
+  // ALLOW_INDEXING). That is deliberate and harmless: a crawler that follows
+  // the sitemap still reads the meta tag on each page and stays out. The two
+  // are independent switches, and the roadmap's LOG 004 order stands:
+  // spam-guard the contact form, THEN flip ALLOW_INDEXING, THEN submit this
+  // sitemap in Search Console. Until the flip, Search Console would only
+  // report every URL as "submitted URL marked noindex".
+  integrations: [sitemap()],
 
   // `output` is deliberately NOT set, so it stays Astro's default: 'static'.
   // Adding an adapter does NOT change that. Every page is still prerendered

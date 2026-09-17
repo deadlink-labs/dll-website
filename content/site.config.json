@@ -1,18 +1,18 @@
 {
   "homepage": {
-    "heroPosts": ["building-deadlinklabs-with-ai-in-public"],
+    "heroPosts": ["i-built-a-crm-that-knows-who-to-contact-today"],
     "recentPostsCount": 5,
     "featuredProducts": ["yerba", "cassette-mixtapes", "hazefield"],
     "clientWork": [
-      { "name": "Bicycle Components Maker", "status": "SHIPPED · 2026", "slug": "i-built-a-custom-crm-with-ai" },
-      { "name": "Heat Exchanger Manufacturer", "status": "PROPOSAL · 2026", "slug": "nobody-fills-in-the-form" },
-      { "name": "Uruguay Outfitters", "status": "SHIPPED · 2026", "slug": "uruguay-outfitters-website" },
-      { "name": "Crehana", "status": "CASE STUDY", "slug": "crehana-post-production" }
+      { "name": "Bicycle Components Maker", "status": "SHIPPED · 2026", "slug": "i-built-a-crm-that-knows-who-to-contact-today" },
+      { "name": "Crehana", "status": "CASE STUDY", "slug": "crehana-automating-an-e-learning-content-operation" },
+      { "name": "Uruguay Outfitters", "status": "SHIPPED · 2026", "slug": "uruguay-outfitters-a-fast-cinematic-website-for-a-luxury-lodge" },
+      { "name": "Heat Exchanger Manufacturer", "status": "PROPOSAL · 2026", "slug": "nobody-fills-in-the-form-so-i-made-whatsapp-the-interface" }
     ],
     "throwbacks": [
-      { "status": "2006", "slug": "rural-point" },
+      { "status": "2006", "slug": "rural-point-a-wireless-isp-in-the-argentine-countryside-2006" },
       { "status": "2000", "slug": "phone-tapping-a-problem-i-probably-shouldnt-have-solved" },
-      { "status": "2017", "slug": "dmg-chiptune-machine" }
+      { "status": "2017", "slug": "the-game-boy-i-was-allowed-to-break-building-a-chiptune-machine-2017" }
     ]
   }
 }
