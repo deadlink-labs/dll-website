@@ -12,13 +12,15 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import avatar from '../assets/avatar-2024-mb.jpeg';
+import { PROFILE } from '../lib/profile';
 
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Marcelo Brouard',
   url: 'https://deadlinklabs.com/about',
-  jobTitle: 'AI automation and systems builder',
+  jobTitle: PROFILE.role,
+  sameAs: [PROFILE.linkedin],
   address: { '@type': 'PostalAddress', addressLocality: 'Buenos Aires', addressCountry: 'AR' },
   worksFor: { '@type': 'Organization', name: 'Deadlink Labs' },
 };
@@ -28,7 +30,7 @@ const personSchema = {
 const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Studio'];
 ---
 
-<BaseLayout title="About" description="Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run themselves.">
+<BaseLayout title="About" description={PROFILE.description}>
   <Fragment slot="head">
     <script type="application/ld+json" is:inline set:html={JSON.stringify(personSchema)} />
   </Fragment>
@@ -67,10 +69,7 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
     {/* The origin of the name (locked beat, §5.4). Opens on the canonical
         positioning line now that the name and city are the header. */}
     <section class="prose about__origin">
-      <p>
-        20+ years turning messy operations into systems that run themselves: post-production teams,
-        pipeline automation, data and dashboards, AI workflows, and the occasional website.
-      </p>
+      <p>{PROFILE.intro}</p>
       <p>
         When someone asked where they could see the work, there was no link to send. The work was
         real. The URL did not exist. I was the dead link.
@@ -93,15 +92,21 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
       <h2 class="work__heading">Work with me</h2>
       <div class="prose">
         <p>
-          I help small businesses work better with AI and automation. I find what is eating your
-          time and money, then I build the fix: automated workflows, dashboards, internal tools, or
-          your complete web presence. From understanding the problem to shipping the solution.
+          A new inquiry gets buried in a chat. Someone buys, but their welcome email never arrives.
+          The team needs another spreadsheet just to find out what's overdue. That's the kind of
+          work I help untangle, especially in businesses selling courses, training, or services.
+        </p>
+        <p>
+          Start with a follow-up and onboarding sprint: one workflow, a fixed scope, and a working
+          handoff. We map the steps, connect the tools you already use, and make the next action
+          visible. You get the workflow, checks for common failures, and instructions your team
+          can follow. We agree on the price and schedule before the build starts.
         </p>
       </div>
       <ol class="engagement">
         <li><strong>A conversation.</strong> You tell me how the work actually happens today. I ask a lot of questions.</li>
         <li><strong>A plan.</strong> I map what to automate, build, or simplify, with clear scope and a fixed price.</li>
-        <li><strong>The build.</strong> I ship, document everything, and hand it over working. You own all of it.</li>
+        <li><strong>The build.</strong> We test the workflow together. I document it and hand it over in accounts you control.</li>
       </ol>
       {/* Proof lives on the homepage band, which carries the thumbnails,
           stamps and snippets — link there rather than duplicate it. */}
@@ -117,6 +122,10 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
           words under it instead. `method="post"` and no `action=`: the script
           sends it. */}
       <form class="contact" id="contact-form" method="post" novalidate>
+        <div class="contact__trap" aria-hidden="true" inert>
+          <label for="c-website">Leave this field empty</label>
+          <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
         <div class="contact__field">
           <label class="contact__label" for="c-name">Name</label>
           <input class="contact__input" id="c-name" name="name" type="text" required maxlength="120" autocomplete="name" aria-describedby="c-name-error" />
@@ -205,6 +214,8 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
   const again = panel?.querySelector<HTMLButtonElement>('.contact__again');
 
   if (form && panel && alert && button && btnLabel && message && count && receipt && again) {
+    // A duration avoids rejecting people whose device clock differs from ours.
+    let openedAt = performance.now();
     // The four fields the visitor types into, in the order they sit on the
     // page. `source` is hidden and has no line to print under.
     const FIELDS: readonly Field[] = ['name', 'email', 'company', 'message'];
@@ -281,7 +292,9 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
       btnLabel.textContent = 'Sending';
 
       try {
-        const { data, error } = await actions.contact(new FormData(form));
+        const payload = new FormData(form);
+        payload.set('elapsedMs', String(Math.floor(performance.now() - openedAt)));
+        const { data, error } = await actions.contact(payload);
         if (data) {
           // Sent. The panel takes the form's place. It promises a copy only
           // when the receipt to the visitor actually went out. The fields
@@ -332,6 +345,7 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
       panel.hidden = true;
       form.hidden = false;
       form.reset();
+      openedAt = performance.now();
       for (const name of FIELDS) show(name, '');
       alert.textContent = '';
       syncMessage();
@@ -341,6 +355,13 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
 </script>
 
 <style>
+  .contact__trap {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
   .about {
     padding-block: 1rem 0;
     max-width: 720px;

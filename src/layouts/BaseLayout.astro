@@ -24,6 +24,7 @@ import type { ImageMetadata } from 'astro';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { PROFILE } from '../lib/profile';
 
 // Vercel Web Analytics. Cookieless and first-party (the script is served from
 // /_vercel/insights on our own domain), so it needs no consent banner and adds
@@ -55,7 +56,7 @@ interface Props {
 
 const {
   title,
-  description = 'The creative laboratory and proof-of-work archive of Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run themselves.',
+  description = PROFILE.description,
   width = 'index',
   flush = false,
   ogImage,
@@ -93,12 +94,10 @@ const pageTitle = title ? `${title} · Deadlink Labs` : 'Deadlink Labs — Marce
 const ogTitle = title ?? pageTitle;
 
 // --- SEARCH-ENGINE INDEXING SWITCH (site-wide, single source of truth) ---
-// While the site is still being built with placeholder/draft content, we keep
-// every page out of search results. `noindex, nofollow` tells crawlers not to
-// index any page or follow its links. Every HTML page renders through this
-// layout, so flipping this one flag turns indexing on or off for the whole site.
-// FLIP TO `true` WHEN THE REAL CONTENT IS READY TO BE FOUND ON GOOGLE.
-const ALLOW_INDEXING = false;
+// Real content and the contact guard are ready. Keep preview deployments out
+// of search, and preserve each page's explicit opt-out.
+const ALLOW_INDEXING = true;
+const isPreview = process.env.VERCEL_ENV === 'preview';
 ---
 
 <!doctype html>
@@ -113,8 +112,9 @@ const ALLOW_INDEXING = false;
     {/* Two independent reasons to stay out of search: the site-wide switch above
         (temporary, flips at LOG 004) and a per-page opt-out (permanent, for pages
         that should never be indexed at all). Either one is enough. */}
-    {(!ALLOW_INDEXING || noindex) && <meta name="robots" content="noindex, nofollow" />}
+    {(!ALLOW_INDEXING || isPreview || noindex) && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="describedby" type="text/plain" href="/llms.txt" />
     {/* Share cards. Without these a pasted URL unfurls into nothing. */}
     <meta property="og:site_name" content="Deadlink Labs" />
     <meta property="og:type" content={ogType} />

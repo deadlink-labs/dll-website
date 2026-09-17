@@ -15,6 +15,7 @@ import { RESEND_API_KEY } from 'astro:env/server';
 // one shared file, because the page's script checks each field with the same
 // rules before the request is made. Change a word there and both sides change.
 import { LIMIT, MESSAGE, NAME_ONLY, ONE_LINE } from '../lib/contact-rules';
+import { contactGuard } from '../lib/contact-guard';
 
 // The one address every message lands on. It is a Cloudflare forwarding rule,
 // not a personal inbox, so the real destination lives in a dashboard and
@@ -31,6 +32,8 @@ const SEND_FAILED =
 // form data as `null`, not `""`, and without it zod would answer "Expected
 // string, received null" in place of our words.
 const input = z.object({
+  website: z.string().max(2000).optional(),
+  elapsedMs: z.string().max(20).optional(),
   name: z
     .string({ invalid_type_error: MESSAGE.name.empty })
     .trim()
@@ -66,7 +69,9 @@ export const server = {
   contact: defineAction({
     accept: 'form',
     input,
-    handler: async ({ name, email, company, message, source }) => {
+    handler: async ({ name, email, company, message, source, website, elapsedMs }) => {
+      const rejection = contactGuard(website, elapsedMs);
+      if (rejection) throw new ActionError({ code: 'BAD_REQUEST', message: rejection });
       const resend = new Resend(RESEND_API_KEY);
 
       // 1. The message, to the inbox. Reply-To is the visitor, so a plain

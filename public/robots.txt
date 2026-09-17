@@ -1,0 +1,8 @@
+# deadlinklabs.com
+# Crawling is open; whether a page may be INDEXED is decided per page by the
+# <meta name="robots"> tag (BaseLayout.astro, ALLOW_INDEXING). Blocking here
+# would hide that tag from crawlers, so this file only says where the map is.
+User-agent: *
+Allow: /
+
+Sitemap: https://deadlinklabs.com/sitemap-index.xml

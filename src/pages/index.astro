@@ -22,6 +22,7 @@ import FeedCard from '../components/FeedCard.astro';
 import ProductCard from '../components/ProductCard.astro';
 import avatar from '../assets/avatar-2024-mb.jpeg';
 import { getHomepageData, recordLabel } from '../lib/content';
+import { PROFILE } from '../lib/profile';
 
 const { hero, recent, featuredProducts, clientWork, throwbacks } = await getHomepageData();
 const current = hero[0]; // the current experiment on the bench
@@ -52,6 +53,8 @@ const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Marcelo Brouard',
+  jobTitle: PROFILE.role,
+  sameAs: [PROFILE.linkedin],
   url: 'https://deadlinklabs.com',
   address: { '@type': 'PostalAddress', addressLocality: 'Buenos Aires', addressCountry: 'AR' },
   worksFor: { '@type': 'Organization', name: 'Deadlink Labs' },
@@ -89,10 +92,10 @@ const personSchema = {
               <p class="hero__tags">{current.data.tags.join(' / ')}</p>
             )}
             {current.data.snippet && <p class="hero__overview">{current.data.snippet}</p>}
-            <pre class="specimen" aria-label="Terminal capture"><code><span class="specimen__dim">$ npm run dev</span>
-astro  v5.18.2  ready in 415 ms
-┃ Local   <span class="specimen__on">http://localhost:4321/</span>
-<span class="specimen__dim">watching for file changes...</span></code></pre>
+            {current.data.thumb && (
+              <Image class="hero__image" src={current.data.thumb} alt={current.data.thumbAlt ?? ''}
+                widths={[480, 720, 1440]} sizes="(max-width: 900px) 85vw, 720px" loading="lazy" />
+            )}
             <a class="link-under" href={`/log/${current.id}`}>Step into the log →</a>
           </div>
           {hero.length > 1 && (
@@ -119,7 +122,7 @@ astro  v5.18.2  ready in 415 ms
     <SectionLabel num={bandNum('clients')} label="Client work" />
     <div>
       <p class="band-lede">
-        Work I built for other businesses. Each one has its own log entry.
+        Systems I've built, operations I've led, and proposals I've developed. Each entry says what shipped.
       </p>
       <ul class="stamplist">
         {
@@ -288,9 +291,7 @@ astro  v5.18.2  ready in 415 ms
       />
       <div class="who__body">
         <p class="who__text">
-          Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run
-          themselves: post-production teams, pipeline automation, data and dashboards, AI workflows,
-          and the occasional website.
+          Marcelo Brouard, Buenos Aires. {PROFILE.intro}
         </p>
         <div class="who__actions">
           <a class="btn" href="/about">About me →</a>
@@ -459,6 +460,12 @@ astro  v5.18.2  ready in 415 ms
 
   .hero {
     max-width: 720px;
+  }
+  .hero__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-block: 1.5rem;
   }
 
   .hero__eyebrow {

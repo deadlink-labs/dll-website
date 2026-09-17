@@ -7,6 +7,7 @@ export const STATUSES = [
   'SETTLED',
   'ROUGH',
   'RESEARCH',
+  'PROPOSAL',
   'PRIVATE BETA',
   'REVISED',
   'SHIPPED',
@@ -34,6 +35,7 @@ export function dotKind(status: Status): DotKind {
     case 'REVISED':
       return 'filled';
     case 'RESEARCH':
+    case 'PROPOSAL':
     case 'ROUGH':
       return 'outline';
   }

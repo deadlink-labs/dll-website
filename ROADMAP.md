@@ -442,8 +442,8 @@ Do not flip the switch over a wall of placeholders.
       timing check, deferred out of LOG 002 on purpose. No third-party captcha; it
       would break the no-tracking rule. This is a hard gate, and it leads this list
       on purpose: the guard ships before `ALLOW_INDEXING` flips, never after
-- [ ] `AI` `@astrojs/sitemap`
-- [ ] `AI` `robots.txt` pointing at the sitemap
+- [x] `AI` `@astrojs/sitemap` — shipped 2026-09-16, ahead of the flip on purpose: harmless under `noindex`, and it means the map is already there the day the switch turns
+- [x] `AI` `robots.txt` pointing at the sitemap — `public/robots.txt`, 2026-09-16. Allows crawling; indexing stays a per-page `<meta>` decision
 - [ ] `AI` **Flip `ALLOW_INDEXING` to `true`** ([BaseLayout.astro:90](src/layouts/BaseLayout.astro#L90)) — the single switch, site-wide
       *(The old `/thank-you/` indexing box is gone: LOG 002 replaced the redirect
       with an in-place confirmation, so the page no longer exists.)*
