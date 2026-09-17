@@ -25,9 +25,11 @@ const personSchema = {
   worksFor: { '@type': 'Organization', name: 'Deadlink Labs' },
 };
 
-// What actually gets opened day to day. The build stack (Astro, TypeScript) is
-// already stated in the footer colophon, so it is not repeated here.
-const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Studio'];
+// What actually gets opened day to day, and what Marcelo can be asked about in
+// an interview. Same nine, same order, as the LinkedIn About. The build stack
+// (Astro, TypeScript) is driven by the coding agent and is already stated in the
+// footer colophon, so it is not repeated here.
+const tools = ['Claude Code', 'Codex', 'Obsidian', 'Jira', 'Looker Studio', 'Suno', 'Metabase', 'n8n', 'Vercel'];
 ---
 
 <BaseLayout title="About" description={PROFILE.description}>
@@ -70,6 +72,11 @@ const tools = ['Obsidian', 'Claude', 'VS Code', 'GitHub', 'Suno', 'Google AI Stu
         positioning line now that the name and city are the header. */}
     <section class="prose about__origin">
       <p>{PROFILE.intro}</p>
+      <p>
+        Eight years in dubbing post-production for Disney, three years running content
+        production at Crehana, and a production agency I co-founded before that. Now I build
+        the systems instead of running them.
+      </p>
       <p>
         When someone asked where they could see the work, there was no link to send. The work was
         real. The URL did not exist. I was the dead link.
