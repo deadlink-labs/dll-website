@@ -12,7 +12,7 @@ aliases:
 web-status: published
 web-title: "Crehana: automating an e-learning content operation"
 web-pub-date: 2026-07-18
-web-snippet: "Nobody could say how many courses were in production without asking several people and piecing it together. Three years later a dashboard answered it, and more than $22,000 a year in tools and manual work was gone."
+web-snippet: "Crehana's content operation, from spreadsheets and Notion to one Jira workflow and live dashboards. Output doubled, correction turnaround from weeks to under 48 hours, $22,000 a year in tools and manual work removed."
 web-type: log
 web-number: 10
 web-stage: SHIPPED
@@ -115,6 +115,10 @@ Not all of it was software. I supervised a set of Premiere templates for the
 editing team, so a first cut started from a finished structure instead of a blank
 timeline. First cuts got faster, and corrections got faster with them.
 
+The dubbing pipeline got the same treatment. From 2022 into 2024 we moved course
+dubbing to AI voice cloning with lip-sync, and dubbing cost came down about 30
+percent, with a faster turnaround.
+
 The results were the kind you can measure. ==Post-production output went from about
 500 minutes a month to over 1,000.== Correction turnaround dropped from weeks to
 under 48 hours. The pipeline held at full uptime. Throughput, counted in courses
@@ -143,7 +147,8 @@ job for the cost of running it, at $12,340 a year. A Dropbox cleanup took off
 another $840. That's $16,420 a year in tools nobody missed.
 
 Replacing a manual translation process with an AI-assisted one saved another
-$10,000 and cut the turnaround at the same time. Add the efficiency savings in
+$10,000 and cut the turnaround at the same time, at about a tenth of the previous
+cost. Add the efficiency savings in
 review time and production minutes. ==The number I handed over when I left was
 more than $22,000 a year.==
 
@@ -190,6 +195,7 @@ next, stopped being a surprise, so planning replaced firefighting.
 | DEC 006 | Publish the launch calendar from the board, never maintain it by hand | SETTLED |
 | DEC 007 | Audit and cut redundant or unused subscriptions | SETTLED |
 | DEC 008 | AI-assisted translation in place of a manual process | SETTLED |
+| DEC 009 | AI voice cloning and lip-sync for course dubbing, in place of studio-only dubbing | SETTLED |
 
 ## What carries over
 
