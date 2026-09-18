@@ -2,7 +2,6 @@
 // Cover — the homepage title band, per the settled Home design
 // (Deadlink-Labs-Home.dc.html). The first band inside the sheet: the network
 // mark centered in negative space, the brand + tagline in Plex Mono below.
-// The lab identity stays; a short line gives a new visitor the work context.
 import NetworkMark from './NetworkMark.astro';
 ---
 
@@ -12,17 +11,9 @@ import NetworkMark from './NetworkMark.astro';
   </div>
   <p class="cover__brand">Deadlink Labs</p>
   <p class="cover__tagline">Build to Understand.</p>
-  <p class="cover__context">AI operations and workflow automation.<br />Built by Marcelo Brouard, documented here.</p>
 </section>
 
 <style>
-  .cover__context {
-    margin: 0;
-    max-width: 40ch;
-    font-size: 18px;
-    line-height: 1.5;
-    color: var(--color-ink-75);
-  }
   /* A title-page composition: a large mark in a generous, composed field. */
   .cover {
     display: flex;
