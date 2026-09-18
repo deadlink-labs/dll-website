@@ -80,7 +80,7 @@ Stamps use Plex Mono, uppercase, letter-spaced, small size, ink at ~60% opacity,
 ### Cover / title page (per 8A)
 The homepage opens with a quiet cover above the fold:
 - The **8A truss mark**, centered, large negative space around it.
-- Below it: `Deadlink Labs` (Plex Mono, ~15px, `letter-spacing: 0.34em`, uppercase) and `Build to Understand.` (Plex Mono, ~11.5px, `letter-spacing: 0.16em`, uppercase, ink-60).
+- Below it: `Deadlink Labs` (Plex Mono, ~15px, `letter-spacing: 0.34em`, uppercase) and `Build to Understand` (Plex Mono, ~11.5px, `letter-spacing: 0.16em`, uppercase, ink-60).
 - A dashed **viewport-fold marker**; the first experiment peeks below the fold so the visitor scrolls naturally into it.
 - No hero marketing, no welcome copy, no CTA on the cover (matches Structure v2 §4.1).
 
@@ -610,7 +610,7 @@ Structure v2 §4.1 / §6. The page is generated from `site.config.json` + publis
 
 **Two numbering systems, kept apart** (settled 2026-08-10). The band numbers in *this list* count every band including the masthead and footer, which carry no rail label. The **rail numbers** (`01`…`06` in the left gutter) count only the labelled bands and are **derived at build time** from the bands that actually render — never hand-written, because bands are conditional (Products and Throwback vanish with an empty config array) and literal numbers drift silently the moment one flips. They did: the rail shipped starting at `03`, with no `01` anywhere on the page. A **record number** (`LOG 001`) is a third thing again — it says which post this is, not where you are on the page, and it belongs in a stamp. The hero gutter carried an oversized record number for a while and the rail read as two numbering systems in one column; the record number moved into the eyebrow stamp and the rail now carries section numbers only.
 
-1. **Cover** (8A truss mark + `Deadlink Labs` / `Build to Understand.`, viewport fold). See §3. Unnumbered.
+1. **Cover** (8A truss mark + `Deadlink Labs` / `Build to Understand`, viewport fold). See §3. Unnumbered.
 2. **Masthead / running head** (8A header). See §3. Unnumbered.
 3. **Featured** — rail `01`, the band that opens the page. `heroPosts[0]` renders as the bench **hero**: eyebrow `FEATURED ON THE BENCH · LOG NNN`, H1 = the live experiment's **question** at 60px (e.g. *"Can a house quietly run its own systems without anyone tending them?"*), a short overview paragraph, one dark specimen panel (e.g. a `tail -f` log), and a "Step into the log →" link. The status token (`● IN PROGRESS`) sits in the rail under the label. The hero is the current experiment's question — NOT a hand-written personal positioning H1.
 
