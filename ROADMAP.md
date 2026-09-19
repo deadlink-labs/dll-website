@@ -451,10 +451,34 @@ pushing it is the entire act of publishing.
 Prerequisite: enough **real** posts that opening to search is not embarrassing.
 Do not flip the switch over a wall of placeholders.
 
-- [ ] `AI` **Spam-guard the contact form before anything else here** — honeypot +
+- [x] `AI` **Spam-guard the contact form before anything else here** — honeypot +
       timing check, deferred out of LOG 002 on purpose. No third-party captcha; it
       would break the no-tracking rule. This is a hard gate, and it leads this list
-      on purpose: the guard ships before `ALLOW_INDEXING` flips, never after
+      on purpose: the guard ships before `ALLOW_INDEXING` flips, never after.
+      *Landed off-camera*: Codex wrote `contact-guard.ts` in `v1.02.100`
+      (2026-09-17) inside an unrelated commit, and it rejected every honest
+      visitor until `v1.02.108` (2026-09-19) — see LOG 002's box above. The
+      on-camera beat for this episode is that bug, not the build
+- [ ] `AI` **Rate-limit the action** (added 2026-09-19). The honeypot and the
+      timing check are friction, not a wall: a script that skips the hidden field
+      and waits two seconds can make the site send a receipt to any address it
+      types, one per request, on `hello@`'s reputation and Resend's quota. Two
+      limits, both returning the in-place error with the mailto fallback:
+      **3 submissions per hour per IP** (a person sends one, maybe a second to
+      fix a typo) and **25 submissions per day site-wide** — every submission is
+      two emails, and Resend's free plan allows 100 a day, so 25 keeps half the
+      quota for a bad day. Count **in memory inside the function** first: no
+      package, no account, no secret; counts survive as long as the instance is
+      warm, which is exactly the burst being guarded against. The known gap — a
+      cold start resets them, two instances do not share them — is written in
+      the code. Upstash Redis is the swap if a limit ever trips in the Resend
+      dashboard, and it changes only the counting function.
+      **Explain it in slides, on camera**: what a rate limit is, why a hidden
+      field is not enough, what one request costs (two emails), what the two
+      numbers protect (the inbox, the domain's reputation, the quota), and what
+      the visitor sees when a limit trips. The viewer should understand *why it
+      happens* before seeing the code. The slides go in the vault beside the
+      LOG 004 video script
 - [x] `AI` `@astrojs/sitemap` — shipped 2026-09-16, ahead of the flip on purpose: harmless under `noindex`, and it means the map is already there the day the switch turns
 - [x] `AI` `robots.txt` pointing at the sitemap — `public/robots.txt`, 2026-09-16. Allows crawling; indexing stays a per-page `<meta>` decision
 - [ ] `AI` **Flip `ALLOW_INDEXING` to `true`** ([BaseLayout.astro:90](src/layouts/BaseLayout.astro#L90)) — the single switch, site-wide
