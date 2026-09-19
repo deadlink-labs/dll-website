@@ -47,6 +47,11 @@ const webSchema = (image: ImageFunction) =>
       // instead of the default Content -> form order. Paragraphs separated by a
       // blank line, plain text (not parsed as markdown).
       'web-lead': z.string().optional(),
+      // Products only, PRIVATE BETA: the beta-request form's visible question.
+      // The field underneath is the generic `message` the contact action reads;
+      // only the label is per product, so a new product sets its own question
+      // in Obsidian with no code change. Absent -> WaitlistForm's default.
+      'web-form-prompt': z.string().optional(),
       // Products only: a display price ("USD 97"). When present the page renders
       // a buy block in place of the waitlist. The button is a placeholder until a
       // payment provider is chosen (CLAUDE.md §5.3: no checkout in v1), and the
@@ -118,6 +123,7 @@ const webSchema = (image: ImageFunction) =>
       pubDate: data['web-pub-date'] ?? new Date(0),
       snippet: data['web-snippet'],
       lead: data['web-lead'],
+      formPrompt: data['web-form-prompt'],
       price: data['web-price'],
       buyUrl: data['web-buy-url'],
       buyNote: data['web-buy-note'],

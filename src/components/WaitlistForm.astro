@@ -1,52 +1,117 @@
 ---
 // Extracted from products/[slug].astro so a product page can place body content
 // both above and below the form (the lead/Content split — see that file).
+//
+// Two forms live here and they are not the same thing (ROADMAP, LOG 002):
+// - PRIVATE BETA: a beta request. Name, email and one question, sent through
+//   the same `contact` action as the About form (src/actions/index.ts), landing
+//   at hello@ with `source` telling the two apart in the subject line. Same
+//   `.contact` card, same CSS (src/styles/contact-form.css), same submit logic
+//   (src/lib/contact-form.ts). A second form that cost no second endpoint.
+// - COMING SOON: an email-only waitlist. That is a mailing list, not a message,
+//   so it waits for Resend Audiences and is still UI only. Untouched here.
+import '../styles/contact-form.css';
+
 interface Props {
   isPrivateBeta: boolean;
+  // The product's name. Goes into `source`, which builds the email subject.
+  title?: string;
+  // The beta form's one question, per product (`web-form-prompt`). The field
+  // underneath is always the generic `message`.
+  prompt?: string;
 }
-const { isPrivateBeta } = Astro.props;
+const {
+  isPrivateBeta,
+  title = 'this product',
+  prompt = 'What do you make, and where do you upload it?',
+} = Astro.props;
 ---
 
-<section class="waitlist" aria-labelledby="waitlist-heading">
-  <h2 id="waitlist-heading" class="waitlist__heading">
-    {isPrivateBeta ? 'Request beta access' : 'Join the waitlist'}
-  </h2>
-  <p class="waitlist__note">
-    {/* Product-page flavor (VOICE-POSTS.md §3): contractions on, second person. */}
-    {isPrivateBeta
-      ? "Testing with a small group right now. Tell me a bit about what you make and I'll get back to you."
-      : "Get told when it opens. No spam, one email when it's ready."}
-  </p>
-  <form class="waitlist__form" method="post" action="#" data-placeholder="not wired to Resend yet">
-    <label class="waitlist__label" for="wl-email">Email</label>
-    <div class="waitlist__row">
-      <input class="waitlist__input" id="wl-email" name="email" type="email" placeholder="you@example.com" required />
-      {!isPrivateBeta && <button class="waitlist__btn" type="submit">Join the waitlist</button>}
-    </div>
-    {/* Beta access is a conversation, not a signup: the page asks what you make,
-        so the form has to have somewhere to put the answer. Optional, because a
-        required essay costs more requests than the answer is worth. */}
-    {
-      isPrivateBeta && (
-        <>
-          <label class="waitlist__label waitlist__label--spaced" for="wl-about">
-            What do you make, and where do you upload it? (optional)
-          </label>
-          <textarea
-            class="waitlist__input waitlist__textarea"
-            id="wl-about"
-            name="about"
-            rows="3"
-            placeholder="Synthwave, mostly. Bandcamp and Spotify through DistroKid."
-          />
-          <div class="waitlist__row waitlist__row--submit">
-            <button class="waitlist__btn" type="submit">Request access</button>
+{
+  isPrivateBeta ? (
+    <section class="waitlist waitlist--beta" aria-labelledby="waitlist-heading">
+      <h2 id="waitlist-heading" class="waitlist__heading">Request beta access</h2>
+      <p class="waitlist__note">
+        {/* Product-page flavor (VOICE-POSTS.md §3): contractions on, second person. */}
+        Testing with a small group right now. Tell me a bit about what you make and I'll get back to you.
+      </p>
+      {/* Same card as About's contact form, minus the Company field. The
+          `name` attributes are the schema's keys in src/actions/index.ts.
+          `novalidate` and no `action=`: the script checks the fields with the
+          schema's rules and sends. `wl-` ids so nothing collides with About. */}
+      <form class="contact" id="beta-form" method="post" novalidate>
+        <div class="contact__trap" aria-hidden="true" inert>
+          <label for="wl-website">Leave this field empty</label>
+          <input id="wl-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <div class="contact__field">
+          <label class="contact__label" for="wl-name">Name</label>
+          <input class="contact__input" id="wl-name" name="name" type="text" required maxlength="120" autocomplete="name" aria-describedby="wl-name-error" />
+          <p class="contact__error" id="wl-name-error" data-for="name"></p>
+        </div>
+        <div class="contact__field">
+          <label class="contact__label" for="wl-email">Email</label>
+          <input class="contact__input" id="wl-email" name="email" type="email" required maxlength="200" autocomplete="email" aria-describedby="wl-email-error" />
+          <p class="contact__error" id="wl-email-error" data-for="email"></p>
+        </div>
+        <div class="contact__field">
+          <label class="contact__label" for="wl-message">{prompt}</label>
+          <textarea class="contact__input" id="wl-message" name="message" rows="3" required maxlength="4000" aria-describedby="wl-message-error wl-message-count" />
+          <div class="contact__meta">
+            <p class="contact__error" id="wl-message-error" data-for="message"></p>
+            <p class="contact__count" id="wl-message-count">0 / 4000</p>
           </div>
-        </>
-      )
-    }
-  </form>
-</section>
+        </div>
+        {/* Which form this is. The action builds the subject line from it:
+            `beta:<product>` reads as "Beta request (<product>): <name>". */}
+        <input type="hidden" name="source" value={`beta:${title}`} />
+        <p class="contact__alert" role="alert"></p>
+        <noscript>
+          <p class="contact__noscript">
+            This form needs JavaScript to send. You can write to
+            <a href="mailto:hello@deadlinklabs.com">hello@deadlinklabs.com</a> instead.
+          </p>
+        </noscript>
+        <button class="contact__btn" type="submit">
+          <span class="contact__spinner" aria-hidden="true"></span>
+          <span class="contact__btn-label">Request access</span>
+        </button>
+      </form>
+
+      <div class="contact contact--sent" id="beta-sent" hidden tabindex="-1">
+        <p class="contact__label">Sent</p>
+        <p class="contact__sent-line">Your request is in my inbox, and I usually get back within a day or two.</p>
+        <p class="contact__sent-line contact__receipt">A short confirmation is on its way to the address you gave.</p>
+        <button class="contact__again" type="button">Send another request</button>
+      </div>
+    </section>
+  ) : (
+    <section class="waitlist" aria-labelledby="waitlist-heading">
+      <h2 id="waitlist-heading" class="waitlist__heading">Join the waitlist</h2>
+      <p class="waitlist__note">
+        {/* Product-page flavor (VOICE-POSTS.md §3): contractions on, second person. */}
+        Get told when it opens. No spam, one email when it's ready.
+      </p>
+      <form class="waitlist__form" method="post" action="#" data-placeholder="not wired to Resend yet">
+        <label class="waitlist__label" for="wl-email">Email</label>
+        <div class="waitlist__row">
+          <input class="waitlist__input" id="wl-email" name="email" type="email" placeholder="you@example.com" required />
+          <button class="waitlist__btn" type="submit">Join the waitlist</button>
+        </div>
+      </form>
+    </section>
+  )
+}
+
+<script>
+  import { wireContactForm } from '../lib/contact-form';
+
+  // Only the beta branch renders these; on a COMING SOON page this finds
+  // nothing and does nothing.
+  const form = document.querySelector<HTMLFormElement>('#beta-form');
+  const panel = document.querySelector<HTMLElement>('#beta-sent');
+  if (form && panel) wireContactForm(form, panel, ['name', 'email', 'message']);
+</script>
 
 <style>
   .waitlist {
@@ -55,6 +120,14 @@ const { isPrivateBeta } = Astro.props;
     background: var(--color-paper-raised);
     border: 1px solid var(--color-ink-15);
     border-radius: 4px;
+  }
+  /* The beta branch is heading, note, then the shared `.contact` card, the way
+     About's "Work with me" section sits above its form. No card in a card. */
+  .waitlist--beta {
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
   }
   .waitlist__heading {
     margin: 0 0 0.5rem;
@@ -76,22 +149,10 @@ const { isPrivateBeta } = Astro.props;
     letter-spacing: 0.12em;
     color: var(--color-ink-60);
   }
-  .waitlist__label--spaced {
-    margin-top: 1rem;
-  }
   .waitlist__row {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-  }
-  .waitlist__row--submit {
-    margin-top: 1rem;
-  }
-  .waitlist__textarea {
-    display: block;
-    width: 100%;
-    resize: vertical;
-    line-height: 1.5;
   }
   .waitlist__input {
     flex: 1 1 220px;

@@ -8,9 +8,11 @@
 // src/actions/index.ts (LOG 002): Resend delivers the message to hello@ and a
 // plain-text receipt to the visitor. The form is called from the script at the
 // bottom, never from a form `action=` attribute, which is what keeps this page
-// prerendered: only the action runs on a server.
+// prerendered: only the action runs on a server. The card's CSS and the submit
+// logic are shared with the product beta-request form (WaitlistForm.astro).
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/contact-form.css';
 import avatar from '../assets/avatar-2024-mb.jpeg';
 import { PROFILE } from '../lib/profile';
 
@@ -136,21 +138,21 @@ const tools = ['Claude Code', 'Codex', 'Obsidian', 'Jira', 'Looker Studio', 'Sun
         <div class="contact__field">
           <label class="contact__label" for="c-name">Name</label>
           <input class="contact__input" id="c-name" name="name" type="text" required maxlength="120" autocomplete="name" aria-describedby="c-name-error" />
-          <p class="contact__error" id="c-name-error"></p>
+          <p class="contact__error" id="c-name-error" data-for="name"></p>
         </div>
         {/* Without this the form collected a name and a problem and no way to
             reply. It is the message's Reply-To. */}
         <div class="contact__field">
           <label class="contact__label" for="c-email">Email</label>
           <input class="contact__input" id="c-email" name="email" type="email" required maxlength="200" autocomplete="email" aria-describedby="c-email-error" />
-          <p class="contact__error" id="c-email-error"></p>
+          <p class="contact__error" id="c-email-error" data-for="email"></p>
         </div>
         <div class="contact__field">
           <label class="contact__label" for="c-company">
             Company <span class="contact__optional">(optional)</span>
           </label>
           <input class="contact__input" id="c-company" name="company" type="text" maxlength="160" autocomplete="organization" aria-describedby="c-company-error" />
-          <p class="contact__error" id="c-company-error"></p>
+          <p class="contact__error" id="c-company-error" data-for="company"></p>
         </div>
         {/* The field is `message`, not `problem`: the action is generic so a
             second form can reuse it. The label on screen is the one the
@@ -161,7 +163,7 @@ const tools = ['Claude Code', 'Codex', 'Obsidian', 'Jira', 'Looker Studio', 'Sun
           {/* The message and the count share one line under the box. The
               count is the script's; without it the line reads as a limit. */}
           <div class="contact__meta">
-            <p class="contact__error" id="c-message-error"></p>
+            <p class="contact__error" id="c-message-error" data-for="message"></p>
             <p class="contact__count" id="c-message-count">0 / 4000</p>
           </div>
         </div>
@@ -187,14 +189,14 @@ const tools = ['Claude Code', 'Codex', 'Obsidian', 'Jira', 'Looker Studio', 'Sun
       {/* Takes the form's place once a message is sent. Same card as the
           form. `tabindex="-1"` so the script can move focus here, which is
           how a screen reader learns the form is gone. The receipt line is
-          hidden by the script when the copy to the visitor did not go out.
+          hidden by the script when the confirmation to the visitor did not go out.
           "Send another message" is the only thing that ever clears the
           fields: it resets the form and brings it back with the cursor in
           the name field. */}
       <div class="contact contact--sent" id="contact-sent" hidden tabindex="-1">
         <p class="contact__label">Sent</p>
         <p class="contact__sent-line">Your message is in my inbox, and I usually get back within a day or two.</p>
-        <p class="contact__sent-line" id="contact-receipt">A copy is on its way to the address you gave.</p>
+        <p class="contact__sent-line contact__receipt" id="contact-receipt">A short confirmation is on its way to the address you gave.</p>
         <button class="contact__again" type="button">Send another message</button>
       </div>
     </section>
@@ -203,172 +205,16 @@ const tools = ['Claude Code', 'Codex', 'Obsidian', 'Jira', 'Looker Studio', 'Sun
 </BaseLayout>
 
 <script>
-  import { actions, isInputError } from 'astro:actions';
-  import { LIMIT, MESSAGE, check, type Field } from '../lib/contact-rules';
+  import { wireContactForm } from '../lib/contact-form';
 
-  // The form calls the contact action from here, not from a form `action=`
-  // attribute. A form action would force this page to render on demand;
-  // calling it from a script keeps About prerendered, and only the action
-  // itself runs on the server.
+  // The submit logic lives in src/lib/contact-form.ts, shared with the product
+  // beta-request form. This page only names its two roots and its fields.
   const form = document.querySelector<HTMLFormElement>('#contact-form');
   const panel = document.querySelector<HTMLElement>('#contact-sent');
-  const alert = form?.querySelector<HTMLElement>('.contact__alert');
-  const button = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
-  const btnLabel = button?.querySelector<HTMLElement>('.contact__btn-label');
-  const message = form?.querySelector<HTMLTextAreaElement>('#c-message');
-  const count = form?.querySelector<HTMLElement>('#c-message-count');
-  const receipt = panel?.querySelector<HTMLElement>('#contact-receipt');
-  const again = panel?.querySelector<HTMLButtonElement>('.contact__again');
-
-  if (form && panel && alert && button && btnLabel && message && count && receipt && again) {
-    // A duration avoids rejecting people whose device clock differs from ours.
-    let openedAt = performance.now();
-    // The four fields the visitor types into, in the order they sit on the
-    // page. `source` is hidden and has no line to print under.
-    const FIELDS: readonly Field[] = ['name', 'email', 'company', 'message'];
-    const isField = (name: string): name is Field => (FIELDS as readonly string[]).includes(name);
-    const inputOf = (name: Field) =>
-      form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement;
-    const errorOf = (name: Field) => document.getElementById(`c-${name}-error`);
-
-    // Print a message under a field, or clear it. The orange border and the
-    // screen-reader flag follow the message.
-    function show(name: Field, text: string) {
-      const line = errorOf(name);
-      if (line) line.textContent = text;
-      if (text) inputOf(name).setAttribute('aria-invalid', 'true');
-      else inputOf(name).removeAttribute('aria-invalid');
-    }
-
-    // Run one field through the same rules as the schema, in the schema's
-    // words. Email format is the browser's own check, read off `validity`
-    // rather than shown in its bubble. True when the field passes.
-    function validate(name: Field): boolean {
-      const input = inputOf(name);
-      const text = check(name, input.value, input.validity.typeMismatch);
-      show(name, text);
-      return !text;
-    }
-
-    for (const name of FIELDS) {
-      const input = inputOf(name);
-      // Checked as the visitor leaves the field, never while they are still
-      // typing in it for the first time.
-      input.addEventListener('blur', () => validate(name));
-      // Once a field has a message, every keystroke re-checks it, so the
-      // message goes away the moment the field is fixed.
-      input.addEventListener('input', () => {
-        if (input.hasAttribute('aria-invalid')) validate(name);
-      });
-    }
-
-    // The count under the message box, and the box growing with the text.
-    // `rows="4"` is the floor; the CSS `max-height` is the ceiling, past which
-    // the box scrolls. The height is measured with the box collapsed first so
-    // it can shrink when text is deleted. `scrollHeight` leaves out the
-    // border, and the box is `border-box`, so the border is added back.
-    const syncMessage = () => {
-      count.textContent = `${message.value.length} / ${LIMIT.message}`;
-      count.classList.toggle('contact__count--full', message.value.length >= LIMIT.message);
-      message.style.height = 'auto';
-      message.style.height = `${message.scrollHeight + message.offsetHeight - message.clientHeight}px`;
-    };
-    message.addEventListener('input', syncMessage);
-    syncMessage();
-
-    const idleLabel = btnLabel.textContent;
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      alert.textContent = '';
-
-      // Every field, in order. The cursor lands on the first one that fails.
-      let firstBad: Field | null = null;
-      for (const name of FIELDS) if (!validate(name)) firstBad ??= name;
-      if (firstBad) {
-        inputOf(firstBad).focus();
-        return;
-      }
-
-      // While the request is in flight: the label reads "Sending" beside a
-      // spinner, the button will not take a second click, and its width is
-      // held so the shorter label does not shrink it under the cursor.
-      button.style.minWidth = `${button.offsetWidth}px`;
-      button.disabled = true;
-      button.setAttribute('aria-busy', 'true');
-      btnLabel.textContent = 'Sending';
-
-      try {
-        const payload = new FormData(form);
-        payload.set('elapsedMs', String(Math.floor(performance.now() - openedAt)));
-        const { data, error } = await actions.contact(payload);
-        if (data) {
-          // Sent. The panel takes the form's place. It promises a copy only
-          // when the receipt to the visitor actually went out. The fields
-          // are left as typed: only "Send another message" clears them.
-          receipt.hidden = !data.receipt;
-          form.hidden = true;
-          panel.hidden = false;
-          panel.focus();
-        } else if (isInputError(error)) {
-          // The server rejected a field. Say which, under that field, and
-          // put the cursor on the first one. A rejected `source` has no
-          // field on screen, so its message goes to the form-level line.
-          let first: Field | null = null;
-          for (const [name, messages] of Object.entries(error.fields)) {
-            if (!isField(name)) {
-              alert.textContent = messages?.[0] ?? MESSAGE.source;
-              continue;
-            }
-            show(name, messages?.[0] ?? '');
-            first ??= name;
-          }
-          if (first) inputOf(first).focus();
-        } else {
-          // The send failed. The message says so and hands over hello@.
-          // Fields stay exactly as typed, and nothing retries on its own:
-          // the first attempt may already have landed.
-          alert.textContent = error.message;
-        }
-      } catch {
-        // The request never got an answer (offline, connection dropped).
-        // `actions.*` does not catch this itself, so without this branch the
-        // alert would stay empty. Same rules: fields untouched, no retry.
-        alert.textContent =
-          'Your message didn’t go through. What you typed is still here. ' +
-          'Email me at hello@deadlinklabs.com instead. It reaches the same inbox.';
-      } finally {
-        button.disabled = false;
-        button.removeAttribute('aria-busy');
-        button.style.minWidth = '';
-        btnLabel.textContent = idleLabel;
-      }
-    });
-
-    // The one place the fields are cleared. The form comes back first so
-    // the message box can be measured (a hidden box measures as zero), then
-    // it is reset, and the cursor lands in the name field.
-    again.addEventListener('click', () => {
-      panel.hidden = true;
-      form.hidden = false;
-      form.reset();
-      openedAt = performance.now();
-      for (const name of FIELDS) show(name, '');
-      alert.textContent = '';
-      syncMessage();
-      inputOf('name').focus();
-    });
-  }
+  if (form && panel) wireContactForm(form, panel, ['name', 'email', 'company', 'message']);
 </script>
 
 <style>
-  .contact__trap {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-  }
   .about {
     padding-block: 1rem 0;
     max-width: 720px;
@@ -498,229 +344,6 @@ const tools = ['Claude Code', 'Codex', 'Obsidian', 'Jira', 'Looker Studio', 'Sun
   }
   .proof a:hover {
     color: var(--color-signal);
-  }
-
-  .contact {
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-    padding: 1.75rem;
-    background: var(--color-paper-raised);
-    border: 1px solid var(--color-ink-15);
-    border-radius: 4px;
-    max-width: 520px;
-  }
-  /* `display: flex` above would beat the browser's own `[hidden]` rule, so
-     the form and the sent panel say it themselves. */
-  .contact[hidden] {
-    display: none;
-  }
-  .contact__label {
-    display: block;
-    margin-bottom: 0.4rem;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-ink-60);
-  }
-  /* The only field that is not required, so it says so. Same mono line, half a
-     step quieter, so it reads as a note on the label and not a second label. */
-  .contact__optional {
-    opacity: 0.62;
-  }
-  .contact__input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0.7rem 0.9rem;
-    font: inherit;
-    font-size: 15px;
-    background: var(--color-paper);
-    border: 1px solid var(--color-ink-15);
-    border-radius: 4px;
-    color: var(--color-ink);
-  }
-  .contact__input:focus-visible {
-    outline: 2px solid var(--color-signal);
-    outline-offset: 1px;
-  }
-  /* The message box grows with the text (the script sets its height), so
-     the drag handle goes; past the ceiling it scrolls. */
-  textarea.contact__input {
-    resize: none;
-    overflow-y: auto;
-    max-height: 24rem;
-  }
-  /* A field's message and the form-level alert: the labels' mono line, in
-     the signal color. `:empty` hides them so an unused line takes no room
-     and the form does not shift when one appears. */
-  .contact__error,
-  .contact__alert {
-    margin: 0.4rem 0 0;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.02em;
-    line-height: 1.5;
-    color: var(--color-signal);
-  }
-  .contact__alert {
-    margin: 0;
-  }
-  .contact__error:empty,
-  .contact__alert:empty {
-    display: none;
-  }
-  /* Under the message box: the field's message on the left, the count on
-     the right. The row carries the top margin so the two lines share it. */
-  .contact__meta {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: 0.4rem;
-  }
-  .contact__meta .contact__error {
-    margin: 0;
-  }
-  .contact__count {
-    margin: 0 0 0 auto;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.02em;
-    line-height: 1.5;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-    color: var(--color-ink-60);
-  }
-  .contact__count--full {
-    color: var(--color-signal);
-  }
-  .contact__input[aria-invalid='true'] {
-    border-color: var(--color-signal);
-  }
-  .contact__noscript {
-    margin: 0;
-    font-size: 15px;
-    color: var(--color-ink-75);
-  }
-  .contact__noscript a {
-    color: var(--color-ink);
-    text-decoration: underline;
-    text-decoration-color: var(--color-signal);
-    text-underline-offset: 3px;
-  }
-  .contact__btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6em;
-    align-self: flex-start;
-    padding: 0.75rem 1.3rem;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #fff;
-    background: var(--color-signal);
-    border: 1px solid var(--color-signal);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-  .contact__btn:hover {
-    background: #d64300;
-  }
-  .contact__btn:focus-visible {
-    outline: 2px solid var(--color-ink);
-    outline-offset: 2px;
-  }
-  /* While the request is in flight: the label reads "Sending", the button
-     will not take a second click, and the cursor says busy. */
-  .contact__btn:disabled {
-    opacity: 0.7;
-    cursor: progress;
-  }
-  .contact__btn:disabled:hover {
-    background: var(--color-signal);
-  }
-  /* A ring in the label's own white, one gap, turning. It exists only while
-     the button is busy, and not at all under reduced motion, where the word
-     "Sending" does the job on its own. */
-  .contact__spinner {
-    display: none;
-    width: 12px;
-    height: 12px;
-    border: 1.5px solid currentColor;
-    border-right-color: transparent;
-    border-radius: 50%;
-  }
-  .contact__btn[aria-busy='true'] .contact__spinner {
-    display: inline-block;
-  }
-  @keyframes contact-spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes contact-fade {
-    from {
-      opacity: 0;
-    }
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .contact__spinner {
-      animation: contact-spin 0.8s linear infinite;
-    }
-    /* Runs each time the panel goes from hidden to shown. */
-    .contact--sent {
-      animation: contact-fade 0.35s ease-out;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .contact__btn[aria-busy='true'] .contact__spinner {
-      display: none;
-    }
-  }
-  /* The sent panel is the same card as the form, with a tighter stack. */
-  .contact--sent {
-    gap: 0.6rem;
-  }
-  .contact--sent .contact__label {
-    margin-bottom: 0.2rem;
-  }
-  .contact--sent:focus-visible {
-    outline: 2px solid var(--color-signal);
-    outline-offset: 2px;
-  }
-  .contact__sent-line {
-    margin: 0;
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--color-ink);
-  }
-  /* A button that reads as one of the page's links (it acts on the page,
-     it does not go anywhere, so it is a button underneath). */
-  .contact__again {
-    align-self: flex-start;
-    margin: 0.4rem 0 0;
-    padding: 0;
-    font: inherit;
-    font-size: 15px;
-    line-height: 1.55;
-    background: none;
-    border: 0;
-    color: var(--color-ink);
-    text-decoration: underline;
-    text-decoration-color: var(--color-signal);
-    text-underline-offset: 3px;
-    cursor: pointer;
-  }
-  .contact__again:hover {
-    color: var(--color-signal);
-  }
-  .contact__again:focus-visible {
-    outline: 2px solid var(--color-signal);
-    outline-offset: 2px;
   }
 
   /* Stack the portrait above the name on a phone. It shrinks with the column:

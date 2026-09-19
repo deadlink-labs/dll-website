@@ -1,8 +1,9 @@
 ---
 // Product page (/products/<slug>) — CLAUDE.md §5.3.
-// Overview + status + related. COMING SOON products show a waitlist. The form is
-// UI only in v1 — wiring to Resend Audiences arrives later in the build order
-// (§4), so it does not post anywhere yet.
+// Overview + status + related. COMING SOON products show a waitlist, which is
+// still UI only (Resend Audiences arrives later in the build order, §4).
+// PRIVATE BETA products show a beta-request form that sends through the same
+// contact action as About (see WaitlistForm.astro).
 import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import { Image } from 'astro:assets';
@@ -82,7 +83,7 @@ const leadParagraphs =
             ))}
           </div>
           {price && <BuyBlock title={entry.data.title} price={price} url={entry.data.buyUrl} note={entry.data.buyNote} />}
-          {showWaitlist && <WaitlistForm isPrivateBeta={isPrivateBeta} />}
+          {showWaitlist && <WaitlistForm isPrivateBeta={isPrivateBeta} title={entry.data.title} prompt={entry.data.formPrompt} />}
           <div class="prose">
             <Content />
           </div>
@@ -94,7 +95,7 @@ const leadParagraphs =
             <Content />
           </div>
           {price && <BuyBlock title={entry.data.title} price={price} url={entry.data.buyUrl} note={entry.data.buyNote} />}
-          {showWaitlist && <WaitlistForm isPrivateBeta={isPrivateBeta} />}
+          {showWaitlist && <WaitlistForm isPrivateBeta={isPrivateBeta} title={entry.data.title} prompt={entry.data.formPrompt} />}
         </>
       )
     }

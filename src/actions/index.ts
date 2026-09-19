@@ -56,8 +56,9 @@ const input = z.object({
     .trim()
     .min(1, MESSAGE.message.empty)
     .max(LIMIT.message, MESSAGE.message.long),
-  // Which form the message came from. Only `contact` exists today; it stays a
-  // free string so a second form can name itself without touching the schema.
+  // Which form the message came from: `contact` (About, Work with me) or
+  // `beta:<Product>` (a product page's beta request). A free string, so a
+  // third form can name itself without touching the schema.
   source: z
     .string({ invalid_type_error: MESSAGE.source })
     .trim()
@@ -77,10 +78,18 @@ export const server = {
       // 1. The message, to the inbox. Reply-To is the visitor, so a plain
       //    reply from the inbox goes straight back to them. The subject says
       //    which form it came from, so a second form is told apart at a glance.
-      const subject = source === 'contact' ? `Work with me: ${name}` : `Form (${source}): ${name}`;
+      // The subject is the only thing telling the two forms apart in one inbox.
+      const beta = source.startsWith('beta:') ? source.slice('beta:'.length).trim() : null;
+      const subject =
+        source === 'contact'
+          ? `Work with me: ${name}`
+          : beta
+            ? `Beta request (${beta}): ${name}`
+            : `Form (${source}): ${name}`;
+      // Only the contact form asks for a company, so only it prints the line.
       const body = [
         `${name} <${email}>`,
-        `Company: ${company || 'not given'}`,
+        ...(source === 'contact' ? [`Company: ${company || 'not given'}`] : []),
         `Source: ${source}`,
         '',
         message,
@@ -122,11 +131,13 @@ export const server = {
         const { error } = await resend.emails.send({
           from: `Deadlink Labs <${INBOX}>`,
           to: email,
-          subject: 'Your message reached Deadlink Labs',
+          subject: beta ? 'Your beta request reached Deadlink Labs' : 'Your message reached Deadlink Labs',
           text: [
             `Hi ${name},`,
             '',
-            'Thanks for reaching out. I usually get back within 1-2 business days.',
+            beta
+              ? `Thanks for asking to try ${beta}. I'm testing with a small group and I'll get back to you within a day or two.`
+              : 'Thanks for reaching out. I usually get back within 1-2 business days.',
             'Talk soon,',
             'Marcelo',
             '',

@@ -312,21 +312,34 @@ it with no second endpoint. `source` builds the subject line, which is the only
 thing keeping the two apart in one inbox. **Do not build this before §9 exists on
 camera**; the whole beat is that the second form costs nothing.
 
-- [ ] `BOTH` `WaitlistForm.astro`, `isPrivateBeta` branch only: add the missing
+- [x] `BOTH` `WaitlistForm.astro`, `isPrivateBeta` branch only: add the missing
       Name field, `about` → `message`, hidden `source`, drop `action="#"` and the
       `data-placeholder` marker. **The COMING SOON branch stays untouched**
-- [ ] `BOTH` `web-form-prompt` (optional string) in the products schema beside
+      `2026-09-19`. The branch is the same `.contact` card as About, minus
+      Company; `source` is `beta:<product title>`, and the subject reads
+      `Beta request (Cassette Mixtapes): <name>`
+- [x] `BOTH` `web-form-prompt` (optional string) in the products schema beside
       `web-lead`, mapped in the transform, passed from `products/[slug].astro` as
       the label prop. Already set on the Mixtapes note, tolerated by
       `.passthrough()` until the schema lands. A new product then sets its own
-      question in Obsidian with no code change
-- [ ] `BOTH` Extract the submit script into one shared module both pages import —
+      question in Obsidian with no code change `2026-09-19`
+- [x] `BOTH` Extract the submit script into one shared module both pages import —
       two copies of that logic is the thing this beat exists to avoid
-- [ ] `BOTH` `message` required when `source` is `contact`, optional for a beta
-      request (`superRefine` on `source`, not optional for both — a required
-      essay costs more beta requests than the answer is worth)
-- [ ] `BOTH` Verify: still one `.func`; both forms land at `hello@` with
-      distinguishable subjects; `/products/hazefield` still an inert placeholder
+      `2026-09-19`: `src/lib/contact-form.ts` (the logic) and
+      `src/styles/contact-form.css` (the card), both pages import both
+- [x] ~~`BOTH` `message` required when `source` is `contact`, optional for a beta
+      request~~ **Not done, by decision** (Marcelo, 2026-09-19): the question is
+      required on the beta form too. A one-line answer is enough, and knowing
+      what someone makes is the point of asking. The schema is untouched
+- [ ] `ME` Verify: still one `.func` (yes, `2026-09-19`); both forms land at
+      `hello@` with distinguishable subjects (live send pending);
+      `/products/hazefield` still an inert placeholder (yes)
+- [x] `AI` **Honeypot bug, found and fixed while wiring the second form**
+      `2026-09-19`. Astro's form parsing turns an empty optional string into
+      `undefined` before the action sees it, so `contactGuard`'s
+      `typeof website !== 'string'` rejected **every honest submission** from
+      `v1.02.100` (2026-09-17) until this fix. The guard now treats `undefined`
+      and `''` alike as "left alone". Worth a line in the LOG 004 record
 
 **The record**
 - [x] `AI` Two-pipes flow chart, DNS-records tile, cover `2026-08-11`
