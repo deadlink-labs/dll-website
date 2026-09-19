@@ -331,9 +331,19 @@ camera**; the whole beat is that the second form costs nothing.
       request~~ **Not done, by decision** (Marcelo, 2026-09-19): the question is
       required on the beta form too. A one-line answer is enough, and knowing
       what someone makes is the point of asking. The schema is untouched
-- [ ] `ME` Verify: still one `.func` (yes, `2026-09-19`); both forms land at
-      `hello@` with distinguishable subjects (live send pending);
-      `/products/hazefield` still an inert placeholder (yes)
+- [x] `ME` Verify: still one `.func` (yes, `2026-09-19`); both forms land at
+      `hello@` with distinguishable subjects (Mixtapes sent live `2026-09-19`);
+      `/products/hazefield` was still an inert placeholder until later the same
+      day, when it joined the action too (next box)
+- [x] `AI` **Hazefield waitlist through the same action** `2026-09-19`, at
+      Marcelo's call. Same card and fields as the Mixtapes form (name, email,
+      one required question), `source: waitlist:Hazefield`, subject
+      `Waitlist (Hazefield): <name>`, its own receipt ("I'll email you when it
+      opens, and not before"). This retires the Resend Audiences route in the
+      backlog: at this size, a signup that arrives as an email with a name and
+      an answer is worth more than a row in a list, and the list can be built
+      from the inbox the day it is needed. Nothing on either product page is a
+      placeholder now
 - [x] `AI` **Honeypot bug, found and fixed while wiring the second form**
       `2026-09-19`. Astro's form parsing turns an empty optional string into
       `undefined` before the action sees it, so `contactGuard`'s
@@ -366,6 +376,11 @@ camera**; the whole beat is that the second form costs nothing.
 > rather than the send API, and forcing it through this episode would mean an
 > email per signup and no actual list to mail when the product opens. It keeps
 > its own episode, as does **spam handling**.
+>
+> *Superseded 2026-09-19:* Hazefield went through the same action after all,
+> with the same fields as the beta form, at Marcelo's call. An email per signup
+> is fine at this size, and the list can be built from the inbox when the
+> product opens. Audiences is retired from the backlog.
 >
 > **The honeypot is a hard prerequisite of LOG 004: it lands before
 > `ALLOW_INDEXING` flips, never after.** That ordering is unchanged, and now
@@ -512,11 +527,11 @@ Do not flip the switch over a wall of placeholders.
 
 Not assigned to an episode yet. Pull one up when it earns a slot.
 
-- [ ] **Product waitlists → Resend Audiences** — split out of LOG 002 on 2026-08-11.
-      [WaitlistForm.astro:20](src/components/WaitlistForm.astro#L20) is still
-      `action="#"` on both product pages. Different Resend surface (Audiences, not
-      the send API), so it is its own episode rather than a footnote to the contact
-      form. Ships with the dead `web-waitlist` field cleanup below
+- [x] ~~**Product waitlists → Resend Audiences**~~ — split out of LOG 002 on
+      2026-08-11, **retired 2026-09-19**: both product forms send through the
+      contact action instead (LOG 002, "One action, two forms"). Revisit only if
+      the inbox stops being a good enough list. The dead `web-waitlist` field
+      cleanup below stands on its own
 - [ ] Dead schema field: `web-waitlist` is defined and mapped
       ([content.config.ts:63](src/content.config.ts#L63), :114) but nothing reads
       `data.waitlist` — `products/[slug].astro` derives visibility from `web-stage`

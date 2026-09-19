@@ -2,21 +2,22 @@
 // Extracted from products/[slug].astro so a product page can place body content
 // both above and below the form (the lead/Content split — see that file).
 //
-// Two forms live here and they are not the same thing (ROADMAP, LOG 002):
-// - PRIVATE BETA: a beta request. Name, email and one question, sent through
-//   the same `contact` action as the About form (src/actions/index.ts), landing
-//   at hello@ with `source` telling the two apart in the subject line. Same
-//   `.contact` card, same CSS (src/styles/contact-form.css), same submit logic
-//   (src/lib/contact-form.ts). A second form that cost no second endpoint.
-// - COMING SOON: an email-only waitlist. That is a mailing list, not a message,
-//   so it waits for Resend Audiences and is still UI only. Untouched here.
+// One form, two products, one action. A PRIVATE BETA page asks for beta access;
+// a COMING SOON page takes a waitlist signup. Both are the same card (name,
+// email, one question), the same CSS (src/styles/contact-form.css), the same
+// submit logic (src/lib/contact-form.ts) and the same `contact` action
+// (src/actions/index.ts), landing at hello@. Only the words differ, and the
+// `source` prefix, which is what builds the subject line. The Resend Audiences
+// route for the waitlist was retired on 2026-09-19 at Marcelo's call: a signup
+// that arrives as an email with a name and an answer is worth more than a row
+// in a list, at this size.
 import '../styles/contact-form.css';
 
 interface Props {
   isPrivateBeta: boolean;
   // The product's name. Goes into `source`, which builds the email subject.
   title?: string;
-  // The beta form's one question, per product (`web-form-prompt`). The field
+  // The form's one question, per product (`web-form-prompt`). The field
   // underneath is always the generic `message`.
   prompt?: string;
 }
@@ -25,109 +26,95 @@ const {
   title = 'this product',
   prompt = 'What do you make, and where do you upload it?',
 } = Astro.props;
+
+// Product-page flavor (VOICE-POSTS.md §3): contractions on, second person.
+const copy = isPrivateBeta
+  ? {
+      heading: 'Request beta access',
+      note: "Testing with a small group right now. Tell me a bit about what you make and I'll get back to you.",
+      button: 'Request access',
+      source: `beta:${title}`,
+      sent: 'Your request is in my inbox, and I usually get back within a day or two.',
+      again: 'Send another request',
+    }
+  : {
+      heading: 'Join the waitlist',
+      note: "Get told when it opens. No spam, one email when it's ready.",
+      button: 'Join the waitlist',
+      source: `waitlist:${title}`,
+      sent: "You're on the list, and I'll email you when it opens.",
+      again: 'Join with another address',
+    };
 ---
 
-{
-  isPrivateBeta ? (
-    <section class="waitlist waitlist--beta" aria-labelledby="waitlist-heading">
-      <h2 id="waitlist-heading" class="waitlist__heading">Request beta access</h2>
-      <p class="waitlist__note">
-        {/* Product-page flavor (VOICE-POSTS.md §3): contractions on, second person. */}
-        Testing with a small group right now. Tell me a bit about what you make and I'll get back to you.
-      </p>
-      {/* Same card as About's contact form, minus the Company field. The
-          `name` attributes are the schema's keys in src/actions/index.ts.
-          `novalidate` and no `action=`: the script checks the fields with the
-          schema's rules and sends. `wl-` ids so nothing collides with About. */}
-      <form class="contact" id="beta-form" method="post" novalidate>
-        <div class="contact__trap" aria-hidden="true" inert>
-          <label for="wl-website">Leave this field empty</label>
-          <input id="wl-website" name="website" type="text" tabindex="-1" autocomplete="off" />
-        </div>
-        <div class="contact__field">
-          <label class="contact__label" for="wl-name">Name</label>
-          <input class="contact__input" id="wl-name" name="name" type="text" required maxlength="120" autocomplete="name" aria-describedby="wl-name-error" />
-          <p class="contact__error" id="wl-name-error" data-for="name"></p>
-        </div>
-        <div class="contact__field">
-          <label class="contact__label" for="wl-email">Email</label>
-          <input class="contact__input" id="wl-email" name="email" type="email" required maxlength="200" autocomplete="email" aria-describedby="wl-email-error" />
-          <p class="contact__error" id="wl-email-error" data-for="email"></p>
-        </div>
-        <div class="contact__field">
-          <label class="contact__label" for="wl-message">{prompt}</label>
-          <textarea class="contact__input" id="wl-message" name="message" rows="3" required maxlength="4000" aria-describedby="wl-message-error wl-message-count" />
-          <div class="contact__meta">
-            <p class="contact__error" id="wl-message-error" data-for="message"></p>
-            <p class="contact__count" id="wl-message-count">0 / 4000</p>
-          </div>
-        </div>
-        {/* Which form this is. The action builds the subject line from it:
-            `beta:<product>` reads as "Beta request (<product>): <name>". */}
-        <input type="hidden" name="source" value={`beta:${title}`} />
-        <p class="contact__alert" role="alert"></p>
-        <noscript>
-          <p class="contact__noscript">
-            This form needs JavaScript to send. You can write to
-            <a href="mailto:hello@deadlinklabs.com">hello@deadlinklabs.com</a> instead.
-          </p>
-        </noscript>
-        <button class="contact__btn" type="submit">
-          <span class="contact__spinner" aria-hidden="true"></span>
-          <span class="contact__btn-label">Request access</span>
-        </button>
-      </form>
-
-      <div class="contact contact--sent" id="beta-sent" hidden tabindex="-1">
-        <p class="contact__label">Sent</p>
-        <p class="contact__sent-line">Your request is in my inbox, and I usually get back within a day or two.</p>
-        <p class="contact__sent-line contact__receipt">A short confirmation is on its way to the address you gave.</p>
-        <button class="contact__again" type="button">Send another request</button>
+<section class="waitlist" aria-labelledby="waitlist-heading">
+  <h2 id="waitlist-heading" class="waitlist__heading">{copy.heading}</h2>
+  <p class="waitlist__note">{copy.note}</p>
+  {/* Same card as About's contact form, minus the Company field. The `name`
+      attributes are the schema's keys in src/actions/index.ts. `novalidate`
+      and no `action=`: the script checks the fields with the schema's rules
+      and sends. `wl-` ids so nothing collides with About. */}
+  <form class="contact" id="product-form" method="post" novalidate>
+    <div class="contact__trap" aria-hidden="true" inert>
+      <label for="wl-website">Leave this field empty</label>
+      <input id="wl-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+    <div class="contact__field">
+      <label class="contact__label" for="wl-name">Name</label>
+      <input class="contact__input" id="wl-name" name="name" type="text" required maxlength="120" autocomplete="name" aria-describedby="wl-name-error" />
+      <p class="contact__error" id="wl-name-error" data-for="name"></p>
+    </div>
+    <div class="contact__field">
+      <label class="contact__label" for="wl-email">Email</label>
+      <input class="contact__input" id="wl-email" name="email" type="email" required maxlength="200" autocomplete="email" aria-describedby="wl-email-error" />
+      <p class="contact__error" id="wl-email-error" data-for="email"></p>
+    </div>
+    <div class="contact__field">
+      <label class="contact__label" for="wl-message">{prompt}</label>
+      <textarea class="contact__input" id="wl-message" name="message" rows="3" required maxlength="4000" aria-describedby="wl-message-error wl-message-count" />
+      <div class="contact__meta">
+        <p class="contact__error" id="wl-message-error" data-for="message"></p>
+        <p class="contact__count" id="wl-message-count">0 / 4000</p>
       </div>
-    </section>
-  ) : (
-    <section class="waitlist" aria-labelledby="waitlist-heading">
-      <h2 id="waitlist-heading" class="waitlist__heading">Join the waitlist</h2>
-      <p class="waitlist__note">
-        {/* Product-page flavor (VOICE-POSTS.md §3): contractions on, second person. */}
-        Get told when it opens. No spam, one email when it's ready.
+    </div>
+    {/* Which form this is. The action builds the subject line from it:
+        `beta:<product>` reads as "Beta request (<product>): <name>",
+        `waitlist:<product>` as "Waitlist (<product>): <name>". */}
+    <input type="hidden" name="source" value={copy.source} />
+    <p class="contact__alert" role="alert"></p>
+    <noscript>
+      <p class="contact__noscript">
+        This form needs JavaScript to send. You can write to
+        <a href="mailto:hello@deadlinklabs.com">hello@deadlinklabs.com</a> instead.
       </p>
-      <form class="waitlist__form" method="post" action="#" data-placeholder="not wired to Resend yet">
-        <label class="waitlist__label" for="wl-email">Email</label>
-        <div class="waitlist__row">
-          <input class="waitlist__input" id="wl-email" name="email" type="email" placeholder="you@example.com" required />
-          <button class="waitlist__btn" type="submit">Join the waitlist</button>
-        </div>
-      </form>
-    </section>
-  )
-}
+    </noscript>
+    <button class="contact__btn" type="submit">
+      <span class="contact__spinner" aria-hidden="true"></span>
+      <span class="contact__btn-label">{copy.button}</span>
+    </button>
+  </form>
+
+  <div class="contact contact--sent" id="product-sent" hidden tabindex="-1">
+    <p class="contact__label">Sent</p>
+    <p class="contact__sent-line">{copy.sent}</p>
+    <p class="contact__sent-line contact__receipt">A short confirmation is on its way to the address you gave.</p>
+    <button class="contact__again" type="button">{copy.again}</button>
+  </div>
+</section>
 
 <script>
   import { wireContactForm } from '../lib/contact-form';
 
-  // Only the beta branch renders these; on a COMING SOON page this finds
-  // nothing and does nothing.
-  const form = document.querySelector<HTMLFormElement>('#beta-form');
-  const panel = document.querySelector<HTMLElement>('#beta-sent');
+  const form = document.querySelector<HTMLFormElement>('#product-form');
+  const panel = document.querySelector<HTMLElement>('#product-sent');
   if (form && panel) wireContactForm(form, panel, ['name', 'email', 'message']);
 </script>
 
 <style>
+  /* Heading, note, then the shared `.contact` card, the way About's
+     "Work with me" section sits above its form. */
   .waitlist {
     margin: 2.5rem 0;
-    padding: 1.75rem;
-    background: var(--color-paper-raised);
-    border: 1px solid var(--color-ink-15);
-    border-radius: 4px;
-  }
-  /* The beta branch is heading, note, then the shared `.contact` card, the way
-     About's "Work with me" section sits above its form. No card in a card. */
-  .waitlist--beta {
-    padding: 0;
-    background: none;
-    border: 0;
-    border-radius: 0;
   }
   .waitlist__heading {
     margin: 0 0 0.5rem;
@@ -139,53 +126,5 @@ const {
     margin: 0 0 1.25rem;
     font-size: 15px;
     color: var(--color-ink-60);
-  }
-  .waitlist__label {
-    display: block;
-    margin-bottom: 0.45rem;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-ink-60);
-  }
-  .waitlist__row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-  }
-  .waitlist__input {
-    flex: 1 1 220px;
-    padding: 0.7rem 0.9rem;
-    font: inherit;
-    font-size: 15px;
-    background: var(--color-paper);
-    border: 1px solid var(--color-ink-15);
-    border-radius: 4px;
-    color: var(--color-ink);
-  }
-  .waitlist__input:focus-visible {
-    outline: 2px solid var(--color-signal);
-    outline-offset: 1px;
-  }
-  .waitlist__btn {
-    padding: 0.7rem 1.2rem;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #fff;
-    background: var(--color-signal);
-    border: 1px solid var(--color-signal);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-  .waitlist__btn:hover {
-    background: #d64300;
-  }
-  .waitlist__btn:focus-visible {
-    outline: 2px solid var(--color-ink);
-    outline-offset: 2px;
   }
 </style>

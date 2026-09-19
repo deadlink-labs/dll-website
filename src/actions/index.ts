@@ -56,9 +56,10 @@ const input = z.object({
     .trim()
     .min(1, MESSAGE.message.empty)
     .max(LIMIT.message, MESSAGE.message.long),
-  // Which form the message came from: `contact` (About, Work with me) or
-  // `beta:<Product>` (a product page's beta request). A free string, so a
-  // third form can name itself without touching the schema.
+  // Which form the message came from: `contact` (About, Work with me),
+  // `beta:<Product>` (a PRIVATE BETA page's access request) or
+  // `waitlist:<Product>` (a COMING SOON page's signup). A free string, so a
+  // fourth form can name itself without touching the schema.
   source: z
     .string({ invalid_type_error: MESSAGE.source })
     .trim()
@@ -78,14 +79,19 @@ export const server = {
       // 1. The message, to the inbox. Reply-To is the visitor, so a plain
       //    reply from the inbox goes straight back to them. The subject says
       //    which form it came from, so a second form is told apart at a glance.
-      // The subject is the only thing telling the two forms apart in one inbox.
-      const beta = source.startsWith('beta:') ? source.slice('beta:'.length).trim() : null;
+      // The subject is the only thing telling the forms apart in one inbox.
+      const after = (prefix: string) =>
+        source.startsWith(prefix) ? source.slice(prefix.length).trim() : null;
+      const beta = after('beta:');
+      const waitlist = after('waitlist:');
       const subject =
         source === 'contact'
           ? `Work with me: ${name}`
           : beta
             ? `Beta request (${beta}): ${name}`
-            : `Form (${source}): ${name}`;
+            : waitlist
+              ? `Waitlist (${waitlist}): ${name}`
+              : `Form (${source}): ${name}`;
       // Only the contact form asks for a company, so only it prints the line.
       const body = [
         `${name} <${email}>`,
@@ -131,13 +137,19 @@ export const server = {
         const { error } = await resend.emails.send({
           from: `Deadlink Labs <${INBOX}>`,
           to: email,
-          subject: beta ? 'Your beta request reached Deadlink Labs' : 'Your message reached Deadlink Labs',
+          subject: beta
+            ? 'Your beta request reached Deadlink Labs'
+            : waitlist
+              ? `You're on the ${waitlist} waitlist`
+              : 'Your message reached Deadlink Labs',
           text: [
             `Hi ${name},`,
             '',
             beta
               ? `Thanks for asking to try ${beta}. I'm testing with a small group and I'll get back to you within a day or two.`
-              : 'Thanks for reaching out. I usually get back within 1-2 business days.',
+              : waitlist
+                ? `Thanks for joining the ${waitlist} waitlist. I'll email you when it opens, and not before.`
+                : 'Thanks for reaching out. I usually get back within 1-2 business days.',
             'Talk soon,',
             'Marcelo',
             '',

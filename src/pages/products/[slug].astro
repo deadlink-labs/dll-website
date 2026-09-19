@@ -1,9 +1,8 @@
 ---
 // Product page (/products/<slug>) — CLAUDE.md §5.3.
-// Overview + status + related. COMING SOON products show a waitlist, which is
-// still UI only (Resend Audiences arrives later in the build order, §4).
-// PRIVATE BETA products show a beta-request form that sends through the same
-// contact action as About (see WaitlistForm.astro).
+// Overview + status + related. COMING SOON products show a waitlist signup and
+// PRIVATE BETA products a beta-request form: the same card, sent through the
+// same contact action as About (see WaitlistForm.astro).
 import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import { Image } from 'astro:assets';
