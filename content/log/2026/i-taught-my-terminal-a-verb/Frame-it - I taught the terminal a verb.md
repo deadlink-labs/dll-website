@@ -4,21 +4,21 @@ created: 2026-09-20
 project: "[[DLL Web]]"
 people: []
 aliases:
-  - "LOG 018"
-  - "frame-it"
-
+  - LOG 018
+  - frame-it
 web-status: draft
-web-title: "Frame-it! I taught my terminal a verb"
+web-title: Frame-it! I taught my terminal a verb
 web-pub-date: 2026-09-20
-web-snippet: "macOS only puts a shadow on a screenshot when you capture a whole window. Almost nothing I publish is a whole window, so I built the missing half and gave it a one word name."
+web-snippet: "Cropped screenshots look horrible. I love how macOS frames a whole window grab, shadow and all, so I made a small tool that does it for crops. Posts look nicer."
 web-type: log
-
 web-number: 18
 web-stage: SETTLED
-web-tags: [PYTHON, MACOS, CLAUDE-CODE]
-
-web-thumb: "./assets/thumb.webp"
-web-thumb-alt: "The same dark chart twice on a pale background. On the left it is a plain rectangle with hard corners. On the right the corners are rounded and a soft shadow lifts it off the page."
+web-tags:
+  - PYTHON
+  - MACOS
+  - CLAUDE-CODE
+web-thumb: ./assets/thumb.webp
+web-thumb-alt: The same dark chart twice on a pale background. On the left it is a plain rectangle with hard corners. On the right the corners are rounded and a soft shadow lifts it off the page.
 ---
 
 <!--
