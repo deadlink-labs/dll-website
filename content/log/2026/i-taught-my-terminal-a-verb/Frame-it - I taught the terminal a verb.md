@@ -8,7 +8,7 @@ aliases:
   - "frame-it"
 
 web-status: draft
-web-title: "I taught my terminal a verb"
+web-title: "Frame-it! I taught my terminal a verb"
 web-pub-date: 2026-09-20
 web-snippet: "macOS only puts a shadow on a screenshot when you capture a whole window. Almost nothing I publish is a whole window, so I built the missing half and gave it a one word name."
 web-type: log
@@ -24,10 +24,11 @@ web-thumb-alt: "The same dark chart twice on a pale background. On the left it i
 <!--
   DRAFT. Written 2026-09-20 from the session that built the tool.
   Open questions for Marcelo:
-  - Title: your version was "Frame-it! I taught my terminal a verb". The bang
-    is out (VOICE-POSTS §1, no exclamation marks) and the tool name up front
-    read like a product launch, so the title is the second half only. Say the
-    word and it goes back to "frame-it: I taught my terminal a verb".
+  - Title set by Marcelo 2026-09-20, keeping the exclamation mark. That
+    overrides VOICE-POSTS §1 ("no exclamation marks, ever") on purpose, for
+    this title only. It is not a precedent for the body copy.
+    The .md filename says "the terminal", the title says "my terminal", as
+    specified. The folder, and so the URL, is unchanged.
   - Repo is public: github.com/deadlink-labs/skills. The post links the full
     script and says the block shown is condensed.
   - Images: before-after is the demo. If you want a third, the honest one is a
