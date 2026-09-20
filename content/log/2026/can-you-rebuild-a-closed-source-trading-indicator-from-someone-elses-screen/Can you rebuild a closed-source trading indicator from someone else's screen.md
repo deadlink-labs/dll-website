@@ -87,6 +87,10 @@ The part I keep coming back to is that the sweep had already found BTC's answer 
 
 Two things broke the tie in the end: a fresh flip on BTC, which supplies an entry price where a bear window only ever tests the level, and a frame showing the reference's stop sitting still for five weeks, which most of the family doesn't do.
 
+![A framed TradingView weekly chart of Bitcoin on Binance, 2022 to September 2026, with the shipped Yerba Trendline on it at BTC's own pair. The trailing stop flips only four times in five years: bullish at the 2023 bottom near 20,000, bearish near the 2025 top above 100,000, and once each way since. Top right, the card reads YERBA TRENDLINE v0.1.0, BULLISH since 2026-09-07, STOP 60600.44, ENTRY 80341.83.](./assets/btc-weekly-10-3.webp)
+
+*BTC at (10, 3.0), weekly, five years, captured 2026-09-19 with the shipped file. Four flips. The same bars at (10, 2.0) flip nine times. This is what the sweep was refusing to see: a wider band is not a worse fit, it is a different asset.*
+
 ## Path, not endpoints: mining the stream for hovered bars
 
 Here's the method that changed the project. The indicator's on-chart table only ever describes the newest bar. So every screenshot I'd caught by hand was an endpoint: where the ratchet is now. After weeks of that, the history file had nine rows.
@@ -168,9 +172,13 @@ The selling plan was written around invite-only publishing, the way indicators a
 
 TAKEAWAY: the line that decides a plan on someone else's platform is one sentence in their terms, and it gets read last because it's boring. Read it first.
 
-The panel went the same way. The nine-row table copies the reference's layout because that's how a capture becomes a row of ground truth, and a tool built to measure something ends up looking like the thing it measures. So the shipped file is its own file now. Same engine as the repo's, verified by a diff that strips the comments and compares the two functions, but with a three-column card instead of the table and a header written for a buyer. One thing the product wanted and didn't get: the repo keeps length and multiplier as inputs, because encoding the split would freeze an open finding, and a buyer would rather the chart picked the pair. The model wrote that, it failed to compile on the first paste, and the rule I'd set beforehand was that it ships only if it needs no round trip from me. So 0.1 ships the two inputs and the table, and the auto-pick is the first line of 0.2. Two audiences, two right answers, one function.
+The panel went the same way. The nine-row table copies the reference's layout because that's how a capture becomes a row of ground truth, and a tool built to measure something ends up looking like the thing it measures. So the shipped file is its own file now. Same engine as the repo's, verified by a diff that strips the comments and compares the two functions, but with a three-column card instead of the table and a header written for a buyer. One thing the product wanted and didn't get: the repo keeps length and multiplier as inputs, because encoding the split would freeze an open finding, and a buyer would rather the chart picked the pair. The model wrote that, it failed to compile on the first paste, and the rule I'd set beforehand was that it ships only if it needs no round trip from me. So 0.1 ships the two inputs and the table, and the auto-pick is the first line of 0.2. Two audiences, two right answers, one function. Five days on, one file: the repo's copy turned out to have no reader, since ground truth is harvested from the reference's frames and never from our own table, and two copies of one engine drift. The shipped file is the calibration instrument now, and the nine-row table lives in git history.
 
 The name changed shape too. The working name for the product echoed the reference's, and I didn't see it until the model flagged the shape. A grep catches a string. It doesn't catch a rhyme. It ships as Yerba Trendline.
+
+![A framed TradingView weekly chart of Solana on Coinbase, September 2023 to September 2026, with the shipped Yerba Trendline on it. The trailing stop steps under the 2024 climb, flips bearish near the 2025 top and bullish in late August 2026, each flip labelled. Top right, a three-column card reads YERBA TRENDLINE v0.1.0, CONFIRMED CLOSE, BULLISH since 2026-08-24, STOP 79.59, ENTRY 95.44, plus 16.2% since, 1W and 1D both up, ALIGNED.](./assets/sol-weekly-shipped-card.webp)
+
+*The shipped file on a live chart, 2026-09-19: SOL weekly, the card instead of the table. Same engine as the September 12 capture above, same 79.59, one week later and dressed for a buyer. The legend reads "Yerba" and nothing else, which took a third paste: TradingView prints every input after an indicator's name unless each one opts out.*
 
 ## The decisions, on the record
 
