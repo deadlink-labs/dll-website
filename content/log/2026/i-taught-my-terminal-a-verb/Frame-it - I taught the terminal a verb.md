@@ -9,7 +9,7 @@ aliases:
 web-status: draft
 web-title: Frame-it! I taught my terminal a verb
 web-pub-date: 2026-09-20
-web-snippet: "Cropped screenshots look horrible. I love how macOS frames a whole window grab, shadow and all, so I made a small tool that does it for crops. Posts look nicer."
+web-snippet: Cropped screenshots look horrible. I love how macOS frames a whole window capture, shadow and all, so I made a small tool that does the same for crops. Grab it!
 web-type: log
 web-number: 18
 web-stage: SETTLED
