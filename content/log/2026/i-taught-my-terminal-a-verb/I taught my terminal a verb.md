@@ -28,9 +28,8 @@ web-thumb-alt: "The same dark chart twice on a pale background. On the left it i
     is out (VOICE-POSTS §1, no exclamation marks) and the tool name up front
     read like a product launch, so the title is the second half only. Say the
     word and it goes back to "frame-it: I taught my terminal a verb".
-  - The repo is PRIVATE, so there's no source link. The post ships the core
-    function inline instead and says so. Flip the repo public and the "Where
-    the code lives" section gets a real URL.
+  - Repo is public: github.com/deadlink-labs/skills. The post links the full
+    script and says the block shown is condensed.
   - Images: before-after is the demo. If you want a third, the honest one is a
     real screenshot of the folder run in your own terminal.
 -->
@@ -51,7 +50,7 @@ The fix is not complicated. Round the corners, blur a dark copy of the shape, of
 
 ## The part that actually matters
 
-Twelve lines do the work. Everything else in the script is argument parsing and file handling.
+Twelve lines do the work. Everything else in the script is argument parsing and file handling, so what follows is condensed: the real function takes a couple more arguments and carries its docstring. The [full script is on GitHub](https://github.com/deadlink-labs/skills/blob/main/claude/frame-screenshot/scripts/frame_shot.py), about 200 lines with the clipboard and folder handling attached.
 
 ```python
 def frame(im, radius, blur, offset, alpha):
@@ -113,9 +112,11 @@ TAKEAWAY: "already done" is a property of the output, not the input. Anything th
 
 ## Where the code lives
 
-In a private repo, for now, which is the honest answer. It's three files: a README, a `SKILL.md`, and the Python above with its argument parsing attached. The core is in this post because the core is small enough to be in a post.
+[github.com/deadlink-labs/skills](https://github.com/deadlink-labs/skills). Three files: a README, a `SKILL.md`, and the Python with its argument parsing attached. Clone it, symlink the folder into `~/.claude/skills/`, add the shell function, and it works on any Mac with Pillow installed.
 
 It's packaged as a skill for Claude Code rather than a lone script, which means I can also just say "frame these" inside any project and it knows what that means and where the tool is. The terminal keeps the verb. The assistant gets the same one.
+
+The whole thing was built with Claude Code in a single working session, which is how most of the small tools here get made now. AI-assisted development is good at exactly this shape of job: narrow, well defined, and annoying on a daily basis without ever quite clearing the bar for opening an editor on a Saturday. The tools that used to die as a note that said *would be nice* now get built the afternoon I notice them.
 
 ## Decision Register
 
@@ -125,6 +126,6 @@ It's packaged as a skill for Claude Code rather than a lone script, which means 
 | DEC 002 | Skip a source when its framed twin exists, not when its own name ends in `_fi` | SETTLED |
 | DEC 003 | Clipboard in and clipboard out as the default with no arguments, because the fastest path has no filename in it | SETTLED |
 | DEC 004 | Ship it as a Claude Code skill plus a shell function, so the same tool answers to a command and to a sentence | SETTLED |
-| DEC 005 | Keep the repo private until the post needs a link | TESTING |
+| DEC 005 | Publish the repo, so the post links the real script instead of describing it | SETTLED |
 
 It's a small thing. It also means every screenshot I publish from here on sits on the page instead of on top of it, and I stopped thinking about it entirely, which is the actual goal.
