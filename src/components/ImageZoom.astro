@@ -108,6 +108,9 @@
       clone.removeAttribute('width');
       clone.removeAttribute('height');
       clone.removeAttribute('id');
+      // The original is tabbable (openOnKey); the clone must not be, or
+      // showModal() focuses it and draws a ring inside the dialog.
+      clone.removeAttribute('tabindex');
       dialog.replaceChildren(clone);
       dialog.showModal();
     };
@@ -170,7 +173,9 @@
      the browser draws its default ring around the whole viewport. Escape and
      click are the exits; the ring says nothing here. */
   .specimen-zoom:focus,
-  .specimen-zoom:focus-visible {
+  .specimen-zoom:focus-visible,
+  .specimen-zoom svg:focus,
+  .specimen-zoom svg:focus-visible {
     outline: none;
   }
   .specimen-zoom svg {
