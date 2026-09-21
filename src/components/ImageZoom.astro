@@ -17,8 +17,20 @@
 
   const images = Array.from(document.querySelectorAll<HTMLImageElement>('.prose img'));
   if (images.length > 0) {
+    // medium-zoom sizes the zoomed image as min(natural size, viewport minus
+    // margin). That rule keeps a 632px screenshot at 632px, which in a 720px
+    // column means a click dims the page and nothing grows. The lightboxes
+    // people expect (PhotoSwipe, Fancybox) fit the image to the viewport and
+    // upscale when they must, and the library has no option for that. It reads
+    // naturalWidth/Height off the element, so an own property on each image
+    // shadows the prototype getter and the viewport becomes the only cap.
+    for (const img of images) {
+      Object.defineProperty(img, 'naturalWidth', { value: Number.MAX_SAFE_INTEGER });
+      Object.defineProperty(img, 'naturalHeight', { value: Number.MAX_SAFE_INTEGER });
+    }
+
     const zoom = mediumZoom(images, {
-      margin: 48,
+      margin: 24,
       // --color-panel-deep at 88%; the overlay is a fixed div, so a token in
       // rgba() form is the one way to pass it here.
       background: 'rgba(23, 20, 15, 0.88)',
