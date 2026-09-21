@@ -151,6 +151,7 @@
       overlay.addEventListener('click', close);
 
       active = { original, clone, overlay };
+      scrollAt = window.scrollY;
       original.classList.add('medium-zoom-image--hidden');
       document.body.append(overlay, clone);
       requestAnimationFrame(() => {
@@ -162,13 +163,9 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') close();
     });
-    let scrollAt = 0;
+    let scrollAt = 0; // scrollY at open, as the library records it
     window.addEventListener('scroll', () => {
-      if (!active) {
-        scrollAt = window.scrollY;
-        return;
-      }
-      if (Math.abs(window.scrollY - scrollAt) > 40) close(); // the library's scrollOffset
+      if (active && Math.abs(window.scrollY - scrollAt) > 40) close(); // the library's scrollOffset
     });
     window.addEventListener('resize', place);
 
