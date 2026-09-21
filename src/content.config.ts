@@ -64,6 +64,19 @@ const webSchema = (image: ImageFunction) =>
       // buyer gets access differs per product and per provider.
       'web-buy-url': z.string().url().optional(),
       'web-buy-note': z.string().optional(),
+      // Products only, with web-price: the same fulfilment facts as a SPEC LIST
+      // (label + value rows) instead of a paragraph. When set it replaces
+      // web-buy-note in the buy block; six sentences of prose above a checkout
+      // button is not read (2026-09-20).
+      'web-buy-specs': z
+        .array(z.object({ label: z.string(), value: z.string() }))
+        .optional(),
+      // Products only, with web-price: the product's own terms page. When set,
+      // the buy block links to it. The site never hosts a checkout, but it does
+      // host the terms, because a buyer has to be able to read them BEFORE
+      // paying for "all sales final" to bind and the provider's description box
+      // is not a good home for ten thousand words.
+      'web-terms-url': z.string().url().optional(),
       // Authoring-only; validated against the folder in src/lib/content.ts.
       'web-type': z.enum(['log', 'products']).optional(),
       // --- stamp inputs (flagged decision, see header) ---
@@ -127,6 +140,8 @@ const webSchema = (image: ImageFunction) =>
       price: data['web-price'],
       buyUrl: data['web-buy-url'],
       buyNote: data['web-buy-note'],
+      buySpecs: data['web-buy-specs'] ?? [],
+      termsUrl: data['web-terms-url'],
       declaredType: data['web-type'],
       number: data['web-number'],
       stage: data['web-stage'],

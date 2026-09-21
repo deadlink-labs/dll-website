@@ -1,0 +1,189 @@
+YERBA TRENDLINE  ·  END USER LICENSE AGREEMENT  ·  v0.2.0  ·  2026-09-20
+
+This agreement is between you (the "Buyer") and Deadlink Labs, Buenos Aires,
+Argentina (the "Seller", deadlinklabs.com). It covers the Yerba Trendline
+indicator for TradingView, delivered as a Pine Script source file together
+with its documentation (the "Product").
+
+By purchasing, downloading or using the Product you accept these terms. If
+you do not accept them, do not download or use the Product.
+
+
+1. WHAT YOU GET
+
+The Product is licensed to you, not sold. On payment the Seller grants you a
+personal, non-exclusive, non-transferable, worldwide license to:
+
+  a) install the Product on TradingView accounts that you personally own and
+     use, on any number of your own devices;
+  b) use it on any chart, for your own trading and study;
+  c) modify the source for your own use;
+  d) receive every update to the Product for as long as it is actively
+     maintained (see section 4).
+
+The license is perpetual for the version you downloaded and for every update
+you receive, subject to section 9.
+
+The Product is delivered as source code so that it can be installed. Access
+to the source grants no rights beyond this section.
+
+
+2. WHAT YOU MAY NOT DO
+
+You may not, and may not allow anyone else to:
+
+  a) share, give away, lend, rent, sell, resell, sublicense or otherwise
+     distribute the Product or any part of it, modified or not, to any third
+     party, in any form, on any platform;
+  b) publish the Product, or a script derived from it, on TradingView in any
+     form: not as open-source, not as protected, not as invite-only, not
+     under any other name;
+  c) post it to any code repository, forum, chat group, file host or
+     marketplace;
+  d) use the Product, or a script derived from it, as the basis of a product
+     or service that you offer to others, paid or free;
+  e) remove or alter any copyright notice, license reference or attribution
+     in the file;
+  f) present the Product, or any part of it, as your own work.
+
+A license is for one person. If you want to give the Product to someone
+else, they buy their own copy.
+
+
+3. OWNERSHIP
+
+The Product, its source code, its documentation and its name are the
+property of the Seller and are protected by copyright law and international
+treaties. Nothing in this agreement transfers ownership to you.
+
+"TradingView" and "Pine Script" are trademarks of TradingView, Inc. The
+Seller is not affiliated with, endorsed by or sponsored by TradingView, Inc.
+Your use of TradingView is governed by their own terms.
+
+
+4. UPDATES AND SUPPORT
+
+Updates are included for the life of the Product. "The life of the Product"
+means for as long as the Seller actively maintains it, which is at the
+Seller's sole discretion. There is no guaranteed update cadence, no promised
+feature and no minimum duration. When maintenance stops, the license you
+hold continues under section 1 and nothing further is owed.
+
+Updates are delivered through the store you bought from. Installing an
+update is up to you.
+
+Support is offered through the contact form at deadlinklabs.com/about, for
+installation problems, errors and bug reports. It is best effort, with no
+response-time commitment. Support does not include trading advice, market commentary,
+custom development, or help with TradingView itself.
+
+
+5. DELIVERY, PRICE AND REFUNDS
+
+The Product is a digital file delivered immediately on payment. By
+completing the purchase you ask for immediate delivery and acknowledge that,
+once the file has been delivered, you lose any statutory right of withdrawal
+that would otherwise apply to it.
+
+ALL SALES ARE FINAL, with one exception: if the Product will not compile in
+a current TradingView Pine Editor and the Seller cannot fix that within 14
+days of your report, you will be refunded in full. Report it through the
+contact form at deadlinklabs.com/about, or through the store you bought
+from.
+A compile error caused by an incomplete paste, by your own modifications, or
+by a TradingView change the Seller has already fixed in a later version does
+not qualify.
+
+The price is the one shown at checkout. Taxes, currency conversion fees and
+payment-processor fees are as applied by the store at checkout.
+
+Because the Product is delivered immediately, a payment dispute or chargeback
+filed after delivery, other than under the exception above, is a breach of
+this agreement and will be contested with the delivery record.
+
+
+6. NO WARRANTY
+
+THE PRODUCT IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, RELIABILITY,
+NON-INFRINGEMENT, OR THAT IT WILL BE ERROR-FREE OR UNINTERRUPTED.
+
+In particular, the Seller does not warrant that:
+
+  a) the Product will produce profitable trades, or any particular result;
+  b) the parameter table is correct for any asset, or that it will remain
+     correct as markets change;
+  c) alerts will fire, or fire on time; that depends on TradingView's
+     infrastructure;
+  d) the Product will continue to work after changes to TradingView, Pine
+     Script or the data feeds it depends on;
+  e) the Product's alerts will be available on your TradingView plan. Alert
+     availability, limits and delivery are set by TradingView; at the date of
+     this version, alerts on indicators require a paid TradingView plan.
+
+Your only remedy for dissatisfaction with the Product is the refund
+described in section 5, where it applies.
+
+
+7. LIMITATION OF LIABILITY
+
+TO THE FULLEST EXTENT PERMITTED BY LAW, THE SELLER IS NOT LIABLE FOR ANY
+INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR FOR ANY
+LOSS OF PROFITS, TRADING LOSSES, LOSS OF DATA OR LOSS OF OPPORTUNITY, ARISING
+OUT OF OR RELATED TO THE PRODUCT OR THIS AGREEMENT, HOWEVER CAUSED AND UNDER
+ANY THEORY OF LIABILITY, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+THE SELLER'S TOTAL LIABILITY FOR ALL CLAIMS RELATED TO THE PRODUCT IS LIMITED
+TO THE AMOUNT YOU PAID FOR IT.
+
+Some jurisdictions do not allow certain exclusions or limitations. Where
+that is the case, the exclusions and limitations above apply to the fullest
+extent those laws allow.
+
+
+8. NOT FINANCIAL ADVICE
+
+The Product is an analytical tool. It is not investment, financial, trading
+or legal advice, and nothing about it is a recommendation to buy, sell or
+hold anything. The Seller is not a registered investment adviser, broker or
+financial institution in any jurisdiction. You alone are responsible for
+your trading decisions and their consequences. Read DISCLAIMER.txt, which
+forms part of this agreement.
+
+
+9. TERMINATION
+
+This license ends automatically if you breach section 2. On termination you
+must delete every copy of the Product in your possession, including any
+scripts derived from it, and stop using it. Sections 3, 6, 7, 8 and 10
+survive termination.
+
+
+10. GOVERNING LAW AND DISPUTES
+
+This agreement is governed by the laws of the Argentine Republic. Any
+dispute that cannot be resolved by email will be submitted to the ordinary
+courts of the City of Buenos Aires, Argentina.
+
+If you are a consumer, nothing in this agreement takes away rights that the
+mandatory consumer-protection law of your country of residence gives you and
+that cannot be waived by agreement.
+
+
+11. GENERAL
+
+This agreement, together with DISCLAIMER.txt and the terms shown at
+checkout, is the entire agreement between you and the Seller about the
+Product. If any part of it is found unenforceable, the rest stands. The
+Seller may update these terms for future versions of the Product; the terms
+that came with the version you bought are the ones that apply to it. Failure
+to enforce a term is not a waiver of it.
+
+
+12. CONTACT
+
+Deadlink Labs · deadlinklabs.com
+Questions and support: the contact form at deadlinklabs.com/about
+
+(c) 2026 Deadlink Labs. All rights reserved.

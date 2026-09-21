@@ -2,68 +2,99 @@
 // BuyBlock — the purchase surface of a priced product (web-price set).
 // Without web-buy-url the button is a labelled placeholder, exactly like
 // WaitlistForm's unwired form; with it, the button is the checkout link and
-// nothing else on the page changes. The fulfilment note (web-buy-note) is
-// per product because how a buyer gets access depends on the provider.
-// Styling mirrors the waitlist so the two read as one system.
+// nothing else on the page changes. What a buyer gets is a per-product SPEC
+// LIST (web-buy-specs), not a paragraph: it was one paragraph of six sentences
+// until 2026-09-20 and nobody reads that above a checkout button. `note` is the
+// fallback for a product that has no specs list yet.
+// Styling is the site's spec-sheet register (mono small-caps label, hairline
+// rows) so the card reads like the rest of the page, not like a store widget.
 interface Props {
   title: string;
   price: string;
   url?: string;
   note?: string;
+  specs?: { label: string; value: string }[];
+  termsUrl?: string;
 }
-const { title, price, url, note } = Astro.props;
-const fulfilment = note ?? "You'll get an email with access instructions once the order is confirmed.";
+const { title, price, url, note, specs = [], termsUrl } = Astro.props;
+const fulfilment = specs.length
+  ? undefined
+  : (note ?? "You'll get an email with access instructions once the order is confirmed.");
 ---
 
 <section class="buy" aria-labelledby="buy-heading">
-  <h2 id="buy-heading" class="buy__heading">Buy {title}</h2>
+  <div class="buy__head">
+    <h2 id="buy-heading" class="buy__heading">Buy {title}</h2>
+    <p class="buy__price">{price}</p>
+  </div>
   <p class="buy__note">
     {/* Product-page flavor (VOICE-POSTS.md §3): second person, plain. */}
-    One-time purchase, every update included.
+    One-time purchase. Every update included.
   </p>
-  <div class="buy__row">
-    {
-      url ? (
-        <a class="buy__btn" href={url} rel="noopener">Buy {title} · {price}</a>
-      ) : (
-        <a class="buy__btn" href="#" data-placeholder="checkout not wired yet" aria-disabled="true">Buy {title} · {price}</a>
-      )
-    }
-    <span class="buy__meta">Invite-only TradingView script · not financial advice</span>
-  </div>
-  <p class="buy__fulfilment">
-    {/* Say how access arrives BEFORE the sale, not in a support email after it. */}
-    {fulfilment} Questions before you buy? <a href="/about#work-with-me">Leave me a message</a>.
+  {
+    url ? (
+      <a class="buy__btn" href={url} target="_blank" rel="noopener">Buy now</a>
+    ) : (
+      <a class="buy__btn" href="#" data-placeholder="checkout not wired yet" aria-disabled="true">Buy now</a>
+    )
+  }
+
+  {/* Say how access arrives BEFORE the sale, not in a support email after it. */}
+  {specs.length > 0 && (
+    <dl class="buy__specs">
+      {specs.map((spec) => (
+        <div class="buy__spec">
+          <dt class="buy__spec-label">{spec.label}</dt>
+          <dd class="buy__spec-value">{spec.value}</dd>
+        </div>
+      ))}
+    </dl>
+  )}
+  {fulfilment && <p class="buy__fallback">{fulfilment}</p>}
+
+  <p class="buy__foot">
+    {/* The terms live on this site, not only inside the download: a buyer has to
+        be able to read them BEFORE paying for "all sales final" to bind. */}
+    {termsUrl && (<>Please read the <a href={termsUrl}>terms</a> before you buy. </>)}
+    Questions? <a href="/about#work-with-me">Leave me a message</a>.
   </p>
+  <p class="buy__meta">TradingView script file · not financial advice</p>
 </section>
 
 <style>
   .buy {
     margin-block: 3rem 2rem;
-    padding: 1.5rem;
+    padding: 1.75rem;
     border: 1px solid var(--color-ink-15);
     border-radius: 4px;
     background: var(--color-paper-raised);
   }
+  .buy__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+  }
   .buy__heading {
-    margin: 0 0 0.6rem;
+    margin: 0;
     font-size: 20px;
     font-weight: 600;
   }
+  .buy__price {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 20px;
+    letter-spacing: 0.04em;
+  }
   .buy__note {
-    margin: 0 0 1.2rem;
+    margin: 0.5rem 0 1.25rem;
     color: var(--color-ink-60);
     max-width: 60ch;
   }
-  .buy__row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-  }
   .buy__btn {
     display: inline-block;
-    padding: 0.7rem 1.2rem;
+    padding: 0.8rem 1.6rem;
     font-family: var(--font-mono);
     font-size: 12px;
     text-transform: uppercase;
@@ -82,26 +113,78 @@ const fulfilment = note ?? "You'll get an email with access instructions once th
     outline: 2px solid var(--color-ink);
     outline-offset: 2px;
   }
-  .buy__fulfilment {
-    margin: 1.2rem 0 0;
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--color-ink-60);
-    max-width: 60ch;
+  /* Spec-sheet register: mono small-caps label in a fixed gutter, one hairline
+     per row, same gutter width as SectionLabel's rail reads at. */
+  .buy__specs {
+    margin: 1.75rem 0 0;
   }
-  .buy__fulfilment a {
-    color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
+  .buy__spec {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0 1.25rem;
+    padding-block: 0.7rem;
+    border-top: 1px solid var(--color-ink-15);
   }
-  .buy__fulfilment a:hover {
-    color: var(--color-signal);
-  }
-  .buy__meta {
+  .buy__spec-label {
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--color-ink-60);
+    padding-top: 0.25em;
+  }
+  .buy__spec-value {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: 52ch;
+  }
+  .buy__fallback,
+  .buy__foot {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-ink-60);
+    max-width: 60ch;
+  }
+  .buy__fallback {
+    margin: 1.25rem 0 0;
+  }
+  .buy__foot {
+    margin: 1.25rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-ink-15);
+    font-size: 14px;
+  }
+  .buy__foot a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .buy__foot a:hover {
+    color: var(--color-signal);
+  }
+  .buy__meta {
+    margin: 0.6rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink-60);
+  }
+  @media (max-width: 520px) {
+    .buy {
+      padding: 1.25rem;
+    }
+    .buy__spec {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+    .buy__spec-label {
+      padding-top: 0;
+    }
+    .buy__btn {
+      display: block;
+      text-align: center;
+    }
   }
 </style>

@@ -81,7 +81,7 @@ const leadParagraphs =
               <p>{p}</p>
             ))}
           </div>
-          {price && <BuyBlock title={entry.data.title} price={price} url={entry.data.buyUrl} note={entry.data.buyNote} />}
+          {price && <BuyBlock title={entry.data.title} price={price} url={entry.data.buyUrl} note={entry.data.buyNote} specs={entry.data.buySpecs} termsUrl={entry.data.termsUrl} />}
           {showWaitlist && <WaitlistForm isPrivateBeta={isPrivateBeta} title={entry.data.title} prompt={entry.data.formPrompt} />}
           <div class="prose">
             <Content />
@@ -93,7 +93,7 @@ const leadParagraphs =
           <div class="prose">
             <Content />
           </div>
-          {price && <BuyBlock title={entry.data.title} price={price} url={entry.data.buyUrl} note={entry.data.buyNote} />}
+          {price && <BuyBlock title={entry.data.title} price={price} url={entry.data.buyUrl} note={entry.data.buyNote} specs={entry.data.buySpecs} termsUrl={entry.data.termsUrl} />}
           {showWaitlist && <WaitlistForm isPrivateBeta={isPrivateBeta} title={entry.data.title} prompt={entry.data.formPrompt} />}
         </>
       )
@@ -180,6 +180,25 @@ const leadParagraphs =
   }
   .prose :global(strong) {
     font-weight: 600;
+  }
+  /* Inline images (markdown ![]()) and their captions. Ported from
+     log/[slug].astro (2026-09-20): this page never had them, there is no global
+     img reset, and the product page's own img rule only covers the header
+     capture — so a body chart shipped at its intrinsic width (3079px in a 720px
+     column) with the caption under it set as full-size body prose. A caption is
+     a lone <em> in its own paragraph, which is how markdown renders *italics*
+     on their own line. */
+  .prose :global(img) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1.75rem 0 0.6rem;
+  }
+  .prose :global(p:has(> em:only-child)) {
+    margin-top: 0;
+    font-size: 13px;
+    color: var(--color-ink-60);
   }
   /* Inlined specimens — .svg tiles (remark-svg-specimen) and Obsidian canvases
      (remark-canvas). Mirrors the record page; a product is authored from the

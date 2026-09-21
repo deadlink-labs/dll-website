@@ -45,7 +45,12 @@ export default defineConfig({
   // spam-guard the contact form, THEN flip ALLOW_INDEXING, THEN submit this
   // sitemap in Search Console. Until the flip, Search Console would only
   // report every URL as "submitted URL marked noindex".
-  integrations: [sitemap()],
+  // The terms page is filtered out: it carries its own permanent `noindex`
+  // (a legal document has no business competing with the product page in
+  // search), and listing a page in the sitemap while telling crawlers to skip
+  // it is two instructions that contradict each other. This filter is about
+  // that one page, NOT about the site-wide ALLOW_INDEXING switch above.
+  integrations: [sitemap({ filter: (page) => !page.includes('/products/yerba/terms') })],
 
   // `output` is deliberately NOT set, so it stays Astro's default: 'static'.
   // Adding an adapter does NOT change that. Every page is still prerendered

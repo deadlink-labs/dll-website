@@ -1,0 +1,107 @@
+YERBA TRENDLINE  ·  RISK DISCLOSURE AND DISCLAIMER  ·  v0.2.0  ·  2026-09-20
+
+Read this once before you use the indicator. It forms part of LICENSE.txt.
+
+
+1. WHAT THIS IS, AND IS NOT
+
+Yerba Trendline is a technical-analysis tool. It runs a calculation on
+historical price data and draws the result on your chart. That is all it
+does. It does not know what you hold, what you can afford to lose, or what
+is happening in the world.
+
+It is provided for informational and educational purposes only. It is NOT
+investment advice, financial advice, trading advice, tax advice or legal
+advice, and nothing it displays is a recommendation, solicitation or offer
+to buy, sell or hold any asset. A line labelled "bullish" is the output of a
+formula, not an opinion about the future.
+
+Deadlink Labs and its owner are not a registered investment adviser, broker-
+dealer, commodity trading adviser, financial institution or fiduciary in any
+jurisdiction, and are not registered with or regulated by the Comision
+Nacional de Valores (Argentina), the U.S. Securities and Exchange Commission,
+the U.S. Commodity Futures Trading Commission, the UK Financial Conduct
+Authority, or any other financial regulator.
+
+Before making any financial decision, consult a licensed professional who
+knows your circumstances.
+
+
+2. TRADING INVOLVES SUBSTANTIAL RISK OF LOSS
+
+Trading and investing in cryptocurrencies, stocks, indices, derivatives and
+other financial instruments carries a high level of risk. You can lose some
+or all of your capital. With leverage you can lose more than you deposited.
+Cryptocurrency markets in particular are volatile, lightly regulated in many
+places, trade around the clock, and are exposed to exchange failures, hacks,
+delistings and sudden liquidity gaps.
+
+Only trade with money you can afford to lose. You alone are responsible for
+every decision you make and for its consequences.
+
+
+3. NO GUARANTEE OF RESULTS
+
+Nothing about this indicator guarantees, promises or implies a profit, a
+win rate, a return, or protection from loss.
+
+A trailing stop is a mechanical rule. It will be late on some moves, it will
+whipsaw in ranging markets, it will flip and flip back, and it will be wrong
+in ways nobody has seen yet. Where it has been right in the past says nothing
+about whether it will be right tomorrow.
+
+PAST PERFORMANCE IS NOT INDICATIVE OF FUTURE RESULTS. Any historical example,
+chart, screenshot or figure shown in the documentation or on the product
+page is illustrative only. Any calibration figure (such as the number of
+historical flip dates a parameter pair reproduces) is a statement about how
+well the calculation matches a recorded history, not a statement about
+trading outcomes.
+
+HYPOTHETICAL OR SIMULATED RESULTS HAVE INHERENT LIMITATIONS. Unlike an actual
+performance record, they do not represent actual trading. No representation
+is made that any account will or is likely to achieve profits or losses
+similar to any shown or implied.
+
+
+4. WHAT CAN GO WRONG WITH THE TOOL ITSELF
+
+  a) Data. The indicator computes on whatever data feed TradingView serves
+     for the chart you are looking at. Different exchanges, different
+     results: the same asset can flip weeks apart on two venues. Feed
+     errors, missing bars, delistings and exchange outages all change what
+     is drawn.
+  b) Parameters. The per-asset table is a calibration as of the date on this
+     file. It can be wrong for an asset, it can stop being right as markets
+     change, and it has not been measured on timeframes other than the
+     weekly. The default pair applied to unlisted assets is a best guess.
+  c) Warm-up. On symbols with short history the calculation has not settled
+     and the readings are rough. The card says so; believe it.
+  d) Alerts. Alerts on indicators are a TradingView feature, available on
+     their paid plans only, and delivered by their systems, which can be
+     delayed or fail. An alert is frozen on the script version it was
+     created with. Never rely on an alert as your only line of defence.
+  e) Platform changes. TradingView can change Pine Script, its data or its
+     terms at any time in ways that break or alter this indicator.
+  f) Bugs. This is software. It has bugs nobody has found yet.
+
+
+5. NO AFFILIATION
+
+This product is not affiliated with, endorsed by, sponsored by or connected
+to TradingView, Inc., any exchange, any data provider, or any other
+indicator, product, person or company. "TradingView" and "Pine Script" are
+trademarks of TradingView, Inc.
+
+
+6. YOUR RESPONSIBILITY
+
+By using this indicator you confirm that you have read and understood this
+disclosure, that you accept full responsibility for your own trading and
+investment decisions, and that you will not hold Deadlink Labs or its owner
+liable for any loss or damage arising from your use of it, as set out in
+LICENSE.txt.
+
+If you do not agree, do not use the indicator.
+
+
+Deadlink Labs · deadlinklabs.com

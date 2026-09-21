@@ -1,0 +1,128 @@
+---
+// Yerba Trendline terms (/products/yerba/terms).
+//
+// A static route beside products/[slug].astro — [slug] matches one segment,
+// this is two, so they never compete.
+//
+// Why this page exists: Payhip gives one description box, and a buyer has to be
+// able to read the full terms BEFORE paying or "all sales are final" and the
+// withdrawal waiver have nothing to bind to. Ten thousand words of licence at
+// the foot of a sales page satisfied that and buried the pitch. The store links
+// here instead, and its agree-at-checkout box points at this URL.
+//
+// The two texts are GENERATED, never hand-edited: yerba-indicator's
+// tools/sync_terms.py copies release/LICENSE.txt and release/DISCLAIMER.txt into
+// src/data/ byte for byte, and `--check` proves the page and the zip still say
+// the same thing. Edit them there, not here.
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import license from '../../../data/yerba-license.txt?raw';
+import disclaimer from '../../../data/yerba-disclaimer.txt?raw';
+import terms from '../../../data/yerba-terms-version.json';
+
+const title = 'Yerba Trendline — Terms';
+const description =
+  'The licence and risk disclosure for Yerba Trendline, the same two documents that ship inside the download.';
+---
+
+<BaseLayout width="record" title={title} description={description}>
+  {/* A legal page has no business competing with the product page in search. */}
+  <meta slot="head" name="robots" content="noindex" />
+
+  <article class="terms">
+    <p class="terms__eyebrow">Deadlink Labs / Products / Yerba Trendline</p>
+    <h1 class="terms__title">Terms</h1>
+    <p class="terms__stamp">Version {terms.version} · {terms.date}</p>
+
+    <p class="terms__lede">
+      These are the two documents that come inside the download, reproduced here so you can read
+      them before you buy rather than after. They are the same text, word for word.
+    </p>
+
+    <h2 class="terms__heading">End user license agreement</h2>
+    <pre class="terms__doc">{license}</pre>
+
+    <h2 class="terms__heading">Risk disclosure and disclaimer</h2>
+    <pre class="terms__doc">{disclaimer}</pre>
+
+    <p class="terms__back"><a href="/products/yerba">← Yerba Trendline</a></p>
+  </article>
+</BaseLayout>
+
+<style>
+  .terms {
+    padding-block: 1rem 1.5rem;
+    max-width: 720px;
+  }
+  .terms__eyebrow {
+    margin: 0 0 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-ink-60);
+  }
+  .terms__title {
+    margin: 0 0 0.6rem;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+  .terms__stamp {
+    margin: 0 0 2rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-ink-60);
+  }
+  .terms__lede {
+    margin: 0 0 2.5rem;
+    font-size: 18px;
+    line-height: 1.65;
+    max-width: 68ch;
+  }
+  .terms__heading {
+    margin: 2.5rem 0 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-ink-15);
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+  /* Mono and pre-wrap, on paper — not a dark panel (CLAUDE.md §3 reserves those
+     for code and terminal captures, and a licence is neither). Mono is not a
+     style choice here: both files are hard-wrapped at ~76 characters and their
+     numbered sections and ALL-CAPS blocks only line up in a fixed-width face.
+     Byte fidelity is the entire point of the page, so nothing reflows it. */
+  .terms__doc {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--color-ink);
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+  @media (max-width: 600px) {
+    .terms__doc {
+      font-size: 11px;
+    }
+  }
+  .terms__back {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-ink-15);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .terms__back a {
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  .terms__back a:hover {
+    color: var(--color-signal);
+  }
+</style>
