@@ -30,10 +30,12 @@
     }
 
     const zoom = mediumZoom(images, {
-      margin: 24,
-      // --color-panel-deep at 88%; the overlay is a fixed div, so a token in
-      // rgba() form is the one way to pass it here.
-      background: 'rgba(23, 20, 15, 0.88)',
+      // Edge to edge: the expanded image reaches the window border.
+      margin: 0,
+      // Neutral graphite, not the warm --color-panel-deep: through the blur,
+      // the warm dark over the warm paper read as muddy brown. The overlay
+      // is a fixed div, so rgba() is the one way to pass a colour here.
+      background: 'rgba(18, 18, 20, 0.78)',
     });
 
     // The library handles mouse and touch, and Escape to close, but an <img>
