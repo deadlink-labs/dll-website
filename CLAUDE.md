@@ -43,7 +43,7 @@ Register (from Structure v2): a working lab, not a startup site or portfolio. Vi
 ## 2. Brand architecture
 
 - **Domain:** deadlinklabs.com (canonical). Site masthead = Deadlink Labs.
-- **Person-first content:** "Marcelo Brouard" appears in the masthead running head and in the site `<title>` template (e.g. `Deadlink Labs — Marcelo Brouard` on home; `{Page} · Deadlink Labs` elsewhere, with Marcelo's name in meta description and JSON-LD Person schema). Googling "Marcelo Brouard" must find this site.
+- **Person-first discovery, lab-first page:** the visible masthead stays the Deadlink Labs wordmark plus Log / Products / About. Marcelo's name lives in the home `<title>`, meta description, JSON-LD Person schema and the closing "Who runs this" band. This is deliberate: visitors discover the work first and the person last; recruiters arriving from LinkedIn or a CV already have the name. Googling "Marcelo Brouard" must still find this site.
 - Deadlink Labs is Marcelo's laboratory. The lab is the format; Marcelo is the subject.
 - **Brand mark:** the **network mark** (see §3) — a growth graph of ink nodes and hairlines resolving onto one live orange node. The dead link resolves. This is the logo and the cover device.
 
@@ -51,7 +51,7 @@ Register (from Structure v2): a working lab, not a startup site or portfolio. Vi
 Intentionally minimal (Structure v2 §2):
 
 ```
-Home   Log   Products   About
+Deadlink Labs   Log   Products   About
 ```
 
 Do not add sections unless they serve a fundamentally different purpose. The consulting funnel (Work with me, client case studies) lives *off* this nav — surfaced on Home and About and reached by CTA, not as a top-level item.
@@ -84,12 +84,10 @@ The homepage opens with a quiet cover above the fold:
 - A dashed **viewport-fold marker**; the first experiment peeks below the fold so the visitor scrolls naturally into it.
 - No hero marketing, no welcome copy, no CTA on the cover (matches Structure v2 §4.1).
 
-### Masthead / running head (the 8A header)
-A hairline-topped-and-bottomed band, Plex Mono, uppercase, letter-spaced:
-- **Left:** `Deadlink Labs · A working laboratory · Marcelo Brouard · Buenos Aires` — the `Deadlink Labs` token slightly bolder (`weight 500`, `letter-spacing: 0.22em`); the rest ink-60.
-- **Right:** `Last updated MM.YYYY` (ink at ~50%).
+### Masthead / navigation
+The visible masthead is deliberately brand-only: `Deadlink Labs` as the home link, followed by `Log`, `Products` and `About`. It does not repeat Marcelo's name or location. The lab leads; the person appears in the closing "Who runs this" band, while title metadata and Person schema carry search identity (§2).
 
-This is a running head (identity + provenance), distinct from the four-item nav.
+The bar is sticky, shares the paper background and reveals a bottom hairline after scrolling. Do not add `Work with me` to it; consulting stays off-nav.
 
 ### Color tokens
 Deliberately NOT the cream-and-terracotta AI default. The desk is neutral-warm, the paper sheet sits on it, and the accent is a saturated **instrument/safety orange**, not clay.
@@ -604,7 +602,7 @@ There is **no CMS** in v1. (A Sanity migration may be revisited later as a docum
 
 ## 5. Pages & locked copy
 
-Nav is **Home · Log · Products · About**. Copy below is approved; don't rewrite it, extend in the same voice (plain, specific, first person, zero self-praising adjectives).
+Nav is **Deadlink Labs · Log · Products · About**. Copy below is approved; don't rewrite it, extend in the same voice (plain, specific, first person, zero self-praising adjectives).
 
 ### 5.1 Home `/` — follows design 8A, auto-generated
 Structure v2 §4.1 / §6. The page is generated from `site.config.json` + published content, not hand-authored. Band order:
@@ -612,13 +610,15 @@ Structure v2 §4.1 / §6. The page is generated from `site.config.json` + publis
 **Two numbering systems, kept apart** (settled 2026-08-10). The band numbers in *this list* count every band including the masthead and footer, which carry no rail label. The **rail numbers** (`01`…`06` in the left gutter) count only the labelled bands and are **derived at build time** from the bands that actually render — never hand-written, because bands are conditional (Products and Throwback vanish with an empty config array) and literal numbers drift silently the moment one flips. They did: the rail shipped starting at `03`, with no `01` anywhere on the page. A **record number** (`LOG 001`) is a third thing again — it says which post this is, not where you are on the page, and it belongs in a stamp. The hero gutter carried an oversized record number for a while and the rail read as two numbering systems in one column; the record number moved into the eyebrow stamp and the rail now carries section numbers only.
 
 1. **Cover** (8A truss mark + `Deadlink Labs` / `Build to Understand`, viewport fold). See §3. Unnumbered.
-2. **Masthead / running head** (8A header). See §3. Unnumbered.
-3. **Featured** — rail `01`, the band that opens the page. `heroPosts[0]` renders as the bench **hero**: eyebrow `FEATURED ON THE BENCH · LOG NNN`, H1 = the live experiment's **question** at 60px (e.g. *"Can a house quietly run its own systems without anyone tending them?"*), a short overview paragraph, one dark specimen panel (e.g. a `tail -f` log), and a "Step into the log →" link. The status token (`● IN PROGRESS`) sits in the rail under the label. The hero is the current experiment's question — NOT a hand-written personal positioning H1.
+2. **Masthead / navigation.** See §3. Unnumbered.
+3. **Featured** — rail `01`, the band that opens the page. `heroPosts[0]` renders as the bench **hero**: eyebrow `FEATURED ON THE BENCH · LOG NNN`, H1 = the active record title at 60px, a short overview paragraph, header media when present, and a "Step into the log →" link. Experiment questions are welcome; client-work titles can be concrete statements. The status token reflects the current lifecycle (`IN PROGRESS` or `TESTING`) and sits in the rail under the label. A delivered system under customer testing stays `TESTING`; "shipped" belongs in the receipt copy rather than the stage. The hero is the current work on the bench, not a hand-written personal positioning H1.
 
    *Any further `heroPosts` render as rich cards inside this same band*, under a hairline. They were a separate band once; it carried the same label, so the moment a second `heroPost` was added the page would have shown two bands both called "Featured", with two rail numbers. One band, one number.
 
    *This band's rail number is the one exception to uniform rail sizing* (`size="lead"` on `SectionLabel`): `01` renders a step larger than the other bands' numbers. That is a deliberate hierarchy for the band that opens the page, and it is the only such exception — see §3's "one size per role".
-4. **Client work** — rail `02`, off-nav consulting surface: stamped list — **Heat exchanger manufacturer** · `PROPOSAL · 2026`, **Uruguay Outfitters** · `SHIPPED · 2026`, **Crehana** · `CASE STUDY`. Driven by `site.config.json` → `homepage.clientWork` (§4); each entry may link to its log case study via an optional `slug`.
+4. **Client work** — rail `02`, off-nav consulting surface: stamped list — **Crehana** · `CASE STUDY`, **Uruguay Outfitters** · `SHIPPED · 2026`, **Heat exchanger manufacturer** · `PROPOSAL · 2026`. Driven by `site.config.json` → `homepage.clientWork` (§4); each entry may link to its log case study via an optional `slug`.
+
+   *A case study already serving as `heroPosts[0]` is omitted from Client Work on Home* so the same title, image and snippet do not repeat in consecutive bands. It can return when the hero changes.
 
    *This band leads the archive and the products (settled 2026-08-10).* It is the site's only proof surface for goals #1 and #2 (§1), and it was reading as the quietest thing on the page: fourth scroll, the smallest row titles of any card band, and not one word of prose naming what the rows were. What fixed it: **position** — it sits directly after the hero, so an experiment still opens the page (the lab leads, per §1) but client proof arrives on the second scroll instead of the fourth; a **chapter-break rule** (`border-top: 1px solid var(--color-ink)`, following the footer) and **more air** (`padding-block: 3rem`); and a **lede** naming what the rows are. The emphasis is entirely monochrome and entirely structural.
 
@@ -638,7 +638,7 @@ Structure v2 §4.1 / §6. The page is generated from `site.config.json` + publis
 
    *One row that scrolls sideways, cut so two and a half cards show* (settled 2026-09-14). The content column peaks at 802px and a third 260px-minimum card never fit, so the old `auto-fit` grid wrapped the third product under the first at every viewport width. The row is now a native horizontal scroll with snap, and the card width is a design constant, not a side effect: `(column − 2 gaps) / 2.5` (~305px at the sheet's full width), 1.5 cards under 900px, 1.2 on phones. The half card is the cue that there is more; the chevrons (plain `‹` `›` strokes in a 40px paper square with the card's own hairline, astride the track's edges and centred on the seam between screen and caption, the one line in the card nothing sits on) are a second handle that dims at either end, hides until the script has wired it, and glides to the next card *edge* with an ease-out rather than by a fixed distance. **Snap is off on desktop, on purpose:** with three cards and 2.5 in view there is half a card of travel, so mandatory snap points collapse to start and end and a trackpad swipe reads as stiff; it comes back under 900px, where a swipe is expected to page card to card. **Rejected:** the site's mono `←` `→` glyphs as the controls, centred on the screen area (tried first, 2026-09-14: not the shape a visitor expects a carousel control to have, and a control sitting at a third of the card's height looked misplaced); chevrons centred on the whole card (second try, same day: they landed on the status line); letting the track bleed through the right gutter to the sheet edge for bigger cards (~330px) — the 64px gutter is shared by the nav, every band and the footer, and one band breaking it reads as an error on any monitor wider than the sheet; and shrinking the cards until three fit, which loses the cue entirely. `/products` keeps its grid; the track is homepage-only.
 7. **Throwback** — rail `05`, off-nav archive surface: a stamped list of pre-lab projects written up from the archive, driven by `site.config.json` → `homepage.throwbacks` (§4). Each row prints `THROWBACK / NNN · LOG NNN · <year>`, the post title, snippet and thumbnail, and links to the record. It shares the stamped-list markup with band 4; the Products band (cards, not rows) sits between the two so they never read as one list. Rows appear only for posts that exist — the format is **not a schedule** (§5.2).
-8. **Who runs this** — rail `06`. A **104px round portrait**, one paragraph beside it — "Marcelo Brouard, Buenos Aires. 20+ years turning messy operations into systems that run themselves: post-production teams, pipeline automation, data and dashboards, AI workflows, and the occasional website." — and **one** button, `About me →`, pointing at `/about`. This is the canonical positioning line: it is reused verbatim on About (as the opening lede) and in both meta descriptions (`BaseLayout.astro`, `about.astro`). Change it in all four places or not at all.
+8. **Who runs this** — rail `06`. A **104px round portrait**, one paragraph beside it — "Marcelo Brouard, Buenos Aires. I spent 20+ years running production and operations. Now I build the systems with AI: content workflows, lead follow-up, and client onboarding." — and **one** button, `About me →`, pointing at `/about`. The paragraph combines the literal name and location in `src/pages/index.astro` with `PROFILE.intro` from `src/lib/profile.ts`; About reuses `PROFILE.intro`. Metadata uses `PROFILE.description`, a separate keyword-aware variant in the same module.
 
    *The portrait runs at 104px, not the record byline's 28px* (settled 2026-08-10). The band is labelled "Who runs this" and was answering with text alone; the face is the answer. At byline scale beside an 18px paragraph it reads as a small mark, not a person. It is round, like the byline avatar — the one round thing on a site with 0–4px radii, and the exception is the point (§3). It stacks above the paragraph under 600px. The asset is the same `src/assets/avatar-2024-mb.jpeg` the record byline uses; there is one portrait on this site, in three sizes.
 
@@ -693,7 +693,7 @@ Replaces the former "The Lab" page. Context, not marketing: what Deadlink Labs i
 
 **Opens with who runs this, then the name's origin story (locked copy — refine wording with Marcelo but keep the beat):**
 Marcelo Brouard. Buenos Aires, Argentina.
-20+ years turning messy operations into systems that run themselves: post-production teams, pipeline automation, data and dashboards, AI workflows, and the occasional website.
+I spent 20+ years running production and operations. Now I build the systems with AI: content workflows, lead follow-up, and client onboarding.
 When someone asked where they could see the work, there was no link to send. The work was real. The URL did not exist. I was the dead link.
 This lab is the fix. Everything I build now gets documented, numbered, and archived here. Nothing 404s anymore.
 

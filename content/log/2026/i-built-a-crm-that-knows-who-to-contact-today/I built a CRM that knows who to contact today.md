@@ -14,10 +14,10 @@ aliases:
 web-status: published
 web-title: "I built a CRM that knows who to contact today."
 web-pub-date: 2026-09-15
-web-snippet: "A small business needed partners in the US. Four weeks with an AI coding agent produced a research console, a queue, a mail archive and a graph of everyone the business knows, all in plain text files. The AI does the research. A person presses Send."
+web-snippet: "A small business needed partners in the US. I shipped the first working version of a custom CRM in four weeks. The first emails went out ten days after the first commit; of the first 24 shops, three replied and two said yes. The AI researches each lead. A person decides and presses Send."
 web-type: log
 web-number: 14
-web-stage: SHIPPED
+web-stage: TESTING
 web-tags: [CLIENT-WORK, AI, CRM, AUTOMATION, OBSIDIAN]
 web-thumb: "./assets/thumb.webp"   # built from the post's own artwork, the console's US coverage map; source at assets/thumb.svg
 web-thumb-alt: "Cover reading CUSTOM CRM, built with AI, beside the console's US coverage map: a tile grid with one square per state laid out in the shape of the country, shaded from pale to dark green by how many shops are on file in each, with dashed outlines on the states targeted but not yet swept."
@@ -29,7 +29,7 @@ The company isn't named here, and the niche has been changed, by agreement. Ever
 
 What I built for them is a custom CRM for that one job. In essence, it's a folder of text files. One file per shop holds who they are, why they're worth writing to, who to write to, every email that went out and every reply that came back. A console reads the folder and says who to write to today. A mail sync reads the mailbox over IMAP, so the record stays true without anyone retyping anything. And because the files link to each other, the whole record is a graph you can walk: people, places, product lines, and the brands each shop already carries. The wikilink approach is borrowed from Andrej Karpathy: keep the knowledge in plain markdown that links to itself, so a person and an agent can both walk it. A script rebuilds the links from the notes on every run.
 
-Four weeks. Built with Claude Code. The research runs through the same agent. Nothing sends by itself, and a person presses Send on every message.
+Four weeks. Built with Claude Code and shipped to the customer for testing. The first emails went out ten days after the first commit. Of the first two dozen shops, three replied and two said yes. The AI handles the research. A person decides who to contact and presses Send.
 
 This is the screen it opens on. It answers one question at a glance: is there something to do today, and how much of it. Under the counts sits a funnel from researched to stocking dealer, and a coverage table by product line for the duller job of noticing where the research is getting thin, before it becomes a gap you find by accident six months from now.
 

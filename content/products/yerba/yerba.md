@@ -6,7 +6,7 @@ people: []
 web-status: published
 web-title: Yerba Trendline
 web-pub-date: 2026-09-13
-web-snippet: A weekly trend indicator for TradingView that tells you which side of the trend you're on, where it flips, and whether the daily agrees. It reads the symbol on your chart and applies asset's calibration by automatically.
+web-snippet: A weekly trend indicator for TradingView that tells you which side of the trend you're on, where it flips, and whether the daily agrees. It reads the symbol on your chart and applies that asset's calibration automatically.
 web-type: products
 web-number: 3
 web-stage: TESTING

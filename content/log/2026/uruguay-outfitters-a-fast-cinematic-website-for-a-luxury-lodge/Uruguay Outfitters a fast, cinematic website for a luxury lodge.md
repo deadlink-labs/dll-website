@@ -12,7 +12,7 @@ aliases:
 web-status: published
 web-title: "Uruguay Outfitters: a fast, cinematic website for a luxury lodge"
 web-pub-date: 2026-07-16
-web-snippet: "A Cast & Blast Premium Outdoors Experience in Soriano, Uruguay, selling week-long stays to guests abroad. I designed and built its site: photo-first. Claude Code + Next.js, Sanity, Vercel."
+web-snippet: "Uruguay Outfitters sells week-long stays to guests abroad. I designed and built a photo-first site with one job: turn an interested visitor into an inquiry. I used Claude Code with Next.js, Sanity, and Vercel, and gave the lodge team control of its galleries and seasonal details."
 web-type: log
 web-number: 11
 web-stage: SHIPPED
@@ -57,7 +57,7 @@ stale by March, and a stale site on a seasonal business reads as a closed one.**
 
 ## One job, kept narrow
 
-**The site has one job that matters: turn an interested visitor into an enquiry.** So
+**The site has one job that matters: turn an interested visitor into an inquiry.** So
 it stays narrow. One clear path to a contact form, no popups, nothing else
 competing for the click. Everything on the page is there to support that step or
 to get out of its way.
@@ -81,7 +81,7 @@ Vercel hosts and deploys it. I push the code, Vercel builds it and puts it
 online across a global network, close to whoever is loading it. Every change gets
 its own preview link before it goes live.
 
-Resend sends the enquiry email. The form hands the message to it, and it lands
+Resend sends the inquiry email. The form hands the message to it, and it lands
 in the lodge's own inbox, where they reply as themselves.
 
 ## Who gets to change things without calling me
@@ -109,7 +109,7 @@ a picture sized for a desktop screen. So every image is resized and converted to
 modern format on demand, at the exact width the device asked for, then cached.
 The visitor sees nothing different. They just see it sooner.
 
-**Delivery.** ==A contact form is worthless if the enquiry lands in spam, or if the
+**Delivery.** ==A contact form is worthless if the inquiry lands in spam, or if the
 reply does.== Getting mail to pass a domain's strict anti-spoofing checks, so a
 reply reaches the guest's own inbox, was more work than the form itself.
 
@@ -126,7 +126,7 @@ didn't ship there.
 | DEC 002 | Tailwind for styling, one shared scale, no separate stylesheet | SETTLED |
 | DEC 003 | Vercel for build, deploy, global delivery, and a preview per change | SETTLED |
 | DEC 004 | Sanity headless CMS so the team edits content without touching code | SETTLED |
-| DEC 005 | Resend for enquiry email, replied from the lodge's own inbox | SETTLED |
+| DEC 005 | Resend for inquiry email, replied from the lodge's own inbox | SETTLED |
 | DEC 006 | On-demand image optimization plus correct sizing for a photo-heavy site | SETTLED |
 | DEC 007 | Accessibility floor on contrast and type size for an older audience | SETTLED |
 
