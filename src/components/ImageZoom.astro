@@ -13,9 +13,10 @@
 //    brings it back. Touch works (tap, swipe).
 // 2. Specimen diagrams are inline <svg> (remark-svg-specimen inlines them so
 //    the text inherits the page webfont). medium-zoom only takes <img>, and
-//    rasterising a diagram for the zoom would lose Plex Mono, so those open in
-//    a native <dialog>: the vector is cloned in and scaled to the window, sharp
-//    at any size, with the same overlay look. Escape and click close it.
+//    rasterising a diagram for the zoom would lose Plex Mono, so the script
+//    walks the vector through the library's own choreography: a clone over
+//    the drawing's spot, the library's overlay and classes, the same scale
+//    transform. One look, one timing, one set of CSS rules for both.
 ---
 
 <script>
@@ -91,50 +92,88 @@
     });
   }
 
-  /* 2. Specimen diagrams: inline SVG into a native modal dialog. */
+  /* 2. Specimen diagrams: the vector through medium-zoom's choreography.
+     Mirrors the library's open()/close(): clone at the original's rect,
+     overlay, body class for the fade, one transform, transitionend to tidy.
+     Reusing its class names means its injected CSS (transition, cursors)
+     and the global rules below apply to both kinds without a second copy. */
   const specimens = Array.from(document.querySelectorAll<SVGSVGElement>('.prose .specimen-fig svg'));
   if (specimens.length > 0) {
-    const dialog = document.createElement('dialog');
-    dialog.className = 'specimen-zoom';
-    document.body.append(dialog);
-    // A click anywhere (the drawing or the backdrop) closes, like the raster zoom.
-    dialog.addEventListener('click', () => dialog.close());
-    // showModal() returns focus to the element that opened it on close.
-    dialog.addEventListener('close', () => dialog.replaceChildren());
+    let active: { original: SVGSVGElement; clone: SVGSVGElement; overlay: HTMLDivElement } | null = null;
 
-    // Size the clone to the drawing, not the dialog: an svg left at 100% x
-    // 100% letterboxes the picture inside an invisible box, so the corner
-    // radius lands on the box and the picture runs into the side edges. Fit
-    // the viewBox ratio inside the window minus the air, and again on resize.
-    const fit = () => {
-      const clone = dialog.firstElementChild as SVGSVGElement | null;
-      if (!clone) return;
-      const vb = clone.viewBox.baseVal;
-      const ratio = vb.width && vb.height ? vb.width / vb.height : 16 / 9;
-      const maxW = window.innerWidth - VERTICAL_AIR * 2;
-      const maxH = window.innerHeight - VERTICAL_AIR * 2;
-      const w = Math.min(maxW, maxH * ratio);
-      clone.style.width = `${w}px`;
-      clone.style.height = `${w / ratio}px`;
+    const place = () => {
+      if (!active) return;
+      const { original, clone } = active;
+      const { top, left, width, height } = original.getBoundingClientRect();
+      // The library's formula with margin 0 and container insets top/bottom.
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight - VERTICAL_AIR * 2;
+      const scale = Math.min(viewportWidth / width, viewportHeight / height);
+      const translateX = (-left + (viewportWidth - width) / 2) / scale;
+      const translateY = (-top + (viewportHeight - height) / 2 + VERTICAL_AIR) / scale;
+      clone.style.transform = `scale(${scale}) translate3d(${translateX}px, ${translateY}px, 0)`;
     };
-    window.addEventListener('resize', fit);
 
-    const open = (svg: SVGSVGElement) => {
-      const clone = svg.cloneNode(true) as SVGSVGElement;
-      // The viewBox does the scaling; the file's width/height would pin it.
-      clone.removeAttribute('width');
-      clone.removeAttribute('height');
+    const close = () => {
+      if (!active) return;
+      const { original, clone, overlay } = active;
+      active = null;
+      document.body.classList.remove('medium-zoom--opened');
+      clone.style.transform = '';
+      clone.addEventListener(
+        'transitionend',
+        () => {
+          original.classList.remove('medium-zoom-image--hidden');
+          clone.remove();
+          overlay.remove();
+        },
+        { once: true },
+      );
+    };
+
+    const open = (original: SVGSVGElement) => {
+      if (active) return;
+      const rect = original.getBoundingClientRect();
+      const clone = original.cloneNode(true) as SVGSVGElement;
       clone.removeAttribute('id');
-      // The original is tabbable (openOnKey); the clone must not be, or
-      // showModal() focuses it and draws a ring inside the dialog.
-      clone.removeAttribute('tabindex');
-      dialog.replaceChildren(clone);
-      fit();
-      dialog.showModal();
+      clone.removeAttribute('tabindex'); // the original is tabbable (openOnKey)
+      clone.classList.add('medium-zoom-image', 'medium-zoom-image--opened');
+      clone.style.position = 'absolute';
+      clone.style.top = `${rect.top + window.scrollY}px`;
+      clone.style.left = `${rect.left + window.scrollX}px`;
+      clone.style.width = `${rect.width}px`;
+      clone.style.height = `${rect.height}px`;
+      clone.addEventListener('click', close);
+
+      const overlay = document.createElement('div');
+      overlay.className = 'medium-zoom-overlay';
+      overlay.style.background = OVERLAY;
+      overlay.addEventListener('click', close);
+
+      active = { original, clone, overlay };
+      original.classList.add('medium-zoom-image--hidden');
+      document.body.append(overlay, clone);
+      requestAnimationFrame(() => {
+        document.body.classList.add('medium-zoom--opened');
+        place();
+      });
     };
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+    let scrollAt = 0;
+    window.addEventListener('scroll', () => {
+      if (!active) {
+        scrollAt = window.scrollY;
+        return;
+      }
+      if (Math.abs(window.scrollY - scrollAt) > 40) close(); // the library's scrollOffset
+    });
+    window.addEventListener('resize', place);
 
     for (const svg of specimens) {
-      svg.style.cursor = 'zoom-in';
+      svg.classList.add('medium-zoom-image'); // zoom-in cursor, from the library's CSS
       svg.addEventListener('click', () => open(svg));
       openOnKey(svg, () => open(svg));
     }
@@ -142,8 +181,7 @@
 </script>
 
 <style is:global>
-  /* --- medium-zoom (raster). The library injects its base styles; these sit
-     on top. The sticky Nav is z-index 20 (Nav.astro), so the overlay and the
+  /* The library injects its base styles; these sit on top, for both kinds. The sticky Nav is z-index 20 (Nav.astro), so the overlay and the
      zoomed clone go above it. */
   .medium-zoom-overlay {
     z-index: 30;
@@ -169,63 +207,13 @@
     }
   }
 
-  /* --- specimen dialog (vector). Same overlay as above, on ::backdrop. */
-  .specimen-zoom {
-    width: 100vw;
-    height: 100vh;
-    max-width: 100vw;
-    max-height: 100vh;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: zoom-out;
-    /* Centre the drawing; the script sizes it to the window minus the air. */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .specimen-zoom::backdrop {
-    background: rgba(18, 18, 20, 0.78);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-  /* showModal() focuses the dialog itself (nothing inside is focusable) and
-     the browser draws its default ring around the whole viewport. Escape and
-     click are the exits; the ring says nothing here. */
-  .specimen-zoom:focus,
-  .specimen-zoom:focus-visible,
-  .specimen-zoom svg:focus,
-  .specimen-zoom svg:focus-visible {
-    outline: none;
-  }
-  .specimen-zoom svg {
-    display: block;
-    flex: none;
-    border-radius: 4px;
-    /* border-radius alone does not clip an inline svg's own ground rect. */
-    clip-path: inset(0 round 4px);
-  }
-  /* Graphite tiles carry no font-family and inherit the page webfont in the
-     prose ([slug].astro); the clone lives outside .prose, so repeat it here. */
-  .specimen-zoom svg text:not([font-family]) {
+  /* The specimen clone lives outside .prose; repeat the prose font rule for
+     graphite tiles, which carry no font-family of their own. */
+  svg.medium-zoom-image--opened text:not([font-family]) {
     font-family: var(--font-mono);
   }
-  /* A short fade in, matching the raster zoom's 0.3s. @starting-style is what
-     lets a dialog transition from its closed state; older engines skip it and
-     the dialog simply appears. */
-  .specimen-zoom[open],
-  .specimen-zoom[open]::backdrop {
-    opacity: 1;
-    transition: opacity 0.3s ease;
-    @starting-style {
-      opacity: 0;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .specimen-zoom[open],
-    .specimen-zoom[open]::backdrop {
-      transition: none;
-    }
+  /* border-radius alone does not clip an inline svg's own ground rect. */
+  svg.medium-zoom-image--opened {
+    clip-path: inset(0 round 4px);
   }
 </style>
