@@ -23,7 +23,7 @@
   import mediumZoom from 'medium-zoom';
 
   const OVERLAY = 'rgba(18, 18, 20, 0.78)';
-  const VERTICAL_AIR = 24;
+  const AIR = 24;
 
   const openOnKey = (el: Element, open: () => void) => {
     (el as HTMLElement).tabIndex = 0;
@@ -54,11 +54,9 @@
     }
 
     const zoom = mediumZoom(images, {
-      // Edge to edge sideways, 24px of air above and below: a picture that
-      // touches the top and bottom of the window looks jammed. `margin` is
-      // all four sides; `container` insets are per side.
-      margin: 0,
-      container: { top: VERTICAL_AIR, bottom: VERTICAL_AIR },
+      // 24px of air on every side: a picture that touches the window edge
+      // looks jammed, and a 16:9 one touched both sides.
+      margin: AIR,
       // Neutral graphite, not the warm --color-panel-deep: through the blur,
       // the warm dark over the warm paper read as muddy brown. The overlay
       // is a fixed div, so rgba() is the one way to pass a colour here.
@@ -105,12 +103,12 @@
       if (!active) return;
       const { original, clone } = active;
       const { top, left, width, height } = original.getBoundingClientRect();
-      // The library's formula with margin 0 and container insets top/bottom.
-      const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight - VERTICAL_AIR * 2;
+      // The library's formula with `margin: AIR`.
+      const viewportWidth = window.innerWidth - AIR * 2;
+      const viewportHeight = window.innerHeight - AIR * 2;
       const scale = Math.min(viewportWidth / width, viewportHeight / height);
-      const translateX = (-left + (viewportWidth - width) / 2) / scale;
-      const translateY = (-top + (viewportHeight - height) / 2 + VERTICAL_AIR) / scale;
+      const translateX = (-left + (viewportWidth - width) / 2 + AIR) / scale;
+      const translateY = (-top + (viewportHeight - height) / 2 + AIR) / scale;
       clone.style.transform = `scale(${scale}) translate3d(${translateX}px, ${translateY}px, 0)`;
     };
 
