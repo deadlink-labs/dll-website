@@ -1,0 +1,65 @@
+---
+// Click-to-zoom for the raster images in a record's prose (log posts and
+// product pages). Photographs are evidence (CLAUDE.md §3) and the 720px column
+// downscales them; a portrait capture lands at ~465px. The build already ships
+// each body image at its original pixel size (no srcset on markdown images), so
+// the zoom shows the file we have, it never fetches a second one.
+//
+// medium-zoom (MIT, ~3 KB, no dependencies) is the Medium.com pattern: the image
+// scales in place toward the viewport, an overlay dims the page, and a click,
+// Escape or a scroll brings it back. Touch works (tap, swipe). Scope is
+// `.prose img` only: not the 16:9-cropped header (object-fit would zoom a crop),
+// not inline SVG specimens, not the avatar.
+---
+
+<script>
+  import mediumZoom from 'medium-zoom';
+
+  const images = Array.from(document.querySelectorAll<HTMLImageElement>('.prose img'));
+  if (images.length > 0) {
+    const zoom = mediumZoom(images, {
+      margin: 48,
+      // --color-panel-deep at 88%; the overlay is a fixed div, so a token in
+      // rgba() form is the one way to pass it here.
+      background: 'rgba(23, 20, 15, 0.88)',
+    });
+
+    // The library handles mouse and touch, and Escape to close, but an <img>
+    // is not focusable, so the zoom cannot be opened from the keyboard on its
+    // own. Make each image tabbable and open it on Enter / Space. Focus never
+    // leaves the image, so after Escape the ring is where the reader left it.
+    for (const img of images) {
+      img.tabIndex = 0;
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          zoom.open({ target: img });
+        }
+      });
+    }
+  }
+</script>
+
+<style is:global>
+  /* The library injects its own base styles; these sit on top of them.
+     The sticky Nav is z-index 20 (Nav.astro), so the overlay and the zoomed
+     clone go above it. */
+  .medium-zoom-overlay {
+    z-index: 30;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .medium-zoom-image--opened {
+    z-index: 31;
+    border-radius: 4px;
+  }
+  /* Reduced motion: near-instant, not `none`. The library finishes open/close
+     on `transitionend`; a transition that never runs would leave the overlay
+     in the DOM. 1ms still fires the event and reads as instant. */
+  @media (prefers-reduced-motion: reduce) {
+    .medium-zoom-image,
+    .medium-zoom-overlay {
+      transition-duration: 1ms !important;
+    }
+  }
+</style>

@@ -10,6 +10,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import StatusDot from '../../components/StatusDot.astro';
 import WaitlistForm from '../../components/WaitlistForm.astro';
 import BuyBlock from '../../components/BuyBlock.astro';
+import ImageZoom from '../../components/ImageZoom.astro';
 import { getPublishedProducts } from '../../lib/content';
 
 export const getStaticPaths = (async () => {
@@ -100,6 +101,8 @@ const leadParagraphs =
         </>
       )
     }
+
+    <ImageZoom />
 
     <p class="product-page__back"><a href="/products">← All products</a></p>
   </article>

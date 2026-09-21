@@ -9,6 +9,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Stamp from '../../components/Stamp.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
+import ImageZoom from '../../components/ImageZoom.astro';
 import avatar from '../../assets/avatar-2024-mb.jpeg';
 import { getPublishedLog, recordLabel, seriesLabel, formatDate } from '../../lib/content';
 
@@ -81,6 +82,7 @@ const series = seriesLabel(entry);
     <div class="prose">
       <Content />
     </div>
+    <ImageZoom />
     {/* The house closer. It lived in the note bodies until now — five records
         ended with a bare "Build to understand." line and LOG 001 with a two-line
         "// " variant — which meant every author had to remember it and no two
