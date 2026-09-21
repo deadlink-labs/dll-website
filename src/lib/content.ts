@@ -79,8 +79,10 @@ const byRecordNumber = (a: LogEntry, b: LogEntry) => {
   return a.id.localeCompare(b.id);
 };
 
-// PRODUCTS keep date order: newest "entered the lab" first (§4). They carry no
-// record number to sort by — the LOG NNN spine is a log thing.
+// PRODUCTS fall back to date order: newest "entered the lab" first (§4). They
+// carry no record number to sort by — the LOG NNN spine is a log thing. Since
+// 2026-09-21 this is only the order of products NOT named in featuredProducts;
+// the shelf itself is curated (getShelfProducts).
 const byRecency = (a: ProductEntry, b: ProductEntry) => {
   const byDate = b.data.pubDate.getTime() - a.data.pubDate.getTime();
   if (byDate !== 0) return byDate;
@@ -99,6 +101,33 @@ export async function getPublishedProducts(): Promise<ProductEntry[]> {
   const entries = (await getCollection('products')).filter(isPublished);
   validateTypeMatchesFolder(entries, 'products');
   return entries.sort(byRecency);
+}
+
+// featuredProducts → entries, in array order. Every slug must resolve to a
+// published product; a typo fails the build (§7) rather than silently dropping
+// a card. Shared by the homepage band and the /products shelf so the two never
+// disagree on what a slug means.
+function resolveFeaturedProducts(config: SiteConfig, products: ProductEntry[]): ProductEntry[] {
+  const productBySlug = new Map(products.map((e) => [e.id, e]));
+  return (config.homepage.featuredProducts ?? []).map((slug) => {
+    const entry = productBySlug.get(slug);
+    if (!entry) throw new Error(`[content] featuredProducts slug "${slug}" is not a published product (§7).`);
+    return entry;
+  });
+}
+
+// The /products shelf (settled 2026-09-21): featuredProducts first, in array
+// order, then every other published product by recency. One curated list drives
+// both the homepage band and the shelf, so reordering the shelf = moving array
+// lines in site.config.json, same as every other homepage surface (§4). Date
+// order alone put whatever entered the lab last at the top, which is not the
+// same thing as what should lead.
+export async function getShelfProducts(): Promise<ProductEntry[]> {
+  const config = loadSiteConfig();
+  const products = await getPublishedProducts();
+  const featured = resolveFeaturedProducts(config, products);
+  const featuredSet = new Set(featured.map((e) => e.id));
+  return [...featured, ...products.filter((e) => !featuredSet.has(e.id))];
 }
 
 // --- validations that fail the build (§7) ------------------------------------
@@ -223,7 +252,6 @@ export async function getHomepageData(): Promise<HomepageData> {
   assertGloballyUniqueSlugs(log, products);
 
   const logBySlug = new Map(log.map((e) => [e.id, e]));
-  const productBySlug = new Map(products.map((e) => [e.id, e]));
 
   // 1. HERO — every heroPosts slug must resolve to a published log entry (§7).
   const heroSlugs = config.homepage.heroPosts ?? [];
@@ -238,11 +266,7 @@ export async function getHomepageData(): Promise<HomepageData> {
   const recent = log.filter((e) => !heroSet.has(e.id)).slice(0, config.homepage.recentPostsCount);
 
   // 3. FEATURED PRODUCTS — every slug must resolve to a published product (§7).
-  const featuredProducts = (config.homepage.featuredProducts ?? []).map((slug) => {
-    const entry = productBySlug.get(slug);
-    if (!entry) throw new Error(`[content] featuredProducts slug "${slug}" is not a published product (§7).`);
-    return entry;
-  });
+  const featuredProducts = resolveFeaturedProducts(config, products);
 
   // 4. CLIENT WORK — off-nav proof list (§5.1 band 4). A given slug must resolve
   //    to a published log case study (fail the build on a typo, like heroPosts);

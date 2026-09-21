@@ -3,9 +3,9 @@
 // Products are destinations; logs tell their story. No prices until purchasable.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import { getPublishedProducts } from '../../lib/content';
+import { getShelfProducts } from '../../lib/content';
 
-const products = await getPublishedProducts();
+const products = await getShelfProducts();
 ---
 
 <BaseLayout title="Products" description="Deadlink Labs products by Marcelo Brouard: Cassette Mixtapes, Hazefield, and more.">

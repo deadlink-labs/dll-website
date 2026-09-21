@@ -434,8 +434,12 @@ Rules:
     the content glob's read order — effectively the filesystem, which nothing
     should depend on. Numbers are unique among published entries (§7), so the
     primary key never ties for a numbered post.
-- **Products still sort by `web-pub-date`** (newest "entered the lab" first, then
-  slug). They carry no record number — the `LOG NNN` spine is a log thing.
+- **Products on `/products` follow `featuredProducts` first** (array order), then
+  every other published product by `web-pub-date` (newest "entered the lab"
+  first, then slug) — settled 2026-09-21, `getShelfProducts` in `src/lib/content.ts`.
+  They carry no record number — the `LOG NNN` spine is a log thing. Date order
+  alone put whatever entered the lab last at the top of the shelf, which is not
+  the same thing as what should lead it (§5.3).
 
 ### Obsidian syntax parity (the pipeline's actual promise)
 
@@ -549,7 +553,7 @@ Lives at the content-repo root. Homepage placement only:
 
 - `heroPosts` — ordered log slugs in the featured section; **array order = display order**.
 - `recentPostsCount` — how many chronological log entries below the hero.
-- `featuredProducts` — ordered product slugs; may be empty or omitted.
+- `featuredProducts` — ordered product slugs; may be empty or omitted. **Also the order of the top of `/products`** (2026-09-21): the shelf renders these first, in array order, then everything else by date. One list, two surfaces, never a disagreement.
 - `clientWork` — ordered entries for the off-nav "Client work" band (§5.1 band 4). Each has a display `name` and `status` label; an optional `slug` links the row to a published log case study. Omit `slug` for a client with no post yet (renders as plain text). Array order = display order; may be empty or omitted.
 - `throwbacks` — ordered entries for the "Throwback" band (§5.1 band 7, §5.2). Each is `{ status, slug }`, where `status` is the year the work happened ("2006") and `slug` **must** resolve to a published log entry carrying `web-series` / `web-series-number`. Unlike `clientWork` there is no unlinked form: a throwback row is always a real post, and everything else on the row (the `THROWBACK / NNN` label, the record number, title, snippet, thumbnail) is read from that post rather than restated here. Array order = display order, **newest throwback first** (settled 2026-09-15); may be empty or omitted.
 
@@ -677,6 +681,8 @@ Header: "Deadlink Labs / Products". Mature artifacts — may be commercial, free
 > Tools and artifacts that made it to the shelf. For sale, free, open source, or private beta. Each one has a page; the log entries tell how it got built.
 
 The shelf/bench pair is system vocabulary: the Log is the bench (`● Currently on the bench` on Home, "on the bench" in the VOICE-POSTS.md lexicon), and Products is what left it. Keep both metaphors pointing the same way. "Tools and artifacts" is deliberately wider than "tools" so a future pack, font, sample library, or track still fits the page without a rewrite.
+
+**Shelf order is curated, not chronological** (settled 2026-09-21): Cassette Mixtapes → Yerba Trendline → Hazefield, set by `featuredProducts` in `site.config.json` and shared with the homepage band. The audience this site is for is hiring for automation and operations, so a trading indicator does not lead the shelf; it stays second rather than last because it is the one product that actually sells. Do not move it by editing `web-pub-date` — that date is a fact ("entered the lab"), not a sort key to game.
 
 **Rejected for this lede: "went public"** (and any public/private framing). Every log entry is public too, so the axis does not separate Products from Log, and it contradicts `private beta` in the very next sentence. The dead-link motif it reaches for belongs in a log entry where something genuinely crosses from private to public.
 - **Cassette Mixtapes** · COMING SOON — A preparation studio for digital mixtapes: playlists, metadata, streaming-spec validation, loudness analysis. Waitlist form.
