@@ -14,7 +14,7 @@ web-tags:
   - PINE-SCRIPT
   - TRADINGVIEW
   - TREND
-web-image: ./assets/screen.webp
+web-image: ./assets/Yerba Trendline - BTCUSD.png
 web-terms-url: https://deadlinklabs.com/products/yerba/terms
 web-price: USD 97
 web-buy-url: https://payhip.com/buy?s=1&cart_links%5B%5D=ZxzvX&qty%5BZxzvX%5D=1
@@ -56,9 +56,10 @@ tools/sync_terms.py — never hand-edited here. Payhip's description no longer i
 them; its agree-at-checkout box links to that page, which is what makes "all sales
 final" bind. web-terms-url feeds BuyBlock.
 IMAGES (2026-09-20): every capture is the shipped v0.2.0 file on a live chart, framed by
-yerba-indicator/tools/frame_shot.py. Body charts are 16:9; web-image is the same BTC
-capture re-framed at 16:10 because .product-page__media crops to that ratio with
-object-fit: cover, and a 16:9 source would crop through the card. The per-asset pair is
+yerba-indicator/tools/frame_shot.py. Body charts are 16:9; web-image is the raw BTC
+capture, unframed (2026-09-21): the page header shows it edge to edge at its own
+ratio (.product-page__media no longer forces 16:10), and a framed shot with its shadow
+margins sat small inside the box. screen.webp is the old framed 16:10 version. The per-asset pair is
 never shown on a chart, on purpose: captures at three pairs would hand over the table.
 Three body images, one per section — the five-chart walkthrough is the store page's job.
 Alerts on indicators need a paid TradingView plan (Basic has none); said in web-buy-note

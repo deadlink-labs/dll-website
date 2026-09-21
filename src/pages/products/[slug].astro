@@ -52,9 +52,11 @@ const leadParagraphs =
     </div>
 
     {/* Header capture (mirrors the log record's header media, §3): the same
-        web-image ProductCard shows at listing size, here at hi-res. Products
-        author captures at 1600x1000 (16:10), not 16:9 — the box below matches
-        that native ratio rather than force-cropping to the log convention. */}
+        web-image ProductCard shows at listing size, here at hi-res. The image
+        keeps its own ratio rather than being cropped to one: Cassette and
+        Hazefield author at 1600x1000 (16:10), Yerba's TradingView capture is
+        16:9, and a forced 16:10 box cut through the chart chrome (2026-09-21).
+        The card still crops to 16:10 — a listing tile wants uniform tiles. */}
     {
       entry.data.image && (
         <figure class="product-page__media">
@@ -139,8 +141,7 @@ const leadParagraphs =
   .product-page__media :global(img) {
     display: block;
     width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
+    height: auto;
     border-radius: 4px;
   }
 
